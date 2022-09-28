@@ -1,0 +1,111 @@
+:root{
+    --tenne-tawny: #2c4cb4;
+    --tenne-tawny-dark: #122050;
+}
+
+.nav{
+        background: rgb(210, 211, 216);
+        text-align: center;
+        border-bottom: 4px solid var(--tenne-tawny);
+}
+
+.nav2{
+    background-color: var(--tenne-tawny);
+    border-bottom: 1px;
+}
+
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.ul {
+   display:table-row;
+   list-style:none;
+   height:100px;
+   text-align:center;
+   float:right;
+   width:100%;
+}
+
+.li {
+    display:inline-block;
+    vertical-align:middle;
+    text-transform: uppercase;
+    margin-left: 2%;
+    letter-spacing: 3px;
+    color: var(--tenne-tawny);
+ }
+
+ .navphoto{
+    height: auto;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    width: 140px;
+ }
+
+
+
+
+
+ /* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    left: 0%;
+    top: 17%;
+    width: 140px;
+    position: absolute;
+    margin-right: 0px;
+    margin-left: auto;
+    height: 50%;
+    overflow: auto;
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: var(--tenne-tawny);
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: var(--tenne-tawny);
+    color: white;
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-right: 200px;
+    padding: 1px 16px;
+    height: 0px;
+  }
+  
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }

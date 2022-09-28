@@ -5,22 +5,9 @@
 </head>
 
     <div class = "container">
-          <div class = "meal-wrapper">
-      
-              <!-- Logout/Myprofile knoppen -->
-              <div>
-                  <a href = "#" class = "profile-btn">Myprofile</a>
-              </div>
-              <br>
-              <div>
-                  <a href = "#" class = "logout-btn">Logout</a>
-              </div>
-      
+          <div class = "meal-wrapper">    
             <div class = "meal-search">
-              <h2 class = "title">Cloud recipe</h2>
-              <blockquote>Nothing brings people together like good food<br>
-              </blockquote>
-      
+              
               <!-- Searchbar -->
               <div class = "meal-search-box">
                 <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
