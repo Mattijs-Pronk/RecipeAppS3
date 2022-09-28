@@ -4,19 +4,16 @@
   
   <template>
     <header>
-      <a><RouterLink :to="{name: 'userinterface'}"><img src="CloudRecipeLogo.jpg" alt="Foto" class="navphoto"></RouterLink></a>
+      <a><RouterLink :to="{name: 'userinterface'}"><img src="/Images/CloudRecipeLogo.jpg" alt="Foto" class="navphoto"></RouterLink></a>
       <div class="nav">
         <h2 class = "title">Cloud recipe</h2>
         <blockquote>Nothing brings people together like good food</blockquote> <br>
+        <!-- <a href = "#" class = "login-btn">Login</a> -->
+        <a class="login-btn"><RouterLink :to="{name: 'userinterface'}"><img class="imagebutton" src="/Images/Login.jpg" alt=""></RouterLink></a>
+        <a class="profile-btn"><RouterLink :to="{name: 'userinterface'}"><img class="imagebutton" src="/Images/ProfilePic.jpg" alt=""></RouterLink></a>
+        <!-- <a class="favorites-btn"><RouterLink :to="{name: 'userinterface'}"><img class="imagebutton" src="/Images/HeartFavorite.jpg" alt=""></RouterLink></a> -->
+        <a class="addrecipe-btn"><RouterLink :to="{name: 'userinterface'}"><img class="imagebutton" src="/Images/AddRecipe.jpg" alt=""></RouterLink></a>
       </div>
-
-        <!-- The sidebar -->
-<div class="sidebar">
-  <a><RouterLink :to="{name: 'userinterface'}">MyProfile</RouterLink></a>
-  <a><RouterLink :to="{name: 'userinterface'}">MyFavorites</RouterLink></a>
-  <a><RouterLink :to="{name: 'userinterface'}">Add</RouterLink></a>
-  <a><RouterLink :to="{name: 'userinterface'}">Logout</RouterLink></a>
-</div>
     </header>
   </template>
   

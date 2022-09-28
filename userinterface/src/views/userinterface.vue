@@ -24,7 +24,7 @@
                 <!-- meal item -->
                 <div class = "meal-item">
                   <div class = "meal-img">
-                    <img src = "Hamburger2.jpg" alt = "food">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
                   </div>
                   <div class = "meal-name">
                     <h3>Hamburger</h3>
@@ -42,7 +42,7 @@
                 <!-- meal item -->
                 <div class = "meal-item">
                   <div class = "meal-img">
-                    <img src = "Hamburger2.jpg" alt = "food">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
                   </div>
                   <div class = "meal-name">
                     <h3>Hamburger</h3>
@@ -60,7 +60,7 @@
                 <!-- meal item -->
                 <div class = "meal-item">
                   <div class = "meal-img">
-                    <img src = "Hamburger2.jpg" alt = "food">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
                   </div>
                   <div class = "meal-name">
                     <h3>Hamburger</h3>
@@ -77,7 +77,7 @@
                 <!-- meal item -->
                 <div class = "meal-item">
                   <div class = "meal-img">
-                    <img src = "Hamburger2.jpg" alt = "food">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
                   </div>
                   <div class = "meal-name">
                     <h3>Hamburger</h3>
@@ -94,7 +94,7 @@
                 <!-- meal item -->
                 <div class = "meal-item">
                   <div class = "meal-img">
-                    <img src = "Hamburger2.jpg" alt = "food">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
                   </div>
                   <div class = "meal-name">
                     <h3>Hamburger</h3>
@@ -111,7 +111,7 @@
                 <!-- meal item -->
                 <div class = "meal-item">
                   <div class = "meal-img">
-                    <img src = "Hamburger2.jpg" alt = "food">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
                   </div>
                   <div class = "meal-name">
                     <h3>Hamburger</h3>
@@ -143,7 +143,7 @@
 
                     <div class="recipe-meal-img">
                         <br>
-                        <img src="Hamburger2.jpg" alt="food">
+                        <img src="/Images/Hamburger2.jpg" alt="food">
                     </div>
                     <br>
                     <p class="recipe-category">Made by:</p> <p1>Mattijs Pronk</p1>
