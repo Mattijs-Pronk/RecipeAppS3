@@ -9,11 +9,6 @@
         border-bottom: 4px solid var(--tenne-tawny);
 }
 
-.nav2{
-    background-color: var(--tenne-tawny);
-    border-bottom: 1px;
-}
-
 .title{
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -161,4 +156,27 @@
 .imagebutton{
     position: center;
     width: 20px;
+}
+
+
+@media screen and (max-width: 1250px){
+  .login-btn{
+      width: 80px;
+      right: 20px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .profile-btn{
+    width: 80px;
+    right: 110px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.addrecipe-btn{
+  width: 80px;
+  right: 200px;
+  left: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 }
