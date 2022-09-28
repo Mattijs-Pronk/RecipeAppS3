@@ -127,12 +127,12 @@
                 <!-- Eind van meal item -->
               </div>
             </div>
+
             <!-- Gekozen meal details -->
             <div class="meal-details">
                     <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
                     <i class="fas fa-times"></i>    
                     </button>
-                
                 <div class="meal-details-content">
                     <h2 class="recipe-title">Hamburger</h2>
                     <span class="fa fa-star checked"></span>
@@ -140,14 +140,14 @@
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span>
                       <span class="fa fa-star"></span> 
+                      <br>
+                      <p class="recipe-category">Made by:</p> <p1>Mattijs Pronk</p1>
 
                     <div class="recipe-meal-img">
                         <br>
                         <img src="/Images/Hamburger2.jpg" alt="food">
                     </div>
-                    <br>
-                    <p class="recipe-category">Made by:</p> <p1>Mattijs Pronk</p1>
-                    <br> <br>
+
                       <p class="recipe-category">Result:</p> <p1>Preptime: 20 mins, Portion('s') 1</p1>
 
                     <div class="recipe-instruct">
