@@ -155,7 +155,7 @@ body{
     border-radius: 1rem;
     width: 90%;
     height: 90%;
-    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-y: scroll; /* Hide vertical scrollbar */
     overflow-x: hidden; /* Hide horizontal scrollbar */
     padding: 2rem 0;
     opacity: 0.98;
