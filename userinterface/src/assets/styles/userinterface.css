@@ -157,7 +157,6 @@ body{
     height: 90%;
     overflow-y: hidden; /* Hide vertical scrollbar */
     overflow-x: hidden; /* Hide horizontal scrollbar */
-    display: none; /*Zet deze op 0 om zichtbaar te maken, none om ontzichtbaar te maken */
     padding: 2rem 0;
     opacity: 0.98;
 }
