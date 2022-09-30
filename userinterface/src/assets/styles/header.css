@@ -4,14 +4,9 @@
 }
 
 .nav{
-        background: rgb(210, 211, 216);
+        background: rgb(237, 237, 238);
         text-align: center;
         border-bottom: 4px solid var(--tenne-tawny);
-}
-
-.nav2{
-    background-color: var(--tenne-tawny);
-    border-bottom: 1px;
 }
 
 .title{
@@ -161,4 +156,49 @@
 .imagebutton{
     position: center;
     width: 20px;
+}
+
+
+@media screen and (max-width: 1250px){
+  .login-btn{
+      width: 80px;
+      right: 20px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .profile-btn{
+    width: 80px;
+    right: 110px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.addrecipe-btn{
+  width: 80px;
+  right: 200px;
+  left: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+
+@media screen and (max-width: 920px){
+  .login-btn{
+      width: 40px;
+      right: 20px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .profile-btn{
+    width: 40px;
+    right: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.addrecipe-btn{
+  width: 40px;
+  right: 120px;
+  left: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 }

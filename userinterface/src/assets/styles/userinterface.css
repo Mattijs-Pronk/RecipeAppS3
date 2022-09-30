@@ -155,10 +155,12 @@ body{
     border-radius: 1rem;
     width: 90%;
     height: 90%;
-    overflow-y: scroll;
-    /* display: 0; Zet deze op 0 om zichtbaar te maken, none om ontzichtbaar te maken */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     padding: 2rem 0;
+    opacity: 0.98;
 }
+
 
 /* Onaction java */
 .showrecipe{
