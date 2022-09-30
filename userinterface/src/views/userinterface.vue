@@ -1,3 +1,8 @@
+<script setup>
+  import { OpenModal } from '../assets/Functions/userinterface';
+  import { CloseModal } from '../assets/Functions/userinterface';
+</script>
+
 <template>
 
 <head>
@@ -34,43 +39,7 @@
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span>
                       <span class="fa fa-star"></span>
-                    <a href = "#" class = "recipe-btn">See Recipe</a>
-                  </div>
-                </div>
-                <!-- Eind van meal item -->
-
-                <!-- meal item -->
-                <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <a href = "#" class = "recipe-btn">See Recipe</a>
-                  </div>
-                </div>
-                <!-- Eind van meal item -->
-
-                <!-- meal item -->
-                <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <a href = "#" class = "recipe-btn">See Recipe</a>
+                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
                   </div>
                 </div>
                 <!-- Eind van meal item -->
@@ -87,7 +56,7 @@
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span>
                       <span class="fa fa-star"></span>
-                    <a href = "#" class = "recipe-btn">See Recipe</a>
+                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
                   </div>
                 </div>
                 <!-- Eind van meal item -->
@@ -104,7 +73,7 @@
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span>
                       <span class="fa fa-star"></span>
-                    <a href = "#" class = "recipe-btn">See Recipe</a>
+                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
                   </div>
                 </div>
                 <!-- Eind van meal item -->
@@ -121,15 +90,49 @@
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span>
                       <span class="fa fa-star"></span>
-                    <a href = "#" class = "recipe-btn">See Recipe</a>
+                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
+                  </div>
+                </div>
+                <!-- Eind van meal item -->
+                <!-- meal item -->
+                <div class = "meal-item">
+                  <div class = "meal-img">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
+                  </div>
+                  <div class = "meal-name">
+                    <h3>Hamburger</h3>
+                    <p>Made by: Mattijs Pronk</p>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
+                  </div>
+                </div>
+                <!-- Eind van meal item -->
+                <!-- meal item -->
+                <div class = "meal-item">
+                  <div class = "meal-img">
+                    <img src = "/Images/Hamburger2.jpg" alt = "food">
+                  </div>
+                  <div class = "meal-name">
+                    <h3>Hamburger</h3>
+                    <p>Made by: Mattijs Pronk</p>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
                   </div>
                 </div>
                 <!-- Eind van meal item -->
               </div>
             </div>
             <!-- Gekozen meal details -->
-            <div class="meal-details">
-                    <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
+            <div id="hidden" style="display:none" class="meal-details">
+                    <button v-on:click="stopModal" type="button" class="btn recipe-close-btn">
                     <i class="fas fa-times"></i>    
                     </button>
                 
@@ -166,6 +169,19 @@
             </div>
         </div>
 </template>
+
+<script>
+  export default {
+    methods:{
+      startModal(){
+        OpenModal()
+      },
+      stopModal(){
+        CloseModal()
+      }
+    }
+  }
+</script>
 
 
 <style>

@@ -156,7 +156,7 @@ body{
     width: 90%;
     height: 90%;
     overflow-y: scroll;
-    display: none; /*Zet deze op 0 om zichtbaar te maken, none om ontzichtbaar te maken */
+    /* display: 0; Zet deze op 0 om zichtbaar te maken, none om ontzichtbaar te maken */
     padding: 2rem 0;
 }
 
