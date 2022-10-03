@@ -11,7 +11,7 @@ jobs:
   unit_test:
     runs-on: ubuntu-latest
     strategy:
-      matrix: { dir: ['./user-front-end'] }
+      matrix: { dir: ['./userinterface'] }
 
     steps:
       - name: Checkout code
