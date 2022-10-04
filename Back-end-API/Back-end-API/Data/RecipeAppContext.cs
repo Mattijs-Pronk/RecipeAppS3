@@ -5,6 +5,11 @@ namespace Back_end_API.Data
 {
     public class RecipeAppContext : DbContext
     {
+        public RecipeAppContext(DbContextOptions<RecipeAppContext> options):base(options)
+        {
+
+        }
+
         public DbSet<UserModel> Users { get; set; } = null!;
 
         public DbSet<RecipeModel> Recipes { get; set; } = null!;
