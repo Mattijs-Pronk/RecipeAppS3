@@ -24,7 +24,12 @@ namespace Back_end_API.Models
         [Required]
         public string prepTime { get; set; } = null!;
 
+        [Required]
+        public string Portions { get; set; } = null!;
+
         public int Rating { get; set; }
+
+        public bool Active { get; set; }
 
         public int? userId { get; set; }
 
