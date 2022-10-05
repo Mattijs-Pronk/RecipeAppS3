@@ -1,5 +1,5 @@
 <script setup>
-  import { OpenModal } from '../assets/Functions/userinterface';
+  // import { OpenModal } from '../assets/Functions/userinterface';
   import { CloseModal } from '../assets/Functions/userinterface';
   import { LoadRecipes } from '../assets/Functions/userinterface';
 </script>
@@ -66,9 +66,9 @@
 <script>
   export default {
     methods:{
-      startModal(){
-        OpenModal()
-      },
+      // startModal(){
+      //   OpenModal()
+      // },
       stopModal(){
         CloseModal()
       },

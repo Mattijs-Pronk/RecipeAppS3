@@ -1,4 +1,4 @@
-export const OpenModal = function(){
+export const openModal = function(){
     document.getElementById("hidden").style.display = "block";
     
     console.log("Clicked");
@@ -33,6 +33,7 @@ export const OpenModal = function(){
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias assumenda quae corrupti temporibus rem blanditiis fugit numquam expedita maiores ratione praesentium, qui ab harum dicta modi nemo, est enim autem? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel quia optio odio, fuga laudantium porro nam magni deleniti accusantium, unde veniam alias perferendis incidunt tempora. Ea, quos repellat. Quos, laudantium.</p>
     </div>
     `;
+
     mealDetailsContent.innerHTML = html;
 }
 
@@ -63,7 +64,7 @@ export const LoadRecipes = function(){
                       
                       <p>${meal.rating} out of 5 <span class="fa fa-star checked"></span></P>
 
-                      <button v-on:click="OpenModal" class = "recipe-btn">See Recipe</button>
+                      <button onclick='openModal' class = "recipe-btn">See Recipe</button>
                     </div>
                   </div>
                     `;
@@ -77,4 +78,6 @@ export const LoadRecipes = function(){
             mealList.innerHTML = html;
         }); 
     }
+
+    
 

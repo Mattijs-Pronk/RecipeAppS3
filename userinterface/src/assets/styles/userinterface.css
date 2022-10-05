@@ -141,7 +141,7 @@ body{
 
 /* Om het aantal sterren bij een rating aan te geven */
 .checked {
-    color: orange;
+    color: var(--tenne-tawny);
   }
 
   /* Recept details */
