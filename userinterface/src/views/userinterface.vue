@@ -1,6 +1,7 @@
 <script setup>
   import { OpenModal } from '../assets/Functions/userinterface';
   import { CloseModal } from '../assets/Functions/userinterface';
+  import { LoadRecipes } from '../assets/Functions/userinterface';
 </script>
 
 <template>
@@ -26,8 +27,9 @@
             <div class = "meal-result">
               <h2></h2>
               <div id= "meal">
+                <button v-on:click="LoadRecipes" class = "recipe-btn">See Recipe</button>
                 <!-- meal item -->
-                <div class = "meal-item">
+                <!-- <div class = "meal-item">
                   <div class = "meal-img">
                     <img src = "/Images/Hamburger2.jpg" alt = "food">
                   </div>
@@ -41,95 +43,10 @@
                       <span class="fa fa-star"></span>
                     <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
                   </div>
-                </div>
+                </div> -->
                 <!-- Eind van meal item -->
-                <!-- meal item -->
-                <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
-                  </div>
-                </div>
-                <!-- Eind van meal item -->
-                <!-- meal item -->
-                <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
-                  </div>
-                </div>
-                <!-- Eind van meal item -->
-                <!-- meal item -->
-                <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
-                  </div>
-                </div>
-                <!-- Eind van meal item -->
-                <!-- meal item -->
-                <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
-                  </div>
-                </div>
-                <!-- Eind van meal item -->
-                <!-- meal item -->
-                <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
-                  </div>
-                </div>
-                <!-- Eind van meal item -->
-              </div>
             </div>
+          </div>
 
             <!-- Gekozen meal details -->
             <div id="hidden" style="display:none" class="meal-details">
@@ -154,6 +71,9 @@
       },
       stopModal(){
         CloseModal()
+      },
+      LoadAllRecipes(){
+        LoadRecipes()
       }
     }
   }

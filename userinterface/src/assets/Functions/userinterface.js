@@ -1,6 +1,8 @@
 export const OpenModal = function(){
     document.getElementById("hidden").style.display = "block";
     
+    console.log("Clicked");
+
     const mealDetailsContent = document.querySelector('.meal-details-content');
 
     let html = `
@@ -34,7 +36,45 @@ export const OpenModal = function(){
     mealDetailsContent.innerHTML = html;
 }
 
+
 export const CloseModal = function(){
     document.getElementById("hidden").style.display = "none";
 }
+
+
+export const LoadRecipes = function(){
+    const mealList = document.getElementById('meal');
+        fetch(`https://localhost:7108/api/Recipe`)
+        .then(response => response.json())
+        .then(data => {
+
+            
+            let html = "";
+            if(data){
+                data.forEach(meal => {
+                    html += `
+                    <div class = "meal-item">
+                    <div class = "meal-img">
+                      <img src = "/Images/Hamburger2.jpg" alt = "food">
+                    </div>
+                    <div class = "meal-name">
+                      <h3>${meal.title}</h3>
+                      <p>Made by: Mattijs Pronk</p>
+                      
+                      <p>${meal.rating} out of 5 <span class="fa fa-star checked"></span></P>
+
+                      <button v-on:click="OpenModal" class = "recipe-btn">See Recipe</button>
+                    </div>
+                  </div>
+                    `;
+                });
+                mealList.classList.remove('notFound');
+            } else{
+                html = "Sorry, we didn't find any meal!";
+                mealList.classList.add('notFound');
+            }
+    
+            mealList.innerHTML = html;
+        }); 
+    }
 
