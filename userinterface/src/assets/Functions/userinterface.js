@@ -64,18 +64,21 @@ export const LoadRecipes = function(){
                       
                       <p>${meal.rating} out of 5 <span class="fa fa-star checked"></span></P>
 
-                      <button onclick='openModal' class = "recipe-btn">See Recipe</button>
+                      <button class = "recipe-btn">See Recipe</button>
                     </div>
                   </div>
                     `;
                 });
-                mealList.classList.remove('notFound');
-            } else{
-                html = "Sorry, we didn't find any meal!";
-                mealList.classList.add('notFound');
             }
     
             mealList.innerHTML = html;
+
+            var btns = document.getElementsByClassName("recipe-btn");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function () {
+                    openModal()
+                });
+            }
         }); 
     }
 
