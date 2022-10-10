@@ -104,6 +104,11 @@ body{
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
     margin: 2rem 0;
 }
+
+.meal-item:hover { 
+    transform: scale(1.01); 
+}
+
 .meal-img img{
     width: 100%;
     display: block;
@@ -147,6 +152,7 @@ body{
   /* Recept details */
   .meal-details{
     position: fixed;
+    width: 90%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -155,11 +161,12 @@ body{
     border-radius: 1rem;
     width: 90%;
     height: 90%;
-    overflow-y: scroll; /* Hide vertical scrollbar */
+    /* overflow-y: scroll; Hide vertical scrollbar */
     overflow-x: hidden; /* Hide horizontal scrollbar */
     padding: 2rem 0;
-    opacity: 0.98;
+    opacity: 0.99;
 }
+
 
 
 /* Onaction java */
@@ -189,6 +196,7 @@ body{
 
 .recipe-title{
     letter-spacing: 1px;
+    font-size:xx-large;
     padding-bottom: 1rem;
 }
 

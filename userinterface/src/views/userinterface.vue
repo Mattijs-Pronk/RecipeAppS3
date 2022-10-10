@@ -1,8 +1,6 @@
 <script setup>
-  //import { OpenModal } from '../assets/Functions/userinterface';
-  import { CloseModal } from '../assets/Functions/userinterface';
-  import { LoadRecipes } from '../assets/Functions/userinterface';
-  //import OpenModalVue from '../assets/Functions/OpenModal.vue';
+  import { CloseModal } from '../assets/Functions/CloseModal';
+  import { LoadRecipes } from '../assets/Functions/LoadRecipes';
 </script>
 
 <template>
@@ -15,7 +13,8 @@
           <div class = "meal-wrapper">    
             <div class = "meal-search">
               
-              <!-- Searchbar -->
+
+              <!-- Start van searchbar -->
               <div class = "meal-search-box">
                 <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
                 <button type = "submit" class = "search-btn btn" id = "search-btn">
@@ -23,59 +22,42 @@
                 </button>
               </div>
             </div>
-            <!-- Eind van searchbar -->
+            <!-- Einde van searchbar -->
       
+            <!-- Start van meal items -->
             <div class = "meal-result">
               <h2></h2>
               <div id= "meal">
-                <button v-on:click="LoadRecipes" class = "recipe-btn">See Recipe</button>
-                <!-- meal item -->
-                <!-- <div class = "meal-item">
-                  <div class = "meal-img">
-                    <img src = "/Images/Hamburger2.jpg" alt = "food">
-                  </div>
-                  <div class = "meal-name">
-                    <h3>Hamburger</h3>
-                    <p>Made by: Mattijs Pronk</p>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                    <button v-on:click="startModal" class = "recipe-btn">See Recipe</button>
-                  </div>
-                </div> -->
-                <!-- Eind van meal item -->
+                
+                <!-- Meal-item word hier ingeladen -->
+
             </div>
           </div>
+          <!-- Eind van meal items -->
 
-            <!-- Gekozen meal details -->
+          <!-- Start van modal -->
             <div id="hidden" style="display:none" class="meal-details">
-                    <button v-on:click="stopModal" type="button" class="btn recipe-close-btn">
-                    <i class="fas fa-times"></i>    
-                    </button>
+                    <button v-on:click="CloseModal()" type="button" class="btn recipe-close-btn">
+                    <i class="fas fa-times"></i></button> 
+                    <div class="meal-details-content"></div>   
+                    
+                <!-- Meal-item-content word hier ingeladen -->
 
-
-                <div class="meal-details-content">
                 </div>
-            </div>
-            <!-- Einde gekozen meal details -->
-            </div>
-        </div>
+          <!-- Eind van modal -->
+
+
+          </div>
+      </div>
 </template>
 
 <script>
   export default {
+    //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
+    mounted(){
+      this.LoadRecipes()
+    },
     methods:{
-      // startModal(){
-      //   OpenModal()
-      // },
-      stopModal(){
-        CloseModal()
-      },
-      LoadAllRecipes(){
-        LoadRecipes()
-      }
     }
   }
 </script>

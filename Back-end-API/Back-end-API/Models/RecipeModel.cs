@@ -32,9 +32,9 @@ namespace Back_end_API.Models
         public bool Active { get; set; }
 
         //Foreign key aanmaken met onderstaande variables.
-        //public int? userId { get; set; }
+        public int? userId { get; set; }
 
-        //[ForeignKey("userId")]
-        //public virtual UserModel User { get; set; } = null!;
+        [ForeignKey("userId")]
+        public virtual UserModel User { get; set; } = null!;
     }
 }

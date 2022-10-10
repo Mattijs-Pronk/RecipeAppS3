@@ -1,38 +1,42 @@
-export const openModal = function(){
-  document.getElementById("hidden").style.display = "block";
-  
-  console.log("Clicked");
+import axios from "axios";
 
+//functie om het modal te openen.
+export const openModal = async function(id){
   const mealDetailsContent = document.querySelector('.meal-details-content');
+      
+  axios.get(`https://localhost:7108/api/Recipe/id?id=${id}`)
+       .then(function(data){
 
-  let html = `
-  <h2 class="recipe-title">Hamburger</h2>
-  <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span> 
-    <br>
-    <p class="recipe-category">Made by:</p> <p1>Mattijs Pronk</p1>
+        var meal = data.data;
+             let html = `
+              <h2 class="recipe-title">${meal.title}</h2>
 
-  <div class="recipe-meal-img">
-      <br>
-      <img src="/Images/Hamburger2.jpg" alt="food">
-  </div>
+              <div class="recipe-meal-img">
+              <img src="/Images/Hamburger2.jpg" alt="food">
+              </div>
 
-    <p class="recipe-category">Result:</p> <p1>Preptime: 20 mins, Portion('s') 1</p1>
+              <p>${meal.rating} out of 5 <span class="fa fa-star"></span></P>
 
-  <div class="recipe-instruct">
-      <br>
-      <h3>Ingredients:</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias assumenda quae corrupti temporibus rem blanditiis fugit numquam expedita maiores ratione praesentium.</p>
-  </div>
+              
 
-  <div class="recipe-instruct">
-      <h3>Preperation:</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias assumenda quae corrupti temporibus rem blanditiis fugit numquam expedita maiores ratione praesentium, qui ab harum dicta modi nemo, est enim autem? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel quia optio odio, fuga laudantium porro nam magni deleniti accusantium, unde veniam alias perferendis incidunt tempora. Ea, quos repellat. Quos, laudantium.</p>
-  </div>
-  `;
+              <p>Made by: Mattijs Pronk</p>
+              <br>
+              <p class="recipe-category">Result:</p> <p1>Preptime: ${meal.prepTime} mins, Portion('s') ${data.Portions}</p1>
 
-  mealDetailsContent.innerHTML = html;
-}
+              <div class="recipe-instruct">
+              <br>
+              <h3>Ingredients:</h3>
+              <p>${meal.ingredients}</p>
+              </div>
+
+              <div class="recipe-instruct">
+              <h3>Preperation:</h3>
+              <p>${meal.description}</p>
+              </div>
+              `;
+
+              document.getElementById("hidden").style.display = "block";
+
+          mealDetailsContent.innerHTML = html;
+      });
+    }
