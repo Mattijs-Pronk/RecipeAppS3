@@ -37,13 +37,14 @@
 
           <!-- Start van modal -->
             <div id="hidden" style="display:none" class="meal-details">
-                    <button v-on:click="CloseModal()" type="button" class="btn recipe-close-btn">
-                    <i class="fas fa-times"></i></button> 
-                    <div class="meal-details-content"></div>   
+                    <button v-on:click="CloseModal()" type="button" class="btn recipe-close-btn"><i class="fas fa-times"></i></button> 
+                    <button class="btn recipe-favorite-btn"><img src="/Images/HeartFavorite.jpg" alt="Foto" class="favoritephoto"></button>
+                    
+                    <div class="meal-details-content">   
                     
                 <!-- Meal-item-content word hier ingeladen -->
-
-                </div>
+              </div>
+            </div>
           <!-- Eind van modal -->
 
 

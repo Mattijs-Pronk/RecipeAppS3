@@ -27,7 +27,7 @@ export const LoadRecipes = async function(){
                 });
 
                 mealList.innerHTML = html;   
-            
+
             //functie aan de button geven in de class "Meal-item".
             const buttons = document.getElementsByClassName("meal-item")
             
