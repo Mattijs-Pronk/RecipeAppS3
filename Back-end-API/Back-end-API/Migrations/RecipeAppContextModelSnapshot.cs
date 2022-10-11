@@ -41,9 +41,9 @@ namespace Back_end_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Portions")
+                    b.Property<int?>("Portions")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -52,12 +52,11 @@ namespace Back_end_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("prepTime")
+                    b.Property<int?>("prepTime")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
                     b.Property<int?>("userId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("recipeId");
@@ -99,9 +98,7 @@ namespace Back_end_API.Migrations
                 {
                     b.HasOne("Back_end_API.Models.UserModel", "User")
                         .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("userId");
 
                     b.Navigation("User");
                 });

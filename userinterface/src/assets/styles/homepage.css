@@ -90,6 +90,7 @@ body{
 /* Recepten */
 .meal-result{
     margin-top: 4rem;
+    border-color: var(--tenne-tawny);
 }
 #meal{
     margin: 2.4rem 0;
