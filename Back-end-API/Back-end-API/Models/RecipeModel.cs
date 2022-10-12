@@ -36,7 +36,14 @@ namespace Back_end_API.Models
         [ForeignKey("userId")]
         public int userId { get; set; }
 
-        [JsonIgnore]
         public UserModel User { get; set; } = null!;
+
+
+
+        //Foreign key aanmaken met onderstaande variables.
+        //[ForeignKey("userNameId")]
+        //public int userNameId { get; set; }
+
+        //public UserNameModal UserName { get; set; } = null!;
     }
 }

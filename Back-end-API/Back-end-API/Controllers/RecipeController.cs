@@ -18,9 +18,16 @@ namespace Back_end_API.Controllers
             _context = context;
         }
 
+
         [HttpGet]
         public async Task<IEnumerable<RecipeModel>> GetAllRecipes()
-            => await _context.Recipes.ToListAsync();
+        {
+            var result = await _context.Recipes
+                .Include(u => u.User)
+                .ToListAsync();
+
+            return result;
+        }
 
 
         [HttpGet("id")]
@@ -29,13 +36,14 @@ namespace Back_end_API.Controllers
         public async Task<IActionResult> GetRecipeById(int id)
         {
             var result = await _context.Recipes
-                .Where(c => c.recipeId == id)
-                .Include(c => c.User)
+                .Where(r => r.recipeId == id)
+                .Include(u => u.User)
                 .ToListAsync();
 
             var recipe = await _context.Recipes.FindAsync(id);
             return recipe == null ? NotFound() : Ok(recipe);
         }
+
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -63,5 +71,19 @@ namespace Back_end_API.Controllers
             return CreatedAtAction(nameof(GetRecipeById), new { id = newrecipe.recipeId }, newrecipe);
         }
 
+
+        [HttpDelete("id")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteRecipeById(int id)
+        {
+            var recipetoDelete = await _context.Recipes.FindAsync(id);
+            if (recipetoDelete == null) return BadRequest();
+
+            _context.Recipes.Remove(recipetoDelete);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

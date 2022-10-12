@@ -34,7 +34,7 @@
                     </div>
                     <div class = "meal-name">
                       <h3>{{meal.title}}</h3>
-                      <p>Made by: Mattijs Pronk</p>          
+                      <p>Made by: {{meal.user.userName}}</p>          
                       <p>{{meal.rating}} out of 5 <span class="fa fa-star checked"></span></P>
                       <button v-on:click="OpenRecipeById(meal.recipeId)" class = "recipe-btn">See Recipe</button>
                     </div>
@@ -53,7 +53,7 @@
                       <img src="/Images/Hamburger2.jpg" alt="food">
                       </div>
                       <p>{{mealitem.rating}} out of 5 <span class="fa fa-star"></span></P>
-                      <p>Made by: Mattijs Pronk</p>
+                      <p>Made by: {{mealitem.user}}</p>
                       <br>
                       <p class="recipe-category">Result:</p> <p1>Preptime: {{mealitem.prepTime}} mins, Portion('s'): {{mealitem.portions}}</p1>
                       <div class="recipe-instruct">
