@@ -1,5 +1,4 @@
-﻿using Back_end_API.BuisnessLogic;
-using Back_end_API.DAL;
+﻿using Back_end_API.BusinessLogic;
 using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
@@ -14,8 +13,6 @@ namespace Back_end_API.Controllers
     {
         public readonly RecipeAppContext _context;
 
-        RecipeContainer recipeContainer = new RecipeContainer();
-
         public RecipeController(RecipeAppContext context)
         {
             _context = context;
@@ -23,41 +20,47 @@ namespace Back_end_API.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<RecipeModel>> GetAllRecipes()
-        {
-            return await _context.Recipes.ToListAsync();
-        }
+            => await _context.Recipes.ToListAsync();
+
 
         [HttpGet("id")]
         [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetRecipeById(int id)
         {
+            var result = await _context.Recipes
+                .Where(c => c.recipeId == id)
+                .Include(c => c.User)
+                .ToListAsync();
+
             var recipe = await _context.Recipes.FindAsync(id);
             return recipe == null ? NotFound() : Ok(recipe);
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateRecipe(RecipeModel recipe)
+        public async Task<ActionResult<List<RecipeModel>>> CreateRecipe(RecipeDTO recipe)
         {
-            //Recipe recipe1 = new Recipe();
-            //recipe1.recipeId = recipe.recipeId;
-            //recipe1.Title = recipe.Title;
-            //recipe1.Description = recipe.Description;
-            //recipe1.Ingredients = recipe.Ingredients;
-            //recipe1.PrepTime = (int)recipe.prepTime;
-            //recipe1.Rating = recipe.Rating;
-            //recipe1.Active = recipe.Active;
-            //recipe1.Portions = (int)recipe.Portions;
-            //recipe1.userId = (int)recipe.userId;
+            var result = _context.Users.FindAsync(recipe.userId);
+            if (result == null)
+                return NotFound();
 
+            var newrecipe = new RecipeModel
+            {
+                Title = recipe.Title,
+                Description = recipe.Description,
+                Ingredients = recipe.Ingredients,
+                prepTime = recipe.prepTime,
+                Portions = recipe.Portions,
+                Rating = recipe.Rating,
+                Active = recipe.Active,
+                User = await result
+            };
 
-            //await recipeContainer.AddOneReservation(recipe1);
-
-            await _context.Recipes.AddAsync(recipe);
+            await _context.Recipes.AddAsync(newrecipe);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetRecipeById), new { id = recipe.recipeId }, recipe);
+            return CreatedAtAction(nameof(GetRecipeById), new { id = newrecipe.recipeId }, newrecipe);
         }
 
     }

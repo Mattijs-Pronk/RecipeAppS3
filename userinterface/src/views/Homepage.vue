@@ -1,7 +1,7 @@
 <script setup>
   import { CloseModal } from '../assets/Functions/CloseModal';
-  import { OpenModal } from '../assets/Functions/OpenModal'
-  import { LoadRecipes } from '../assets/Functions/LoadRecipes';
+  import { OpenModal } from '../assets/Functions/OpenModal';
+  import { GetAllRecipes } from '../assets/Functions/GetAllRecipes';
 </script>
 
 <template>
@@ -82,12 +82,9 @@
         mealitem: []
       }
     },
-    components:{
-
-    },
     //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
     mounted(){
-      this.LoadRecipes()
+      this.GetAllRecipes()
     },
     methods:{
       OpenRecipeById(id){

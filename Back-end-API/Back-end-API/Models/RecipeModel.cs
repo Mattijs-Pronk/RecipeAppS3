@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
+using System.Text.Json.Serialization;
 
 namespace Back_end_API.Models
 {
@@ -32,11 +33,10 @@ namespace Back_end_API.Models
         public bool Active { get; set; }
 
         //Foreign key aanmaken met onderstaande variables.
-        [Display(Name = "UserModal")]
-        public int? userId { get; set; }
-
         [ForeignKey("userId")]
-        public virtual UserModel? User { get; set; } 
+        public int userId { get; set; }
 
+        [JsonIgnore]
+        public UserModel User { get; set; } = null!;
     }
 }

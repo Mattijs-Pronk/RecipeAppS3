@@ -4,6 +4,7 @@ using Back_end_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back_end_API.Migrations
 {
     [DbContext(typeof(RecipeAppContext))]
-    partial class RecipeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221012082407_foreignEdited10")]
+    partial class foreignEdited10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +65,7 @@ namespace Back_end_API.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("Back_end_API.Models.UserModel", b =>
@@ -91,7 +93,7 @@ namespace Back_end_API.Migrations
 
                     b.HasKey("userId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Back_end_API.Models.RecipeModel", b =>

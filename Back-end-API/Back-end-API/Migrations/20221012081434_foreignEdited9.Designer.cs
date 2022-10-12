@@ -4,6 +4,7 @@ using Back_end_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back_end_API.Migrations
 {
     [DbContext(typeof(RecipeAppContext))]
-    partial class RecipeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221012081434_foreignEdited9")]
+    partial class foreignEdited9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +63,10 @@ namespace Back_end_API.Migrations
 
                     b.HasKey("recipeId");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("userId")
+                        .IsUnique();
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("Back_end_API.Models.UserModel", b =>
@@ -91,18 +94,24 @@ namespace Back_end_API.Migrations
 
                     b.HasKey("userId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Back_end_API.Models.RecipeModel", b =>
                 {
                     b.HasOne("Back_end_API.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("userId")
+                        .WithOne("recipeModel")
+                        .HasForeignKey("Back_end_API.Models.RecipeModel", "userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Back_end_API.Models.UserModel", b =>
+                {
+                    b.Navigation("recipeModel")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

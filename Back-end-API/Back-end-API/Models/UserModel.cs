@@ -18,5 +18,7 @@ namespace Back_end_API.Models
 
         [Required]
         public bool isAdmin { get; set; }
+
+        //public RecipeModel Recipe { get; set; } = null!;
     }
 }

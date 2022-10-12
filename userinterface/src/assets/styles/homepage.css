@@ -195,6 +195,12 @@ body{
     opacity: 0.6;
 }
 
+.recipe-close-btn:hover{
+    color: red;
+    transform: scale(1.05); 
+    opacity: 0.6;
+}
+
 .recipe-favorite-btn{
     position: absolute;
     left: 2rem;
@@ -205,6 +211,12 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.6;
+}
+
+.recipe-favorite-btn:hover{
+    color: red;
+    transform: scale(1.05); 
     opacity: 0.6;
 }
 
