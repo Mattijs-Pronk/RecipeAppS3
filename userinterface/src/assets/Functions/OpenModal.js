@@ -8,7 +8,5 @@ export const OpenModal = async function(id){
        .catch(error => {console.log(error)})
 
         document.getElementById("hidden").style.display = "block";
-
-        console.log(this.mealitem)
         
       };

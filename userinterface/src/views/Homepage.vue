@@ -2,6 +2,7 @@
   import { CloseModal } from '../assets/Functions/CloseModal';
   import { OpenModal } from '../assets/Functions/OpenModal';
   import { GetAllRecipes } from '../assets/Functions/GetAllRecipes';
+  import searchbar from '../components/Searchbar.vue'
 </script>
 
 <template>
@@ -13,16 +14,8 @@
     <div class = "container">
           <div class = "meal-wrapper">    
             <div class = "meal-search">
-              
-              <!-- Start van searchbar -->
-              <div class = "meal-search-box">
-                <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
-                <button type = "submit" class = "search-btn btn" id = "search-btn">
-                  <i class = "fas fa-search"></i>
-                </button>
-              </div>
+              <searchbar/>
             </div>
-            <!-- Einde van searchbar -->
 
             <!-- Start van meal items -->
             <div class = "meal-result">
@@ -66,9 +59,9 @@
                       <p>{{meal.description}}</p>
                   </div>
               </div>
-              <!-- Eind van modal -->
-
             </div>
+            <!-- Eind van modal -->
+            
           </div>
       </div>
 </template>
