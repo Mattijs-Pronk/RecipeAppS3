@@ -4,6 +4,8 @@ using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Linq;
 
 namespace Back_end_API.Controllers
 {
@@ -20,28 +22,49 @@ namespace Back_end_API.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<RecipeModel>> GetAllRecipes()
+        public async Task<ActionResult> GetAllRecipes()
         {
-            var result = await _context.Recipes
-                .Include(u => u.User)
-                .ToListAsync();
+            var result = from r in _context.Recipes
+                         select new
+                         {
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             User = r.User.UserName
+                         };
 
-            return result;
+            await result.ToListAsync();
+
+            return Ok(result);
         }
 
 
         [HttpGet("id")]
         [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetRecipeById(int id)
+        public async Task<ActionResult> GetRecipeById(int id)
         {
-            var result = await _context.Recipes
-                .Where(r => r.recipeId == id)
-                .Include(u => u.User)
-                .ToListAsync();
+            var result = from r in _context.Recipes
+                         where r.recipeId == id
+                         select new
+                         {
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             User = r.User.UserName
+                         };
+
+            await result.ToListAsync();
 
             var recipe = await _context.Recipes.FindAsync(id);
-            return recipe == null ? NotFound() : Ok(recipe);
+            return recipe == null ? NotFound() : Ok(result);
         }
 
 
@@ -49,7 +72,7 @@ namespace Back_end_API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<List<RecipeModel>>> CreateRecipe(RecipeDTO recipe)
         {
-            var result = _context.Users.FindAsync(recipe.userId);
+            var result = await _context.Users.FindAsync(recipe.userId);
             if (result == null)
                 return NotFound();
 
@@ -62,7 +85,7 @@ namespace Back_end_API.Controllers
                 Portions = recipe.Portions,
                 Rating = recipe.Rating,
                 Active = recipe.Active,
-                User = await result
+                User = result
             };
 
             await _context.Recipes.AddAsync(newrecipe);

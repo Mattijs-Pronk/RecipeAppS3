@@ -34,7 +34,7 @@
                     </div>
                     <div class = "meal-name">
                       <h3>{{meal.title}}</h3>
-                      <p>Made by: {{meal.user.userName}}</p>          
+                      <p>Made by: {{meal.user}}</p>          
                       <p>{{meal.rating}} out of 5 <span class="fa fa-star checked"></span></P>
                       <button v-on:click="OpenRecipeById(meal.recipeId)" class = "recipe-btn">See Recipe</button>
                     </div>
@@ -47,23 +47,23 @@
             <div id="hidden" style="display:none" class="meal-details">
                     <button v-on:click="CloseRecipe()" type="button" class="btn recipe-close-btn"><i class="fas fa-times"></i></button> 
                     <button v-on:click="" class="btn recipe-favorite-btn"><img src="/Images/HeartFavorite.jpg" alt="Foto" class="favoritephoto"></button>                   
-                    <div class="meal-details-content">                      
-                      <h2 class="recipe-title">{{mealitem.title}}</h2>
+                    <div class="meal-details-content" v-for="meal in mealitem">                      
+                      <h2 class="recipe-title">{{meal.title}}</h2>
                       <div class="recipe-meal-img">
                       <img src="/Images/Hamburger2.jpg" alt="food">
                       </div>
-                      <p>{{mealitem.rating}} out of 5 <span class="fa fa-star"></span></P>
-                      <p>Made by: {{mealitem.user}}</p>
+                      <p>{{meal.rating}} out of 5 <span class="fa fa-star"></span></P>
+                      <p>Made by: {{meal.user}}</p>
                       <br>
-                      <p class="recipe-category">Result:</p> <p1>Preptime: {{mealitem.prepTime}} mins, Portion('s'): {{mealitem.portions}}</p1>
+                      <p class="recipe-category">Result:</p> <p1>Preptime: {{meal.prepTime}} mins, Portion('s'): {{meal.portions}}</p1>
                       <div class="recipe-instruct">
                       <br>
                       <h3>Ingredients:</h3>
-                      <p>{{mealitem.ingredients}}</p>
+                      <p>{{meal.ingredients}}</p>
                       </div>
                       <div class="recipe-instruct">
                       <h3>Preperation:</h3>
-                      <p>{{mealitem.description}}</p>
+                      <p>{{meal.description}}</p>
                   </div>
               </div>
               <!-- Eind van modal -->
