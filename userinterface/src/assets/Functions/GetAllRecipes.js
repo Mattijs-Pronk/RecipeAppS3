@@ -7,7 +7,6 @@ export const GetAllRecipes = async function(){
         .then(response => {this.meallist = response.data;})
         .catch(error => {console.log(error)})
 
-        console.log(this.meallist)
         };
     
             

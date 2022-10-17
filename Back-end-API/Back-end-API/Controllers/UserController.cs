@@ -26,7 +26,7 @@ namespace Back_end_API.Controllers
         [HttpGet("id")]
         [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetUserById(int id)
+        public async Task<ActionResult> GetUserById(int id)
         {
             var user = await _context.Users.FindAsync(id);
             return user == null ? NotFound() : Ok(user);
@@ -34,7 +34,7 @@ namespace Back_end_API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateUser(UserModel user)
+        public async Task<ActionResult> CreateUser(UserModel user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
@@ -45,7 +45,7 @@ namespace Back_end_API.Controllers
         [HttpPut("id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateUserById(int id, UserModel user)
+        public async Task<ActionResult> UpdateUserById(int id, UserModel user)
         {
             if(id != user.userId) return BadRequest();
 
@@ -58,7 +58,7 @@ namespace Back_end_API.Controllers
         [HttpDelete("id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteUserById(int id)
+        public async Task<ActionResult> DeleteUserById(int id)
         {
             var usertoDelete = await _context.Users.FindAsync(id);
             if(usertoDelete == null) return BadRequest();

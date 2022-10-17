@@ -9,10 +9,10 @@ namespace Back_end_API.Models
         public int userId { get; set; }
 
         [Required]
-        public string UserName { get; set; } = null!;
+        public string userName { get; set; } = null!;
 
         [Required]
-        public string Password { get; set; } = null!;
+        public string passwordHash { get; set; } = null!;
 
         [Required]
         public string Email { get; set; } = null!;

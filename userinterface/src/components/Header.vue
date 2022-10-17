@@ -1,5 +1,6 @@
 <script setup>
     import { RouterLink } from 'vue-router'
+    import RegistrationModal from '../views/LoginRegistration.vue'
   </script>
   
   <template>
@@ -9,7 +10,7 @@
         <h2 class = "title">Cloud recipe</h2>
         <blockquote>Nothing brings people together like good food</blockquote> <br>
         <!-- <a href = "#" class = "login-btn">Login</a> -->
-        <a class="login-btn"><RouterLink :to="{name: 'Homepage'}"><img class="imagebutton" src="/Images/Login.jpg" alt=""></RouterLink></a>
+        <a class="login-btn"><RouterLink :to="{name: 'loginregistration'}"><img class="imagebutton" src="/Images/Login.jpg" alt=""></RouterLink></a>
         <a class="profile-btn"><RouterLink :to="{name: 'Homepage'}"><img class="imagebutton" src="/Images/ProfilePic.jpg" alt=""></RouterLink></a>
         <!-- <a class="favorites-btn"><RouterLink :to="{name: 'userinterface'}"><img class="imagebutton" src="/Images/HeartFavorite.jpg" alt=""></RouterLink></a> -->
         <a class="addrecipe-btn"><RouterLink :to="{name: 'Homepage'}"><img class="imagebutton" src="/Images/AddRecipe.jpg" alt=""></RouterLink></a>

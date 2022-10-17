@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ODFIx5FVALUjm/NlJXypWzgvk7Ck3qwR1PV7/mZZfej6X7ICgtr32XSYRh4JZgVa9FwGlK0PxtjwgND0wcXCuQ==",
+  "dgSpecHash": "GEZsSZobVJm4ZFZARyhCFru+bVvNBWUXeq2nsIRQAAXiCRoFTY9aVmKOAnT4Fgq9zCr+kYePM2YLsNwvvbvlww==",
   "success": true,
   "projectFilePath": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\Back-end-API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\matti\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\matti\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\matti\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\matti\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",

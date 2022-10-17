@@ -34,7 +34,7 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
-                             User = r.User.UserName
+                             r.User.userName
                          };
 
             await result.ToListAsync();
@@ -58,7 +58,7 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
-                             User = r.User.UserName
+                             r.User.userName
                          };
 
             await result.ToListAsync();
@@ -70,7 +70,7 @@ namespace Back_end_API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<List<RecipeModel>>> CreateRecipe(RecipeDTO recipe)
+        public async Task<ActionResult<RecipeModel>> CreateRecipe(RecipeDTO recipe)
         {
             var result = await _context.Users.FindAsync(recipe.userId);
             if (result == null)
@@ -98,7 +98,7 @@ namespace Back_end_API.Controllers
         [HttpDelete("id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteRecipeById(int id)
+        public async Task<ActionResult> DeleteRecipeById(int id)
         {
             var recipetoDelete = await _context.Recipes.FindAsync(id);
             if (recipetoDelete == null) return BadRequest();
