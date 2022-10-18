@@ -5,6 +5,11 @@
     --tenne-tawny-dark: #122050;
 }
 
+.text-danger {
+    --bs-text-opacity: 1;
+    color: #ff0000;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -36,7 +41,7 @@ body{
 .container .forms{
     display: flex;
     align-items: center;
-    height: 440px;
+    height: 550px;
     width: 200%;
     transition: height 0.2s ease;
 }
@@ -68,7 +73,7 @@ body{
     height: 600px;
 }
 .container .form .title{
-    position: relative;
+    position: fixed;
     font-size: 27px;
     font-weight: 600;
 }

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Back_end_API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : Controller
     {
         public readonly RecipeAppContext _context;
@@ -17,12 +19,20 @@ namespace Back_end_API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserModel>> Register(UserModel request)
         {
+            //var doubleEmail = _context.Users.Any(u => u.Email == request.Email);
+            //var doubleUsername = _context.Users.Any(u => u.userName == request.userName);
+
+            //if(doubleEmail || doubleUsername)
+            //{
+            //    return BadRequest("userName or Email already exists");
+            //}
+
             var newUser = new UserModel
             {
                 userName = request.userName,
                 Email = request.Email,
                 passwordHash = request.passwordHash,
-                isAdmin = request.isAdmin,
+                isAdmin = false,
             };
 
             await _context.Users.AddAsync(newUser);
@@ -37,14 +47,16 @@ namespace Back_end_API.Controllers
             var Myuser = _context.Users
                 .FirstOrDefault(u => u.Email == request.email);
 
-            bool validPassword = BCrypt.Net.BCrypt.Verify(request.password, Myuser.passwordHash);
-
-            if (Myuser == null || validPassword == false)
+            if(Myuser != null)
             {
-                return BadRequest("user not found");
-            }
+                bool validPassword = BCrypt.Net.BCrypt.Verify(request.password, Myuser.passwordHash);
 
-            return Ok(Myuser.userId);
+                if(validPassword)
+                {
+                    return Ok(Myuser.userId);
+                }
+            }
+            return NotFound("user not found");
         }
     }
 }

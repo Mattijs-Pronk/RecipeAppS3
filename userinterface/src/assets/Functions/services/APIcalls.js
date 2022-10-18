@@ -1,16 +1,28 @@
-import { Login } from "../Auth"
 import API from "./API"
 
 export default{
-    GetAllRecipes(){
-        return API().get('/Recipe')
+    async GetAllRecipes(){
+        return await API().get('/Recipe')
     },
 
-    GetRecipeById(id){
-        return API().get(`/Recipe/id?id=${id}`)
+    async GetRecipeById(id){
+        return await API().get(`/Recipe/id?id=${id}`)
     },
 
-    Login(){
-        return API().post(`/login?email=${email}&password=${password}`)
+    async Login(email, password){
+        return await API().post(`/Auth/login`, {
+            email: email,
+            password: password
+        })
+
+    },
+
+    async Register(username, passwordhash, email, isadmin){
+        return await API().post(`/Auth/register`, {
+            username: username,
+            passwordHash: passwordhash,
+            Email: email,
+            isAdmin: isadmin
+        })
     }
 }
