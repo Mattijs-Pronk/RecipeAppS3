@@ -1,16 +1,13 @@
 import APIcalls from "./services/APIcalls";
 import { HashPassword } from "./PasswordHash";
 
-// export const Login = async (email, password) => {
-//   await APIcalls.Login(email, password)
-//   .then(response => {
+// export const Login =  (email, password) => {
+//   let response = APIcalls.Login(email, password)
 
-//   if(response.status == 200){
-//   //localStorage.setItem('userId', JSON.stringify(response.data))
-//   this.$router.push({name: 'Homepage'})
-//   console.log("succes")
+//   if(response.status == 404){
+//   return false;
 //   }
-//   })
+//   else{return true}
 // }
 
 
@@ -19,11 +16,27 @@ export const Register = async (username, email, password) => {
   const passwordhash = await HashPassword(password);
 
   await APIcalls.Register(username, passwordhash, email, isadmin)
-  .then(response => {
-    console.log(response);
-  })
+  //.then(response => {
+    //console.log(response);
+  //})
 }
 
-// export default Logout = async () => {
+export const Logout = async () => {
+  localStorage.clear();
+}
 
-// }
+export const CheckUser = async (username) => {
+  await APIcalls.CheckUsername(username)
+  //.then(response => {
+    //console.log(response);
+  //})
+}
+
+export const CheckEmail = async (email) => {
+  await APIcalls.CheckUsername(email)
+  //.then(response => {
+    //console.log(response);
+  //})
+}
+
+        

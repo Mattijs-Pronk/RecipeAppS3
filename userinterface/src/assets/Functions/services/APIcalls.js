@@ -6,7 +6,9 @@ export default{
     },
 
     async GetRecipeById(id){
-        return await API().get(`/Recipe/id?id=${id}`)
+        return await API().get(`/Recipe`, {
+            id: id
+        })
     },
 
     async Login(email, password){
@@ -24,5 +26,17 @@ export default{
             Email: email,
             isAdmin: isadmin
         })
-    }
+    },
+
+    async CheckUsername(username){
+         return await API().post(`/Auth/checkname?username=${username}`) //, {
+        //     username: username
+        // })
+    },
+
+    async CheckEmail(email){
+        return await API().post(`/Auth/checkemail?email=${email}`) //, {
+       //     username: username
+       // })
+   },
 }

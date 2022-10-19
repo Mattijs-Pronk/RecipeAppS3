@@ -1,9 +1,10 @@
 <script setup>
-//import {Login} from '../assets/Functions/Auth'
 import APIcalls from "../assets/Functions/services/APIcalls";
+import SimpleHeader from '../components/SimpleHeader.vue';
 </script>
 
 <template>
+  <SimpleHeader/>
     <div class="container">
         <div class="forms"> 
             <div class="form login">
@@ -30,6 +31,7 @@ import APIcalls from "../assets/Functions/services/APIcalls";
                         <a href="#" class="text">Forgot password?</a>
                     </div>
 
+                    <br>
                     <div class="input-field button">
                         <input type="button" value="Login" v-on:click="submitForm()">
                     </div>
@@ -89,9 +91,10 @@ export default{
         .then(response => {
 
         if(response.status == 200){
-        //localStorage.setItem('userId', JSON.stringify(response.data))
+        //local storage setten.
+        localStorage.setItem('userName', JSON.stringify(response.data))
+        //navigeren naar de hompagina.
         this.$router.push({name: 'Homepage'})
-        console.log("succes")
         }
         }) 
       }

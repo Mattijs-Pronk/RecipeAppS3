@@ -47,7 +47,7 @@
     right: 20px;
     text-decoration: none;
     color: #fff;
-    background: var(--tenne-tawny);
+    /* background: var(--tenne-tawny); */
     font-weight: 500;
     font-size: 1.1rem;
     padding: 0.75rem 0;
@@ -65,6 +65,7 @@
     -ms-transition: all 0.4s linear;
     -o-transition: all 0.4s linear;
 }
+
 .login-btn:hover{
     background: var(--tenne-tawny-dark);
 }
@@ -93,6 +94,7 @@
   -ms-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
 }
+
 .profile-btn:hover{
   background: var(--tenne-tawny-dark);
 }
@@ -121,6 +123,7 @@
   -ms-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
 }
+
 .addrecipe-btn:hover{
   background: var(--tenne-tawny-dark);
 }
@@ -149,6 +152,7 @@
   -ms-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
 }
+
 .favorites-btn:hover{
   background: var(--tenne-tawny-dark);
 }

@@ -1,7 +1,8 @@
 <script setup>
-  import { CloseModal } from '../assets/Functions/CloseModal';
-  import { OpenModal } from '../assets/Functions/OpenModal';
-  import { GetAllRecipes } from '../assets/Functions/GetAllRecipes';
+  import { CloseModal } from '../assets/Functions/Recipe';
+  import { OpenModal } from '../assets/Functions/Recipe';
+  import { GetAllRecipes } from '../assets/Functions/Recipe';
+  import Header from '../components/Header.vue'
   import searchbar from '../components/Searchbar.vue'
 </script>
 
@@ -9,6 +10,7 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
+  <Header/>
     <div class = "container">
           <div class = "meal-wrapper">    
             <div class = "meal-search">

@@ -30,7 +30,7 @@ body{
     max-width: 500px;
     width: 90%;
     top: 20%;
-    left: 40%;
+    left: 35%;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -93,7 +93,7 @@ body{
     position: relative;
     height: 50px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .input-field input{

@@ -1,13 +1,18 @@
 <script setup>
 import {Register} from '../assets/Functions/Auth'
+import {CheckUser} from '../assets/Functions/Auth'
+import {CheckEmail} from '../assets/Functions/Auth'
+import APIcalls from '../assets/Functions/services/APIcalls'
+import SimpleHeader from '../components/SimpleHeader.vue'
 </script>
 
 <template>
+    <SimpleHeader/>
     <div class="container">
         <div class="forms">
             <div class="form login">
                 <span class="title">Register</span>
-                <br><br><br>
+                
                 <form action="#">
                     <br>
                     <span v-if="registerError" class="text-danger">{{registerError}}</span>
@@ -79,36 +84,66 @@ export default{
       if(cb.checked == true){see.type = "text", seere.type = "text"}
       else(see.type = "password", seere.type = "password")
     },
+
     checkEmail() {
+        //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
+        if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+    }
+
+    this.timer = setTimeout(() => {
+
+        if(this.email <= 0 ||CheckEmail(this.email)){ this.emailError = 'Email already taken'}
+        else{ this.emailError = ''}
+
+    }, 1500);
+        
       this.emailError = this.email.length == 0 ? 'Email cannot be empty.' 
       : (this.validateEmail(this.email) ? '' : this.email + ' is not an email.')
     },
+
     validateEmail(email) {
       const re = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
       return re.test(email);
     },
+
     checkPassword() {
       this.passwordError = this.password.length < 6 ? 'Password is to short.' : ''
     },
+
     checkRePassword(){
         this.RepasswordError = this.Repassword.length == 0 ? 'Repassword cannot be empty.' :
         this.RepasswordError = this.password != this.Repassword ? 'Password and RePassword do not match.' : ''
     },
+
     checkUsername(){
+        //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
+        if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+    }
+    this.timer = setTimeout(() => {
+
+        if(this.username <= 0 || CheckUser(this.username)){ this.usernameError = 'Username already taken'}
+        else{ this.emailError = ''}
+
+    }, 1500);
         this.usernameError = this.username.length == 0 ? 'Username cannot be empty.' : ''
     },
-        submitForm(){
-            this.checkUsername();
-            this.checkEmail();
-            this.checkPassword();
-            this.checkRePassword();
-            this.registerError = 'account not created, please fill in all forms'
 
-            if(this.passwordError == '' && this.RepasswordError == '' && this.emailError == '' && this.usernameError == '')
-            {
-                Register(this.username, this.email, this.password)
-                this.$router.push({name: 'Homepage'})
-            }
+    submitForm(){
+        this.checkUsername();
+        this.checkEmail();
+        this.checkPassword();
+        this.checkRePassword();
+        this.registerError = 'account not created, please fill in all forms'
+
+        if(this.passwordError == '' && this.RepasswordError == '' && this.emailError == '' && this.usernameError == '')
+        {
+            Register(this.username, this.email, this.password)
+            this.$router.push({name: 'Homepage'})
+        }
         },
     },
 

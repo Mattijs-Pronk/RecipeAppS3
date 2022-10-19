@@ -53,10 +53,30 @@ namespace Back_end_API.Controllers
 
                 if(validPassword)
                 {
-                    return Ok(Myuser.userId);
+                    return Ok(Myuser.userName);
                 }
             }
             return NotFound("user not found");
+        }
+
+        [HttpPost("checkname")]
+        public async Task<ActionResult<bool>> UserNameChecker(string username)
+        {
+            bool doubleUsername = _context.Users.Any(u => u.userName == username);
+
+            if (doubleUsername) { return false; }
+
+            return true;
+        }
+
+        [HttpPost("checkemail")]
+        public async Task<ActionResult<bool>> EmailChecker(string email)
+        {
+            bool doubleEmail = _context.Users.Any(u => u.Email == email);
+
+            if (doubleEmail) { return false; }
+
+            return true;
         }
     }
 }
