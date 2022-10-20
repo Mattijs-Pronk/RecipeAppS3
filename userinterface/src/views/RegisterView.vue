@@ -2,7 +2,6 @@
 import {Register} from '../assets/Functions/Auth'
 import {CheckUser} from '../assets/Functions/Auth'
 import {CheckEmail} from '../assets/Functions/Auth'
-import APIcalls from '../assets/Functions/services/APIcalls'
 import SimpleHeader from '../components/SimpleHeader.vue'
 </script>
 
@@ -90,14 +89,14 @@ export default{
         if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
-    }
+        }
 
-    this.timer = setTimeout(() => {
+    this.timer = setTimeout(async () => {
 
-        if(this.email <= 0 ||CheckEmail(this.email)){ this.emailError = 'Email already taken'}
+        if(await CheckEmail(this.email)){ this.emailError = 'Email already taken'}
         else{ this.emailError = ''}
 
-    }, 1500);
+    }, 1800);
         
       this.emailError = this.email.length == 0 ? 'Email cannot be empty.' 
       : (this.validateEmail(this.email) ? '' : this.email + ' is not an email.')
@@ -122,13 +121,13 @@ export default{
         if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
-    }
-    this.timer = setTimeout(() => {
+        }
+        this.timer = setTimeout(async () => {
 
-        if(this.username <= 0 || CheckUser(this.username)){ this.usernameError = 'Username already taken'}
-        else{ this.emailError = ''}
+        if(await CheckUser(this.username) == true){ this.usernameError = 'Username already taken'}
+        else{ this.usernameError = ''}
 
-    }, 1500);
+    }, 1800);
         this.usernameError = this.username.length == 0 ? 'Username cannot be empty.' : ''
     },
 

@@ -1,24 +1,23 @@
 import APIcalls from "./services/APIcalls";
 import { HashPassword } from "./PasswordHash";
 
-// export const Login =  (email, password) => {
-//   let response = APIcalls.Login(email, password)
+export const Login = async (email, password) => {
+  try{
+    let response = await APIcalls.Login(email, password)
 
-//   if(response.status == 404){
-//   return false;
-//   }
-//   else{return true}
-// }
-
+    localStorage.setItem('user', JSON.stringify((response).data))
+    return true
+  }
+  catch{
+    return false
+  } 
+}
 
 export const Register = async (username, email, password) => {
   const isadmin = false;
   const passwordhash = await HashPassword(password);
 
   await APIcalls.Register(username, passwordhash, email, isadmin)
-  //.then(response => {
-    //console.log(response);
-  //})
 }
 
 export const Logout = async () => {
@@ -26,17 +25,13 @@ export const Logout = async () => {
 }
 
 export const CheckUser = async (username) => {
-  await APIcalls.CheckUsername(username)
-  //.then(response => {
-    //console.log(response);
-  //})
+  let response = await APIcalls.CheckUsername(username)
+  return response.data
 }
 
 export const CheckEmail = async (email) => {
-  await APIcalls.CheckUsername(email)
-  //.then(response => {
-    //console.log(response);
-  //})
+  let response = await APIcalls.CheckEmail(email)
+  return response.data
 }
 
         

@@ -64,9 +64,9 @@ namespace Back_end_API.Controllers
         {
             bool doubleUsername = _context.Users.Any(u => u.userName == username);
 
-            if (doubleUsername) { return false; }
+            if (doubleUsername) { return true; }
 
-            return true;
+            return false;
         }
 
         [HttpPost("checkemail")]
@@ -74,9 +74,9 @@ namespace Back_end_API.Controllers
         {
             bool doubleEmail = _context.Users.Any(u => u.Email == email);
 
-            if (doubleEmail) { return false; }
+            if (doubleEmail) { return true; }
 
-            return true;
+            return false;
         }
     }
 }

@@ -1,6 +1,6 @@
 <script setup>
-import APIcalls from "../assets/Functions/services/APIcalls";
 import SimpleHeader from '../components/SimpleHeader.vue';
+import {Login} from '../assets/Functions/Auth'
 </script>
 
 <template>
@@ -87,16 +87,13 @@ export default{
 
       if(this.passwordError == '' && this.emailError == '')
       {
-        await APIcalls.Login(this.email, this.password)
-        .then(response => {
-
-        if(response.status == 200){
-        //local storage setten.
-        localStorage.setItem('userName', JSON.stringify(response.data))
-        //navigeren naar de hompagina.
-        this.$router.push({name: 'Homepage'})
+        if(await Login(this.email, this.password))
+        {
+          this.$router.push({name: 'Homepage'});
         }
-        }) 
+        else{
+          this.loginError = 'password or email did not match'
+        }
       }
     }
   }
