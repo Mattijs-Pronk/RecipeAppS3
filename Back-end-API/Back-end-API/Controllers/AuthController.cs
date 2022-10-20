@@ -9,6 +9,8 @@ namespace Back_end_API.Controllers
     [ApiController]
     public class AuthController : Controller
     {
+        VerifyInfo verify = new VerifyInfo();
+
         public readonly RecipeAppContext _context;
 
         public AuthController(RecipeAppContext context)
@@ -17,22 +19,17 @@ namespace Back_end_API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserModel>> Register(UserModel request)
+        public async Task<ActionResult<UserModel>> Register(UserDTO request)
         {
-            //var doubleEmail = _context.Users.Any(u => u.Email == request.Email);
-            //var doubleUsername = _context.Users.Any(u => u.userName == request.userName);
-
-            //if(doubleEmail || doubleUsername)
-            //{
-            //    return BadRequest("userName or Email already exists");
-            //}
+            verify.CreatePasswordHash(request.Password, out byte[] passwordhash, out byte[] passwordsalt);
 
             var newUser = new UserModel
             {
-                userName = request.userName,
+                userName = request.UserName,
                 Email = request.Email,
-                passwordHash = request.passwordHash,
-                isAdmin = false,
+                passwordHash = passwordhash,
+                passwordSalt = passwordsalt,
+                isAdmin = request.isAdmin,
             };
 
             await _context.Users.AddAsync(newUser);
@@ -45,18 +42,16 @@ namespace Back_end_API.Controllers
         public async Task<ActionResult<UserDTO>> Login(UserDTO request)
         {
             var Myuser = _context.Users
-                .FirstOrDefault(u => u.Email == request.email);
+                .FirstOrDefault(u => u.Email == request.Email);
 
-            if(Myuser != null)
+            if (Myuser != null)
             {
-                bool validPassword = BCrypt.Net.BCrypt.Verify(request.password, Myuser.passwordHash);
-
-                if(validPassword)
+                if (verify.VerifyPasswordHash(request.Password, Myuser.passwordHash, Myuser.passwordSalt))
                 {
-                    return Ok(Myuser.userName);
+                    return Ok(Myuser.userId);
                 }
             }
-            return NotFound("user not found");
+            return BadRequest("user not found");
         }
 
         [HttpPost("checkname")]

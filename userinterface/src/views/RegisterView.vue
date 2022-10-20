@@ -124,7 +124,7 @@ export default{
         }
         this.timer = setTimeout(async () => {
 
-        if(await CheckUser(this.username) == true){ this.usernameError = 'Username already taken'}
+        if(await CheckUser(this.username)){ this.usernameError = 'Username already taken'}
         else{ this.usernameError = ''}
 
     }, 1800);

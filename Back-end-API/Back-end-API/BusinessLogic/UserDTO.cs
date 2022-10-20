@@ -4,8 +4,12 @@ namespace Back_end_API.BusinessLogic
 {
     public class UserDTO
     {
-        public string email { get; set; } = null!;
+        public string UserName { get; set; } = string.Empty;
 
-        public string password { get; set; } = null!;
+        public string Email { get; set; } = string.Empty;
+
+        public string Password { get; set; } = string.Empty;
+
+        public bool isAdmin { get; set; }
     }
 }

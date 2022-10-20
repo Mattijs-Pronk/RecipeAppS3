@@ -83,7 +83,6 @@ export default{
     async submitForm() {
       this.checkEmail();
       this.checkPassword();
-      this.loginError = 'incorrect information'
 
       if(this.passwordError == '' && this.emailError == '')
       {

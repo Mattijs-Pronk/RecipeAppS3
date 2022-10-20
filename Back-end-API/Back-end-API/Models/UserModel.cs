@@ -12,7 +12,10 @@ namespace Back_end_API.Models
         public string userName { get; set; } = null!;
 
         [Required]
-        public string passwordHash { get; set; } = null!;
+        public byte[] passwordHash { get; set; } = null!;
+
+        [Required]
+        public byte[] passwordSalt { get; set; } = null!;
 
         [Required]
         public string Email { get; set; } = null!;

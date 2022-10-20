@@ -15,9 +15,7 @@ export const Login = async (email, password) => {
 
 export const Register = async (username, email, password) => {
   const isadmin = false;
-  const passwordhash = await HashPassword(password);
-
-  await APIcalls.Register(username, passwordhash, email, isadmin)
+  await APIcalls.Register(username, password, email, isadmin)
 }
 
 export const Logout = async () => {
