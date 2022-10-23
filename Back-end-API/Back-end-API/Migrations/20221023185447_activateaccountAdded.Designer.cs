@@ -4,6 +4,7 @@ using Back_end_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back_end_API.Migrations
 {
     [DbContext(typeof(RecipeAppContext))]
-    partial class RecipeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221023185447_activateaccountAdded")]
+    partial class activateaccountAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +83,7 @@ namespace Back_end_API.Migrations
                     b.Property<string>("activateAccountToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("activateAccountTokenExpires")
+                    b.Property<DateTime?>("activatetokenExpires")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("isAdmin")
@@ -94,12 +96,12 @@ namespace Back_end_API.Migrations
                     b.Property<string>("passwordResetToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("passwordResetTokenExpires")
-                        .HasColumnType("datetime2");
-
                     b.Property<byte[]>("passwordSalt")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<DateTime?>("tokenExpires")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("userName")
                         .IsRequired()

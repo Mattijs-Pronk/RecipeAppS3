@@ -1,4 +1,4 @@
-<script setup>
+  <script setup>
     import { RouterLink } from 'vue-router'
     import {Logout} from '../assets/Functions/Auth'
   </script>
@@ -10,16 +10,24 @@
         <h2 class = "title">Cloud recipe</h2>
         <blockquote>Nothing brings people together like good food</blockquote> <br>
         <!-- <a href = "#" class = "login-btn">Login</a> -->
-        <a class="login-btn" id="loggedin" v-on:click="LogoutThis()"><RouterLink :to="{name: 'login'}"><img class="imagebutton" src="/Images/Login.jpg" alt=""></RouterLink></a>
-        <a class="profile-btn" ><RouterLink :to="{name: 'Homepage'}"><img class="imagebutton" src="/Images/ProfilePic.jpg" alt=""></RouterLink></a>
+        <RouterLink :to="{name: 'login'}" class="login-btn" id="login" v-on:click="LogoutThis()">{{login}}</RouterLink>
+        <RouterLink :to="{name: 'Homepage'}" class="profile-btn" id="profile">{{profile}}</RouterLink>
         <!-- <a class="favorites-btn"><RouterLink :to="{name: 'userinterface'}"><img class="imagebutton" src="/Images/HeartFavorite.jpg" alt=""></RouterLink></a> -->
-        <a class="addrecipe-btn"><RouterLink :to="{name: 'Homepage'}"><img class="imagebutton" src="/Images/AddRecipe.jpg" alt=""></RouterLink></a>
+        <RouterLink :to="{name: 'Homepage'}" class="addrecipe-btn" id="addrecipe">{{addrecipe}}</RouterLink>
       </div>
     </header>
   </template>
   
   <script>
   export default{
+    name: 'header',
+    data(){
+    return{
+      login: '',
+      profile: '',
+      addrecipe: ''
+    }
+  },
     // mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
     mounted(){
       this.GetloggedIn()
@@ -29,17 +37,32 @@
       Logout()
     },
     GetloggedIn(){
-      var loginbtn = document.getElementById("loggedin");
-      if (localStorage.getItem("userName") === null)
+      //JSON.parse om de "" weg te halen.
+      var user = JSON.parse(localStorage.getItem("user"))
+      var loginbtn = document.getElementById("login");
+      var profilebtn = document.getElementById("profile");
+      var addrecipebtn = document.getElementById("addrecipe");
+
+      if (user == null)
       {
-        loginbtn.style.backgroundColor = "red"
+        loginbtn.style.backgroundColor = "green"
+        this.login = 'Login'
+        profilebtn.style.display = "none"
+        this.profile = ''
+        addrecipebtn.style.display = "none"
+        this.addrecipe = ''
       }
-      else{loginbtn.style.backgroundColor = "green"}
+      else{
+        loginbtn.style.backgroundColor = "red"
+        this.login = 'Logout'
+        profilebtn.style.display = "block"
+        this.profile = 'Myprofile'
+        addrecipebtn.style.display = "block"
+        this.addrecipe = '+ recipe'
+    }
     }
   }
-}
-
-  
+} 
   </script>
   
   <style>

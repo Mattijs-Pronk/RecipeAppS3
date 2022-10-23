@@ -1,3 +1,5 @@
+import { email } from "@vuelidate/validators"
+import { VerifyAccount } from "../Auth"
 import API from "./API"
 
 export default{
@@ -16,7 +18,6 @@ export default{
             email: email,
             password: password
         })
-
     },
 
     async Register(username, password, email, isadmin){
@@ -27,6 +28,27 @@ export default{
             isAdmin: isadmin
         })
     },
+
+    async ForgotPassword(email){
+        return await API().post(`Auth/forgot?email=${email}`) //,{
+        // email: email
+        // })
+    },
+
+    async ResetPassword(passwordresettoken, password){
+        return await API().post(`/Auth/reset` ,{
+        passwordResetToken: passwordresettoken,
+        password: password
+        })
+    },
+
+    async VerifyAccount(email, activateaccounttoken){
+        return await API().post(`/Auth/verify` ,{
+        email: email,
+        activateAccountToken: activateaccounttoken
+        })
+    },
+
 
     async CheckUsername(username){
          return await API().post(`/Auth/checkname?username=${username}`) //, {

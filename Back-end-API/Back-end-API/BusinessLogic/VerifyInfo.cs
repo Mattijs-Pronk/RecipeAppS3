@@ -21,5 +21,10 @@ namespace Back_end_API.BusinessLogic
                 return computedHash.SequenceEqual(passwordhash);
             }
         }
+
+        public string CreateRandomToken()
+        {
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
+        }
     }
 }

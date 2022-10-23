@@ -28,7 +28,7 @@ import {Login} from '../assets/Functions/Auth'
                             <label for="logCheck" class="text">see password</label>
                         </div>
                         
-                        <a href="#" class="text">Forgot password?</a>
+                        <a href="#" class="text"><RouterLink :to="{name: 'forgot'}">Forgot password?</RouterLink></a>
                     </div>
 
                     <br>
@@ -91,7 +91,7 @@ export default{
           this.$router.push({name: 'Homepage'});
         }
         else{
-          this.loginError = 'password or email did not match'
+          this.loginError = 'password or email did not match or account is not activated'
         }
       }
     }

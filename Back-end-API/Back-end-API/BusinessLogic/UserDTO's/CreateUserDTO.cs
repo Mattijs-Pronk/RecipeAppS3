@@ -2,7 +2,7 @@
 
 namespace Back_end_API.BusinessLogic
 {
-    public class UserDTO
+    public class CreateUserDTO
     {
         public string UserName { get; set; } = string.Empty;
 

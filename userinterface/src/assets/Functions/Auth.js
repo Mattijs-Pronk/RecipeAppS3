@@ -18,6 +18,39 @@ export const Register = async (username, email, password) => {
   await APIcalls.Register(username, password, email, isadmin)
 }
 
+export const ForgotPassword = async (email) => {
+  try{
+    await APIcalls.ForgotPassword(email)
+
+    return true;
+  }
+  catch{
+    return false;
+  }
+}
+
+export const ResetPassword = async (passwordresettoken, password) => {
+  try{
+    await APIcalls.ResetPassword(passwordresettoken, password)
+
+    return true;
+  }
+  catch{
+    return false;
+  }
+}
+
+export const VerifyAccount = async (email, activateaccounttoken) => {
+  try{
+    await APIcalls.ResetPassword(email, activateaccounttoken)
+
+    return true;
+  }
+  catch{
+    return false;
+  }
+}
+
 export const Logout = async () => {
   localStorage.clear();
 }

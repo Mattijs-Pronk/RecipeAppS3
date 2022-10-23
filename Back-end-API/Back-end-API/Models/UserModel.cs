@@ -9,7 +9,7 @@ namespace Back_end_API.Models
         public int userId { get; set; }
 
         [Required]
-        public string userName { get; set; } = null!;
+        public string userName { get; set; } = string.Empty;
 
         [Required]
         public byte[] passwordHash { get; set; } = null!;
@@ -18,10 +18,22 @@ namespace Back_end_API.Models
         public byte[] passwordSalt { get; set; } = null!;
 
         [Required]
-        public string Email { get; set; } = null!;
+        public string Email { get; set; } = string.Empty;
 
         [Required]
         public bool isAdmin { get; set; }
+
+
+        //account activeren
+        public string? activateAccountToken { get; set; }
+
+        public DateTime? activateAccountTokenExpires { get; set; }
+
+
+        //wachtwoord resetten
+        public string? passwordResetToken { get; set; }
+
+        public DateTime? passwordResetTokenExpires { get; set; }
 
 
 

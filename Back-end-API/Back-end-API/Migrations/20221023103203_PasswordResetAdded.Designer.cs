@@ -4,6 +4,7 @@ using Back_end_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back_end_API.Migrations
 {
     [DbContext(typeof(RecipeAppContext))]
-    partial class RecipeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221023103203_PasswordResetAdded")]
+    partial class PasswordResetAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,12 +80,6 @@ namespace Back_end_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("activateAccountToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("activateAccountTokenExpires")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("isAdmin")
                         .HasColumnType("bit");
 
@@ -92,14 +88,15 @@ namespace Back_end_API.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("passwordResetToken")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("passwordResetTokenExpires")
-                        .HasColumnType("datetime2");
 
                     b.Property<byte[]>("passwordSalt")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<DateTime>("tokenExpires")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("userName")
                         .IsRequired()

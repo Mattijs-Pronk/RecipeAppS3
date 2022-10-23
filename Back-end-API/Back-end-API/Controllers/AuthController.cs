@@ -1,7 +1,10 @@
 ﻿using Back_end_API.BusinessLogic;
+using Back_end_API.BusinessLogic.UserDTO_s;
 using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Back_end_API.Controllers
 {
@@ -10,6 +13,7 @@ namespace Back_end_API.Controllers
     public class AuthController : Controller
     {
         VerifyInfo verify = new VerifyInfo();
+        EmailCreator emailCreator = new EmailCreator();
 
         public readonly RecipeAppContext _context;
 
@@ -19,7 +23,7 @@ namespace Back_end_API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserModel>> Register(UserDTO request)
+        public async Task<ActionResult<UserModel>> Register(CreateUserDTO request)
         {
             verify.CreatePasswordHash(request.Password, out byte[] passwordhash, out byte[] passwordsalt);
 
@@ -30,6 +34,8 @@ namespace Back_end_API.Controllers
                 passwordHash = passwordhash,
                 passwordSalt = passwordsalt,
                 isAdmin = request.isAdmin,
+                activateAccountToken = verify.CreateRandomToken(),
+                activateAccountTokenExpires = DateTime.Now.AddDays(5)
             };
 
             await _context.Users.AddAsync(newUser);
@@ -39,16 +45,83 @@ namespace Back_end_API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDTO>> Login(UserDTO request)
+        public async Task<ActionResult<CreateUserDTO>> Login(LoginUserDTO request)
         {
-            var Myuser = _context.Users
-                .FirstOrDefault(u => u.Email == request.Email);
+            var Myuser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == request.Email);
 
             if (Myuser != null)
             {
-                if (verify.VerifyPasswordHash(request.Password, Myuser.passwordHash, Myuser.passwordSalt))
+                if (verify.VerifyPasswordHash(request.Password, Myuser.passwordHash, Myuser.passwordSalt) || Myuser.activateAccountTokenExpires == null)
                 {
-                    return Ok(Myuser.userId);
+                    return Ok(Myuser.userName);
+                }
+            }
+            return BadRequest("user not found");
+        }
+
+        [HttpPost("verify")]
+        public async Task<ActionResult> VerifyAccount(ActivateUserAccountDTO request)
+        {
+            var Myuser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            if (Myuser != null)
+            {
+                if (Myuser.activateAccountToken == request.activateAccountToken)
+                {
+                    Myuser.activateAccountToken = null;
+                    Myuser.activateAccountTokenExpires = null;
+
+                    await _context.SaveChangesAsync();
+                    return Ok("user verified");
+                }
+            }
+            return BadRequest("user not found");
+        }
+
+        [HttpPost("forgot")]
+        public async Task<ActionResult> Forgot(string email)
+        {
+            var Myuser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == email);
+
+            if (Myuser != null)
+            {
+                Myuser.passwordResetToken = verify.CreateRandomToken();
+
+                //user moet binnen 15 minuten wachtwoord resetten.
+                Myuser.passwordResetTokenExpires = DateTime.Now.AddMinutes(15);
+                await _context.SaveChangesAsync();
+
+                //stuur email met link van het resetten van password.
+                emailCreator.SendEmailResetPassword(email, Myuser.passwordResetToken, Myuser.userName);
+
+                return Ok("reset password");
+            }
+            return BadRequest("user not found");
+        }
+
+        [HttpPost("reset")]
+        public async Task<ActionResult> Reset(ResetUserPasswordDTO request)
+        {
+            var Myuser = await _context.Users
+                .FirstOrDefaultAsync(u => u.passwordResetToken == request.passwordResetToken);
+
+            if(Myuser != null)
+            {
+                if(Myuser.passwordResetTokenExpires > DateTime.Now)
+                {
+                    verify.CreatePasswordHash(request.Password, out byte[] passwordhash, out byte[] passwordsalt);
+                    Myuser.passwordHash = passwordhash;
+                    Myuser.passwordSalt = passwordsalt;
+                    Myuser.passwordResetToken = null;
+                    Myuser.passwordResetTokenExpires = null;
+
+                    emailCreator.SendEmailResetPasswordSucces(Myuser.Email, request.Password, Myuser.userName);
+
+                    await _context.SaveChangesAsync();
+                    return Ok("password is reset");
                 }
             }
             return BadRequest("user not found");
@@ -57,7 +130,7 @@ namespace Back_end_API.Controllers
         [HttpPost("checkname")]
         public async Task<ActionResult<bool>> UserNameChecker(string username)
         {
-            bool doubleUsername = _context.Users.Any(u => u.userName == username);
+            bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == username);
 
             if (doubleUsername) { return true; }
 
@@ -67,7 +140,7 @@ namespace Back_end_API.Controllers
         [HttpPost("checkemail")]
         public async Task<ActionResult<bool>> EmailChecker(string email)
         {
-            bool doubleEmail = _context.Users.Any(u => u.Email == email);
+            bool doubleEmail = await _context.Users.AnyAsync(u => u.Email == email);
 
             if (doubleEmail) { return true; }
 
