@@ -88,6 +88,7 @@ export default{
       {
         if(await Login(this.email, this.password))
         {
+          //nog melding toevoegen voor succesvol account aanmaken.
           this.$router.push({name: 'Homepage'});
         }
         else{

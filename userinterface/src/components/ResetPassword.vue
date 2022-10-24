@@ -81,6 +81,7 @@ export default{
         {
             if(await ResetPassword(this.passwordresettoken, this.password))
             {
+                //nog melding toevoegen voor succesvol wachtwoord resetten.
                 this.$router.push({name: 'login'})
             }
             else{

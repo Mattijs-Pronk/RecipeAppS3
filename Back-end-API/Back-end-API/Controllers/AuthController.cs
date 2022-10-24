@@ -35,8 +35,12 @@ namespace Back_end_API.Controllers
                 passwordSalt = passwordsalt,
                 isAdmin = request.isAdmin,
                 activateAccountToken = verify.CreateRandomToken(),
+                //user moet binnen 5 dagen zijn account activeren.
                 activateAccountTokenExpires = DateTime.Now.AddDays(5)
             };
+
+            //stuur email met link van het verifieren/activeren van account.
+            emailCreator.SendEmailVerifyAccount(request.Email, newUser.activateAccountToken, request.UserName);
 
             await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
@@ -52,7 +56,7 @@ namespace Back_end_API.Controllers
 
             if (Myuser != null)
             {
-                if (verify.VerifyPasswordHash(request.Password, Myuser.passwordHash, Myuser.passwordSalt) || Myuser.activateAccountTokenExpires == null)
+                if (verify.VerifyPasswordHash(request.Password, Myuser.passwordHash, Myuser.passwordSalt) && Myuser.activateAccountTokenExpires == null)
                 {
                     return Ok(Myuser.userName);
                 }
@@ -118,6 +122,7 @@ namespace Back_end_API.Controllers
                     Myuser.passwordResetToken = null;
                     Myuser.passwordResetTokenExpires = null;
 
+                    //stuur email met huidig wachtwoord.
                     emailCreator.SendEmailResetPasswordSucces(Myuser.Email, request.Password, Myuser.userName);
 
                     await _context.SaveChangesAsync();

@@ -59,7 +59,8 @@ export default{
       {
         if(await ForgotPassword(this.email))
         {
-          this.emailexisterror = 'email has been send, password reset link will expire in 15 minutes'
+          //nog melding toevoegen voor succesvol email sturen naar email.
+          this.$router.push({name: 'login'})
         }
         else{
           this.emailexisterror = 'email was not found'

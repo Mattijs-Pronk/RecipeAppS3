@@ -56,7 +56,7 @@
         loginbtn.style.backgroundColor = "red"
         this.login = 'Logout'
         profilebtn.style.display = "block"
-        this.profile = 'Myprofile'
+        this.profile = 'Profile'
         addrecipebtn.style.display = "block"
         this.addrecipe = '+ recipe'
     }

@@ -24,20 +24,20 @@ namespace Back_end_API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAllRecipes()
         {
-            var result = from r in _context.Recipes
-                         select new
+            var result = await _context.Recipes
+                         .Where(result => result.Active == true)
+                         .Select(result => new
                          {
-                             r.recipeId,
-                             r.Title,
-                             r.Description,
-                             r.Ingredients,
-                             r.Rating,
-                             r.prepTime,
-                             r.Portions,
-                             r.User.userName
-                         };
-
-            await result.ToListAsync();
+                             result.recipeId,
+                             result.Title,
+                             result.Description,
+                             result.Ingredients,
+                             result.Rating,
+                             result.prepTime,
+                             result.Portions,
+                             result.User.userName
+                         })
+                         .ToListAsync();
 
             return Ok(result);
         }
@@ -48,29 +48,28 @@ namespace Back_end_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetRecipeById(int id)
         {
-            var result = from r in _context.Recipes
-                         where r.recipeId == id
-                         select new
+            var result = await _context.Recipes
+                         .Where(result => result.recipeId == id)
+                         .Select(result => new
                          {
-                             r.Title,
-                             r.Description,
-                             r.Ingredients,
-                             r.Rating,
-                             r.prepTime,
-                             r.Portions,
-                             r.User.userName
-                         };
+                             result.recipeId,
+                             result.Title,
+                             result.Description,
+                             result.Ingredients,
+                             result.Rating,
+                             result.prepTime,
+                             result.Portions,
+                             result.User.userName
+                         })
+                         .ToListAsync();
 
-            await result.ToListAsync();
-
-            var recipe = await _context.Recipes.FindAsync(id);
-            return recipe == null ? NotFound() : Ok(result);
+            return Ok(result);
         }
 
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<RecipeModel>> CreateRecipe(RecipeDTO recipe)
+        public async Task<ActionResult<RecipeModel>> CreateRecipe(CreateRecipeDTO recipe)
         {
             var result = await _context.Users.FindAsync(recipe.userId);
             if (result == null)

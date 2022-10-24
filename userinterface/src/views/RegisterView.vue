@@ -1,5 +1,5 @@
 <script setup>
-import {Register} from '../assets/Functions/Auth'
+import {Login, Register} from '../assets/Functions/Auth'
 import {CheckUser} from '../assets/Functions/Auth'
 import {CheckEmail} from '../assets/Functions/Auth'
 import SimpleHeader from '../components/SimpleHeader.vue'
@@ -136,12 +136,15 @@ export default{
         this.checkEmail();
         this.checkPassword();
         this.checkRePassword();
-        this.registerError = 'account not created, please fill in all forms'
 
         if(this.passwordError == '' && this.RepasswordError == '' && this.emailError == '' && this.usernameError == '')
         {
             Register(this.username, this.email, this.password)
-            this.$router.push({name: 'Homepage'})
+            //nog melding toevoegen voor succesvol account aanmaken.
+            this.$router.push({name: 'login'})
+        }
+        else{
+            this.registerError = 'account not created, please fill in all forms'
         }
         },
     },

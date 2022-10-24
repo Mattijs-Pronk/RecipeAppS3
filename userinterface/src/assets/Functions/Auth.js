@@ -42,7 +42,7 @@ export const ResetPassword = async (passwordresettoken, password) => {
 
 export const VerifyAccount = async (email, activateaccounttoken) => {
   try{
-    await APIcalls.ResetPassword(email, activateaccounttoken)
+    await APIcalls.VerifyAccount(email, activateaccounttoken)
 
     return true;
   }
