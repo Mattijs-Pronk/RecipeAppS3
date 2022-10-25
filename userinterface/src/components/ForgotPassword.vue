@@ -11,7 +11,6 @@ import {ForgotPassword} from '../assets/Functions/Auth'
                 <span class="title">Forgot password</span>
                 <br><br><br>
                 <form action="#">
-                  <span v-if="emailexisterror" id="existserror" class="text-danger">{{emailexisterror}}</span>
                     <div class="input-field">
                         <input type="email" placeholder="Enter your email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
                     </div>
@@ -40,7 +39,6 @@ export default{
     return{
       email: '',
       emailError: '',
-      emailexisterror: ''
     }
   },
   methods: {
@@ -59,11 +57,22 @@ export default{
       {
         if(await ForgotPassword(this.email))
         {
-          //nog melding toevoegen voor succesvol email sturen naar email.
+          this.$toast.success('Email has been send, check you email for more information' , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 3500
+          });
+
           this.$router.push({name: 'login'})
         }
         else{
-          this.emailexisterror = 'email was not found'
+          this.$toast.error('email was not found' , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 4500
+          });
         }
       }
     }

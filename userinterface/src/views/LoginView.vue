@@ -11,7 +11,6 @@ import {Login} from '../assets/Functions/Auth'
                 <span class="title">Login</span>
                 <br><br>
                 <form action="#">
-                    <span v-if="loginError" class="text-danger">{{loginError}}</span>
                     <div class="input-field">
                         <input type="email" placeholder="Enter your email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
                     </div>
@@ -55,8 +54,7 @@ export default{
       email: '',
       emailError: '',
       password: '',
-      passwordError: '',
-      loginError: '',
+      passwordError: ''
     }
   },
   methods: {
@@ -68,7 +66,6 @@ export default{
       else(see.type = "password")
     },
     checkEmail() {
-      this.loginError = this.loginError.length > 0 ? '' : ''
       this.emailError = this.email.length == 0 ? 'Email cannot be empty.' 
       : (this.validateEmail(this.email) ? '' : this.email + ' is not an email.')
     },
@@ -77,7 +74,6 @@ export default{
       return re.test(email);
     },
     checkPassword() {
-      this.loginError = this.loginError.length > 0 ? '' : ''
       this.passwordError = this.password.length == 0 ? 'Password cannot be empty.' : ''
     },
     async submitForm() {
@@ -90,9 +86,20 @@ export default{
         {
           //nog melding toevoegen voor succesvol account aanmaken.
           this.$router.push({name: 'Homepage'});
+          this.$toast.success(`Succesfully logged in` , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 3500
+        });
         }
         else{
-          this.loginError = 'password or email did not match or account is not activated'
+          this.$toast.error(`password or email did not match or account is not activated` , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 4500
+        });
         }
       }
     }

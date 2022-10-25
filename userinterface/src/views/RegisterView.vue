@@ -14,7 +14,6 @@ import SimpleHeader from '../components/SimpleHeader.vue'
                 
                 <form action="#">
                     <br>
-                    <span v-if="registerError" class="text-danger">{{registerError}}</span>
                     <div class="input-field">
                         <input type="text" placeholder="Username" v-model="username" @blur="checkUsername" @keyup="checkUsername">
                     </div>
@@ -63,7 +62,6 @@ export default{
     name: 'register',
     data(){
         return{
-            registerError: '',
             username: '',
             usernameError: '',
             email: '',
@@ -140,11 +138,23 @@ export default{
         if(this.passwordError == '' && this.RepasswordError == '' && this.emailError == '' && this.usernameError == '')
         {
             Register(this.username, this.email, this.password)
-            //nog melding toevoegen voor succesvol account aanmaken.
+
+            this.$toast.success('account has been created, check your email to verify your account' , {
+            position: 'top',
+            dismissible: true,
+            pauseOnHover: true,
+            duration: 3500
+            });
+
             this.$router.push({name: 'login'})
         }
         else{
-            this.registerError = 'account not created, please fill in all forms'
+            this.$toast.error('account not created, please fill in all forms correctly' , {
+            position: 'top',
+            dismissible: true,
+            pauseOnHover: true,
+            duration: 4500
+        });
         }
         },
     },

@@ -9,7 +9,6 @@ import {Login, VerifyAccount} from '../assets/Functions/Auth'
                 <span class="title">Verify Account</span>
                 <br><br><br>
                 <form action="#">
-                  <span v-if="verifyError" id="existserror" class="text-danger">{{verifyError}}</span>
                     <div class="input-field">
                         <input type="text" placeholder="Enter received token" v-model="activateaccounttoken">
                     </div>       
@@ -34,7 +33,6 @@ export default{
     name: 'register',
     data(){
         return{
-            verifyError: '',
             activateaccounttoken: '',
             email: '',
             emailError: '',
@@ -58,11 +56,22 @@ export default{
         {
             if(await VerifyAccount(this.email, this.activateaccounttoken))
             {
-                //nog melding toevoegen voor succesvol account activeren.
+                this.$toast.success('your account has been verified' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 3500
+                });
+
                 this.$router.push({name: 'login'})
             }
             else{
-                this.verifyError = 'token is incorrect or already used'
+                this.$toast.error('token is incorrect or already used' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 4500
+                });
             }       
         }
     },

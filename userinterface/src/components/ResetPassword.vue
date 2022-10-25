@@ -9,7 +9,6 @@ import {ResetPassword} from '../assets/Functions/Auth'
                 <span class="title">Reset password</span>
                 <br><br><br>
                 <form action="#">
-                  <span v-if="resetError" id="existserror" class="text-danger">{{resetError}}</span>
                     <div class="input-field">
                         <input type="text" placeholder="Enter received token" v-model="passwordresettoken">
                     </div>             
@@ -46,7 +45,6 @@ export default{
     name: 'register',
     data(){
         return{
-            resetError: '',
             passwordresettoken: '',
             password: '',
             passwordError: '',
@@ -81,11 +79,22 @@ export default{
         {
             if(await ResetPassword(this.passwordresettoken, this.password))
             {
-                //nog melding toevoegen voor succesvol wachtwoord resetten.
+                this.$toast.success('Password has been changed' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 3500
+                });
+
                 this.$router.push({name: 'login'})
             }
             else{
-            this.resetError = 'token is incorrect or already used'
+            this.$toast.error('token is incorrect or already used' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 4500
+                });
             }       
         }
     },
