@@ -4,9 +4,9 @@ import AboutView from '../views/AboutView.vue'
 import Homepage from '../views/Homepage.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from  '../views/RegisterView.vue'
-import ForgotPassword from '../components/ForgotPassword.vue'
-import ResetPassword from '../components/ResetPassword.vue'
-import VerifyAccount from '../components/VerifyAccount.vue'
+import ForgotPassword from '../views/ForgotPassword.vue'
+import ResetPassword from '../views/ResetPassword.vue'
+import VerifyAccount from '../views/VerifyAccount.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

@@ -1,5 +1,5 @@
 <script setup>
-import SimpleHeader from './SimpleHeader.vue'
+import SimpleHeader from '../components/SimpleHeader.vue'
 import {ForgotPassword} from '../assets/Functions/Auth'
 </script>
 
