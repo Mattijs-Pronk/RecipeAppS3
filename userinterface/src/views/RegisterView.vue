@@ -1,5 +1,5 @@
 <script setup>
-import {Login, Register} from '../assets/Functions/Auth'
+import {Register} from '../assets/Functions/Auth'
 import {CheckUser} from '../assets/Functions/Auth'
 import {CheckEmail} from '../assets/Functions/Auth'
 import SimpleHeader from '../components/SimpleHeader.vue'
@@ -136,7 +136,7 @@ export default{
         this.usernameError = this.username.length == 0 ? 'Username cannot be empty.' : ''
     },
 
-    submitForm(){
+    async submitForm(){
         this.checkUsername();
         this.checkEmail();
         this.checkPassword();
@@ -144,16 +144,24 @@ export default{
 
         if(this.passwordError == '' && this.RepasswordError == '' && this.emailError == '' && this.usernameError == '')
         {
-            Register(this.username, this.email, this.password)
-
-            this.$toast.success('account has been created, check your email to verify your account' , {
-            position: 'top',
-            dismissible: true,
-            pauseOnHover: true,
-            duration: 3500
-            });
+            if(await Register(this.username, this.email, this.password)){
+                this.$toast.success('account has been created, check your email to verify your account' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 3500
+                });
 
             this.$router.push({name: 'login'})
+            }
+            else{
+                this.$toast.error('account not created, username or password already taken' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 4500
+                });
+            } 
         }
         else{
             this.$toast.error('account not created, please fill in all forms correctly' , {

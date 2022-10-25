@@ -15,7 +15,13 @@ export const Login = async (email, password) => {
 
 export const Register = async (username, email, password) => {
   const isadmin = false;
-  await APIcalls.Register(username, password, email, isadmin)
+  try{
+    await APIcalls.Register(username, password, email, isadmin)
+    return true;
+  }
+  catch{
+    return false;
+  }
 }
 
 export const ForgotPassword = async (email) => {

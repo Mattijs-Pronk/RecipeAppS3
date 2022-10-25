@@ -25,6 +25,13 @@ namespace Back_end_API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserModel>> Register(CreateUserDTO request)
         {
+            bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.UserName);
+            bool doubleEmail = await _context.Users.AnyAsync(u => u.Email == request.Email);
+            if (doubleUsername || doubleEmail)
+            {
+                return BadRequest("username or email already taken");
+            }
+
             verify.CreatePasswordHash(request.Password, out byte[] passwordhash, out byte[] passwordsalt);
 
             var newUser = new UserModel
@@ -34,6 +41,7 @@ namespace Back_end_API.Controllers
                 passwordHash = passwordhash,
                 passwordSalt = passwordsalt,
                 isAdmin = request.isAdmin,
+                //token toevoegen.
                 activateAccountToken = verify.CreateRandomToken(),
                 //user moet binnen 5 dagen zijn account activeren.
                 activateAccountTokenExpires = DateTime.Now.AddDays(5)
@@ -74,6 +82,7 @@ namespace Back_end_API.Controllers
             {
                 if (Myuser.activateAccountToken == request.activateAccountToken)
                 {
+                    //token weghalen.
                     Myuser.activateAccountToken = null;
                     Myuser.activateAccountTokenExpires = null;
 
@@ -119,6 +128,7 @@ namespace Back_end_API.Controllers
                     verify.CreatePasswordHash(request.Password, out byte[] passwordhash, out byte[] passwordsalt);
                     Myuser.passwordHash = passwordhash;
                     Myuser.passwordSalt = passwordsalt;
+                    //token weghalen.
                     Myuser.passwordResetToken = null;
                     Myuser.passwordResetTokenExpires = null;
 
