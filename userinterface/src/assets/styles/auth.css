@@ -33,45 +33,20 @@ body{
     left: 39%;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     margin: 0 20px;
-}
-
-.container .forms{
-    display: flex;
-    align-items: center;
-    height: 550px;
-    width: 200%;
-    transition: height 0.2s ease;
 }
 
 
 .container .form{
-    width: 50%;
+    width: 100%;
     padding: 30px;
     background-color: #fff;
+    box-shadow: 0px 0px 19px 5px rgba(0,0,0,0.19);
+    overflow: hidden;
+    border-radius: 10px; 
     transition: margin-left 0.18s ease;
 }
 
-.container.active .login{
-    margin-left: -50%;
-    opacity: 0;
-    transition: margin-left 0.18s ease, opacity 0.15s ease;
-}
-
-.container .signup{
-    opacity: 0;
-    transition: opacity 0.09s ease;
-}
-.container.active .signup{
-    opacity: 1;
-    transition: opacity 0.2s ease;
-}
-
-.container.active .forms{
-    height: 600px;
-}
 .container .form .title{
     position: absolute;
     font-size: 27px;

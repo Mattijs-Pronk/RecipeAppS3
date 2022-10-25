@@ -120,6 +120,7 @@ textarea{
     font-size: 1.1rem;
     padding: 0.75rem 0;
     display: block;
+	cursor: pointer;
     width: 100%;
     margin: 1rem auto;
     border-radius: 2rem;
