@@ -1,5 +1,3 @@
-import { email } from "@vuelidate/validators"
-import { VerifyAccount } from "../Auth"
 import API from "./API"
 
 export default{
@@ -25,6 +23,8 @@ export default{
         })
     },
     //Eind van recipe calls.
+
+
 
     //Start van authenticator calls.
     async Login(email, password){
@@ -76,6 +76,5 @@ export default{
        //     username: username
        // })
    },
-
    //Eind van authenticator calls.
 }
