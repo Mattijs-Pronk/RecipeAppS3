@@ -4,7 +4,7 @@
   
   <template>
     <header>
-      <a><RouterLink :to="{name: 'Homepage'}"><img src="/Images/CloudRecipeLogo.jpg" alt="Foto" class="navphoto"></RouterLink></a>
+      <a><RouterLink :to="{name: 'home'}"><img src="/Images/CloudRecipeLogo.jpg" alt="Foto" class="navphoto"></RouterLink></a>
     </header>
   </template>
   

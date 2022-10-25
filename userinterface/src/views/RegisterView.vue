@@ -83,18 +83,21 @@ export default{
     },
 
     checkEmail() {
-        //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
-        if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
+        if(this.email.length > 0)
+        {
+            //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
+            if (this.timer) {
+            clearTimeout(this.timer);
+            this.timer = null;
+            }
+
+            this.timer = setTimeout(async () => {
+
+            if(await CheckEmail(this.email)){ this.emailError = 'Email already taken'}
+            else{ this.emailError = ''}
+
+        }, 1200);
         }
-
-    this.timer = setTimeout(async () => {
-
-        if(await CheckEmail(this.email)){ this.emailError = 'Email already taken'}
-        else{ this.emailError = ''}
-
-    }, 1800);
         
       this.emailError = this.email.length == 0 ? 'Email cannot be empty.' 
       : (this.validateEmail(this.email) ? '' : this.email + ' is not an email.')
@@ -115,17 +118,21 @@ export default{
     },
 
     checkUsername(){
-        //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
-        if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
+        if(this.username.length > 0)
+        {
+            //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
+            if (this.timer) {
+            clearTimeout(this.timer);
+            this.timer = null;
+            }
+            this.timer = setTimeout(async () => {
+
+            if(await CheckUser(this.username)){ this.usernameError = 'Username already taken'}
+            else{ this.usernameError = ''}
+
+        }, 1200);
         }
-        this.timer = setTimeout(async () => {
-
-        if(await CheckUser(this.username)){ this.usernameError = 'Username already taken'}
-        else{ this.usernameError = ''}
-
-    }, 1800);
+        
         this.usernameError = this.username.length == 0 ? 'Username cannot be empty.' : ''
     },
 
@@ -163,5 +170,5 @@ export default{
 </script>
 
 <style scoped>
-    @import "../assets/styles/loginregistration.css";
+    @import "../assets/styles/auth.css";
 </style>

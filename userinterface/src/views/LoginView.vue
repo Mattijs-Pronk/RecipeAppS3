@@ -85,7 +85,7 @@ export default{
         if(await Login(this.email, this.password))
         {
           //nog melding toevoegen voor succesvol account aanmaken.
-          this.$router.push({name: 'Homepage'});
+          this.$router.push({name: 'home'});
           this.$toast.success(`Succesfully logged in` , {
           position: 'top',
           dismissible: true,
@@ -108,5 +108,5 @@ export default{
 </script>
 
 <style scoped>
-    @import "../assets/styles/loginregistration.css";
+    @import "../assets/styles/auth.css";
 </style>

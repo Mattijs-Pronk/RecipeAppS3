@@ -16,9 +16,8 @@
 }
 
  .navphoto{
-    height: auto;
+    top: -15px;
     position: absolute;
-    top: 0px;
     left: 20px;
     width: 140px;
  }

@@ -83,14 +83,14 @@ namespace Back_end_API.Controllers
                 prepTime = recipe.prepTime,
                 Portions = recipe.Portions,
                 Rating = recipe.Rating,
-                Active = recipe.Active,
+                Active = true, /*recipe.Active,*/
                 User = result
             };
 
             await _context.Recipes.AddAsync(newrecipe);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetRecipeById), new { id = newrecipe.recipeId }, newrecipe);
+            return Ok("recipe added");
         }
 
 

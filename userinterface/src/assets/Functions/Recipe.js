@@ -20,7 +20,20 @@ export const OpenModal = async function(id){
           
         };
 
-//functie om modal te sluiten
+//functie om modal te sluiten.
 export const CloseModal = function(){
-         document.getElementById("hidden").style.display = "none";
+        document.getElementById("hidden").style.display = "none";
+}
+
+//functie om een recept toe te voegen.
+export const AddRecipe = async (title, preptime, portions, ingredients, description, userid) => {
+        try{
+                await APIcalls.AddRecipe(title, preptime, portions, ingredients, description, userid)
+                return true
+        }
+        catch(error){
+                console.log(error)
+                return false
+        }
+        
 }

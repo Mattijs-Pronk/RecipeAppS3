@@ -3,16 +3,30 @@ import { VerifyAccount } from "../Auth"
 import API from "./API"
 
 export default{
+    //Start van recipe Calls.
     async GetAllRecipes(){
         return await API().get('/Recipe')
     },
 
     async GetRecipeById(id){
-        return await API().get(`/Recipe`, {
-            id: id
-        })
+        return await API().get(`/Recipe/id?id=${id}`) //, {
+        //    id: id
+        //})
     },
 
+    async AddRecipe(title, preptime, portions, ingredients, description, userid){
+        return await API().post(`/Recipe/` , {
+            title: title,
+            preptime: preptime,
+            portions: portions,
+            ingredients: ingredients,
+            description: description,
+            userid: userid
+        })
+    },
+    //Eind van recipe calls.
+
+    //Start van authenticator calls.
     async Login(email, password){
         return await API().post(`/Auth/login`, {
             email: email,
@@ -30,29 +44,30 @@ export default{
     },
 
     async ForgotPassword(email){
-        return await API().post(`Auth/forgot?email=${email}`) //,{
+        return await API().post(`/Auth/forgot?email=${email}`) //,{
         // email: email
         // })
     },
 
     async ResetPassword(passwordresettoken, password){
         return await API().post(`/Auth/reset` ,{
-        passwordResetToken: passwordresettoken,
-        password: password
+            passwordResetToken: passwordresettoken,
+            password: password
         })
     },
 
     async VerifyAccount(email, activateaccounttoken){
         return await API().post(`/Auth/verify` ,{
-        email: email,
-        activateAccountToken: activateaccounttoken
+            email: email,
+            activateAccountToken: activateaccounttoken
         })
     },
 
-
     async CheckUsername(username){
-         return await API().post(`/Auth/checkname?username=${username}`) //, {
-        //     username: username
+        return await API().post(`/Auth/username?username=${username}`) //, {
+        //     params: {
+        //         username: username
+        //     }
         // })
     },
 
@@ -61,4 +76,6 @@ export default{
        //     username: username
        // })
    },
+
+   //Eind van authenticator calls.
 }

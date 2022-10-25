@@ -81,5 +81,5 @@ export default{
 </script>
 
 <style scoped>
-    @import "../assets/styles/loginregistration.css";
+    @import "../assets/styles/auth.css";
 </style>

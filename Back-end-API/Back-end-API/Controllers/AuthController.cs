@@ -58,7 +58,7 @@ namespace Back_end_API.Controllers
             {
                 if (verify.VerifyPasswordHash(request.Password, Myuser.passwordHash, Myuser.passwordSalt) && Myuser.activateAccountTokenExpires == null)
                 {
-                    return Ok(Myuser.userName);
+                    return Ok(Myuser.userId);
                 }
             }
             return BadRequest("user not found");
@@ -132,7 +132,7 @@ namespace Back_end_API.Controllers
             return BadRequest("user not found");
         }
 
-        [HttpPost("checkname")]
+        [HttpPost("username")]
         public async Task<ActionResult<bool>> UserNameChecker(string username)
         {
             bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == username);
