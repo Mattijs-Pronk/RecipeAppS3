@@ -3,6 +3,7 @@
   import { OpenModal } from '../assets/Functions/Recipe';
   import { GetAllRecipes } from '../assets/Functions/Recipe';
   import Header from '../components/Header.vue'
+  import Footer from '../components/Footer.vue';
   import searchbar from '../components/Searchbar.vue'
 </script>
 
@@ -64,6 +65,7 @@
             
           </div>
       </div>
+      <Footer/>
 </template>
 
 <script>

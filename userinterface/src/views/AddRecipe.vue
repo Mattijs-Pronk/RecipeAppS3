@@ -1,5 +1,6 @@
 <script setup>
 import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
 import {AddRecipe} from '../assets/Functions/Recipe';
 </script>
 
@@ -31,6 +32,7 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 			</div>
 		</div>
 	</div>
+    <Footer/>
 </template>
 
 
