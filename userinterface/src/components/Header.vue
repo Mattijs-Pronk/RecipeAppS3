@@ -11,15 +11,13 @@
         <h1 class = "title">Cloud recipes</h1>
         <blockquote>Nothing brings people together like good food</blockquote>
 
-
         <div class="dropdown">
           <button class="profile-btn" id="profile">Profile</button>
             <div class="dropdown-content">
-            <a v-on:click="GetMyRecipes()" class="profile-btn">Recipes</a>
+            <a href="/myrecipes" v-on:click="GetMyRecipes()" class="profile-btn">Recipes</a>
             <a v-on:click="GetMyFavorites()" class="profile-btn">Favorites</a>
             </div>
         </div>
-
 
         <RouterLink :to="{name: 'login'}" class="login-btn" id="login" v-on:click="LogoutThis()">{{login}}</RouterLink>
         <RouterLink :to="{name: 'addrecipe'}" class="addrecipe-btn" id="addrecipe">{{addrecipe}}</RouterLink>
@@ -48,8 +46,6 @@
     },
     async GetMyRecipes(){
       if(this.user != null){
-        await GetUserRecipesById(this.user)
-
         this.$toast.success('Succesfully loaded your created recipes' , {
           position: 'top',
           dismissible: true,

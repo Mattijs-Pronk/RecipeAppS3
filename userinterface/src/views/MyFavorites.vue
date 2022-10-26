@@ -1,6 +1,6 @@
 <script setup>
-  import { GetAllRecipes } from '../assets/Functions/Recipe';
-  import Header from '../components/Header.vue'
+  import { GetUserRecipesById } from '../assets/Functions/User';
+  import Header from '../components/Header.vue';
   import Footer from '../components/Footer.vue';
   import searchbar from '../components/Searchbar.vue'
   import RecipeList from '../components/RecipeList.vue';
@@ -18,7 +18,7 @@
             </div>
 
             <!-- Start van meal items -->
-              <RecipeList :listdata="meallist"/>
+              <RecipeList :listdata="meallist" :itemstatus="status"/>
             <!-- Eind van meal items -->
             
           </div>
@@ -28,18 +28,22 @@
 
 <script>
   export default {
-    name: "home",
+    name: "myrecipes",
     data(){
       return{
+        user: '',
         meallist: [],
       }
     },
     //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
     mounted(){
-      this.GetAllRecipes()
+        this.loadMyFavorites()
     },
     methods:{
-
+        async loadMyFavorites(){
+            this.user = JSON.parse(localStorage.getItem("user"))
+            
+        }
     }
   }
 </script>

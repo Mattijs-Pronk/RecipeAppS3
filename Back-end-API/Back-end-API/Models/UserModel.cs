@@ -23,6 +23,12 @@ namespace Back_end_API.Models
         [Required]
         public bool isAdmin { get; set; }
 
+        //Foreign key aanmaken met onderstaande variables.
+        //[ForeignKey("favoriteId")]
+        //public int favoriteId { get; set; }
+
+        //public FavoritesModel Favorites { get; set; } = null!;
+
 
         //account activeren
         public string? activateAccountToken { get; set; }
@@ -34,13 +40,5 @@ namespace Back_end_API.Models
         public string? passwordResetToken { get; set; }
 
         public DateTime? passwordResetTokenExpires { get; set; }
-
-
-
-        //Foreign key aanmaken met onderstaande variables.
-        //[ForeignKey("userNameId")]
-        //public int userNameId { get; set; }
-
-        //public UserNameModal UserName { get; set; } = null!;
     }
 }

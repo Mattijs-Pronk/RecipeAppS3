@@ -7,6 +7,7 @@ import ForgotPassword from '../views/ForgotPassword.vue'
 import ResetPassword from '../views/ResetPassword.vue'
 import VerifyAccount from '../views/VerifyAccount.vue'
 import AddRecipe from '../views/AddRecipe.vue'
+import MyRecipes from '../views/MyRecipes.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,7 +48,20 @@ const router = createRouter({
       component: AddRecipe,
       beforeEnter: (to, from, next) => {
         if(!RouteGaurd()) {
-          next({name: 'home'})
+          next({name: 'login'})
+        }
+        else{
+          next()
+        }
+      }
+    },
+    {
+      path: '/myrecipes',
+      name: 'myrecipes',
+      component: MyRecipes,
+      beforeEnter: (to, from, next) => {
+        if(!RouteGaurd()) {
+          next({name: 'login'})
         }
         else{
           next()

@@ -19,8 +19,8 @@ namespace Back_end_API.Models
         [Required]
         public string Ingredients { get; set; } = null!;
 
-        //[Required]
-        //public byte[] Image { get; set; } = null!;
+        [Required]
+        public byte[] Image { get; set; } = null!;
 
         [Required]
         public int? prepTime { get; set; }
@@ -37,13 +37,5 @@ namespace Back_end_API.Models
         public int userId { get; set; }
 
         public UserModel User { get; set; } = null!;
-
-
-
-        //Foreign key aanmaken met onderstaande variables.
-        //[ForeignKey("userNameId")]
-        //public int userNameId { get; set; }
-
-        //public UserNameModal UserName { get; set; } = null!;
     }
 }

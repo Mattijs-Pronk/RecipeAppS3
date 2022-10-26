@@ -5,7 +5,7 @@ namespace Back_end_API.Data
 {
     public class RecipeAppContext : DbContext
     {
-        public RecipeAppContext(DbContextOptions<RecipeAppContext> options):base(options)
+        public RecipeAppContext(DbContextOptions<RecipeAppContext> options) : base(options)
         {
 
         }
