@@ -68,5 +68,28 @@ namespace Back_end_API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("getmyrecipes")]
+        [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> GetUserRecipesById(int id)
+        {
+            var result = await _context.Recipes
+                         .Where(result => result.userId == id)
+                         .Select(result => new
+                         {
+                             result.recipeId,
+                             result.Title,
+                             result.Description,
+                             result.Ingredients,
+                             result.Rating,
+                             result.prepTime,
+                             result.Portions,
+                             result.User.userName
+                         })
+                         .ToListAsync();
+
+            return Ok(result);
+        }
     }
 }

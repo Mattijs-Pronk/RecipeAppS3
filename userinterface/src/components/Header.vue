@@ -1,6 +1,7 @@
   <script setup>
     import { RouterLink } from 'vue-router'
     import {Logout} from '../assets/Functions/Auth'
+    import {GetUserRecipesById} from '../assets/Functions/User'
   </script>
   
   <template>
@@ -9,10 +10,18 @@
       <div class="nav">
         <h1 class = "title">Cloud recipes</h1>
         <blockquote>Nothing brings people together like good food</blockquote>
-        <!-- <a href = "#" class = "login-btn">Login</a> -->
+
+
+        <div class="dropdown">
+          <button class="profile-btn" id="profile">Profile</button>
+            <div class="dropdown-content">
+            <a v-on:click="GetMyRecipes()" class="profile-btn">Recipes</a>
+            <a v-on:click="GetMyFavorites()" class="profile-btn">Favorites</a>
+            </div>
+        </div>
+
+
         <RouterLink :to="{name: 'login'}" class="login-btn" id="login" v-on:click="LogoutThis()">{{login}}</RouterLink>
-        <RouterLink :to="{name: 'home'}" class="profile-btn" id="profile">{{profile}}</RouterLink>
-        <!-- <a class="favorites-btn"><RouterLink :to="{name: 'userinterface'}"><img class="imagebutton" src="/Images/HeartFavorite.jpg" alt=""></RouterLink></a> -->
         <RouterLink :to="{name: 'addrecipe'}" class="addrecipe-btn" id="addrecipe">{{addrecipe}}</RouterLink>
       </div>
     </header>
@@ -23,6 +32,7 @@
     name: 'header',
     data(){
     return{
+      user: '',
       login: '',
       profile: '',
       addrecipe: ''
@@ -36,14 +46,38 @@
       LogoutThis(){
       Logout()
     },
+    async GetMyRecipes(){
+      if(this.user != null){
+        await GetUserRecipesById(this.user)
+
+        this.$toast.success('Succesfully loaded your created recipes' , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 3500
+        });
+      }
+      else{
+        this.$toast.error('Please login first' , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 4500
+        });
+      }
+      
+    },
+    GetMyFavorites(){
+
+    },
     GetloggedIn(){
       //JSON.parse om de "" weg te halen.
-      var user = JSON.parse(localStorage.getItem("user"))
+      this.user = JSON.parse(localStorage.getItem("user"))
       var loginbtn = document.getElementById("login");
       var profilebtn = document.getElementById("profile");
       var addrecipebtn = document.getElementById("addrecipe");
 
-      if (user == null)
+      if (this.user == null)
       {
         loginbtn.style.backgroundColor = "green"
         this.login = 'Login'
@@ -65,6 +99,6 @@
 } 
   </script>
   
-  <style>
+  <style scoped>
     @import "../assets/styles/header.css";
   </style>

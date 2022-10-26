@@ -1,3 +1,4 @@
+import { GetUserRecipesById } from "../User"
 import API from "./API"
 
 export default{
@@ -77,4 +78,11 @@ export default{
        // })
    },
    //Eind van authenticator calls.
+
+   //Start van user calls.
+   async GetUserRecipesById(id){
+    return await API().get(`/User/getmyrecipes?id=${id}`) //, {
+    //    id: id
+    //})
+},
 }
