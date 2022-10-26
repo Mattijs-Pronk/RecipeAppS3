@@ -14,6 +14,8 @@ namespace Back_end_API.Data
 
         public DbSet<RecipeModel> Recipes { get; set; } = null!;
 
+        public DbSet<FavoritesModel> Favorites { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //update klaar zetten Tools>Nuget Package manager>PackageManager console> type in console "add-migration 'wat je hebt verandert'"

@@ -1,4 +1,6 @@
-﻿using Back_end_API.Data;
+﻿using Back_end_API.BusinessLogic;
+using Back_end_API.BusinessLogic.FavoriteDTO_s;
+using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -86,6 +88,49 @@ namespace Back_end_API.Controllers
                              result.prepTime,
                              result.Portions,
                              result.User.userName
+                         })
+                         .ToListAsync();
+
+            return Ok(result);
+        }
+
+        [HttpPost("addfavorite")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult> AddToFavorites(AddFavoriteDTO request)
+        {
+            var result = await _context.Users.FindAsync(request.userId);
+            if (result == null)
+                return NotFound();
+
+            var newfavorite = new FavoritesModel
+            {
+                userId = request.userId,
+                recipeId = request.recipeId,
+            };
+
+            await _context.Favorites.AddAsync(newfavorite);
+            await _context.SaveChangesAsync();
+
+            return Ok("favorite added");
+        }
+
+        [HttpGet("getfavorites")]
+        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> GetAllFavoritesById(int id)
+        {
+            var result = await _context.Favorites
+                         .Where(result => result.userId == id)
+                         .Select(result => new
+                         {
+                             result.recipeId,
+                             result.Recipe.Title,
+                             result.Recipe.Description,
+                             result.Recipe.Ingredients,
+                             result.Recipe.Rating,
+                             result.Recipe.prepTime,
+                             result.Recipe.Portions,
+                             result.Recipe.User.userName
                          })
                          .ToListAsync();
 

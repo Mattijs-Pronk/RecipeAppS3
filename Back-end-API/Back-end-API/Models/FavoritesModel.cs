@@ -12,6 +12,8 @@ namespace Back_end_API.Models
         [ForeignKey("userId")]
         public int userId { get; set; }
 
+        //public UserModel User { get; set; } = null!;
+
         //Foreign key aanmaken met onderstaande variables.
         [ForeignKey("recipeId")]
         public int recipeId { get; set; }

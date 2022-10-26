@@ -19,8 +19,8 @@ namespace Back_end_API.Models
         [Required]
         public string Ingredients { get; set; } = null!;
 
-        [Required]
-        public byte[] Image { get; set; } = null!;
+        //[Required]
+        //public byte[] Image { get; set; } = null!;
 
         [Required]
         public int? prepTime { get; set; }
