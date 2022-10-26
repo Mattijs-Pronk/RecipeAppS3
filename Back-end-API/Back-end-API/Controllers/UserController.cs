@@ -98,9 +98,10 @@ namespace Back_end_API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> AddToFavorites(AddFavoriteDTO request)
         {
-            var result = await _context.Users.FindAsync(request.userId);
-            if (result == null)
-                return NotFound();
+            var myuser = await _context.Users.FindAsync(request.userId);
+            var myrecipe = await _context.Recipes.FindAsync(request.recipeId);
+            if (myuser == null || myrecipe == null)
+                return NotFound("user or recipe doesn't exist");
 
             var newfavorite = new FavoritesModel
             {

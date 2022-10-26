@@ -84,5 +84,18 @@ export default{
     return await API().get(`/User/getmyrecipes?id=${id}`) //, {
     //    id: id
     //})
-},
+    },
+
+    async AddToFavorites(userid, recipeid){
+        return await API().post(`/User/addfavorite` , {
+            userId: userid,
+            recipeId: recipeid
+        })
+    },
+
+    async GetAllFavoritesById(id){
+        return await API().get(`/User/getfavorites?id=${id}`) //, {
+        //    id: id
+        //})
+    },
 }

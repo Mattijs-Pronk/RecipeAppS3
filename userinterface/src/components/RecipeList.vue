@@ -24,7 +24,7 @@
           </div>
 
           <!-- Start mealDetials -->
-          <RecipeItem :itemdata="mealitem"/>
+          <RecipeItem :itemdata="mealitem" :recipeId="recipeid"/>
           <!-- Eind mealDetails -->
 
 </template>
@@ -38,12 +38,14 @@
     ],
     data(){
         return{
-            mealitem: []
+            mealitem: [],
+            recipeid: ''
         }
     }, 
     methods:{
       OpenRecipeById(id){
         this.OpenModal(id)
+        this.recipeid = id;
       },
   }
 }

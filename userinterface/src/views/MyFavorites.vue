@@ -1,5 +1,5 @@
 <script setup>
-  import { GetUserRecipesById } from '../assets/Functions/User';
+  import { GetAllFavoritesById } from '../assets/Functions/User';
   import Header from '../components/Header.vue';
   import Footer from '../components/Footer.vue';
   import searchbar from '../components/Searchbar.vue'
@@ -18,7 +18,7 @@
             </div>
 
             <!-- Start van meal items -->
-              <RecipeList :listdata="meallist" :itemstatus="status"/>
+              <RecipeList :listdata="meallist"/>
             <!-- Eind van meal items -->
             
           </div>
@@ -41,8 +41,8 @@
     },
     methods:{
         async loadMyFavorites(){
-            this.user = JSON.parse(localStorage.getItem("user"))
-            
+          this.user = JSON.parse(localStorage.getItem("user"))
+          await this.GetAllFavoritesById(this.user)   
         }
     }
   }

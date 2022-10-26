@@ -38,7 +38,7 @@
     },
     //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
     mounted(){
-        this.loadMyRecipes()
+      this.loadMyRecipes()
     },
     methods:{
         async loadMyRecipes(){

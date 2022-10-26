@@ -15,7 +15,7 @@
           <button class="profile-btn" id="profile">Profile</button>
             <div class="dropdown-content">
             <a href="/myrecipes" v-on:click="GetMyRecipes()" class="profile-btn">Recipes</a>
-            <a v-on:click="GetMyFavorites()" class="profile-btn">Favorites</a>
+            <a href="/myfavorites" v-on:click="GetMyFavorites()" class="profile-btn">Favorites</a>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
       LogoutThis(){
       Logout()
     },
-    async GetMyRecipes(){
+    GetMyRecipes(){
       if(this.user != null){
         this.$toast.success('Succesfully loaded your created recipes' , {
           position: 'top',
@@ -64,7 +64,22 @@
       
     },
     GetMyFavorites(){
-
+      if(this.user != null){
+        this.$toast.success('Succesfully loaded your favorite recipes' , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 3500
+        });
+      }
+      else{
+        this.$toast.error('Please login first' , {
+          position: 'top',
+          dismissible: true,
+          pauseOnHover: true,
+          duration: 4500
+        });
+      }
     },
     GetloggedIn(){
       //JSON.parse om de "" weg te halen.
