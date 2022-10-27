@@ -4,7 +4,10 @@
   
   <template>
     <header>
-      <a><RouterLink :to="{name: 'home'}"><img src="/Images/CloudRecipeLogo.jpg" alt="Foto" class="navphoto"></RouterLink></a>
+      <nav>
+        <a class="logo" href="/home">Cloud Recipes</a>
+      </nav>
+      <div class="section"></div>
     </header>
   </template>
   
@@ -13,5 +16,5 @@
   </script>
   
   <style>
-    @import "../assets/styles/header.css";
+    @import "../assets/styles/header2.css";
   </style>

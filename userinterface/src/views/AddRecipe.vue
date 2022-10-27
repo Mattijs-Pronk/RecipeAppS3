@@ -7,6 +7,7 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 
 <template>
     <Header/>
+    <p class="message">Create your own recipe</p> 
 	<div class="container">
 		<div class="contact-box">
 			<div class="left"></div>

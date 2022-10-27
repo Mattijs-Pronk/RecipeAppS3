@@ -1,8 +1,10 @@
 <script setup>
 import {Login, VerifyAccount} from '../assets/Functions/Auth'
+import Footer from '../components/Footer.vue';
 </script>
 
 <template>
+<div class="container2">
     <div class="container">
         <div class="forms"> 
             <div class="form login">
@@ -26,6 +28,8 @@ import {Login, VerifyAccount} from '../assets/Functions/Auth'
             </div>
         </div>
     </div>
+</div>
+<Footer/>
 </template>
 
 <script>

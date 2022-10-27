@@ -12,7 +12,8 @@
 </head>
   <Header/>
     <div class = "container">
-          <div class = "meal-wrapper">    
+          <div class = "meal-wrapper">   
+            <p class="message">See all your favorite recipes</p>   
             <div class = "meal-search">
               <searchbar/>
             </div>

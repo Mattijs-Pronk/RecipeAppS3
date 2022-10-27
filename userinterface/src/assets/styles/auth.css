@@ -3,6 +3,11 @@
 :root{
     --tenne-tawny: #2c4cb4;
     --tenne-tawny-dark: #122050;
+    --orange: #fb8500;
+    --yellow: #ffb703;
+    --dark-blue: #023047;
+    --light-blue: #219ebc;
+    --superlight-blue: #d3ecf7;
 }
 
 .text-danger {
@@ -25,20 +30,21 @@ body{
     background-color: #4070f4;
 }
 
+.container2{
+    min-height: 100vh;
+    background-color: #d3ecf7;
+}
+
 .container{
-    position: absolute;
-    max-width: 500px;
-    width: 90%;
-    top: 20%;
-    left: 39%;
-    background: #fff;
-    border-radius: 10px;
-    margin: 0 20px;
+    width: 100%;
+	height: 100%;
+	display: flex;
+    padding: 50px 41.5%;
 }
 
 
 .container .form{
-    width: 100%;
+    width: 450px;
     padding: 30px;
     background-color: #fff;
     box-shadow: 0px 0px 19px 5px rgba(0,0,0,0.19);
@@ -51,6 +57,7 @@ body{
     position: absolute;
     font-size: 27px;
     font-weight: 600;
+    color: #fb8500;
 }
 
 .form .title::before{
@@ -60,7 +67,7 @@ body{
     bottom: 0;
     height: 3px;
     width: 30px;
-    background-color: var(--tenne-tawny);
+    background-color: #219ebc;
     border-radius: 25px;
 }
 
@@ -85,20 +92,20 @@ body{
 }
 
 .input-field input:is(:focus, :valid){
-    border-bottom-color: var(--tenne-tawny);
+    border-bottom-color: #219ebc;
 }
 
 .input-field i{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--tenne-tawny);
+    color: #fb8500;
     font-size: 23px;
     transition: all 0.2s ease;
 }
 
 .input-field input:is(:focus, :valid) ~ i{
-    color: var(--tenne-tawny);
+    color: #219ebc;
 }
 
 .input-field i.icon{
@@ -124,16 +131,16 @@ body{
 
 .checkbox-content input{
     margin: 0 8px -2px 4px;
-    accent-color: var(--tenne-tawny);
+    accent-color: #fb8500;
 }
 
 .form .text{
-    color: #333;
-    font-size: 14px;
+    color: #219ebc;
+    font-size: 16px;
 }
 
 .form a.text{
-    color: var(--tenne-tawny);
+    color: #219ebc;
     text-decoration: none;
 }
 .form a:hover{
@@ -151,13 +158,13 @@ body{
     font-weight: 500;
     letter-spacing: 1px;
     border-radius: 6px;
-    background-color: var(--tenne-tawny);
+    background-color: #fb8500;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .button input:hover{
-    background-color: var(--tenne-tawny-dark);
+    background-color: #ffb703;
 }
 
 .form .login-signup{

@@ -7,23 +7,28 @@
 <template>
     <div id="hidden" style="display:none" class="meal-details">
         <button v-on:click="CloseRecipe()" type="button" class="btn recipe-close-btn"><i class="fas fa-times"></i></button> 
-        <button v-on:click="AddRecipeToFavorites()" class="btn recipe-favorite-btn"><img src="/Images/HeartFavorite.jpg" alt="Foto" class="favoritephoto"></button>                   
+        <button v-on:click="AddRecipeToFavorites()" class="btn recipe-favorite-btn"><i class="fas fa-heart"></i></button> 
+        <br/>                  
             <div class="meal-details-content" v-for="meal in itemdata">                      
                 <h2 class="recipe-title">{{meal.title}}</h2>
                     <div class="recipe-meal-img">
-                      <img src="/Images/Hamburger2.jpg" alt="food">
+                      <img src="../assets/Images/foodExample.jpg" alt="food">
                     </div>
-                        <p>{{meal.rating}} out of 5 <span class="fa fa-star"></span></P>
                         <p>Made by: {{meal.userName}}</p>
+                        <p>{{meal.rating}} out of 5 <span class="fa fa-star"></span></p>
                         <br>
-                        <p class="recipe-category">Result:</p> <p1>Preptime: {{meal.prepTime}} mins, Portion('s'): {{meal.portions}}</p1>
+                        <p class="recipe-category">Result</p>
+                        <br/>
+                        <p1>Preptime: {{meal.prepTime}} minute('s'), Portion('s'): {{meal.portions}}</p1>
+                        <br/><br/>
                         <div class="recipe-instruct">
-                            <br>
-                            <h3>Ingredients:</h3>
+                            <br/>
+                            <h3><p class="recipe-category">Ingredients</p></h3>
                             <p>{{meal.ingredients}}</p>
                         </div>
+                        <br/>
                         <div class="recipe-instruct">
-                            <h3>Preperation:</h3>
+                            <h3><p class="recipe-category">Preperation</p></h3>
                             <p>{{meal.description}}</p>
                     </div>
             </div>

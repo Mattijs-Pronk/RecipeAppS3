@@ -1,10 +1,12 @@
 <script setup>
 import SimpleHeader from '../components/SimpleHeader.vue'
+import Footer from '../components/Footer.vue';
 import {ForgotPassword} from '../assets/Functions/Auth'
 </script>
 
 <template>
 <SimpleHeader/>
+<div class="container2">
     <div class="container">
         <div class="forms"> 
             <div class="form login">
@@ -30,6 +32,8 @@ import {ForgotPassword} from '../assets/Functions/Auth'
             </div>
         </div>
     </div>
+</div>
+<Footer/>
 </template>
 
 <script>

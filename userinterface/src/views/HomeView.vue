@@ -12,8 +12,9 @@
 </head>
   <Header/>
     <div class = "container">
-          <div class = "meal-wrapper">    
-            <div class = "meal-search">
+          <div class = "meal-wrapper">  
+            <p class="message">Find all your desired recipes</p>  
+            <div class = "meal-search">   
               <searchbar/>
             </div>
 

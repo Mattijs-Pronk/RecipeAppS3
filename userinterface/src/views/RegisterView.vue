@@ -3,10 +3,12 @@ import {Register} from '../assets/Functions/Auth'
 import {CheckUser} from '../assets/Functions/Auth'
 import {CheckEmail} from '../assets/Functions/Auth'
 import SimpleHeader from '../components/SimpleHeader.vue'
+import Footer from '../components/Footer.vue';
 </script>
 
 <template>
     <SimpleHeader/>
+<div class="container2">
     <div class="container">
         <div class="forms">
             <div class="form login">
@@ -55,6 +57,8 @@ import SimpleHeader from '../components/SimpleHeader.vue'
             </div>
         </div>
     </div>
+</div>
+<Footer/>
 </template>
 
 <script>

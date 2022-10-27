@@ -10,7 +10,7 @@
               <div id= "meal">   
                 <div class = "meal-item" v-for="meal in listdata">
                     <div class = "meal-img">
-                      <img src = "/Images/Hamburger2.jpg" alt = "food">
+                      <img src = "../assets/Images/foodExample.jpg" alt = "food">
                     </div>
                     <div class = "meal-name">
                       <h3>{{meal.title}}</h3>
