@@ -6,6 +6,43 @@
     --superlight-blue: #d3ecf7;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    min-width: 160px;
+    z-index: 1;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+.dropdown-content a {
+    padding: 21px 21px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fb8500;
+    display: block;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+  
+.dropdown-content a:hover 
+{
+    background-color: rgb(99, 67, 29);
+    border-bottom: 2px solid #fb8500;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 body{
     margin: 0;
     padding: 0;

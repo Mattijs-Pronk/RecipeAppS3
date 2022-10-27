@@ -94,7 +94,7 @@ export default{
                 duration: 3500
                 });
 
-                this.$router.push({name: 'home'})
+                this.$router.push({name: 'myrecipes'})
             }
             else{
                 this.$toast.error('recipe has not been send for approval, please login' , {

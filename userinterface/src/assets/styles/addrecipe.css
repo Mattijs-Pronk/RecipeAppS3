@@ -54,7 +54,7 @@ body{
 	z-index: -1;
 }
 .contact-box{
-	max-width: 75%;
+	max-width: 70%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	justify-content: center;
@@ -151,11 +151,11 @@ textarea{
 }
 
 .btn:hover{
-    background-color: var(--tenne-tawny-dark);
+    background-color: #ffb703;
 }
 
 .field:focus{
-    border: 2px solid var(--tenne-tawny-dark);
+    border: 2px solid #ffb703;
     background-color: #fff;
 }
 

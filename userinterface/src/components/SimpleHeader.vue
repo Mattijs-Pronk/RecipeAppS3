@@ -5,7 +5,7 @@
   <template>
     <header>
       <nav>
-        <a class="logo" href="/home">Cloud Recipes</a>
+        <a class="logo" href="/landing">Cloud Recipes</a>
       </nav>
       <div class="section"></div>
     </header>

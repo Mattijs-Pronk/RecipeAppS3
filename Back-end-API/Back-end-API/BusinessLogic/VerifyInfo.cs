@@ -24,7 +24,7 @@ namespace Back_end_API.BusinessLogic
 
         public string CreateRandomToken()
         {
-            return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(16));
         }
     }
 }

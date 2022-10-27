@@ -11,6 +11,17 @@ export const GetAllRecipes = async function(){
         }
 };
 
+//functie om random recepten asynchroon in te laden.
+export const GetRandomRecipes = async function(){
+        try{
+                await APIcalls.GetRandomRecipes()
+                .then(response => {this.meallist = response.data;})
+        }
+        catch(error){
+                console.log(error)
+        }
+};
+
 //functie om het modal te openen.
 export const OpenModal = async function(id){
         try{

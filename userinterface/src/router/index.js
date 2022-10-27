@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import {RouteGaurd} from '../assets/Functions/Auth'
-import HomeView from '../views/HomeView.vue'
+import RecipesView from '../views/RecipesView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from  '../views/RegisterView.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
@@ -9,14 +9,20 @@ import VerifyAccount from '../views/VerifyAccount.vue'
 import AddRecipe from '../views/AddRecipe.vue'
 import MyRecipes from '../views/MyRecipes.vue'
 import MyFavorites from '../views/MyFavorites.vue'
+import LandingView from '../views/LandingView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: HomeView
+      path: '/recipes',
+      name: 'recipes',
+      component: RecipesView
+    },
+    {
+      path: '/landing',
+      name: 'landing',
+      component: LandingView
     },
     {
       path: '/login',

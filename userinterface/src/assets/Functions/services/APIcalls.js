@@ -7,6 +7,10 @@ export default{
         return await API().get('/Recipe')
     },
 
+    async GetRandomRecipes(){
+        return await API().get('/Recipe/getrandom')
+    },
+
     async GetRecipeById(id){
         return await API().get(`/Recipe/id?id=${id}`) //, {
         //    id: id

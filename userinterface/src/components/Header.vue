@@ -7,13 +7,21 @@
   <template>
     <header>
       <nav>
-        <a class="logo" href="/home">Cloud Recipes</a>
+        <a class="logo" href="/landing">Cloud Recipes</a>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="/home">Recipes</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="/landing">Home</a></li>
+          <li><a href="/recipes">Recipes</a></li>
           <li><a href="#">Contact us</a></li>
-          <li><a v-on:click="LogoutThis()" href="/login">{{login}}</a></li>
+
+            <div class="dropdown">
+              <li><a v-on:click="LogoutThis()" href="/login">{{login}}</a></li>
+                <div id="dropdown" class="dropdown-content">
+                  <a href="/addrecipe">Add recipe</a>
+                  <a href="/myrecipes">MyRecipes</a>
+                  <a href="/myfavorites">MyFavorites</a>
+                </div>
+            </div>
+            
         </ul>
       </nav>
       <div class="section"></div>
@@ -37,6 +45,18 @@
     methods:{
       LogoutThis(){
       Logout()
+    },
+    GetloggedIn(){
+      //JSON.parse om de "" weg te halen.
+      this.user = JSON.parse(localStorage.getItem("user"))
+
+      if (this.user == null)
+      {
+        this.login = 'Login'
+      }
+      else{
+        this.login = 'Logout'
+      }
     },
     GetMyRecipes(){
       if(this.user != null){
@@ -75,18 +95,6 @@
         });
       }
     },
-    GetloggedIn(){
-      //JSON.parse om de "" weg te halen.
-      this.user = JSON.parse(localStorage.getItem("user"))
-
-      if (this.user == null)
-      {
-        this.login = 'Login'
-      }
-      else{
-        this.login = 'Logout'
-    }
-    }
   }
 } 
   </script>

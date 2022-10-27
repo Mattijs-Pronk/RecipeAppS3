@@ -62,7 +62,7 @@
           });
         }
         else{
-          this.$toast.error('this recipe is already in your favorites' , {
+          this.$toast.error('recipe removed from favorites' , {
           position: 'top',
           dismissible: true,
           pauseOnHover: true,

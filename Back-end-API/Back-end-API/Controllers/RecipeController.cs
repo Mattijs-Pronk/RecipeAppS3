@@ -42,6 +42,26 @@ namespace Back_end_API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getrandom")]
+        public async Task<ActionResult> GetRandomRecipes()
+        {
+            var result = await _context.Recipes.OrderBy(x => Guid.NewGuid()).Take(3)
+                         .Where(result => result.Active == true)
+                         .Select(result => new
+                         {
+                             result.recipeId,
+                             result.Title,
+                             result.Description,
+                             result.Ingredients,
+                             result.Rating,
+                             result.prepTime,
+                             result.Portions,
+                             result.User.userName
+                         })
+                         .ToListAsync();
+
+            return Ok(result);
+        }
 
         [HttpGet("id")]
         [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]

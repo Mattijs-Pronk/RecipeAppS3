@@ -8,7 +8,7 @@ namespace Back_end_API.BusinessLogic
 {
     public class EmailCreator
     {
-        private void CreateEmail(string email, string body, string subject)
+        private void SendEmail(string email, string body, string subject)
         {
             var newEmail = new MimeMessage();
             newEmail.From.Add(MailboxAddress.Parse("cloudrecipes.info@gmail.com"));
@@ -37,7 +37,7 @@ namespace Back_end_API.BusinessLogic
                 "<br /><br /><br /> Kind regards," +
                 "<br /><br /> Team Cloud Recipes.";
 
-            CreateEmail(email, body, subject);
+            SendEmail(email, body, subject);
         }
 
 
@@ -55,7 +55,7 @@ namespace Back_end_API.BusinessLogic
                 "<br /><br /><br /> Kind regards," +
                 "<br /><br /> Team Cloud Recipes.";
 
-            CreateEmail(email, body, subject);
+            SendEmail(email, body, subject);
         }
 
         public void SendEmailResetPasswordSucces(string email, string password, string username)
@@ -73,7 +73,27 @@ namespace Back_end_API.BusinessLogic
                 "<br /><br /><br /> Kind regards," +
                 "<br /><br/> Team Cloud Recipes.";
 
-            CreateEmail(email, body, subject);
+            SendEmail(email, body, subject);
+        }
+
+        private void RecieveEmail(string email, string body, string subject)
+        {
+            var newEmail = new MimeMessage();
+            newEmail.From.Add(MailboxAddress.Parse(email));
+            newEmail.To.Add(MailboxAddress.Parse("cloudrecipes.info@gmail.com"));
+            newEmail.Subject = subject;
+            newEmail.Body = new TextPart(TextFormat.Html) { Text = body };
+
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("cloudrecipes.info@gmail.com", "rjfgqybzkmnvkyco");
+            smtp.Send(newEmail);
+            smtp.Disconnect(true);
+        }
+
+        public void RecieveEmailContactUs(string email, string body, string subject)
+        {
+            RecieveEmail(email, body, subject);
         }
     }
 }

@@ -89,7 +89,7 @@ export default{
         if(await Login(this.email, this.password))
         {
           //nog melding toevoegen voor succesvol account aanmaken.
-          this.$router.push({name: 'home'});
+          this.$router.push({name: 'landing'});
           this.$toast.success(`Succesfully logged in` , {
           position: 'top',
           dismissible: true,

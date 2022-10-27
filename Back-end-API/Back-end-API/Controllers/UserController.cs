@@ -100,9 +100,13 @@ namespace Back_end_API.Controllers
         {
             var myuser = await _context.Users.FindAsync(request.userId);
             var myrecipe = await _context.Recipes.FindAsync(request.recipeId);
-            if (myuser == null || myrecipe == null)
-                return NotFound("user or recipe doesn't exist");
-
+            var myfavorites = await _context.Favorites.FirstOrDefaultAsync(f => f.userId == request.userId && f.recipeId == request.recipeId);
+            if (myuser == null || myrecipe == null || myfavorites != null)
+            {
+                await RemoveFavoriteById(myfavorites.favoriteId);
+                return NotFound("favorite removed");
+            }
+                
             var newfavorite = new FavoritesModel
             {
                 userId = request.userId,
@@ -113,6 +117,18 @@ namespace Back_end_API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("favorite added");
+        }
+
+        [HttpPost("removefavorite")]
+        public async Task<ActionResult> RemoveFavoriteById(int id)
+        {
+            var favoritetoDelete = await _context.Favorites.FindAsync(id);
+            if (favoritetoDelete == null) return BadRequest("favorite not found");
+
+            _context.Favorites.Remove(favoritetoDelete);
+            await _context.SaveChangesAsync();
+
+            return Ok("favorite removed");
         }
 
         [HttpGet("getfavorites")]

@@ -1,6 +1,13 @@
 <template>
     <footer>
-        <p>Copyright © 2022-{{autodate}} Mattijs Pronk, Inc - All Rights Reserved</p>
+        <div class="footer-border">
+            <a class="logo">Cloud Recipes</a> 
+            <br/>
+            <img class="logo-img" src = "../assets/Images/CloudRecipeLogo.jpg" alt = "food">
+            <a>Copyright © 2022-{{autodate}} Mattijs Pronk, Inc - All Rights Reserved</a>
+            <br/>
+            <a href="/landing">Home</a> | <a href="/landing">Contact us</a> | <a href="/login">Login</a>
+        </div>
     </footer>
 </template>
 
@@ -24,10 +31,5 @@ export default{
 </script>
 
 <style scoped>
-    footer{
-        color: black;
-        background-color: rgb(237, 237, 238);
-        padding: 2px;
-        text-align: center;
-    }
+    @import '../assets/styles/footer.css';
 </style>

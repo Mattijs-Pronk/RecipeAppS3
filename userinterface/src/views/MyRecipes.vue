@@ -13,7 +13,7 @@
   <Header/>
     <div class = "container">
           <div class = "meal-wrapper"> 
-            <p class="message">See all your created recipes</p>     
+            <p class="message">Your created recipes</p>     
             <div class = "meal-search">
               <searchbar/>
             </div>
