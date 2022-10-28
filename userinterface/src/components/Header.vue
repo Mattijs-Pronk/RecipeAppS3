@@ -19,6 +19,7 @@
                   <a href="/addrecipe">Add recipe</a>
                   <a href="/myrecipes">MyRecipes</a>
                   <a href="/myfavorites">MyFavorites</a>
+                  <a href="/myprofile">MyProfile</a>
                 </div>
             </div>
             
@@ -57,44 +58,7 @@
       else{
         this.login = 'Logout'
       }
-    },
-    GetMyRecipes(){
-      if(this.user != null){
-        this.$toast.success('Succesfully loaded your created recipes' , {
-          position: 'top',
-          dismissible: true,
-          pauseOnHover: true,
-          duration: 3500
-        });
-      }
-      else{
-        this.$toast.error('Please login first' , {
-          position: 'top',
-          dismissible: true,
-          pauseOnHover: true,
-          duration: 4500
-        });
-      }
-      
-    },
-    GetMyFavorites(){
-      if(this.user != null){
-        this.$toast.success('Succesfully loaded your favorite recipes' , {
-          position: 'top',
-          dismissible: true,
-          pauseOnHover: true,
-          duration: 3500
-        });
-      }
-      else{
-        this.$toast.error('Please login first' , {
-          position: 'top',
-          dismissible: true,
-          pauseOnHover: true,
-          duration: 4500
-        });
-      }
-    },
+    }
   }
 } 
   </script>

@@ -45,6 +45,17 @@ export const ChangePassword = async (userid, currentpass, newpass) => {
     }
 }
 
+export const ChangeProfile = async (userid, username, adress, phone) => {
+    try{
+        await APIcalls.ChangeProfile(userid, username, adress, phone)
+        return true
+    }
+    catch(error){
+        console.log(error)
+        return false
+    }
+}
+
 export const GetUserById = async function(userid) {
     try{
         return await APIcalls.GetUserById(userid)
@@ -74,3 +85,9 @@ export const GetUserFavoritesAmountById = async function(userid) {
         console.log(error)
     }
 }
+
+//functie om te checken of een username al in gebruik is.
+export const UsernameCheckerChangeUsername = async (currentusername, newusername) => {
+    let response = await APIcalls.UsernameCheckerChangeUsername(currentusername, newusername)
+    return response.data
+  }

@@ -130,6 +130,22 @@ export default{
         //    id: id
         //})
         },
+
+    async UsernameCheckerChangeUsername(currentusername, newusername){
+        return await API().post(`/User/changeusername` , {
+                currentUsername: currentusername,
+                newUsername: newusername
+            })
+        },
+
+    async ChangeProfile(userid, username, adress, phone){
+        return await API().put(`/User/changeprofile` , {
+                userId: userid,
+                userName: username,
+                adress: adress,
+                phone: phone
+            })
+        },
             
     //Eind van user calls.
 }

@@ -5,6 +5,8 @@ import {ChangePassword} from '../assets/Functions/User';
 import {GetUserById} from '../assets/Functions/User';
 import { GetUserRecipesAmountById } from '../assets/Functions/User';
 import { GetUserFavoritesAmountById } from '../assets/Functions/User';
+import {ChangeProfile} from '../assets/Functions/User';
+import {UsernameCheckerChangeUsername} from '../assets/Functions/User';
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 </script>
@@ -17,6 +19,7 @@ import Footer from '../components/Footer.vue';
 <div class="container">
 
     <!-- Profile -->
+<div class="left">
     <div class="profile-card">
         <div class="image-container">
             <img src="../assets/Images/ProfilePic.jpg" style="width: 100%;">
@@ -26,7 +29,7 @@ import Footer from '../components/Footer.vue';
         </div>
         <div class="main-container">
             <p><i class="fa fa-envelope info"></i>{{useremail}}</p>
-            <p><i class="fa fa-home info"></i>{{useradres}}</p>
+            <p><i class="fa fa-home info"></i>{{useradress}}</p>
             <p><i class="fa fa-phone info"></i>{{userphone}}</p>
             <p><i class="fa fa-clock info"></i>{{useractive}}</p>
             <br/>
@@ -39,8 +42,10 @@ import Footer from '../components/Footer.vue';
             <p><i class="fa fa-heart info"></i>Current favorites: {{userfavorites}}</p>
         </div>
     </div>
+</div>
 
     <!-- Edit profile -->
+<div class="right">
     <div class="edit-card">
         <div class="title">
                 <h2>Edit profile</h2>
@@ -54,25 +59,21 @@ import Footer from '../components/Footer.vue';
                         <i class="fa fa-clock-rotate-left info"></i>
                     </div>
                     <span v-if="usernameError" class="text-danger">{{usernameError}}</span>
-                    
-                    <div class="input-field">
-                        <input type="text" placeholder="Email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
-                    </div>
-                    <span v-if="emailError" class="text-danger">{{emailError}}</span>
 
                     <div class="input-field">
-                        <input type="text" placeholder="Adress" v-model="adress" @blur="" @keyup="">
+                        <input type="text" placeholder="Adress" v-model="adress">
                     </div>
                     <span v-if="usernameError" class="text-danger">{{adressError}}</span>
 
                     <div class="input-field">
-                        <input type="text" placeholder="Phone" v-model="phone" @blur="" @keyup="">
+                        <input type="text" placeholder="Phone" v-model="phone">
                     </div>
                     <span v-if="phoneError" class="text-danger">{{phoneError}}</span>
                     
                     <br/>
                     <div class="input-field button">
-                        <input type="button" value="change profile" v-on:click="submitChangePassword()">
+                        <p1 class="p1-text">Leave Adress/Phone empty if its unchanged</p1>
+                        <input type="button" value="change profile" v-on:click="submitChangeProfile()">
                     </div>
                 </form>
             </div>
@@ -119,6 +120,7 @@ import Footer from '../components/Footer.vue';
         </div>
     </div>
 </div>
+</div>
     <Footer/>
 </template>
 
@@ -131,8 +133,6 @@ export default{
             userid: '',
             username: '',
             usernameError: '',
-            email: '',
-            emailError: '',
             adress: '',
             adressError: '',
             phone: '',
@@ -147,7 +147,7 @@ export default{
             user: '',
             userusername: '',
             useremail: '',
-            useradres: '',
+            useradress: '',
             userphone: '',
             useractive: '',
             userrecipes: '',
@@ -173,11 +173,10 @@ export default{
         this.userusername = this.user[0].userName;
         this.useremail = this.user[0].email;
 
-        if(this.user[0].adress == ""){this.useradres = 'Adress'}
-        else{this.useradres == this.user[0].adress}
+        this.useradress = this.user[0].adress;
+        this.userphone = this.user[0].phone;
 
-        if(this.user[0].phone == ""){this.userphone = 'Phone'}
-        else{this.userphone == this.user[0].phone}
+        console.log(this.user)
 
         this.useractive = this.user[0].activeSince;
         this.useraverige = 0;
@@ -191,32 +190,6 @@ export default{
 
       if(cb.checked == true){see.type = "text", seere.type = "text", currentsee.type = "text"}
       else(see.type = "password", seere.type = "password", currentsee.type = "password")
-    },
-
-    checkEmail() {
-        if(this.email.length > 0)
-        {
-            //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
-            if (this.timer) {
-            clearTimeout(this.timer);
-            this.timer = null;
-            }
-
-            this.timer = setTimeout(async () => {
-
-            if(await CheckEmail(this.email)){ this.emailError = 'Email already taken'}
-            else{ this.emailError = ''}
-
-        }, 1200);
-        }
-        
-      this.emailError = this.email.length == 0 ? 'Email cannot be empty.' 
-      : (this.validateEmail(this.email) ? '' : this.email + ' is not an email.')
-    },
-
-    validateEmail(email) {
-      const re = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-      return re.test(email);
     },
 
     checkCurrentPassword(){
@@ -243,7 +216,7 @@ export default{
             }
             this.timer = setTimeout(async () => {
 
-            if(await CheckUser(this.username)){ this.usernameError = 'Username already taken'}
+            if(await UsernameCheckerChangeUsername(this.userusername, this.username)){ this.usernameError = 'Username already taken'}
             else{ this.usernameError = ''}
 
         }, 1200);
@@ -268,6 +241,33 @@ export default{
             }
             else{
                 this.$toast.error('incorrect password' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 4500
+                });
+            }
+        }
+    },
+
+    async submitChangeProfile(){
+        this.checkUsername();
+
+        if(this.usernameError == '')
+        {
+            if(await ChangeProfile(this.userid, this.username, this.adress, this.phone))
+            {
+                this.$toast.success('Succesfully changed profile' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 3500
+                });
+
+                this.$router.push({name: 'myprofile'})
+            }
+            else{
+                this.$toast.error('please fill in username' , {
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,

@@ -12,11 +12,20 @@
     display: flex;
 }
 
+.left{
+    align-items: center;
+    margin-left: 27.5%;
+}
+
+.right{
+    margin-left: 5%;
+}
+
 .profile-card{
     margin-top: 150px;
     margin-bottom: 150px;
-    margin-left: 28%;
     width: 500px;
+    height: 81%;
     background: #fff;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
     border-radius: 2rem;
@@ -24,19 +33,18 @@
 
 .edit-card{
     margin-top: 150px;
-    margin-left: 80px;
-    margin-bottom: 700px;
+    margin-bottom: 52px;
     width: 500px;
+    height: 38%;
     background: #fff;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
     border-radius: 2rem;
 }
 
 .password-card{
-    margin-top: 700px;
-    margin-left: -500px;
-    margin-bottom: 150px;
+    margin-top: 100px;
     width: 500px;
+    height: 35%;
     background: #fff;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
     border-radius: 2rem;
@@ -66,6 +74,12 @@ h2{
 p{
     color: #219ebc;
     font-size: 22px;
+}
+
+.p1-text{
+    color: #fb8500;
+    font-size: 16px;
+    margin-left: 18%;
 }
 
 span{

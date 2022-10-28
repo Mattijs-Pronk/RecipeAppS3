@@ -77,6 +77,16 @@ namespace Back_end_API.Controllers
             return Ok(favorites);
         }
 
+        [HttpPost("changeusername")]
+        public async Task<ActionResult<bool>> UsernameCheckerChangeUsername(ChangeUsernameDTO request)
+        {
+            bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.newUsername);
+
+            if (doubleUsername && request.currentUsername != request.newUsername) { return true; }
+
+            return false;
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> CreateUser(UserModel user)
@@ -131,6 +141,26 @@ namespace Back_end_API.Controllers
                 return Ok("password has changed");
             }
             return BadRequest("incorrect password");
+        }
+
+        [HttpPut("changeprofile")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> ChangeProfile(ChangeUserProfileDTO request)
+        {
+            var myuser = await _context.Users.FindAsync(request.userId);
+            if (myuser != null)
+            {
+                myuser.userName = request.userName;
+                if(request.adress == "") { myuser.adress = myuser.adress; }
+                else { myuser.adress = request.adress; }
+                if (request.phone == "") { myuser.phone = myuser.phone; }
+                else { myuser.phone = request.phone; }
+
+                await _context.SaveChangesAsync();
+                return Ok("profile has changed");
+            }
+            return BadRequest("user not found");
         }
 
         [HttpGet("getmyrecipes")]
