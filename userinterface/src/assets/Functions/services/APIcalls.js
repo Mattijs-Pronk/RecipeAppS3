@@ -83,6 +83,8 @@ export default{
    },
    //Eind van authenticator calls.
 
+
+
    //Start van user calls.
    async GetUserRecipesById(id){
     return await API().get(`/User/getmyrecipes?id=${id}`) //, {
@@ -102,4 +104,32 @@ export default{
         //    id: id
         //})
     },
+
+    async ChangePassword(userid, currentpass, newpass){
+        return await API().put(`/User/changepassword` , {
+            userId: userid,
+            currentPassword: currentpass,
+            newPassword: newpass
+        })
+    },
+
+    async GetUserById(userid){
+        return await API().get(`/User/id?id=${userid}`) //, {
+        //    id: id
+        //})
+        },
+
+    async GetUserRecipesAmountById(userid){
+        return await API().get(`/User/recipesint?id=${userid}`) //, {
+        //    id: id
+        //})
+        },
+
+    async GetUserFavoritesAmountById(userid){
+        return await API().get(`/User/favoritesint?id=${userid}`) //, {
+        //    id: id
+        //})
+        },
+            
+    //Eind van user calls.
 }

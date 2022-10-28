@@ -4,6 +4,7 @@ using Back_end_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back_end_API.Migrations
 {
     [DbContext(typeof(RecipeAppContext))]
-    partial class RecipeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221028121421_userActiveSinceAdded")]
+    partial class userActiveSinceAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,9 +108,11 @@ namespace Back_end_API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("activeSince")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("adress")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isAdmin")
@@ -129,6 +133,7 @@ namespace Back_end_API.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("userName")

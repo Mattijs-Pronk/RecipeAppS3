@@ -53,7 +53,7 @@ namespace Back_end_API.Controllers
             await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
 
-            return Ok(newUser);
+            return Ok("user created");
         }
 
         [HttpPost("login")]
@@ -85,6 +85,7 @@ namespace Back_end_API.Controllers
                     //token weghalen.
                     Myuser.activateAccountToken = null;
                     Myuser.activateAccountTokenExpires = null;
+                    Myuser.activeSince = DateTime.Now;
 
                     await _context.SaveChangesAsync();
                     return Ok("user verified");

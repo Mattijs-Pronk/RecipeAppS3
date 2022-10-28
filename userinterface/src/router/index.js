@@ -10,6 +10,7 @@ import AddRecipe from '../views/AddRecipe.vue'
 import MyRecipes from '../views/MyRecipes.vue'
 import MyFavorites from '../views/MyFavorites.vue'
 import LandingView from '../views/LandingView.vue'
+import MyProfile from '../views/MyProfile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -79,6 +80,19 @@ const router = createRouter({
       path: '/myfavorites',
       name: 'myfavorites',
       component: MyFavorites,
+      beforeEnter: (to, from, next) => {
+        if(!RouteGaurd()) {
+          next({name: 'login'})
+        }
+        else{
+          next()
+        }
+      }
+    },
+    {
+      path: '/myprofile',
+      name: 'myprofile',
+      component: MyProfile,
       beforeEnter: (to, from, next) => {
         if(!RouteGaurd()) {
           next({name: 'login'})

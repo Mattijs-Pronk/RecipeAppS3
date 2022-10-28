@@ -1,5 +1,6 @@
 ﻿using Back_end_API.BusinessLogic;
 using Back_end_API.BusinessLogic.FavoriteDTO_s;
+using Back_end_API.BusinessLogic.UserDTO_s;
 using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,8 @@ namespace Back_end_API.Controllers
     public class UserController : ControllerBase
     {
         public readonly RecipeAppContext _context;
+
+        VerifyInfo verify = new VerifyInfo();
 
         public UserController(RecipeAppContext context)
         {
@@ -30,8 +33,48 @@ namespace Back_end_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUserById(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            return user == null ? NotFound() : Ok(user);
+            var myuser = await _context.Users
+            .Where(myuser => myuser.userId == id)
+                         .Select(myuser => new
+                         {
+                             myuser.userId,
+                             myuser.userName,
+                             myuser.Email,
+                             myuser.adress,
+                             myuser.phone,
+                             myuser.activeSince
+                         })
+                         .ToListAsync();
+
+            return Ok(myuser);
+        }
+
+        [HttpGet("recipesint")]
+        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<int>> GetUserRecipesAmountById(int id)
+        {
+            var createdrecipes = await _context.Recipes
+                .Where(r => r.userId == id)
+                .ToListAsync();
+
+            var recipes = createdrecipes.Count();
+
+            return Ok(recipes);
+        }
+
+        [HttpGet("favoritesint")]
+        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<int>> GetUserFavoritesAmountById(int id)
+        {
+            var favoriterecipes = await _context.Favorites
+                .Where(f => f.userId == id)
+                .ToListAsync();
+
+            var favorites = favoriterecipes.Count();
+
+            return Ok(favorites);
         }
 
         [HttpPost]
@@ -69,6 +112,25 @@ namespace Back_end_API.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPut("changepassword")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> ChangePassword(ChangeUserPassword request)
+        {
+            var myuser = await _context.Users.FindAsync(request.userId);
+            if(myuser != null && verify.VerifyPasswordHash(request.currentPassword, myuser.passwordHash, myuser.passwordSalt))
+            {
+                verify.CreatePasswordHash(request.newPassword, out byte[] passwordhash, out byte[] passwordsalt);
+
+                myuser.passwordHash = passwordhash;
+                myuser.passwordSalt = passwordsalt;
+
+                await _context.SaveChangesAsync();
+                return Ok("password has changed");
+            }
+            return BadRequest("incorrect password");
         }
 
         [HttpGet("getmyrecipes")]

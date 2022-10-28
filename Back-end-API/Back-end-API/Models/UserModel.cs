@@ -23,6 +23,15 @@ namespace Back_end_API.Models
         [Required]
         public bool isAdmin { get; set; }
 
+
+        public string? adress { get; set; }
+
+
+        public string? phone { get; set; }
+
+
+        public DateTime? activeSince { get; set; }
+
         //Foreign key aanmaken met onderstaande variables.
         //[ForeignKey("favoriteId")]
         //public int favoriteId { get; set; }

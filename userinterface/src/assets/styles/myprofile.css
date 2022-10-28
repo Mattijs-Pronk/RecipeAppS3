@@ -1,0 +1,140 @@
+:root{
+    --orange: #fb8500;
+    --yellow: #ffb703;
+    --dark-blue: #023047;
+    --light-blue: #219ebc;
+    --superlight-blue: #d3ecf7;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.profile-card{
+    margin-top: 150px;
+    margin-bottom: 150px;
+    margin-left: 28%;
+    width: 500px;
+    background: #fff;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
+    border-radius: 2rem;
+}
+
+.edit-card{
+    margin-top: 150px;
+    margin-left: 80px;
+    margin-bottom: 700px;
+    width: 500px;
+    background: #fff;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
+    border-radius: 2rem;
+}
+
+.password-card{
+    margin-top: 700px;
+    margin-left: -500px;
+    margin-bottom: 150px;
+    width: 500px;
+    background: #fff;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
+    border-radius: 2rem;
+}
+
+.image-container{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.info{
+    color: #219ebc;
+    margin-right: 16px;
+    size: 22px;
+}
+
+.main-container{
+    padding: 20px;
+}
+
+h2{
+    color: #219ebc;
+    font-size: 32px;
+    text-align: center;
+}
+
+p{
+    color: #219ebc;
+    font-size: 22px;
+}
+
+span{
+    margin-left: 10%;
+}
+
+.text-danger {
+    --bs-text-opacity: 1;
+    color: #ff0000;
+}
+
+.form .input-field{
+height: 50px;
+width: 80%;
+margin-top: 20px;
+margin-left: 10%;
+}
+
+.input-field input{
+height: 100%;
+width: 100%;
+padding: 0 35px;
+border: none;
+outline: none;
+font-size: 16px;
+border-bottom: 2px solid #ccc;
+border-top: 2px solid transparent;
+transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid){
+border-bottom-color: #219ebc;
+}
+
+.form .button{
+margin-top: 35px;
+}
+
+.form .button input{
+border: none;
+color: #fff;
+font-size: 17px;
+font-weight: 500;
+letter-spacing: 1px;
+border-radius: 6px;
+background-color: #fb8500;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.button input:hover{
+background-color: #ffb703;
+}
+
+.form .checkbox-text{
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-top: 20px;
+}
+
+.checkbox-text .checkbox-content{
+display: flex;
+align-items: center;
+color: #fb8500;
+}
+
+.checkbox-content input{
+margin: 0 8px -2px 4px;
+accent-color: #fb8500;
+margin-left: 50px;
+}
