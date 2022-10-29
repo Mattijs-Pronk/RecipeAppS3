@@ -11,7 +11,7 @@
         <ul>
           <li><a href="/landing">Home</a></li>
           <li><a href="/recipes">Recipes</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="/contactus">Contact us</a></li>
 
             <div class="dropdown">
               <li><a v-on:click="LogoutThis()" href="/login">{{login}}</a></li>

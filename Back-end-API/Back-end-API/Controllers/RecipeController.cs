@@ -20,112 +20,113 @@ namespace Back_end_API.Controllers
             _context = context;
         }
 
-
-        [HttpGet]
+        /// <summary>
+        /// Methode om alle recepten op te halen.
+        /// </summary>
+        /// <returns>Ok wanneer alle recepten zijn verstuurd.</returns>
+        [HttpGet("getall")]
         public async Task<ActionResult> GetAllRecipes()
         {
-            var result = await _context.Recipes
-                         .Where(result => result.Active == true)
-                         .Select(result => new
+            var myrecipe = await _context.Recipes
+                         .Where(r => r.Active == true)
+                         .Select(r => new
                          {
-                             result.recipeId,
-                             result.Title,
-                             result.Description,
-                             result.Ingredients,
-                             result.Rating,
-                             result.prepTime,
-                             result.Portions,
-                             result.User.userName
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             r.User.userName
                          })
                          .ToListAsync();
 
-            return Ok(result);
+            return Ok(myrecipe);
         }
 
+        /// <summary>
+        /// Meethode om 3 random recepten op te halen.
+        /// </summary>
+        /// <returns>Ok wanneer 3 recepten zijn verstuurd.</returns>
         [HttpGet("getrandom")]
         public async Task<ActionResult> GetRandomRecipes()
         {
-            var result = await _context.Recipes.OrderBy(x => Guid.NewGuid()).Take(3)
-                         .Where(result => result.Active == true)
-                         .Select(result => new
+            var myrecipe = await _context.Recipes.OrderBy(x => Guid.NewGuid()).Take(3)
+                         .Where(r => r.Active == true)
+                         .Select(r => new
                          {
-                             result.recipeId,
-                             result.Title,
-                             result.Description,
-                             result.Ingredients,
-                             result.Rating,
-                             result.prepTime,
-                             result.Portions,
-                             result.User.userName
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             r.User.userName
                          })
                          .ToListAsync();
 
-            return Ok(result);
+            return Ok(myrecipe);
         }
 
-        [HttpGet("id")]
+        /// <summary>
+        /// Methode om een recept op te halen.
+        /// </summary>
+        /// <param name="id">recept id van ingevulde front-end.</param>
+        /// <returns>Ok wanneer recept is opgestuurd.</returns>
+        [HttpGet("getrecipe")]
         [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetRecipeById(int id)
         {
-            var result = await _context.Recipes
-                         .Where(result => result.recipeId == id)
-                         .Select(result => new
+            var myrecipe = await _context.Recipes
+                         .Where(r => r.recipeId == id)
+                         .Select(r => new
                          {
-                             result.recipeId,
-                             result.Title,
-                             result.Description,
-                             result.Ingredients,
-                             result.Rating,
-                             result.prepTime,
-                             result.Portions,
-                             result.User.userName
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             r.User.userName
                          })
                          .ToListAsync();
 
-            return Ok(result);
+            return Ok(myrecipe);
         }
 
-
-        [HttpPost]
+        /// <summary>
+        /// Methode om een recept an te maken.
+        /// </summary>
+        /// <param name="recipe">verzameling van title, ingredients, description, preptime, portions en userid van ingevulde front-end.</param>
+        /// <returns>Ok wanneer user is gevonden en recept is teogevoegd, Bad request wanneer user niet is gevonden.</returns>
+        [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<RecipeModel>> CreateRecipe(CreateRecipeDTO recipe)
+        public async Task<ActionResult<RecipeModel>> CreateRecipe(CreateRecipeDTO request)
         {
-            var result = await _context.Users.FindAsync(recipe.userId);
-            if (result == null)
+            var myuser = await _context.Users.FindAsync(request.userId);
+            if (myuser == null)
                 return NotFound();
 
             var newrecipe = new RecipeModel
             {
-                Title = recipe.Title,
-                Description = recipe.Description,
-                Ingredients = recipe.Ingredients,
-                prepTime = recipe.prepTime,
-                Portions = recipe.Portions,
-                Rating = recipe.Rating,
+                Title = request.Title,
+                Description = request.Description,
+                Ingredients = request.Ingredients,
+                prepTime = request.prepTime,
+                Portions = request.Portions,
+                Rating = 0,
                 Active = true, /*recipe.Active,*/
-                User = result
+                User = myuser
             };
 
             await _context.Recipes.AddAsync(newrecipe);
             await _context.SaveChangesAsync();
 
             return Ok("recipe added");
-        }
-
-
-        [HttpDelete("id")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteRecipeById(int id)
-        {
-            var recipetoDelete = await _context.Recipes.FindAsync(id);
-            if (recipetoDelete == null) return BadRequest();
-
-            _context.Recipes.Remove(recipetoDelete);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
     }
 }

@@ -90,4 +90,15 @@ export const GetUserFavoritesAmountById = async function(userid) {
 export const UsernameCheckerChangeUsername = async (currentusername, newusername) => {
     let response = await APIcalls.UsernameCheckerChangeUsername(currentusername, newusername)
     return response.data
-  }
+}
+
+export const ContactUs = async (name, email, subject, body) => {
+    try{
+        await APIcalls.ContactUs(name, email, subject, body)
+        return true
+    }
+    catch(error){
+        console.log(error)
+        return false
+    }
+}

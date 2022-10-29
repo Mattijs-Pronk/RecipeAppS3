@@ -9,7 +9,8 @@ export const Login = async (email, password) => {
     localStorage.setItem('user', JSON.stringify((response).data))
     return true
   }
-  catch{
+  catch(error){
+    console.log(error)
     return false
   } 
 }
@@ -21,7 +22,8 @@ export const Register = async (username, email, password) => {
     await APIcalls.Register(username, password, email, isadmin)
     return true;
   }
-  catch{
+  catch(error){
+    console.log(error)
     return false;
   }
 }
@@ -33,7 +35,8 @@ export const ForgotPassword = async (email) => {
 
     return true;
   }
-  catch{
+  catch(error){
+    console.log(error)
     return false;
   }
 }
@@ -45,7 +48,8 @@ export const ResetPassword = async (passwordresettoken, password) => {
 
     return true;
   }
-  catch{
+  catch(error){
+    console.log(error)
     return false;
   }
 }
@@ -57,7 +61,8 @@ export const VerifyAccount = async (email, activateaccounttoken) => {
 
     return true;
   }
-  catch{
+  catch(error){
+    console.log(error)
     return false;
   }
 }

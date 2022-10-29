@@ -2,8 +2,6 @@
 {
     public class CreateRecipeDTO
     {
-        public int recipeId { get; set; }
-
         public string Title { get; set; } = null!;
 
         public string Description { get; set; } = null!;
@@ -16,10 +14,6 @@
         public int prepTime { get; set; }
 
         public int Portions { get; set; }
-
-        public int Rating { get; set; }
-
-        public bool Active { get; set; }
 
         public int userId { get; set; }
     }

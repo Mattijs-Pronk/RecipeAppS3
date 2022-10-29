@@ -37,13 +37,14 @@ body{
 
 .container{
     width: 100%;
-	height: 100%;
+	height: 100vh;
 	display: flex;
-    padding: 50px 41.5%;
+    justify-content: center;
 }
 
 
 .container .form{
+    margin-top: 20%;
     width: 450px;
     padding: 30px;
     background-color: #fff;

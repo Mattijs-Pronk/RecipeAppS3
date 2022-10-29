@@ -16,6 +16,7 @@ namespace Back_end_API.Controllers
         public readonly RecipeAppContext _context;
 
         VerifyInfo verify = new VerifyInfo();
+        EmailCreator emailCreator = new EmailCreator();
 
         public UserController(RecipeAppContext context)
         {
@@ -28,21 +29,21 @@ namespace Back_end_API.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        [HttpGet("id")]
+        [HttpGet("getuser")]
         [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUserById(int id)
         {
             var myuser = await _context.Users
-            .Where(myuser => myuser.userId == id)
-                         .Select(myuser => new
+            .Where(u => u.userId == id)
+                         .Select(u => new
                          {
-                             myuser.userId,
-                             myuser.userName,
-                             myuser.Email,
-                             myuser.adress,
-                             myuser.phone,
-                             myuser.activeSince
+                             u.userId,
+                             u.userName,
+                             u.Email,
+                             u.adress,
+                             u.phone,
+                             u.activeSince
                          })
                          .ToListAsync();
 
@@ -87,43 +88,6 @@ namespace Back_end_API.Controllers
             return false;
         }
 
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult> CreateUser(UserModel user)
-        {
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetUserById), new {id = user.userId}, user);
-        }
-
-        [HttpPut("id")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> UpdateUserById(int id, UserModel user)
-        {
-            if(id != user.userId) return BadRequest();
-
-            _context.Entry(user).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        [HttpDelete("id")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteUserById(int id)
-        {
-            var usertoDelete = await _context.Users.FindAsync(id);
-            if(usertoDelete == null) return BadRequest();
-
-            _context.Users.Remove(usertoDelete);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
         [HttpPut("changepassword")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -138,6 +102,10 @@ namespace Back_end_API.Controllers
                 myuser.passwordSalt = passwordsalt;
 
                 await _context.SaveChangesAsync();
+
+                //stuur email met confirmatie wachtwoord.
+                emailCreator.SendEmailResetPasswordSucces(myuser.Email, myuser.userName);
+
                 return Ok("password has changed");
             }
             return BadRequest("incorrect password");
@@ -151,8 +119,9 @@ namespace Back_end_API.Controllers
             var myuser = await _context.Users.FindAsync(request.userId);
             if (myuser != null)
             {
-                myuser.userName = request.userName;
-                if(request.adress == "") { myuser.adress = myuser.adress; }
+                if (request.userName == "") { myuser.userName = myuser.userName; }
+                else { myuser.userName = request.userName; }
+                if (request.adress == "") { myuser.adress = myuser.adress; }
                 else { myuser.adress = request.adress; }
                 if (request.phone == "") { myuser.phone = myuser.phone; }
                 else { myuser.phone = request.phone; }
@@ -168,22 +137,22 @@ namespace Back_end_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUserRecipesById(int id)
         {
-            var result = await _context.Recipes
-                         .Where(result => result.userId == id)
-                         .Select(result => new
+            var myrecipe = await _context.Recipes
+                         .Where(r => r.userId == id)
+                         .Select(r => new
                          {
-                             result.recipeId,
-                             result.Title,
-                             result.Description,
-                             result.Ingredients,
-                             result.Rating,
-                             result.prepTime,
-                             result.Portions,
-                             result.User.userName
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             r.User.userName
                          })
                          .ToListAsync();
 
-            return Ok(result);
+            return Ok(myrecipe);
         }
 
         [HttpPost("addfavorite")]
@@ -228,22 +197,29 @@ namespace Back_end_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetAllFavoritesById(int id)
         {
-            var result = await _context.Favorites
-                         .Where(result => result.userId == id)
-                         .Select(result => new
+            var myfavorite = await _context.Favorites
+                         .Where(f => f.userId == id)
+                         .Select(f => new
                          {
-                             result.recipeId,
-                             result.Recipe.Title,
-                             result.Recipe.Description,
-                             result.Recipe.Ingredients,
-                             result.Recipe.Rating,
-                             result.Recipe.prepTime,
-                             result.Recipe.Portions,
-                             result.Recipe.User.userName
+                             f.recipeId,
+                             f.Recipe.Title,
+                             f.Recipe.Description,
+                             f.Recipe.Ingredients,
+                             f.Recipe.Rating,
+                             f.Recipe.prepTime,
+                             f.Recipe.Portions,
+                             f.Recipe.User.userName
                          })
                          .ToListAsync();
 
-            return Ok(result);
+            return Ok(myfavorite);
+        }
+
+        [HttpPost("contactus")]
+        public void ContactUs(ContactUsDTO request)
+        {
+            //stuur email met ingevulde info.
+            emailCreator.RecieveEmailContactUs(request.name, request.email, request.subject, request.body);
         }
     }
 }

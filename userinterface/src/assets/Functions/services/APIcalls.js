@@ -4,7 +4,7 @@ import API from "./API"
 export default{
     //Start van recipe Calls.
     async GetAllRecipes(){
-        return await API().get('/Recipe')
+        return await API().get('/Recipe/getall')
     },
 
     async GetRandomRecipes(){
@@ -12,13 +12,13 @@ export default{
     },
 
     async GetRecipeById(id){
-        return await API().get(`/Recipe/id?id=${id}`) //, {
+        return await API().get(`/Recipe/getrecipe?id=${id}`) //, {
         //    id: id
         //})
     },
 
     async AddRecipe(title, preptime, portions, ingredients, description, userid){
-        return await API().post(`/Recipe/` , {
+        return await API().post(`/Recipe/create` , {
             title: title,
             preptime: preptime,
             portions: portions,
@@ -69,7 +69,7 @@ export default{
     },
 
     async CheckUsername(username){
-        return await API().post(`/Auth/username?username=${username}`) //, {
+        return await API().post(`/Auth/checkusername?username=${username}`) //, {
         //     params: {
         //         username: username
         //     }
@@ -114,7 +114,7 @@ export default{
     },
 
     async GetUserById(userid){
-        return await API().get(`/User/id?id=${userid}`) //, {
+        return await API().get(`/User/getuser?id=${userid}`) //, {
         //    id: id
         //})
         },
@@ -144,6 +144,15 @@ export default{
                 userName: username,
                 adress: adress,
                 phone: phone
+            })
+        },
+
+    async ContactUs(name, email, subject, body){
+        return await API().post(`/User/contactus` , {
+                name: name,
+                email: email,
+                subject: subject,
+                body: body
             })
         },
             

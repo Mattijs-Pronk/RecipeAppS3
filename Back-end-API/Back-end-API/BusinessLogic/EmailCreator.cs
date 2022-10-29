@@ -58,14 +58,13 @@ namespace Back_end_API.BusinessLogic
             SendEmail(email, body, subject);
         }
 
-        public void SendEmailResetPasswordSucces(string email, string password, string username)
+        public void SendEmailResetPasswordSucces(string email, string username)
         {
             string login = "http://127.0.0.1:5173/login";
             string subject = "Cloud recipes (New Password)";
 
-            string body = "Dear " + username + ", <br /><br /><br />Your password has succesfully been reset<br /><br />" +
-                "<h2>Your new password:<h2 />" +
-                "" + password + "<br /><br /><br />" +
+            string body = "Dear " + username + ", <br /><br /><br />Your password has succesfully been chenged<br /><br />" +
+                "<h2>Your password has been changed at: "+DateTime.Now.ToString()+"<h2 /> <br/> ,br/>" +
                 "Click on the link below and use your new password." +
                 "<br />" + login + "<br /><br />" +
                 "If you did not reset your password, you can ignore this email. " +
@@ -76,7 +75,7 @@ namespace Back_end_API.BusinessLogic
             SendEmail(email, body, subject);
         }
 
-        private void RecieveEmail(string email, string body, string subject)
+        private void RecieveEmail(string name, string email, string body, string subject)
         {
             var newEmail = new MimeMessage();
             newEmail.From.Add(MailboxAddress.Parse(email));
@@ -91,9 +90,11 @@ namespace Back_end_API.BusinessLogic
             smtp.Disconnect(true);
         }
 
-        public void RecieveEmailContactUs(string email, string body, string subject)
+        public void RecieveEmailContactUs(string name, string email, string subject, string body)
         {
-            RecieveEmail(email, body, subject);
+            string bodysetup = "Sender name: " + name + " <br/> Sender email: " + email + " <br/> Sender subject: " + subject + " <br/><br/><br/> " + body + "";
+
+            RecieveEmail(name, email, bodysetup, subject);
         }
     }
 }

@@ -23,10 +23,10 @@ import {AddRecipe} from '../assets/Functions/Recipe';
                 <input type="text" class="field" placeholder="Portions" v-model="portions" @blur="checkPortions" @keyup="checkPortions">
                 <span v-if="portionsError" class="text-danger">{{portionsError}}</span>
 
-				<textarea type="text" class="field" placeholder="Ingredients" v-model="ingredients" @blur="checkIngredients" @keyup="checkIngredients"></textarea>
+				<textarea type="text" class="field-texterea" placeholder="Ingredients" v-model="ingredients" @blur="checkIngredients" @keyup="checkIngredients"></textarea>
                 <span v-if="ingredientsError" class="text-danger">{{ingredientsError}}</span>
 
-				<textarea type="text" class="field" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
+				<textarea type="text" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
 
 				<button class="btn" v-on:click="submitForm()">Add recipe</button>

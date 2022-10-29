@@ -22,6 +22,11 @@ namespace Back_end_API.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Methode om een account aan te maken.
+        /// </summary>
+        /// <param name="request">verzameling van username, email en wachtwoord.</param>
+        /// <returns>Ok wanneer geen dubbele user is gevonden, wachtwoord is gehashed en account is aangemaakt, Badrequest wanneer dubbele user is gevonden.</returns>
         [HttpPost("register")]
         public async Task<ActionResult<UserModel>> Register(CreateUserDTO request)
         {
@@ -56,6 +61,11 @@ namespace Back_end_API.Controllers
             return Ok("user created");
         }
 
+        /// <summary>
+        /// Methode om in te loggen.
+        /// </summary>
+        /// <param name="request">verzameling van email en wachtwoord van ingevulde front-end.</param>
+        /// <returns>Ok wanneer user is gevonden, email en wachtwoord overeen komen, badrequest wanneer user niet is gevonden of email en wachtwoord niet overeenkomen.</returns>
         [HttpPost("login")]
         public async Task<ActionResult<CreateUserDTO>> Login(LoginUserDTO request)
         {
@@ -72,6 +82,11 @@ namespace Back_end_API.Controllers
             return BadRequest("user not found");
         }
 
+        /// <summary>
+        /// Methode om een aangemaakt account te activeren.
+        /// </summary>
+        /// <param name="request">verzameling van email en activatieToken van ingevulde front-end.</param>
+        /// <returns>Ok wanneer user is gevonden en account is geactiveerd, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPost("verify")]
         public async Task<ActionResult> VerifyAccount(ActivateUserAccountDTO request)
         {
@@ -94,6 +109,11 @@ namespace Back_end_API.Controllers
             return BadRequest("user not found");
         }
 
+        /// <summary>
+        /// Methode om een vergeten wachtwoord aan te vragen.
+        /// </summary>
+        /// <param name="email">email van ingevulde front-end.</param>
+        /// <returns>Ok wanneer user is gevonden en email is verzonden, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPost("forgot")]
         public async Task<ActionResult> Forgot(string email)
         {
@@ -116,6 +136,11 @@ namespace Back_end_API.Controllers
             return BadRequest("user not found");
         }
 
+        /// <summary>
+        /// Methode om het vergeten wachtwoord aan te passen.
+        /// </summary>
+        /// <param name="request">verzameling van het verkregen resetToken en het nieuwe wachtwoord.</param>
+        /// <returns>Ok wanneer user is gevonden, email is verstuurd en wachtwoord is aangepast, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPost("reset")]
         public async Task<ActionResult> Reset(ResetUserPasswordDTO request)
         {
@@ -133,8 +158,8 @@ namespace Back_end_API.Controllers
                     Myuser.passwordResetToken = null;
                     Myuser.passwordResetTokenExpires = null;
 
-                    //stuur email met huidig wachtwoord.
-                    emailCreator.SendEmailResetPasswordSucces(Myuser.Email, request.Password, Myuser.userName);
+                    //stuur email met confirmatie wachtwoord.
+                    emailCreator.SendEmailResetPasswordSucces(Myuser.Email, Myuser.userName);
 
                     await _context.SaveChangesAsync();
                     return Ok("password is reset");
@@ -143,7 +168,13 @@ namespace Back_end_API.Controllers
             return BadRequest("user not found");
         }
 
-        [HttpPost("username")]
+
+        /// <summary>
+        /// Methode om te checken of ingevulde username al bestaat in de database.
+        /// </summary>
+        /// <param name="username">gebruikersnaam van ingevulde front-end.</param>
+        /// <returns>true wanneer username al in gebruik is, false wanneer username niet ingebruik is.</returns>
+        [HttpPost("checkusername")]
         public async Task<ActionResult<bool>> UserNameChecker(string username)
         {
             bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == username);
@@ -153,6 +184,11 @@ namespace Back_end_API.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Methode om te checken of ingevulde email al bestaat in de database.
+        /// </summary>
+        /// <param name="email">email van ingevulde front-end.</param>
+        /// <returns>true wanneer email al in gebruik is, false wanneer email niet ingebruik is.</returns>
         [HttpPost("checkemail")]
         public async Task<ActionResult<bool>> EmailChecker(string email)
         {
