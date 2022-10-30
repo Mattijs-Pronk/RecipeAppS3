@@ -74,14 +74,24 @@ export const Logout = async () => {
 
 //functie om te checken of een username al in gebruik is.
 export const CheckUser = async (username) => {
-  let response = await APIcalls.CheckUsername(username)
+  try{
+    let response = await APIcalls.CheckUsername(username)
   return response.data
+  }
+  catch(error){
+    console.log(error)
+  }
 }
 
 //functie om te checken of een email al bestaat.
 export const CheckEmail = async (email) => {
-  let response = await APIcalls.CheckEmail(email)
-  return response.data
+  try{
+    let response = await APIcalls.CheckEmail(email)
+    return response.data
+  }
+  catch(error){
+    console.log(error)
+  }
 }
 
 //beveiliging van de navigatie naar andere views.

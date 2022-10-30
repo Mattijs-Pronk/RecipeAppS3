@@ -100,7 +100,7 @@ export default{
     },
 
     async GetAllFavoritesById(id){
-        return await API().get(`/User/getfavorites?id=${id}`) //, {
+        return await API().get(`/User/getallfavorites?id=${id}`) //, {
         //    id: id
         //})
     },
@@ -153,6 +153,13 @@ export default{
                 email: email,
                 subject: subject,
                 body: body
+            })
+        },
+
+    async GetFavorite(userid, recipeid){
+        return await API().post(`/User/getfavorite` , {
+                userId: userid,
+                recipeId: recipeid
             })
         },
             

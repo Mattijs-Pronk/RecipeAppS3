@@ -7,7 +7,7 @@
 <template>
     <div id="hidden" style="display:none" class="meal-details">
         <button v-on:click="CloseRecipe()" type="button" class="btn recipe-close-btn"><i class="fas fa-times"></i></button> 
-        <button v-on:click="AddRecipeToFavorites()" class="btn recipe-favorite-btn"><i class="fas fa-heart"></i></button> 
+        <button v-on:click="AddRecipeToFavorites()" id="favorite" class="btn recipe-favorite-btn"><i class="fas fa-heart"></i></button> 
         <br/>                  
             <div class="meal-details-content" v-for="meal in itemdata">                      
                 <h2 class="recipe-title">{{meal.title}}</h2>
@@ -47,12 +47,14 @@
         'itemdata',
         'recipeId'
     ],
+    mounted(){
+      this.user = JSON.parse(localStorage.getItem("user"))
+    },
     methods:{
       CloseRecipe(){
         this.CloseModal()
       },
       async AddRecipeToFavorites(){
-        this.user = JSON.parse(localStorage.getItem("user"))
         if(await AddToFavorites(this.user, this.recipeId)){
           this.$toast.success('recipe added to favorites' , {
           position: 'top',
@@ -76,5 +78,5 @@
 
 
 <style scoped>
-    @import "../assets/styles/homepage.css";
+    @import "../assets/styles/recipes.css";
 </style>

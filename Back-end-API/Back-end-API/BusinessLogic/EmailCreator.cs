@@ -8,6 +8,12 @@ namespace Back_end_API.BusinessLogic
 {
     public class EmailCreator
     {
+        /// <summary>
+        /// Methode om een email te versturen via smtp.
+        /// </summary>
+        /// <param name="email">ingevulde user email.</param>
+        /// <param name="body">ingevulde body van bedrijf.</param>
+        /// <param name="subject">ingevulde subject van bedrijf.</param>
         private void SendEmail(string email, string body, string subject)
         {
             var newEmail = new MimeMessage();
@@ -23,6 +29,12 @@ namespace Back_end_API.BusinessLogic
             smtp.Disconnect(true);
         }
 
+        /// <summary>
+        /// Methode om parameters mee te geven aan "SendEmail".
+        /// </summary>
+        /// <param name="email">ingevulde user email.</param>
+        /// <param name="Token">gegenereerde one use time bound token.</param>
+        /// <param name="username">ingevulde username.</param>
         public void SendEmailVerifyAccount(string email, string Token, string username)
         {
             string verifyaccount = "http://127.0.0.1:5173/verify";
@@ -40,7 +52,12 @@ namespace Back_end_API.BusinessLogic
             SendEmail(email, body, subject);
         }
 
-
+        /// <summary>
+        /// Methode om parameters mee te geven aan "SendEmail".
+        /// </summary>
+        /// <param name="email">ingevulde user email.</param>
+        /// <param name="Token">gegenereerde one use time bound token.</param>
+        /// <param name="username">ingevulde username.</param>
         public void SendEmailResetPassword(string email, string Token, string username)
         {
             string resetpassword = "http://127.0.0.1:5173/reset";
@@ -58,6 +75,11 @@ namespace Back_end_API.BusinessLogic
             SendEmail(email, body, subject);
         }
 
+        /// <summary>
+        /// Methode om user op de hoogte te brengen dat zijn wachtwoord is verandert.
+        /// </summary>
+        /// <param name="email">ingevulde user email.</param>
+        /// <param name="username">ingevulde username.</param>
         public void SendEmailResetPasswordSucces(string email, string username)
         {
             string login = "http://127.0.0.1:5173/login";
@@ -75,6 +97,13 @@ namespace Back_end_API.BusinessLogic
             SendEmail(email, body, subject);
         }
 
+        /// <summary>
+        /// Methode om een email te ontvangen van een user.
+        /// </summary>
+        /// <param name="name">Ingevulde name van guest.</param>
+        /// <param name="email">Ingevulde email van guest.</param>
+        /// <param name="body">Ingevulde body van guest.</param>
+        /// <param name="subject">Ingevulde subject van guest.</param>
         private void RecieveEmail(string name, string email, string body, string subject)
         {
             var newEmail = new MimeMessage();
@@ -90,6 +119,13 @@ namespace Back_end_API.BusinessLogic
             smtp.Disconnect(true);
         }
 
+        /// <summary>
+        /// Methode om parameters mee te geven aan "ReceiveEmail".
+        /// </summary>
+        /// <param name="name">Ingevulde name van guest.</param>
+        /// <param name="email">Ingevulde email van guest.</param>
+        /// <param name="subject">Ingevulde body van guest.</param>
+        /// <param name="body">Ingevulde subject van guest.</param>
         public void RecieveEmailContactUs(string name, string email, string subject, string body)
         {
             string bodysetup = "Sender name: " + name + " <br/> Sender email: " + email + " <br/> Sender subject: " + subject + " <br/><br/><br/> " + body + "";

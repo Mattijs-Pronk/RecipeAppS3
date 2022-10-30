@@ -91,6 +91,7 @@ export default{
         {
             if(await ChangeProfile(this.userdata, this.username, this.adress, this.phone))
             {
+                location.reload();
                 this.$toast.success('Succesfully changed profile' , {
                 position: 'top',
                 dismissible: true,
@@ -124,5 +125,5 @@ export default{
 
 
 <style scoped>
-    @import '../assets/styles/myprofile.css';
+    @import '../assets/styles/profile.css';
 </style>

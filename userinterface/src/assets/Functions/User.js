@@ -102,3 +102,18 @@ export const ContactUs = async (name, email, subject, body) => {
         return false
     }
 }
+
+export const GetFavorite = async (userid, recipeid) => {
+    try{
+        let response = await APIcalls.GetFavorite(userid, recipeid)
+        if(response.data){
+            document.getElementById("favorite").style.color  = "red"
+        }
+        else{
+            document.getElementById("favorite").style.color  = "#219ebc"
+        }
+      }
+      catch(error){
+        console.log(error)
+      }
+}

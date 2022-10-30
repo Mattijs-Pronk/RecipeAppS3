@@ -101,7 +101,7 @@ namespace Back_end_API.Controllers
         /// <summary>
         /// Methode om een recept an te maken.
         /// </summary>
-        /// <param name="recipe">verzameling van title, ingredients, description, preptime, portions en userid van ingevulde front-end.</param>
+        /// <param name="request">verzameling van title, ingredients, description, preptime, portions en userid van ingevulde front-end.</param>
         /// <returns>Ok wanneer user is gevonden en recept is teogevoegd, Bad request wanneer user niet is gevonden.</returns>
         [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status201Created)]

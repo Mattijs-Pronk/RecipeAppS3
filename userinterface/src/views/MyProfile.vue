@@ -101,5 +101,5 @@ export default{
 
 
 <style scoped>
-    @import '../assets/styles/myprofile.css';
+    @import '../assets/styles/profile.css';
 </style>

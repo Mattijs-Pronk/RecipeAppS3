@@ -94,6 +94,7 @@ export default{
         if(this.currentpasswordError == '' && this.passwordError == '' && this.RepasswordError == ''){
             if(await ChangePassword(this.userdata ,this.currentpassword, this.password))
             {
+                location.reload();
                 this.$toast.success('Succesfully changed password' , {
                 position: 'top',
                 dismissible: true,
@@ -117,5 +118,5 @@ export default{
 
 
 <style scoped>
-    @import '../assets/styles/myprofile.css';
+    @import '../assets/styles/profile.css';
 </style>

@@ -63,5 +63,5 @@
 
 
 <style scoped>
-    @import "../assets/styles/homepage.css";
+    @import "../assets/styles/recipes.css";
 </style>

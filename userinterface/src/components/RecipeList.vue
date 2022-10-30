@@ -1,5 +1,6 @@
 <script setup>
   import { OpenModal } from '../assets/Functions/Recipe';
+  import { GetFavorite } from '../assets/Functions/User';
   import RecipeItem from '../components/RecipeItem.vue';
 </script>
 
@@ -46,6 +47,10 @@
       OpenRecipeById(id){
         this.OpenModal(id)
         this.recipeid = id;
+
+        var user = JSON.parse(localStorage.getItem("user"))  
+        
+        GetFavorite(user, id)
       },
   }
 }
@@ -53,5 +58,5 @@
 
 
 <style scoped>
-    @import "../assets/styles/homepage.css";
+    @import "../assets/styles/recipes.css";
 </style>
