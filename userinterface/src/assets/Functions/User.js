@@ -12,12 +12,31 @@ export const GetUserRecipesById = async function(id){
 };
 
 export const AddToFavorites = async (userid, recipeid) => {
+    var favoriteHeart = document.getElementById("favorite");
+
     try{
         await APIcalls.AddToFavorites(userid, recipeid)
+
+        //kleur van heart veranderen.
+        if(favoriteHeart.style.color == "red"){
+            favoriteHeart.style.color = "#219ebc"
+        }
+        else{
+            favoriteHeart.style.color = "red"
+        }
         return true
     }
     catch(error){
         console.log(error)
+
+        //kleur van heart veranderen.
+        if(favoriteHeart.style.color == "red"){
+            favoriteHeart.style.color = "#219ebc"
+        }
+        else{
+            favoriteHeart.style.color = "red"
+        }
+
         return false
     }
 }

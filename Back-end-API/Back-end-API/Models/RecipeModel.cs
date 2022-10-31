@@ -30,12 +30,19 @@ namespace Back_end_API.Models
 
         public int Rating { get; set; }
 
-        public bool Active { get; set; }
+        public string Status { get; set; } = null!;
 
         //Foreign key aanmaken met onderstaande variables.
         [ForeignKey("userId")]
         public int userId { get; set; }
 
         public UserModel User { get; set; } = null!;
+
+        public enum status
+        {
+            Accepted,
+            Onhold,
+            Declined
+        }
     }
 }

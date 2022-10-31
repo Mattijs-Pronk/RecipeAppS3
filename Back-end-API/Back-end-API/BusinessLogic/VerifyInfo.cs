@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using Back_end_API.Models;
+using System.Security.Cryptography;
 
 namespace Back_end_API.BusinessLogic
 {

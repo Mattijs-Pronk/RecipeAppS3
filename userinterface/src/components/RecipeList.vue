@@ -18,7 +18,7 @@
                       <p>Made by: {{meal.userName}}</p>          
                       <p>{{meal.rating}} out of 5 <span class="fa fa-star checked"></span></P>
                       <button v-on:click="OpenRecipeById(meal.recipeId)" class = "recipe-btn">See Recipe</button>
-                      <div class="status">{{itemstatus}}</div>  
+                      <div class="status">{{meal.status}}</div>  
                     </div>
                   </div>
             </div>
@@ -34,8 +34,7 @@
   export default {
     name: "recipelist",
     props: [
-        'listdata',
-        'itemstatus'
+        'listdata'
     ],
     data(){
         return{
@@ -52,7 +51,7 @@
         
         GetFavorite(user, id)
       },
-  }
+    }
 }
 </script>
 

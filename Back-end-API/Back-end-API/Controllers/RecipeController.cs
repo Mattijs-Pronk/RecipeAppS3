@@ -4,6 +4,7 @@ using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Collections;
 using System.Linq;
 
@@ -28,7 +29,7 @@ namespace Back_end_API.Controllers
         public async Task<ActionResult> GetAllRecipes()
         {
             var myrecipe = await _context.Recipes
-                         .Where(r => r.Active == true)
+                         .Where(r => r.Status == RecipeModel.status.Accepted.ToString())
                          .Select(r => new
                          {
                              r.recipeId,
@@ -53,7 +54,7 @@ namespace Back_end_API.Controllers
         public async Task<ActionResult> GetRandomRecipes()
         {
             var myrecipe = await _context.Recipes.OrderBy(x => Guid.NewGuid()).Take(3)
-                         .Where(r => r.Active == true)
+                         .Where(r => r.Status == RecipeModel.status.Accepted.ToString())
                          .Select(r => new
                          {
                              r.recipeId,
@@ -119,7 +120,7 @@ namespace Back_end_API.Controllers
                 prepTime = request.prepTime,
                 Portions = request.Portions,
                 Rating = 0,
-                Active = true, /*recipe.Active,*/
+                Status = RecipeModel.status.Onhold.ToString(),
                 User = myuser
             };
 

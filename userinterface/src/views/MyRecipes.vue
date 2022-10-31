@@ -19,7 +19,7 @@
             </div>
 
             <!-- Start van meal items -->
-              <RecipeList :listdata="meallist" :itemstatus="status"/>
+              <RecipeList :listdata="meallist"/>
             <!-- Eind van meal items -->
             
           </div>
@@ -34,7 +34,6 @@
       return{
         user: '',
         meallist: [],
-        status: ''
       }
     },
     //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.

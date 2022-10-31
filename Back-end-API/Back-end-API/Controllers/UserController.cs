@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Asn1.Ocsp;
+using System;
 
 namespace Back_end_API.Controllers
 {
@@ -184,9 +185,10 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
+                             r.Status,
                              r.User.userName
                          })
-                         .ToListAsync();
+            .ToListAsync();
 
             return Ok(myrecipe);
         }
