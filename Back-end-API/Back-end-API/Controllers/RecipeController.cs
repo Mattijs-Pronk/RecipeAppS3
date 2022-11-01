@@ -1,4 +1,5 @@
 ﻿using Back_end_API.BusinessLogic;
+using Back_end_API.BusinessLogic.RecipeDTO_s;
 using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
@@ -15,10 +16,11 @@ namespace Back_end_API.Controllers
     public class RecipeController : ControllerBase
     {
         public readonly RecipeAppContext _context;
-
-        public RecipeController(RecipeAppContext context)
+        private readonly IWebHostEnvironment _env;
+        public RecipeController(RecipeAppContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         /// <summary>
@@ -106,11 +108,13 @@ namespace Back_end_API.Controllers
         /// <returns>Ok wanneer user is gevonden en recept is teogevoegd, Bad request wanneer user niet is gevonden.</returns>
         [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<RecipeModel>> CreateRecipe(CreateRecipeDTO request)
+        public async Task<ActionResult<RecipeModel>> CreateRecipe([FromForm]CreateRecipeDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);
             if (myuser == null)
                 return NotFound();
+
+            var filename = await UploadImage(request.imageFile);
 
             var newrecipe = new RecipeModel
             {
@@ -120,6 +124,7 @@ namespace Back_end_API.Controllers
                 prepTime = request.prepTime,
                 Portions = request.Portions,
                 Rating = 0,
+                imageName = filename,
                 Status = RecipeModel.status.Onhold.ToString(),
                 User = myuser
             };
@@ -128,6 +133,42 @@ namespace Back_end_API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("recipe added");
+        }
+
+        //nog over zetten naar andere functie (apparte class).
+        [HttpPost("uploadimg")]
+        public async Task<string> UploadImage(IFormFile request)
+        {
+            if(request.Length > 0)
+            {
+                string path = _env.WebRootPath + "\\uploads\\";
+                if(!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                var fileName = DateTime.Now.ToString("yymmssfff") + request.FileName;
+                using (FileStream fileStream = System.IO.File.Create(path + fileName))
+                {
+                    request.CopyTo(fileStream);
+                    fileStream.Flush();
+                    return fileName;
+                }
+            }
+            else { return "upload failed"; }
+        }
+
+        //nog over zetten naar andere functie (apparte class).
+        [HttpGet("{fileName}")]
+        public async Task<ActionResult> GetImage([FromRoute]string fileName)
+        {
+            string path = _env.WebRootPath + "\\uploads\\";
+            var filepath = path + fileName;
+            if(System.IO.File.Exists(filepath))
+            {
+                byte[] b = System.IO.File.ReadAllBytes(filepath);
+                return File(b, "image/png");
+            }
+            return null;
         }
     }
 }

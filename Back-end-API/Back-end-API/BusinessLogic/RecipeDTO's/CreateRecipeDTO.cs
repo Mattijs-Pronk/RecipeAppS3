@@ -8,8 +8,7 @@
 
         public string Ingredients { get; set; } = null!;
 
-        //[Required]
-        //public byte[] Image { get; set; } = null!;
+        public IFormFile imageFile { get; set; } = null!;
 
         public int prepTime { get; set; }
 

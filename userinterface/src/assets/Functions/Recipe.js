@@ -41,9 +41,9 @@ export const CloseModal = () => {
 }
 
 //functie om een recept toe te voegen.
-export const AddRecipe = async (title, preptime, portions, ingredients, description, userid) => {
+export const AddRecipe = async (title, preptime, portions, ingredients, description, imagefile, userid) => {
         try{
-                await APIcalls.AddRecipe(title, preptime, portions, ingredients, description, userid)
+                await APIcalls.AddRecipe(title, preptime, portions, ingredients, description, imagefile, userid)
                 return true
         }
         catch(error){

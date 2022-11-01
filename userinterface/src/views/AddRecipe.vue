@@ -2,6 +2,7 @@
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import {AddRecipe} from '../assets/Functions/Recipe';
+import axios from 'axios';
 </script>
 
 
@@ -29,6 +30,8 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 				<textarea type="text" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
 
+                <input type="file" v-on:change="GetFile"> <br/>
+
 				<button class="btn" v-on:click="submitForm()">Add recipe</button>
 			</div>
 		</div>
@@ -47,7 +50,7 @@ export default{
             preptimeError: '',
             portions: '',
             portionsError: '',
-            image: '',
+            imagefile: '',
             ingredients: '',
             ingredientsError: '',
             description: '',
@@ -55,6 +58,9 @@ export default{
         }
     },
     methods: {
+    GetFile(e){
+        this.imagefile = e.target.files[0]
+    },
     checkTitle() {
         this.titleError = this.title.length == 0 ? 'Title cannot be empty.' :
         this.titleError = this.title.length > 16 ? 'Title is to long.' : ''
@@ -86,24 +92,41 @@ export default{
         async submitForm(){
             if(this.titleError == '' && this.preptimeError == '' && this.portionsError == '' && this.ingredientsError == '' && this.descriptionError == '')
             var userid = JSON.parse(localStorage.getItem("user"))
-            if(await AddRecipe(this.title, this.preptime, this.portions, this.ingredients, this.description, userid)){
-                this.$toast.success('recipe has been send for approval' , {
-                position: 'top',
-                dismissible: true,
-                pauseOnHover: true,
-                duration: 3500
-                });
 
-                this.$router.push({name: 'myrecipes'})
-            }
-            else{
-                this.$toast.error('recipe has not been send for approval, please login' , {
-                position: 'top',
-                dismissible: true,
-                pauseOnHover: true,
-                duration: 4500
-                });
-            }
+            const fd = new FormData()
+            fd.append('Title', this.title)
+            fd.append('Description', this.description)
+            fd.append('Ingredients', this.ingredients)
+            fd.append('imageFile', this.imagefile)
+            fd.append('prepTime', this.preptime)
+            fd.append('Portions', this.portions)
+            fd.append('userId', userid)
+            
+            axios.post(`https://localhost:7108/api/Recipe/create` , fd, {
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+
+            // if(await AddRecipe(this.title, this.preptime, this.portions, this.ingredients, this.description, this.imagefile, userid)){
+            //     this.$toast.success('recipe has been send for approval' , {
+            //     position: 'top',
+            //     dismissible: true,
+            //     pauseOnHover: true,
+            //     duration: 3500
+            //     });
+
+            //     this.$router.push({name: 'myrecipes'})
+            // }
+            // else{
+            //     this.$toast.error('recipe has not been send for approval, please login' , {
+            //     position: 'top',
+            //     dismissible: true,
+            //     pauseOnHover: true,
+            //     duration: 4500
+            //     });
+            // }
         }
     }
 }
