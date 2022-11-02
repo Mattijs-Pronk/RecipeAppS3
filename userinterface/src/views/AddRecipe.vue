@@ -101,32 +101,25 @@ export default{
             fd.append('prepTime', this.preptime)
             fd.append('Portions', this.portions)
             fd.append('userId', userid)
-            
-            axios.post(`https://localhost:7108/api/Recipe/create` , fd, {
-                headers:{
-                    'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
 
-            // if(await AddRecipe(this.title, this.preptime, this.portions, this.ingredients, this.description, this.imagefile, userid)){
-            //     this.$toast.success('recipe has been send for approval' , {
-            //     position: 'top',
-            //     dismissible: true,
-            //     pauseOnHover: true,
-            //     duration: 3500
-            //     });
+            if(await AddRecipe(fd)){
+                this.$toast.success('recipe has been send for approval' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 3500
+                });
 
-            //     this.$router.push({name: 'myrecipes'})
-            // }
-            // else{
-            //     this.$toast.error('recipe has not been send for approval, please login' , {
-            //     position: 'top',
-            //     dismissible: true,
-            //     pauseOnHover: true,
-            //     duration: 4500
-            //     });
-            // }
+                this.$router.push({name: 'myrecipes'})
+            }
+            else{
+                this.$toast.error('recipe has not been send for approval, please login' , {
+                position: 'top',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 4500
+                });
+            }
         }
     }
 }

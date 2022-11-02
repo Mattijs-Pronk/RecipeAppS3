@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jhN58fygH0nXuMEB8Xma+6L3/nBmw5u1d0g/zHEZojw=",
+  "Hash": "5r0MWRhA15nUcQQd0XM6J6uIemDekGGSHmHSZgdww3I=",
   "Source": "Back-end-API",
   "BasePath": "_content/Back-end-API",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\221926875dog.png",
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\221719546amongus.png",
       "SourceId": "Back-end-API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
       "BasePath": "_content/Back-end-API",
-      "RelativePath": "uploads/221926875dog.png",
+      "RelativePath": "uploads/221719546amongus.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -31,15 +31,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\221926875dog.png"
+      "OriginalItemSpec": "wwwroot\\uploads\\221719546amongus.png"
     },
     {
-      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\222114738dog.png",
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\221957577amongus.png",
       "SourceId": "Back-end-API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
       "BasePath": "_content/Back-end-API",
-      "RelativePath": "uploads/222114738dog.png",
+      "RelativePath": "uploads/221957577amongus.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -48,15 +48,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\222114738dog.png"
+      "OriginalItemSpec": "wwwroot\\uploads\\221957577amongus.png"
     },
     {
-      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\222247548dog.png",
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\222022669amongus.png",
       "SourceId": "Back-end-API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
       "BasePath": "_content/Back-end-API",
-      "RelativePath": "uploads/222247548dog.png",
+      "RelativePath": "uploads/222022669amongus.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,7 +65,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\222247548dog.png"
+      "OriginalItemSpec": "wwwroot\\uploads\\222022669amongus.png"
+    },
+    {
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\222140001amongus.png",
+      "SourceId": "Back-end-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
+      "BasePath": "_content/Back-end-API",
+      "RelativePath": "uploads/222140001amongus.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\222140001amongus.png"
     },
     {
       "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\222336856dog.png",
@@ -85,12 +102,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\222336856dog.png"
     },
     {
-      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\Jp vastgoed B.V..png",
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\222401070amongus.png",
       "SourceId": "Back-end-API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
       "BasePath": "_content/Back-end-API",
-      "RelativePath": "uploads/Jp vastgoed B.V..png",
+      "RelativePath": "uploads/222401070amongus.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,15 +116,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\Jp vastgoed B.V..png"
+      "OriginalItemSpec": "wwwroot\\uploads\\222401070amongus.png"
     },
     {
-      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\kaassouffle.jpg",
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\uploads\\222531486friet.png",
       "SourceId": "Back-end-API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
       "BasePath": "_content/Back-end-API",
-      "RelativePath": "uploads/kaassouffle.jpg",
+      "RelativePath": "uploads/222531486friet.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -116,7 +133,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\kaassouffle.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\222531486friet.png"
     }
   ]
 }

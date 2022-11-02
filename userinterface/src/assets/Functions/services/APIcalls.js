@@ -17,23 +17,8 @@ export default{
         //})
     },
 
-    async AddRecipe(title, preptime, portions, ingredients, description, imagefile, userid){
-        const fd = new FormData()
-        fd.append('Title', title)
-        fd.append('Description', description)
-        fd.append('Ingredients', ingredients)
-        fd.append('imageFile', imagefile)
-        fd.append('prepTime', preptime)
-        fd.append('Portions', portions)
-        fd.append('userId', userid)
-         return await API().post(`/Recipe/create` , fd) //{
-        //     title: title,
-        //     preptime: preptime,
-        //     portions: portions,
-        //     ingredients: ingredients,
-        //     description: description,
-        //     userid: userid
-        // })
+    async AddRecipe(fd){
+        return await API().post(`/Recipe/create` , fd)
     },
     //Eind van recipe calls.
 

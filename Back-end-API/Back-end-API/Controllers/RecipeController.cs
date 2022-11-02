@@ -1,11 +1,11 @@
 ﻿using Back_end_API.BusinessLogic;
-using Back_end_API.BusinessLogic.RecipeDTO_s;
 using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System.Collections;
 using System.Linq;
 
@@ -29,7 +29,7 @@ namespace Back_end_API.Controllers
         /// <returns>Ok wanneer alle recepten zijn verstuurd.</returns>
         [HttpGet("getall")]
         public async Task<ActionResult> GetAllRecipes()
-        {
+        { 
             var myrecipe = await _context.Recipes
                          .Where(r => r.Status == RecipeModel.status.Accepted.ToString())
                          .Select(r => new
@@ -79,8 +79,6 @@ namespace Back_end_API.Controllers
         /// <param name="id">recept id van ingevulde front-end.</param>
         /// <returns>Ok wanneer recept is opgestuurd.</returns>
         [HttpGet("getrecipe")]
-        [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetRecipeById(int id)
         {
             var myrecipe = await _context.Recipes
@@ -159,16 +157,58 @@ namespace Back_end_API.Controllers
 
         //nog over zetten naar andere functie (apparte class).
         [HttpGet("{fileName}")]
-        public async Task<ActionResult> GetImage([FromRoute]string fileName)
+        public async Task<ActionResult> GetImage(string fileName)
         {
             string path = _env.WebRootPath + "\\uploads\\";
             var filepath = path + fileName;
-            if(System.IO.File.Exists(filepath))
+            if (System.IO.File.Exists(filepath))
             {
                 byte[] b = System.IO.File.ReadAllBytes(filepath);
                 return File(b, "image/png");
             }
             return null;
+        }
+
+        [HttpGet("{fileName2}")]
+        public async Task<string> GetImage2(string fileName)
+        {
+            string path = _env.WebRootPath + "\\uploads\\";
+            var filepath = path + fileName;
+            if (System.IO.File.Exists(filepath))
+            {
+                byte[] imageArray = System.IO.File.ReadAllBytes(filepath);
+                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+                return base64ImageRepresentation;
+            }
+            return null;
+        }
+
+        [HttpGet("testgetrecipes")]
+        public async Task<ActionResult> Test(int id)
+        {
+            var myrecipe1 = await _context.Recipes.FindAsync(id);
+            if (myrecipe1 == null)
+                return NotFound();
+
+            var imageFile = await GetImage2(myrecipe1.imageName);
+
+            var myrecipe = await _context.Recipes
+                         .Where(r => r.recipeId == id)
+                         .Select(r => new
+                         {
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             imageFile,
+                             r.User.userName
+                         })
+                         .ToListAsync();
+
+            return Ok(myrecipe);
         }
     }
 }
