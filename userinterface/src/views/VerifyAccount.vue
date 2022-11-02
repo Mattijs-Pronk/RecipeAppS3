@@ -34,7 +34,10 @@ import Footer from '../components/Footer.vue';
 
 <script>
 export default{
-    name: 'register',
+    name: 'verify',
+    components: {
+      Footer
+    },
     data(){
         return{
             activateaccounttoken: '',

@@ -42,6 +42,11 @@ import axios from 'axios';
 
 <script>
 export default{
+    name: 'addrecipe',
+    components: {
+      Header,
+      Footer
+    },
     data(){
         return{
             title: '',

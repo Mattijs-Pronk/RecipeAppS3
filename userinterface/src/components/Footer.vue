@@ -13,6 +13,7 @@
 
 <script>
 export default{
+    name: 'footer',
     data(){
         return{
             autodate: ''

@@ -44,7 +44,12 @@
 
 <script>
   export default {
-    name: "home",
+    name: "landing",
+    components: {
+      Header,
+      Footer,
+      RecipeList,
+    },
     data(){
       return{
         meallist: [],

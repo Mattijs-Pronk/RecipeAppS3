@@ -47,6 +47,9 @@ import Footer from '../components/Footer.vue';
 <script>
 export default{
     name: 'register',
+    components: {
+      Footer
+    },
     data(){
         return{
             passwordresettoken: '',

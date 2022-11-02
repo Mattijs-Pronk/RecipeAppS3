@@ -29,7 +29,13 @@
 
 <script>
   export default {
-    name: "myrecipes",
+    name: "myfavorites",
+    components: {
+      searchbar,
+      Header,
+      Footer,
+      RecipeList,
+    },
     data(){
       return{
         user: '',

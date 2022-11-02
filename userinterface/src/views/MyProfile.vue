@@ -53,7 +53,13 @@ import EditPassword from '../components/EditPassword.vue';
 
 <script>
 export default{
-    name: 'profile',
+    name: 'myprofile',
+    components: {
+      Header,
+      Footer,
+      EditProfile,
+      EditPassword
+    },
     data(){
         return{
             userid: '',

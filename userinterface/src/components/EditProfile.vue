@@ -45,7 +45,7 @@ import {UsernameCheckerChangeUsername} from '../assets/Functions/User';
 
 <script>
 export default{
-    name: 'profile',
+    name: 'editprofile',
     props: [
         'userdata',
     ],

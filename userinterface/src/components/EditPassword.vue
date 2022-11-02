@@ -47,7 +47,7 @@ import {ChangePassword} from '../assets/Functions/User';
 
 <script>
 export default{
-    name: 'profile',
+    name: 'editpasword',
     props: [
         'userdata',
     ],

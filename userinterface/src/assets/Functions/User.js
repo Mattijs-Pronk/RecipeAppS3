@@ -11,6 +11,7 @@ export const GetUserRecipesById = async function(id){
     }
 };
 
+//functie om een favorite toe te voegen of te removen.
 export const AddToFavorites = async (userid, recipeid) => {
     var favoriteHeart = document.getElementById("favorite");
 
@@ -41,6 +42,7 @@ export const AddToFavorites = async (userid, recipeid) => {
     }
 }
 
+//functie om alle favorieten van een user op te halen.
 export const GetAllFavoritesById = async function(id){
     try{
         await APIcalls.GetAllFavoritesById(id)
@@ -53,6 +55,7 @@ export const GetAllFavoritesById = async function(id){
     }
 }
 
+//functie om het wachtwoord van een user te veranderen.
 export const ChangePassword = async (userid, currentpass, newpass) => {
     try{
         await APIcalls.ChangePassword(userid, currentpass, newpass)
@@ -64,6 +67,8 @@ export const ChangePassword = async (userid, currentpass, newpass) => {
     }
 }
 
+
+//functie om het profiel van een user te veranderen.
 export const ChangeProfile = async (userid, username, adress, phone) => {
     try{
         await APIcalls.ChangeProfile(userid, username, adress, phone)
@@ -75,6 +80,7 @@ export const ChangeProfile = async (userid, username, adress, phone) => {
     }
 }
 
+//functie om een user op te halen.
 export const GetUserById = async function(userid) {
     try{
         return await APIcalls.GetUserById(userid)
@@ -85,6 +91,7 @@ export const GetUserById = async function(userid) {
     }
 }
 
+//functie om het aantal gecreerde recepten van een user op te halen.
 export const GetUserRecipesAmountById = async function(userid) {
     try{
         return await APIcalls.GetUserRecipesAmountById(userid)
@@ -95,6 +102,7 @@ export const GetUserRecipesAmountById = async function(userid) {
     }
 }
 
+//functie om het aantal favorieten recepten van een user op te halen.
 export const GetUserFavoritesAmountById = async function(userid) {
     try{
         return await APIcalls.GetUserFavoritesAmountById(userid)
@@ -111,6 +119,7 @@ export const UsernameCheckerChangeUsername = async (currentusername, newusername
     return response.data
 }
 
+//functie om een email naar het bedrijf toe te sturen.
 export const ContactUs = async (name, email, subject, body) => {
     try{
         await APIcalls.ContactUs(name, email, subject, body)
@@ -122,6 +131,7 @@ export const ContactUs = async (name, email, subject, body) => {
     }
 }
 
+//functie om te checken of recept een favoriet is van de user.
 export const GetFavorite = async (userid, recipeid) => {
     try{
         let response = await APIcalls.GetFavorite(userid, recipeid)

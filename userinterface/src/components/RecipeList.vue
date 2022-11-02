@@ -33,6 +33,9 @@
 <script>
   export default {
     name: "recipelist",
+    components: {
+      RecipeItem
+    },
     props: [
         'listdata'
     ],

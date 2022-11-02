@@ -42,6 +42,11 @@
 
 <script>
 export default{
+    name: 'contactus',
+    components: {
+      Header,
+      Footer,
+    },
     data(){
         return{
             name: '',

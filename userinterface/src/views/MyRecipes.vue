@@ -30,6 +30,12 @@
 <script>
   export default {
     name: "myrecipes",
+    components: {
+      searchbar,
+      Header,
+      Footer,
+      RecipeList,
+    },
     data(){
       return{
         user: '',

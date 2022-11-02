@@ -29,7 +29,13 @@
 
 <script>
   export default {
-    name: "home",
+    name: "recipes",
+    components: {
+      searchbar,
+      Header,
+      Footer,
+      RecipeList,
+    },
     data(){
       return{
         meallist: [],

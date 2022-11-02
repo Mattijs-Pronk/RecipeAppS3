@@ -53,6 +53,10 @@ import {Login} from '../assets/Functions/Auth'
 <script>
 export default{
     name: 'login',
+    components: {
+      SimpleHeader,
+      Footer,
+    },
     data(){
     return{
       email: '',
