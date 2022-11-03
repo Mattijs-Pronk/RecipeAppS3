@@ -25,12 +25,6 @@ namespace Back_end_API.Controllers
             _context = context; 
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<UserModel>> GetAllUsers()
-        {
-            return await _context.Users.ToListAsync();
-        }
-
         /// <summary>
         /// Methode die een user ophaalt aan de hand van een id.
         /// </summary>

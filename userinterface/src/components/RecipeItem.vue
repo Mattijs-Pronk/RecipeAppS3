@@ -12,7 +12,7 @@
             <div class="meal-details-content" v-for="meal in itemdata">                      
                 <h2 class="recipe-title">{{meal.title}}</h2>
                     <div class="recipe-meal-img">
-                      <img src="../assets/Images/foodExample.jpg" alt="food">
+                      <img :src="'https://localhost:7108/StaticFiles/recipeImg/' + meal.imageName" alt="food">
                     </div>
                         <p>Made by: {{meal.userName}}</p>
                         <p>{{meal.rating}} out of 5 <span class="fa fa-star"></span></p>

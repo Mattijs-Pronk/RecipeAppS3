@@ -1,5 +1,6 @@
 using Back_end_API.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,13 @@ builder.Services.AddDbContext<RecipeAppContext>(o => o.UseSqlServer(builder.Conf
 var app = builder.Build();
 
 app.UseCors("CorsPolicy");
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "wwwroot")),
+    RequestPath = "/StaticFiles"
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

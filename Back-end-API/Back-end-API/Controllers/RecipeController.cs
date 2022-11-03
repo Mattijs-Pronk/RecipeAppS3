@@ -41,6 +41,7 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
+                             r.imageName,
                              r.User.userName
                          })
                          .ToListAsync();
@@ -66,6 +67,7 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
+                             r.imageName,
                              r.User.userName
                          })
                          .ToListAsync();
@@ -92,6 +94,7 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
+                             r.imageName,
                              r.User.userName
                          })
                          .ToListAsync();
@@ -139,7 +142,7 @@ namespace Back_end_API.Controllers
         {
             if(request.Length > 0)
             {
-                string path = _env.WebRootPath + "\\uploads\\";
+                string path = _env.WebRootPath + "\\recipeImg\\";
                 if(!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -167,48 +170,6 @@ namespace Back_end_API.Controllers
                 return File(b, "image/png");
             }
             return null;
-        }
-
-        [HttpGet("{fileName2}")]
-        public async Task<string> GetImage2(string fileName)
-        {
-            string path = _env.WebRootPath + "\\uploads\\";
-            var filepath = path + fileName;
-            if (System.IO.File.Exists(filepath))
-            {
-                byte[] imageArray = System.IO.File.ReadAllBytes(filepath);
-                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
-                return base64ImageRepresentation;
-            }
-            return null;
-        }
-
-        [HttpGet("testgetrecipes")]
-        public async Task<ActionResult> Test(int id)
-        {
-            var myrecipe1 = await _context.Recipes.FindAsync(id);
-            if (myrecipe1 == null)
-                return NotFound();
-
-            var imageFile = await GetImage2(myrecipe1.imageName);
-
-            var myrecipe = await _context.Recipes
-                         .Where(r => r.recipeId == id)
-                         .Select(r => new
-                         {
-                             r.recipeId,
-                             r.Title,
-                             r.Description,
-                             r.Ingredients,
-                             r.Rating,
-                             r.prepTime,
-                             r.Portions,
-                             imageFile,
-                             r.User.userName
-                         })
-                         .ToListAsync();
-
-            return Ok(myrecipe);
         }
     }
 }
