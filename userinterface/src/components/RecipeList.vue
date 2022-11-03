@@ -2,6 +2,7 @@
   import { OpenModal } from '../assets/Functions/Recipe';
   import { GetFavorite } from '../assets/Functions/User';
   import RecipeItem from '../components/RecipeItem.vue';
+  import {recipeImageURL} from '../assets/Functions/services/ImageUrls';
 </script>
 
 
@@ -11,7 +12,7 @@
               <div id= "meal">   
                 <div class = "meal-item" v-for="meal in listdata">
                     <div class = "meal-img">
-                      <img :src="'https://localhost:7108/StaticFiles/recipeImg/' + meal.imageName" alt="food">
+                      <img :src="recipeImageURL + meal.imageName" alt="food">
                     </div>
                     <div class = "meal-name">
                       <h3>{{meal.title}}</h3>

@@ -1,6 +1,7 @@
 <script setup>
   import { CloseModal } from '../assets/Functions/Recipe';
   import { AddToFavorites } from '../assets/Functions/User';
+  import {recipeImageURL} from '../assets/Functions/services/ImageUrls';
 </script>
 
 
@@ -12,7 +13,7 @@
             <div class="meal-details-content" v-for="meal in itemdata">                      
                 <h2 class="recipe-title">{{meal.title}}</h2>
                     <div class="recipe-meal-img">
-                      <img :src="'https://localhost:7108/StaticFiles/recipeImg/' + meal.imageName" alt="food">
+                      <img :src="recipeImageURL + meal.imageName" alt="food">
                     </div>
                         <p>Made by: {{meal.userName}}</p>
                         <p>{{meal.rating}} out of 5 <span class="fa fa-star"></span></p>

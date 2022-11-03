@@ -1,0 +1,1 @@
+export const recipeImageURL = 'https://localhost:7108/StaticFiles/recipeImg/';
