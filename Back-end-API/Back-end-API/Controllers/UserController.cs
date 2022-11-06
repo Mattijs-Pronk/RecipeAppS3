@@ -180,6 +180,7 @@ namespace Back_end_API.Controllers
                              r.prepTime,
                              r.Portions,
                              r.Status,
+                             r.imageName,
                              r.User.userName
                          })
             .ToListAsync();
@@ -253,6 +254,7 @@ namespace Back_end_API.Controllers
                              f.Recipe.Rating,
                              f.Recipe.prepTime,
                              f.Recipe.Portions,
+                             f.Recipe.imageName,
                              f.Recipe.User.userName
                          })
                          .ToListAsync();

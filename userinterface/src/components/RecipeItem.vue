@@ -7,33 +7,28 @@
 
 <template>
     <div id="hidden" style="display:none" class="meal-details">
-        <button v-on:click="CloseRecipe()" type="button" class="btn recipe-close-btn"><i class="fas fa-times"></i></button> 
-        <button v-on:click="AddRecipeToFavorites()" id="favorite" class="btn recipe-favorite-btn"><i class="fas fa-heart"></i></button> 
+        <button v-on:click="CloseRecipe()" class="recipe-close-btn"><i class="fas fa-times"></i></button> 
+        <button v-on:click="AddRecipeToFavorites()" id="favorite" class="recipe-favorite-btn"><i class="fas fa-heart"></i></button> 
         <br/>                  
             <div class="meal-details-content" v-for="meal in itemdata">                      
                 <h2 class="recipe-title">{{meal.title}}</h2>
                     <div class="recipe-meal-img">
                       <img :src="recipeImageURL + meal.imageName" alt="food">
                     </div>
-                        <p>Made by: {{meal.userName}}</p>
-                        <p>{{meal.rating}} out of 5 <span class="fa fa-star"></span></p>
-                        <br>
+                        <p class="recipe-text-name">{{meal.userName}}</p>
+                        <p class="recipe-text-rating">{{meal.rating}} out of 5 <span class="fa fa-star"></span></p><br/>
+
                         <p class="recipe-category">Result</p>
-                        <br/>
-                        <p1>Preptime: {{meal.prepTime}} minute('s'), Portion('s'): {{meal.portions}}</p1>
-                        <br/><br/>
-                        <div class="recipe-instruct">
-                            <br/>
+
+                        <p class="recipe-text">Preptime: {{meal.prepTime}} minute('s'), Portion('s'): {{meal.portions}}</p><br/>
+
                             <h3><p class="recipe-category">Ingredients</p></h3>
-                            <p>{{meal.ingredients}}</p>
-                        </div>
-                        <br/>
-                        <div class="recipe-instruct">
+                            <p class="recipe-text">{{meal.ingredients}}</p>
+   
                             <h3><p class="recipe-category">Preperation</p></h3>
-                            <p>{{meal.description}}</p>
+                            <p class="recipe-text">{{meal.description}}</p>
+                      </div>
                     </div>
-            </div>
-    </div>
 </template>
 
 <script>
@@ -79,5 +74,5 @@
 
 
 <style scoped>
-    @import "../assets/styles/recipes.css";
+    @import "../assets/styles/recipeitem.css";
 </style>

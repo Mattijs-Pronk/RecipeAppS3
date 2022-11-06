@@ -7,27 +7,37 @@
 
 
 <template>
-    <div class = "meal-result">
-              <h2></h2>
-              <div id= "meal">   
-                <div class = "meal-item" v-for="meal in listdata">
-                    <div class = "meal-img">
-                      <img :src="recipeImageURL + meal.imageName" alt="food">
-                    </div>
-                    <div class = "meal-name">
-                      <h3>{{meal.title}}</h3>
-                      <p>Made by: {{meal.userName}}</p>          
-                      <p>{{meal.rating}} out of 5 <span class="fa fa-star checked"></span></P>
-                      <button v-on:click="OpenRecipeById(meal.recipeId)" class = "recipe-btn">See Recipe</button>
-                      <div class="status">{{meal.status}}</div>  
-                    </div>
-                  </div>
-            </div>
-          </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-          <!-- Start mealDetials -->
-          <RecipeItem :itemdata="mealitem" :recipeId="recipeid"/>
-          <!-- Eind mealDetails -->
+<section class="dishes" id="dishes">
+
+<h3 class="sub-heading"> All recipes </h3>
+<h1 class="heading"> Find your taste </h1>
+
+<div class="box-container">
+
+    <div class="box" v-for="meal in listdata">
+        <img :src="recipeImageURL + meal.imageName" alt="food">
+
+        <h3>{{meal.title}}</h3>
+
+        <span>{{meal.userName}}</span>
+
+        <div class="stars">
+          <span>{{meal.rating}} out of 5 <i class="fas fa-star"></i></span>
+        </div>
+        
+        <a v-on:click="OpenRecipeById(meal.recipeId)" class="btn">See Recipe</a>
+        
+        <div class="status">{{meal.status}}</div>  
+    </div>
+
+</div>
+</section>
+
+    <!-- Start mealDetials -->
+      <RecipeItem :itemdata="mealitem" :recipeId="recipeid"/>
+    <!-- Eind mealDetails -->
 
 </template>
 
@@ -61,5 +71,5 @@
 
 
 <style scoped>
-    @import "../assets/styles/recipes.css";
+    @import "../assets/styles/recipelist.css";
 </style>

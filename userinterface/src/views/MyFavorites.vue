@@ -57,5 +57,5 @@
 
 
 <style scoped>
-    @import "../assets/styles/recipes.css";
+
 </style>

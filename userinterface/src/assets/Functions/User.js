@@ -20,7 +20,7 @@ export const AddToFavorites = async (userid, recipeid) => {
 
         //kleur van heart veranderen.
         if(favoriteHeart.style.color == "red"){
-            favoriteHeart.style.color = "#219ebc"
+            favoriteHeart.style.color = "#002366"
         }
         else{
             favoriteHeart.style.color = "red"
@@ -32,7 +32,7 @@ export const AddToFavorites = async (userid, recipeid) => {
 
         //kleur van heart veranderen.
         if(favoriteHeart.style.color == "red"){
-            favoriteHeart.style.color = "#219ebc"
+            favoriteHeart.style.color = "#002366"
         }
         else{
             favoriteHeart.style.color = "red"
@@ -139,7 +139,7 @@ export const GetFavorite = async (userid, recipeid) => {
             document.getElementById("favorite").style.color  = "red"
         }
         else{
-            document.getElementById("favorite").style.color  = "#219ebc"
+            document.getElementById("favorite").style.color  = "#002366"
         }
       }
       catch(error){

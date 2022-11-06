@@ -7,23 +7,15 @@
 </script>
 
 <template>
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-</head>
   <Header/>
-    <div class = "container">
-          <div class = "meal-wrapper">  
-            <p class="message">Find all your desired recipes</p>  
-            <div class = "meal-search">   
+            <!-- Start van searchbar -->
               <searchbar/>
-            </div>
+            <!-- Eind van searchbar -->
 
             <!-- Start van meal items -->
               <RecipeList :listdata="meallist"/>
             <!-- Eind van meal items -->
-            
-          </div>
-      </div>
+
       <Footer/>
 </template>
 
@@ -53,5 +45,5 @@
 
 
 <style scoped>
-    @import "../assets/styles/recipes.css";
+
 </style>

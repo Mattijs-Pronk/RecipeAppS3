@@ -1,9 +1,8 @@
 :root{
-    --orange: #fb8500;
-    --yellow: #ffb703;
-    --dark-blue: #023047;
-    --light-blue: #219ebc;
-    --superlight-blue: #d3ecf7;
+    --orange:#f18805;
+    --black: #002366;
+    --white: #fff;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.5);
 }
 
 .dropdown {
@@ -27,7 +26,7 @@
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
-    color: #fb8500;
+    color: var(--orange);
     display: block;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
@@ -36,7 +35,7 @@
 .dropdown-content a:hover 
 {
     background-color: rgb(99, 67, 29);
-    border-bottom: 2px solid #fb8500;
+    border-bottom: 2px solid var(--orange);
 }
   
 .dropdown:hover .dropdown-content {
@@ -51,6 +50,7 @@ body{
 
 nav{
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
@@ -58,7 +58,7 @@ nav{
     padding: 10px 90px;
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.6);
-    border-bottom: 2px solid #fb8500;
+    border-bottom: 2px solid var(--orange);
 }
 
 nav .logo{
@@ -69,7 +69,7 @@ nav .logo{
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
-    color: #fb8500;
+    color: var(--orange);
 }
 
 nav ul{
@@ -82,7 +82,7 @@ nav ul{
 
 nav ul li a{
     line-height: 80px;
-    color: #fb8500;
+    color: var(--orange);
     padding: 12px 30px;
     text-decoration: none;
     font-size: 15px;
@@ -91,27 +91,18 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    background: #ffb703;
+    background-color: rgb(99, 67, 29);
+    border-bottom: 2px solid var(--orange);
     border-radius: 6px;
 }
 
 .section{
-    background-color: #d3ecf7;
-    color: #d3ecf7;
+    background-color: var(--white);
+    color: var(--black);
     background-image: url("../Images/Foodbg.jpg");
     background-size: cover;
     padding-top: 140px;
     padding-bottom: 140px;
-    border-bottom: 4px solid #219ebc;
-}
-
-.message{
-    padding-top: 10px;
-    text-align: center;
-    font-size: 34px;
-    font-weight: normal;
-    text-transform: lowercase;
-    color: #fb8500;
-    background-color: #d3ecf7;
+    border-bottom: 4px solid var(--black);
 }
 
