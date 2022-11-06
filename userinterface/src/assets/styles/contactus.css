@@ -1,14 +1,13 @@
 :root{
-    --orange: #fb8500;
-    --yellow: #ffb703;
-    --dark-blue: #023047;
-    --light-blue: #219ebc;
-    --superlight-blue: #d3ecf7;
+    --orange:#f18805;
+    --black: #002366;
+    --white: #fff;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.5);
 }
 
 .container2{
     min-height: 100vh;
-    background-color: #d3ecf7;
+    background-color: #eee;
 }
 
 .container{
@@ -20,17 +19,17 @@
 
 
 .container .form{
-    margin-top: 20%;
+    margin-top: 5%;
     width: 900px;
     padding: 30px;
     background-color: #fff;
     box-shadow: 0px 0px 19px 5px rgba(0,0,0,0.19);
     overflow: hidden;
     border-radius: 2rem; 
-    border-bottom: 5px solid #fb8500;
-    border-left: 5px solid #fb8500;
-    border-right: 5px solid #fb8500;
-    border-top: 5px solid #fb8500;
+    border-bottom: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
+    border-right: 2px solid var(--orange);
+    border-top: 2px solid var(--orange);
     transition: margin-left 0.18s ease;
 }
 
@@ -42,9 +41,9 @@
 
 .container .form .title{
     position: absolute;
-    font-size: 30px;
+    font-size: 34px;
     font-weight: 600;
-    color: #fb8500;
+    color: var(--black);
     margin-left: 330px;
 }
 
@@ -55,7 +54,7 @@
     bottom: 0;
     height: 3px;
     width: 30px;
-    background-color: #219ebc;
+    background-color: var(--black);
     border-radius: 25px;
 }
 
@@ -81,7 +80,7 @@
 }
 
 .input-field input:is(:focus, :valid){
-    border-bottom-color: #219ebc;
+    border-bottom-color: var(--black);
 }
 
 .email-body{
@@ -89,7 +88,7 @@
     margin-left: 20px;
 	width: 95%;
     height: 400px;
-	border: 2px solid #219ebc;
+	border: 2px solid var(--black);
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     border-top-left-radius: 2rem;
@@ -103,29 +102,19 @@
 }
 
 .btn{
-	text-decoration: none;
-    color: #fff;
-    background: #fb8500;
-    font-weight: 500;
-    font-size: 1.1rem;
-    padding: 0.75rem 0;
-    display: block;
-	cursor: pointer;
-    width: 50%;
-    margin: 1rem auto;
-    border-radius: 2rem;
-    -webkit-border-radius: 2rem;
-    -moz-border-radius: 2rem;
-    -ms-border-radius: 2rem;
-    -o-border-radius: 2rem;
-    transition: all 0.4s linear;
-    -webkit-transition: all 0.4s linear;
-    -moz-transition: all 0.4s linear;
-    -ms-transition: all 0.4s linear;
-    -o-transition: all 0.4s linear;
+    margin-top: 1rem;
+    margin-left: 22rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color:var(--white);
+    background: var(--black);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding:.8rem 3rem;
 }
 
 .btn:hover{
-    background-color: #ffb703;
+    background: var(--orange);
+    letter-spacing: .1rem;
 }
 

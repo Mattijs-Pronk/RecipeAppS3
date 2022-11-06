@@ -13,6 +13,11 @@
               <searchbar/>
             <!-- Eind van searchbar -->
 
+          <div class="heading-collection">
+            <h3 class="sub-heading"> Find your taste </h3>
+            <h1 class="heading"> Your Recipes </h1>
+          </div>
+
             <!-- Start van meal items -->
               <RecipeList :listdata="meallist"/>
             <!-- Eind van meal items -->
@@ -50,5 +55,5 @@
 
 
 <style scoped>
-
+  @import '../assets/styles/extratext.css';
 </style>

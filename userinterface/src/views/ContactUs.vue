@@ -6,6 +6,12 @@
 
 <template>
     <Header/>
+
+    <div class="heading-collection">
+        <h3 class="sub-heading"> Find your taste </h3>
+        <h1 class="heading"> Add your Recipe </h1>
+    </div>
+
 <div class="container2">
     <div class="container">
         <div class="forms"> 
@@ -17,20 +23,20 @@
                         <input type="text" placeholder="Enter your name" v-model="name" @blur="checkName" @keyup="checkName">
                     </div>
                     <span v-if="nameError" class="text-danger">{{nameError}}</span>
-
+                    
                     <div class="input-field">
                         <input type="email" placeholder="Enter your email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
                     </div>
                     <span v-if="emailError" class="text-danger">{{emailError}}</span>
-
+                    
                     <div class="input-field">
                         <input type="text" placeholder="Email subject" v-model="subject" @blur="checkSubject" @keyup="checkSubject">
                     </div>
                     <span v-if="subjectError" class="text-danger">{{subjectError}}</span>
-
+                    
                         <textarea class="email-body" type="email" placeholder="How can we help you" v-model="body" @blur="checkBody" @keyup="checkBody"></textarea>
                         <span v-if="bodyError" class="text-danger">{{bodyError}}</span>
-
+                        <br/>
                         <button class="btn" v-on:click="submitForm()">submit</button>
                 </form>
             </div>
@@ -110,5 +116,6 @@ export default{
 </script>
 
 <style scoped>
-@import '../assets/styles/contactus.css';
+    @import '../assets/styles/contactus.css';
+    @import '../assets/styles/extratext.css';
 </style>

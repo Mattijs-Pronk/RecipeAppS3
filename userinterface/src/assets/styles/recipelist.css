@@ -10,21 +10,6 @@ section{
     background:#eee;
 }
 
-.sub-heading{
-    text-align: center;
-    color:var(--orange);
-    font-size: 2rem;
-    padding-top: 1rem;
-}
-
-.heading{
-    text-align: center;
-    color:var(--black);
-    font-size: 3rem;
-    padding-bottom: 1rem;
-    text-transform: uppercase;
-}
-
 .btn{
     margin-top: 1rem;
     display: inline-block;
@@ -43,7 +28,6 @@ section{
 
 .dishes .box-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
     gap:1.5rem;
 }
 
@@ -88,4 +72,40 @@ section{
     font-weight: bolder;
     margin-right: 1rem;
     font-size: 1.5rem;
+}
+
+.status{
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 2rem;
+    width: 70%;
+    margin-left: 15%;
+    font-weight: bold;
+    font-size: 22px;
+    color: #fff;
+    background-color: var(--black);
+}
+
+@media screen and (min-width: 768px){
+    .dishes .box-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px){
+    .dishes .box-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1440px){
+    .dishes .box-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1660px){
+    .dishes .box-container{
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

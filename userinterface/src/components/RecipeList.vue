@@ -11,12 +11,11 @@
 
 <section class="dishes" id="dishes">
 
-<h3 class="sub-heading"> All recipes </h3>
-<h1 class="heading"> Find your taste </h1>
-
 <div class="box-container">
 
     <div class="box" v-for="meal in listdata">
+      <div class="status">{{meal.status}}</div>  
+      
         <img :src="recipeImageURL + meal.imageName" alt="food">
 
         <h3>{{meal.title}}</h3>
@@ -28,8 +27,6 @@
         </div>
         
         <a v-on:click="OpenRecipeById(meal.recipeId)" class="btn">See Recipe</a>
-        
-        <div class="status">{{meal.status}}</div>  
     </div>
 
 </div>

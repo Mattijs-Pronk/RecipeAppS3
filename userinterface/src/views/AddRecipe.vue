@@ -2,13 +2,17 @@
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import {AddRecipe} from '../assets/Functions/Recipe';
-import axios from 'axios';
 </script>
 
 
 <template>
     <Header/>
-    <p class="message">Create your own recipe</p> 
+    
+    <div class="heading-collection">
+        <h3 class="sub-heading"> Find your taste </h3>
+        <h1 class="heading"> Add your Recipe </h1>
+    </div>
+
 	<div class="container">
 		<div class="contact-box">
 			<div class="left"></div>
@@ -29,7 +33,7 @@ import axios from 'axios';
 
 				<textarea type="text" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
-
+                <br/>
                 <input type="file" v-on:change="GetFile"> <br/>
 
 				<button class="btn" v-on:click="submitForm()">Add recipe</button>
@@ -133,4 +137,5 @@ export default{
 
 <style scoped>
     @import '../assets/styles/addrecipe.css';
+    @import '../assets/styles/extratext.css';
 </style>
