@@ -16,8 +16,8 @@
     background: rgba(0, 0, 0, 0.6);
     min-width: 160px;
     z-index: 1;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 
 .dropdown-content a {
@@ -28,8 +28,8 @@
     text-decoration: none;
     color: var(--orange);
     display: block;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
   
 .dropdown-content a:hover 

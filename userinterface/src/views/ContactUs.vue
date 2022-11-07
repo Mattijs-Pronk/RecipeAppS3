@@ -9,7 +9,7 @@
 
     <div class="heading-collection">
         <h3 class="sub-heading"> Find your taste </h3>
-        <h1 class="heading"> Add your Recipe </h1>
+        <h1 class="heading"> Contact Us </h1>
     </div>
 
 <div class="container2">
@@ -34,7 +34,7 @@
                     </div>
                     <span v-if="subjectError" class="text-danger">{{subjectError}}</span>
                     
-                        <textarea class="email-body" type="email" placeholder="How can we help you" v-model="body" @blur="checkBody" @keyup="checkBody"></textarea>
+                        <textarea class="email-body" type="email" placeholder="How can we help you?" v-model="body" @blur="checkBody" @keyup="checkBody"></textarea>
                         <span v-if="bodyError" class="text-danger">{{bodyError}}</span>
                         <br/>
                         <button class="btn" v-on:click="submitForm()">submit</button>

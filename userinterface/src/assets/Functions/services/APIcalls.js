@@ -68,12 +68,6 @@ export default{
         //     }
         // })
     },
-
-    async CheckEmail(email){
-        return await API().post(`/Auth/checkemail?email=${email}`) //, {
-       //     username: username
-       // })
-   },
    //Eind van authenticator calls.
 
 

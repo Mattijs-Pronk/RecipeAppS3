@@ -33,9 +33,7 @@ import {Login} from '../assets/Functions/Auth'
                     </div>
 
                     <br>
-                    <div class="input-field button">
-                        <input type="button" value="Login" v-on:click="submitForm()">
-                    </div>
+                    <a class="btn" v-on:click="submitForm">Login</a>
                 </form>
 
                 <div class="login-signup">

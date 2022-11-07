@@ -41,11 +41,16 @@ import EditPassword from '../components/EditPassword.vue';
     </div>
 </div>
 
+<div class="right">
+
     <!-- Edit profile -->
-        <EditProfile :userdata="userid"/>
+    <EditProfile :userid="userid" :currentusername="userusername"/>
 
     <!-- Edit password -->
-        <EditPassword :userdata="userid"/>
+    <EditPassword :userid="userid"/>
+
+</div>
+    
 </div>
     <Footer/>
 </template>

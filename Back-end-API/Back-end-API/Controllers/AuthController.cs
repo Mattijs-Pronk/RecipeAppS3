@@ -183,20 +183,5 @@ namespace Back_end_API.Controllers
 
             return false;
         }
-
-        /// <summary>
-        /// Methode om te checken of ingevulde email al bestaat in de database.
-        /// </summary>
-        /// <param name="email">email van ingevulde front-end.</param>
-        /// <returns>true wanneer email al in gebruik is, false wanneer email niet ingebruik is.</returns>
-        [HttpPost("checkemail")]
-        public async Task<ActionResult<bool>> EmailChecker(string email)
-        {
-            bool doubleEmail = await _context.Users.AnyAsync(u => u.Email == email);
-
-            if (doubleEmail) { return true; }
-
-            return false;
-        }
     }
 }

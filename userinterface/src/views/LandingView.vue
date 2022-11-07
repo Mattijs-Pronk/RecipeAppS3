@@ -10,36 +10,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
   <Header/>
-    <div class = "container">
-          <div class = "meal-wrapper">  
-            <p class="message">Welcome to CLoud recipes</p>
-            <br/><br/><br/><br/><br/><br/>
-            <div class="welcome">
-                <h1 class="welcome-title">Featured recipes</h1>
-            </div>  
-            <div class = "meal-search">   
-            </div>
-                <div class="featured">
-                    <button v-on:click="GetNewFeatured()" class="arrow-right-btn"><i class="fas fa-chevron-circle-right"></i></button>
-                    <button v-on:click="GetNewFeatured()" class="arrow-left-btn"><i class="fas fa-chevron-circle-left"></i></button>  
-                    <!-- Start van meal items -->
-                        <RecipeList :listdata="meallist"/>
-                    <!-- Eind van meal items -->
-                    
-                </div>
-            <br/>
-            <p class="clickme">Want to see more recipes? click <a href="/recipes">here</a></p>
+    <section class="home" id="home">
 
-            <br/><br/><br/><br/>
-            <div class="welcome">
-                <h1 class="welcome-title">About us</h1>
-                <br/>
-                <p class="welcome-text">Sed consectetur euismod erat, a venenatis nibh dapibus id. Integer cursus arcu odio. Aenean ut finibus risus. Curabitur tincidunt iaculis quam nec tristique. Donec mi nisi, porttitor aliquam sapien eu, varius vulputate nulla. Mauris congue sapien eros. Phasellus leo ligula, gravida ac tempus non, dignissim vitae purus. Nullam diam massa, vehicula a orci at, pharetra hendrerit turpis. Maecenas tempus sit amet nulla vitae scelerisque. Etiam eu mauris rutrum, cursus mi eu, lacinia tellus. Suspendisse venenatis vulputate lectus, vel dapibus ante lobortis eu. Ut vehicula viverra mauris sit amet gravida. Sed quam nulla, faucibus at dui sit amet, hendrerit condimentum ipsum. Curabitur faucibus risus non erat suscipit condimentum. Morbi vel ullamcorper augue.</p>
-            </div>  
-            <br/><br/><br/><br/>
-          </div>
-      </div>
-      <Footer/>
+    <div class="content">
+        <h3>Welcome to CloudRecipes</h3>
+        <p>At CloudRecipes we provide a website run by you so if you have a delicious recipe you would like to share. Login and upload your recipe, an administrator will doublecheck you recipe before approving it for all users to see!</p>
+        <a href="/recipes" class="btn">See more</a>
+    </div>
+
+    <div class="image">
+        <img src="../assets/Images/homeFood.png" alt="">
+    </div>
+</section>
+
+  <Footer/>
 </template>
 
 <script>
@@ -69,5 +53,5 @@
 
 
 <style scoped>
-
+  @import '../assets/styles/landing.css';
 </style>

@@ -18,10 +18,8 @@ import {ForgotPassword} from '../assets/Functions/Auth'
                     </div>
                     <span v-if="emailError" class="text-danger">{{emailError}}</span>                
 
-                    <br>
-                    <div class="input-field button">
-                        <input type="button" value="Send email" v-on:click="submitForm()">
-                    </div>
+                    <br><br><br>
+                    <a class="btn" v-on:click="submitForm()">Send email</a>
                 </form>
 
                 <div class="login-signup">

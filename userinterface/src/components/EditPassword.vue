@@ -5,9 +5,7 @@ import {ChangePassword} from '../assets/Functions/User';
 <template>
     <!-- Edit password -->
     <div class="password-card">
-        <div class="title">
                 <h2>Edit password</h2>
-            </div>
             <hr>
             <div class="forms">
             <div class="form login">
@@ -35,9 +33,7 @@ import {ChangePassword} from '../assets/Functions/User';
                     </div>
                     
                     <br/>
-                    <div class="input-field button">
-                        <input type="button" value="Change password" v-on:click="submitChangePassword()">
-                    </div>
+                    <a v-on:click="submitChangePassword()" class="btn">Change password</a>
                 </form>
             </div>
         </div>
@@ -49,7 +45,7 @@ import {ChangePassword} from '../assets/Functions/User';
 export default{
     name: 'editpasword',
     props: [
-        'userdata',
+        'userid',
     ],
     data(){
         return{
@@ -92,9 +88,11 @@ export default{
         this.checkRePassword();
 
         if(this.currentpasswordError == '' && this.passwordError == '' && this.RepasswordError == ''){
-            if(await ChangePassword(this.userdata ,this.currentpassword, this.password))
+            if(await ChangePassword(this.userid ,this.currentpassword, this.password))
             {
-                location.reload();
+                this.currentpassword = '';
+                this.password = '';
+                this.Repassword = '';
                 this.$toast.success('Succesfully changed password' , {
                 position: 'top',
                 dismissible: true,

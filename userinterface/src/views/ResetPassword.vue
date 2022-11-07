@@ -33,9 +33,7 @@ import Footer from '../components/Footer.vue';
                     </div>
 
                     <br>
-                    <div class="input-field button">
-                        <input type="button" value="Reset password" v-on:click="submitForm()">
-                    </div>
+                    <a class="btn" v-on:click="submitForm()">Reset</a>
                 </form>
             </div>
         </div>

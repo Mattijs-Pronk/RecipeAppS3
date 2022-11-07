@@ -83,17 +83,6 @@ export const CheckUser = async (username) => {
   }
 }
 
-//functie om te checken of een email al bestaat.
-export const CheckEmail = async (email) => {
-  try{
-    let response = await APIcalls.CheckEmail(email)
-    return response.data
-  }
-  catch(error){
-    console.log(error)
-  }
-}
-
 //beveiliging van de navigatie naar andere views.
 export const RouteGaurd = () =>{
   const user = JSON.parse(localStorage.getItem('user'));

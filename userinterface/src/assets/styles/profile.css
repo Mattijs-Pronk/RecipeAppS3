@@ -1,9 +1,8 @@
 :root{
-    --orange: #fb8500;
-    --yellow: #ffb703;
-    --dark-blue: #023047;
-    --light-blue: #219ebc;
-    --superlight-blue: #d3ecf7;
+    --orange:#f18805;
+    --black: #002366;
+    --white: #fff;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.5);
 }
 
 .container{
@@ -18,37 +17,36 @@
 }
 
 .right{
-    margin-left: 5%;
+    margin-left: 4rem;
+	height: 100%;
 }
 
 .profile-card{
-    margin-top: 150px;
-    margin-bottom: 150px;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
     width: 500px;
     height: 81%;
-    background: #fff;
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
-    border-radius: 2rem;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
 }
 
 .edit-card{
-    margin-top: 150px;
-    margin-bottom: 52px;
+    margin-top: 10rem;
     width: 500px;
     height: 38%;
-    background: #fff;
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
-    border-radius: 2rem;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
 }
 
 .password-card{
-    margin-top: 740px;
-    margin-bottom: 105px;
+    margin-top: 6rem;
+    margin-left: 3.75rem;
     width: 500px;
-    margin-left: -500px;
-    background: #fff;
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
-    border-radius: 2rem;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
 }
 
 .image-container{
@@ -56,7 +54,7 @@
 }
 
 .info{
-    color: #219ebc;
+    color: var(--black);
     margin-right: 16px;
     size: 22px;
 }
@@ -66,20 +64,20 @@
 }
 
 h2{
-    color: #219ebc;
+    color: var(--orange);
     font-size: 32px;
     text-align: center;
 }
 
 p{
-    color: #219ebc;
+    color: var(--black);
     font-size: 22px;
 }
 
-.p1-text{
-    color: #fb8500;
+p1{
+    color: var(--orange);
     font-size: 16px;
-    margin-left: 1%;
+    margin-left: 3.5rem;
 }
 
 span{
@@ -100,7 +98,7 @@ margin-left: 10%;
 
 .input-field input{
 height: 100%;
-width: 100%;
+width: 80%;
 padding: 0 35px;
 border: none;
 outline: none;
@@ -111,27 +109,7 @@ transition: all 0.2s ease;
 }
 
 .input-field input:is(:focus, :valid){
-border-bottom-color: #219ebc;
-}
-
-.form .button{
-margin-top: 35px;
-}
-
-.form .button input{
-border: none;
-color: #fff;
-font-size: 17px;
-font-weight: 500;
-letter-spacing: 1px;
-border-radius: 6px;
-background-color: #fb8500;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-
-.button input:hover{
-background-color: #ffb703;
+border-bottom-color: var(--black);
 }
 
 .form .checkbox-text{
@@ -144,11 +122,31 @@ margin-top: 20px;
 .checkbox-text .checkbox-content{
 display: flex;
 align-items: center;
-color: #fb8500;
+color: var(--orange);
 }
 
 .checkbox-content input{
 margin: 0 8px -2px 4px;
-accent-color: #fb8500;
+accent-color: var(--orange);
 margin-left: 50px;
+}
+
+.btn{
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    width: 60%;
+    margin-left: 3.5rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color:var(--white);
+    background: var(--black);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding:.8rem 3rem;
+}
+
+.btn:hover{
+    background: var(--orange);
+    letter-spacing: .1rem;
 }

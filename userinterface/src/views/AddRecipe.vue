@@ -34,7 +34,9 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 				<textarea type="text" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
                 <br/>
-                <input type="file" v-on:change="GetFile"> <br/>
+                <input type="file" accept="image/png" v-on:change="GetFile"> <br/>
+                <br/>
+                <span v-if="fileError" class="text-danger">{{fileError}}</span>
 
 				<button class="btn" v-on:click="submitForm()">Add recipe</button>
 			</div>
@@ -63,12 +65,14 @@ export default{
             ingredients: '',
             ingredientsError: '',
             description: '',
-            descriptionError: ''
+            descriptionError: '',
+            fileError: ''
         }
     },
     methods: {
     GetFile(e){
         this.imagefile = e.target.files[0]
+        this.checkFile();
     },
     checkTitle() {
         this.titleError = this.title.length == 0 ? 'Title cannot be empty.' :
@@ -98,8 +102,18 @@ export default{
         this.descriptionError = this.description.length == 0 ? 'Description cannot be empty.' :
         this.descriptionError = this.title.length > 1000 ? 'Description is to long.' : ''
     },
+    checkFile(){
+        this.fileError = this.imagefile.length == 0 ? 'image cannot be empty' : ''
+    },
         async submitForm(){
-            if(this.titleError == '' && this.preptimeError == '' && this.portionsError == '' && this.ingredientsError == '' && this.descriptionError == '')
+            this.checkTitle();
+            this.checkPreptime();
+            this.checkPortions();
+            this.checkIngredients();
+            this.checkDescription();
+            this.checkFile();
+
+            if(this.titleError == '' && this.preptimeError == '' && this.portionsError == '' && this.ingredientsError == '' && this.descriptionError == '' && this.fileError == '')
             var userid = JSON.parse(localStorage.getItem("user"))
 
             const fd = new FormData()
@@ -122,7 +136,7 @@ export default{
                 this.$router.push({name: 'myrecipes'})
             }
             else{
-                this.$toast.error('recipe has not been send for approval, please login' , {
+                this.$toast.error('recipe has not been send for approval, please fill in all forms' , {
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,

@@ -21,9 +21,7 @@ import Footer from '../components/Footer.vue';
                     <span v-if="emailError" class="text-danger">{{emailError}}</span>
 
                     <br>
-                    <div class="input-field button">
-                        <input type="button" value="Verify Account" v-on:click="submitForm()">
-                    </div>
+                    <a class="btn" v-on:click="submitForm()">Verify</a>
                 </form>
             </div>
         </div>

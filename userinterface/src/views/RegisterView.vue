@@ -1,7 +1,6 @@
 <script setup>
 import {Register} from '../assets/Functions/Auth'
 import {CheckUser} from '../assets/Functions/Auth'
-import {CheckEmail} from '../assets/Functions/Auth'
 import SimpleHeader from '../components/SimpleHeader.vue'
 import Footer from '../components/Footer.vue';
 </script>
@@ -44,9 +43,7 @@ import Footer from '../components/Footer.vue';
                     </div>
 
                     <br>
-                    <div class="input-field button">
-                        <input type="button" value="Register" v-on:click="submitForm()">
-                    </div>
+                    <a class="btn" v-on:click="submitForm()">Register</a>
                 </form>
 
                 <div class="login-signup">
@@ -91,22 +88,6 @@ export default{
     },
 
     checkEmail() {
-        if(this.email.length > 0)
-        {
-            //timer aanmaken zodat niet bij elke @keyup de api aangeroepen wordt.
-            if (this.timer) {
-            clearTimeout(this.timer);
-            this.timer = null;
-            }
-
-            this.timer = setTimeout(async () => {
-
-            if(await CheckEmail(this.email)){ this.emailError = 'Email already taken'}
-            else{ this.emailError = ''}
-
-        }, 1200);
-        }
-        
       this.emailError = this.email.length == 0 ? 'Email cannot be empty.' 
       : (this.validateEmail(this.email) ? '' : this.email + ' is not an email.')
     },
@@ -135,13 +116,15 @@ export default{
             }
             this.timer = setTimeout(async () => {
 
-            if(await CheckUser(this.username)){ this.usernameError = 'Username already taken'}
-            else{ this.usernameError = ''}
+            if(await CheckUser(this.username)){ 
+                this.usernameError = 'Username already taken'
+            }
 
         }, 1200);
         }
         
-        this.usernameError = this.username.length == 0 ? 'Username cannot be empty.' : ''
+        this.usernameError = this.username.length == 0 ? 'Username cannot be empty.' :
+        this.usernameError = this.username.length >= 14 ? 'Username is to long' : ''
     },
 
     async submitForm(){

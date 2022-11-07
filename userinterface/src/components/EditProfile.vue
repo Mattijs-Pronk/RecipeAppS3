@@ -7,9 +7,9 @@ import {UsernameCheckerChangeUsername} from '../assets/Functions/User';
     <!-- Edit profile -->
 <div class="right">
     <div class="edit-card">
-        <div class="title">
-                <h2>Edit profile</h2>
-            </div>
+        <div class="title-edit">
+            <h2>Edit profile</h2>
+        </div>   
             <hr>
             <div class="forms">
             <div class="form login">
@@ -29,12 +29,9 @@ import {UsernameCheckerChangeUsername} from '../assets/Functions/User';
                         <input type="text" placeholder="Phone" v-model="phone">
                     </div>
                     <span v-if="phoneError" class="text-danger">{{phoneError}}</span>
-                    
-                    <br/>
-                    <div class="input-field button">
-                        <p1 class="p1-text">Leave Username/Adress/Phone empty if its unchanged</p1>
-                        <input type="button" value="change profile" v-on:click="submitChangeProfile()">
-                    </div>
+                    <br/><br/><br/><br/>
+                    <p1>Leave Username/Adress/Phone empty if its unchanged</p1>
+                    <a v-on:click="submitChangeProfile()" class="btn">Change profile</a>
                 </form>
             </div>
         </div>
@@ -47,7 +44,8 @@ import {UsernameCheckerChangeUsername} from '../assets/Functions/User';
 export default{
     name: 'editprofile',
     props: [
-        'userdata',
+        'userid',
+        'currentusername'
     ],
     data(){
         return{
@@ -77,10 +75,13 @@ export default{
             }
             this.timer = setTimeout(async () => {
 
-            if(await UsernameCheckerChangeUsername(this.userusername, this.username)){ this.usernameError = 'Username already taken'}
-            else{ this.usernameError = ''}
+            if(await UsernameCheckerChangeUsername(this.currentusername, this.username)){ 
+                this.usernameError = 'Username already taken'
+            }
 
         }, 1200);
+
+        this.usernameError = this.username.length >= 14 ? 'Username is to long' : ''
         }
     },
 
@@ -89,7 +90,7 @@ export default{
 
         if(this.usernameError == '' && this.checkEditProfile() == false)
         {
-            if(await ChangeProfile(this.userdata, this.username, this.adress, this.phone))
+            if(await ChangeProfile(this.userid, this.username, this.adress, this.phone))
             {
                 location.reload();
                 this.$toast.success('Succesfully changed profile' , {

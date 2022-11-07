@@ -99,7 +99,7 @@ namespace Back_end_API.Controllers
         {
             bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.newUsername);
 
-            if (doubleUsername && request.currentUsername != request.newUsername) { return true; }
+            if (doubleUsername && request.currentUsername.ToLower() != request.newUsername.ToLower()) { return true; }
 
             return false;
         }
