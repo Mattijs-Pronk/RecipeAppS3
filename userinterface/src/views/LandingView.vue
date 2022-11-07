@@ -1,5 +1,4 @@
 <script setup>
-  import { GetRandomRecipes } from '../assets/Functions/Recipe';
   import Header from '../components/Header.vue'
   import Footer from '../components/Footer.vue';
   import RecipeList from '../components/RecipeList.vue';
@@ -39,14 +38,8 @@
         meallist: [],
       }
     },
-    //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
-    mounted(){
-      this.GetRandomRecipes()
-    },
     methods:{
-      GetNewFeatured(){
-        this.GetRandomRecipes()
-      }
+
     }
   }
 </script>

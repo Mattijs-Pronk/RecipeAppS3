@@ -1,9 +1,11 @@
 <script setup>
-import {Login, VerifyAccount} from '../assets/Functions/Auth'
+import {VerifyAccount} from '../assets/Functions/Auth'
+import SimpleHeader from '../components/SimpleHeader.vue';
 import Footer from '../components/Footer.vue';
 </script>
 
 <template>
+    <SimpleHeader/>
 <div class="container2">
     <div class="container">
         <div class="forms"> 
@@ -34,6 +36,7 @@ import Footer from '../components/Footer.vue';
 export default{
     name: 'verify',
     components: {
+        SimpleHeader,
       Footer
     },
     data(){

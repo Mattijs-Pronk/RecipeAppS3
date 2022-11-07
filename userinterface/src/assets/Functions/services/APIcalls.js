@@ -7,10 +7,6 @@ export default{
         return await API().get('/Recipe/getall')
     },
 
-    async GetRandomRecipes(){
-        return await API().get('/Recipe/getrandom')
-    },
-
     async GetRecipeById(id){
         return await API().get(`/Recipe/getrecipe?id=${id}`) //, {
         //    id: id
@@ -74,7 +70,7 @@ export default{
 
    //Start van user calls.
    async GetUserRecipesById(id){
-    return await API().get(`/User/getmyrecipes?id=${id}`) //, {
+    return await API().get(`/User/getallmyrecipes?id=${id}`) //, {
     //    id: id
     //})
     },
@@ -119,7 +115,7 @@ export default{
         },
 
     async UsernameCheckerChangeUsername(currentusername, newusername){
-        return await API().post(`/User/changeusername` , {
+        return await API().post(`/User/doubleusername` , {
                 currentUsername: currentusername,
                 newUsername: newusername
             })

@@ -50,32 +50,6 @@ namespace Back_end_API.Controllers
         }
 
         /// <summary>
-        /// Meethode om 3 random recepten op te halen.
-        /// </summary>
-        /// <returns>Ok wanneer 3 recepten zijn verstuurd.</returns>
-        [HttpGet("getrandom")]
-        public async Task<ActionResult> GetRandomRecipes()
-        {
-            var myrecipe = await _context.Recipes.OrderBy(x => Guid.NewGuid()).Take(3)
-                         .Where(r => r.Status == RecipeModel.status.Accepted.ToString())
-                         .Select(r => new
-                         {
-                             r.recipeId,
-                             r.Title,
-                             r.Description,
-                             r.Ingredients,
-                             r.Rating,
-                             r.prepTime,
-                             r.Portions,
-                             r.imageName,
-                             r.User.userName
-                         })
-                         .ToListAsync();
-
-            return Ok(myrecipe);
-        }
-
-        /// <summary>
         /// Methode om een recept op te halen.
         /// </summary>
         /// <param name="id">recept id van ingevulde front-end.</param>
@@ -137,7 +111,7 @@ namespace Back_end_API.Controllers
         }
 
         //nog over zetten naar andere functie (apparte class).
-        [HttpPost("uploadimg")]
+        [NonAction]
         public async Task<string> UploadImage(IFormFile request)
         {
             if(request.Length > 0)
@@ -156,20 +130,6 @@ namespace Back_end_API.Controllers
                 }
             }
             else { return "upload failed"; }
-        }
-
-        //nog over zetten naar andere functie (apparte class).
-        [HttpGet("{fileName}")]
-        public async Task<ActionResult> GetImage(string fileName)
-        {
-            string path = _env.WebRootPath + "\\uploads\\";
-            var filepath = path + fileName;
-            if (System.IO.File.Exists(filepath))
-            {
-                byte[] b = System.IO.File.ReadAllBytes(filepath);
-                return File(b, "image/png");
-            }
-            return null;
         }
     }
 }

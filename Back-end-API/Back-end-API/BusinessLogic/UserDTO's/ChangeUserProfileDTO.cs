@@ -6,8 +6,8 @@
 
         public string userName { get; set; } = string.Empty;
 
-        public string? adress { get; set; }
+        public string adress { get; set; } = null!;
 
-        public string? phone { get; set; }
+        public string phone { get; set; } = null!;
     }
 }

@@ -2,8 +2,8 @@
 {
     public class ChangeUsernameDTO
     {
-        public string? currentUsername { get; set; }
+        public string currentUsername { get; set; } = null!;
 
-        public string? newUsername { get; set; }
+        public string newUsername { get; set; } = null!;
     }
 }

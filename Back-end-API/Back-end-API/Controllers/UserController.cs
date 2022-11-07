@@ -52,6 +52,75 @@ namespace Back_end_API.Controllers
         }
 
         /// <summary>
+        /// Methode om het profiel van een user aan te passen.
+        /// </summary>
+        /// <param name="request">Verzameling van userId, username, adress en phone.</param>
+        /// <returns>Ok wanneer user is gevonden en gegvens zijn aangepast, badrequest wanneer user niet is gevonden.</returns>
+        [HttpPut("changeprofile")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> ChangeProfile(ChangeUserProfileDTO request)
+        {
+            var myuser = await _context.Users.FindAsync(request.userId);
+            if (myuser != null)
+            {
+                if (request.userName == "") { myuser.userName = myuser.userName; }
+                else { myuser.userName = request.userName; }
+                if (request.adress == "") { myuser.adress = myuser.adress; }
+                else { myuser.adress = request.adress; }
+                if (request.phone == "") { myuser.phone = myuser.phone; }
+                else { myuser.phone = request.phone; }
+
+                await _context.SaveChangesAsync();
+                return Ok("profile has changed");
+            }
+            return BadRequest("user not found");
+        } 
+
+        /// <summary>
+        /// Methode om het wachtwoord van een user aan te passen.
+        /// </summary>
+        /// <param name="request">Verzameling van userId, currentpassword en newpassword.</param>
+        /// <returns>Ok wanneer user is gevonden, wachtwoord is aangepast en email is verzonden, Badrequest wanneer user niet is gevonden.</returns>
+        [HttpPut("changepassword")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> ChangePassword(ChangeUserPasswordDTO request)
+        {
+            var myuser = await _context.Users.FindAsync(request.userId);
+            if(myuser != null && verify.VerifyPasswordHash(request.currentPassword, myuser.passwordHash, myuser.passwordSalt))
+            {
+                verify.CreatePasswordHash(request.newPassword, out byte[] passwordhash, out byte[] passwordsalt);
+
+                myuser.passwordHash = passwordhash;
+                myuser.passwordSalt = passwordsalt;
+
+                await _context.SaveChangesAsync();
+
+                //stuur email met confirmatie wachtwoord.
+                emailCreator.SendEmailResetPasswordSucces(myuser.Email, myuser.userName);
+
+                return Ok("password has changed");
+            }
+            return BadRequest("incorrect password");
+        }
+
+        /// <summary>
+        /// Methode om te checken of username al bestaat en eigen username uit het filter halen.
+        /// </summary>
+        /// <param name="request">Verzameling van currentUsername en newUsername.</param>
+        /// <returns>true wanneer username dubbel is en niet overeen komt met huidige username, false als er geen dubbele username is.</returns>
+        [HttpPost("doubleusername")]
+        public async Task<ActionResult<bool>> UsernameCheckerChangeUsername(ChangeUsernameDTO request)
+        {
+            bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.newUsername);
+
+            if (doubleUsername && request.currentUsername.ToLower() != request.newUsername.ToLower()) { return true; }
+
+            return false;
+        }
+
+        /// <summary>
         /// Methode die het aantal gecreerde recepeten van een user ophaalt.
         /// </summary>
         /// <param name="id">user id van ingevulde front-end.</param>
@@ -90,80 +159,11 @@ namespace Back_end_API.Controllers
         }
 
         /// <summary>
-        /// Methode om te checken of username al bestaat en eigen username uit het filter halen.
-        /// </summary>
-        /// <param name="request">Verzameling van currentUsername en newUsername.</param>
-        /// <returns>true wanneer username dubbel is en niet overeen komt met huidige username, false als er geen dubbele username is.</returns>
-        [HttpPost("changeusername")]
-        public async Task<ActionResult<bool>> UsernameCheckerChangeUsername(ChangeUsernameDTO request)
-        {
-            bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.newUsername);
-
-            if (doubleUsername && request.currentUsername.ToLower() != request.newUsername.ToLower()) { return true; }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Methode om het wachtwoord van een user aan te passen.
-        /// </summary>
-        /// <param name="request">Verzameling van userId, currentpassword en newpassword.</param>
-        /// <returns>Ok wanneer user is gevonden, wachtwoord is aangepast en email is verzonden, Badrequest wanneer user niet is gevonden.</returns>
-        [HttpPut("changepassword")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> ChangePassword(ChangeUserPasswordDTO request)
-        {
-            var myuser = await _context.Users.FindAsync(request.userId);
-            if(myuser != null && verify.VerifyPasswordHash(request.currentPassword, myuser.passwordHash, myuser.passwordSalt))
-            {
-                verify.CreatePasswordHash(request.newPassword, out byte[] passwordhash, out byte[] passwordsalt);
-
-                myuser.passwordHash = passwordhash;
-                myuser.passwordSalt = passwordsalt;
-
-                await _context.SaveChangesAsync();
-
-                //stuur email met confirmatie wachtwoord.
-                emailCreator.SendEmailResetPasswordSucces(myuser.Email, myuser.userName);
-
-                return Ok("password has changed");
-            }
-            return BadRequest("incorrect password");
-        }
-
-        /// <summary>
-        /// Methode om het profiel van een user aan te passen.
-        /// </summary>
-        /// <param name="request">Verzameling van userId, username, adress en phone.</param>
-        /// <returns>Ok wanneer user is gevonden en gegvens zijn aangepast, badrequest wanneer user niet is gevonden.</returns>
-        [HttpPut("changeprofile")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> ChangeProfile(ChangeUserProfileDTO request)
-        {
-            var myuser = await _context.Users.FindAsync(request.userId);
-            if (myuser != null)
-            {
-                if (request.userName == "") { myuser.userName = myuser.userName; }
-                else { myuser.userName = request.userName; }
-                if (request.adress == "") { myuser.adress = myuser.adress; }
-                else { myuser.adress = request.adress; }
-                if (request.phone == "") { myuser.phone = myuser.phone; }
-                else { myuser.phone = request.phone; }
-
-                await _context.SaveChangesAsync();
-                return Ok("profile has changed");
-            }
-            return BadRequest("user not found");
-        }
-
-        /// <summary>
         /// Methode om de gemaakte recepten van een user op te halen.
         /// </summary>
         /// <param name="id">userId van de ingevulde front-end.</param>
         /// <returns>Ok wanneer recepten zijn opgestuurd.</returns>
-        [HttpGet("getmyrecipes")]
+        [HttpGet("getallmyrecipes")]
         [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUserRecipesById(int id)
@@ -186,6 +186,45 @@ namespace Back_end_API.Controllers
             .ToListAsync();
 
             return Ok(myrecipe);
+        }
+
+        /// <summary>
+        /// Methode om alle favoeriten op te halen.
+        /// </summary>
+        /// <param name="id">FavoriteId van de ingevulde front-end.</param>
+        /// <returns>Ok wannneer alle favoerieten zijn opgestuurd.</returns>
+        [HttpGet("getallmyfavorites")]
+        public async Task<ActionResult> GetAllFavoritesById(int id)
+        {
+            var myfavorite = await _context.Favorites
+                         .Where(f => f.userId == id)
+                         .Select(f => new
+                         {
+                             f.recipeId,
+                             f.Recipe.Title,
+                             f.Recipe.Description,
+                             f.Recipe.Ingredients,
+                             f.Recipe.Rating,
+                             f.Recipe.prepTime,
+                             f.Recipe.Portions,
+                             f.Recipe.imageName,
+                             f.Recipe.User.userName
+                         })
+                         .ToListAsync();
+
+            return Ok(myfavorite);
+        }
+
+        [HttpPost("getfavorite")]
+        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<bool>> GetFavoriteById(FavoriteDTO request)
+        {
+            bool myrecipe = await _context.Favorites.AnyAsync(f => f.recipeId == request.recipeId);
+            bool myuser = await _context.Favorites.AnyAsync(f => f.userId == request.userId);
+
+            if (myrecipe && myuser) { return true; }
+            else { return false; }
         }
 
         /// <summary>
@@ -235,44 +274,7 @@ namespace Back_end_API.Controllers
             return Ok("favorite removed");
         }
 
-        /// <summary>
-        /// Methode om alle favoeriten op te halen.
-        /// </summary>
-        /// <param name="id">FavoriteId van de ingevulde front-end.</param>
-        /// <returns>Ok wannneer alle favoerieten zijn opgestuurd.</returns>
-        [HttpGet("getallfavorites")]
-        public async Task<ActionResult> GetAllFavoritesById(int id)
-        {
-            var myfavorite = await _context.Favorites
-                         .Where(f => f.userId == id)
-                         .Select(f => new
-                         {
-                             f.recipeId,
-                             f.Recipe.Title,
-                             f.Recipe.Description,
-                             f.Recipe.Ingredients,
-                             f.Recipe.Rating,
-                             f.Recipe.prepTime,
-                             f.Recipe.Portions,
-                             f.Recipe.imageName,
-                             f.Recipe.User.userName
-                         })
-                         .ToListAsync();
-
-            return Ok(myfavorite);
-        }
-
-        [HttpPost("getfavorite")]
-        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<bool>> GetFavoriteById(FavoriteDTO request)
-        {
-            bool myrecipe = await _context.Favorites.AnyAsync(f => f.recipeId == request.recipeId);
-            bool myuser = await _context.Favorites.AnyAsync(f => f.userId == request.userId);
-
-            if(myrecipe && myuser) { return true; }
-            else { return false; }
-        }
+        
 
         /// <summary>
         /// Methode om een email te sturen van user naar bedrijf.

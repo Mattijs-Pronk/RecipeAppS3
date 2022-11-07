@@ -34,7 +34,7 @@
   
 .dropdown-content a:hover 
 {
-    background-color: rgb(99, 67, 29);
+    background-color: rgb(126, 70, 0.1);
     border-bottom: 2px solid var(--orange);
 }
   
@@ -91,7 +91,7 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    background-color: rgb(99, 67, 29);
+    background-color: rgb(126, 70, 0.1);
     border-bottom: 2px solid var(--orange);
     border-radius: 6px;
 }
