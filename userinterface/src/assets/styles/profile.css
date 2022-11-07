@@ -150,3 +150,57 @@ margin-left: 50px;
     background: var(--orange);
     letter-spacing: .1rem;
 }
+
+@media screen and (min-width: 992px){
+    .left{
+        margin-left: 4%;
+    }
+    .profile-card{
+        width: 400px;
+        margin-top: 6rem;
+    }
+    .edit-card{
+        width: 450px;
+        margin-top: 6rem;
+    }
+    .password-card{
+        width: 450px;
+        margin-top: 3rem;
+    }
+}
+
+@media screen and (min-width: 1440px){
+    .left{
+        margin-left: 10%;
+    }
+    .profile-card{
+        width: 500px;
+        margin-top: 10rem;
+    }
+    .edit-card{
+        width: 500px;
+        margin-top: 10rem;
+    }
+    .password-card{
+        width: 500px;
+        margin-top: 8rem;
+    }
+}
+
+@media screen and (min-width: 1660px){
+    .left{
+        margin-left: 28%;
+    }
+    .profile-card{
+        width: 500px;
+        margin-top: 10rem;
+    }
+    .edit-card{
+        width: 500px;
+        margin-top: 10rem;
+    }
+    .password-card{
+        width: 500px;
+        margin-top: 8rem;
+    }
+}
