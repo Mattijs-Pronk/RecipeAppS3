@@ -34,10 +34,10 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 				<textarea type="text" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
                 <br/>
-                <input type="file" accept="image/png" v-on:change="GetFile"> <br/>
+                <input class="custom-file-input" type="file" accept="image/png" v-on:change="GetFile"> <br/>
                 <br/>
                 <span v-if="fileError" class="text-danger">{{fileError}}</span>
-
+                <br/>
 				<button class="btn" v-on:click="submitForm()">Add recipe</button>
 			</div>
 		</div>
@@ -76,7 +76,7 @@ export default{
     },
     checkTitle() {
         this.titleError = this.title.length == 0 ? 'Title cannot be empty.' :
-        this.titleError = this.title.length > 16 ? 'Title is to long.' : ''
+        this.titleError = this.title.length > 18 ? 'Title is to long.' : ''
     },
     checkPreptime(){
         this.preptimeError = this.preptime.length == 0 ? 'Preptime cannot be empty.' :

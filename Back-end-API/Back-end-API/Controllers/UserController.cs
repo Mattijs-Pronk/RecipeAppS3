@@ -111,7 +111,7 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van currentUsername en newUsername.</param>
         /// <returns>true wanneer username dubbel is en niet overeen komt met huidige username, false als er geen dubbele username is.</returns>
         [HttpPost("doubleusername")]
-        public async Task<ActionResult<bool>> UsernameCheckerChangeUsername(ChangeUsernameDTO request)
+        public async Task<ActionResult<bool>> DoubleUsernameChangeUsername(ChangeUsernameDTO request)
         {
             bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.newUsername);
 
@@ -244,7 +244,7 @@ namespace Back_end_API.Controllers
                 await RemoveFavoriteById(myfavorites.favoriteId);
                 return NotFound("favorite removed");
             }
-                
+
             var newfavorite = new FavoritesModel
             {
                 userId = request.userId,
@@ -262,7 +262,7 @@ namespace Back_end_API.Controllers
         /// </summary>
         /// <param name="id">FavoriteId van de ingevulde front-end.</param>
         /// <returns>Ok wanneer favoriet is verwijderd.</returns>
-        [HttpPost("removefavorite")]
+        [NonAction]
         public async Task<ActionResult> RemoveFavoriteById(int id)
         {
             var favoritetoDelete = await _context.Favorites.FindAsync(id);

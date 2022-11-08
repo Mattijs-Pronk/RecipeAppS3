@@ -9,17 +9,21 @@ import EditPassword from '../components/EditPassword.vue';
 </script>
 
 <template>
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <Header/>
+
+        <div class="heading-collection">
+            <h3 class="sub-heading"> change your profile </h3>
+            <h1 class="heading"> Your Profile </h1>
+        </div>
+
 <div class="container">
 
     <!-- Profile -->
 <div class="left">
     <div class="profile-card">
         <div class="image-container">
-            <img src="../assets/Images/ProfilePic.jpg" style="width: 100%;">
+            <img src="../assets/Images/profilePic.png" style="width: 100%;">
             <div class="title">
                 <h2>{{userusername}}</h2>
             </div>
@@ -113,4 +117,5 @@ export default{
 
 <style scoped>
     @import '../assets/styles/profile.css';
+    @import '../assets/styles/extratext.css';
 </style>

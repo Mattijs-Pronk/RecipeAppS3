@@ -40,6 +40,8 @@ namespace Back_end_API.Migrations
 
                     b.HasIndex("recipeId");
 
+                    b.HasIndex("userId");
+
                     b.ToTable("Favorites");
                 });
 
@@ -153,7 +155,15 @@ namespace Back_end_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Back_end_API.Models.UserModel", "User")
+                        .WithMany()
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Recipe");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Back_end_API.Models.RecipeModel", b =>

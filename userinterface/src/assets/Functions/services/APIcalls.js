@@ -83,7 +83,7 @@ export default{
     },
 
     async GetAllFavoritesById(id){
-        return await API().get(`/User/getallfavorites?id=${id}`) //, {
+        return await API().get(`/User/getallmyfavorites?id=${id}`) //, {
         //    id: id
         //})
     },

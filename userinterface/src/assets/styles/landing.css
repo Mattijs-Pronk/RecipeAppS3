@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     gap:1.5rem;
     min-height: 80vh;
-    background-image: url("../Images/imagetest2.png");
+    background-image: url("../Images/Landingbg.png");
     background-size: cover;
     background-position: center;
   }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uQp2IAyBQxqP+AvQoil7MHpOvroFKqmapRLYN1HVaLM=",
+  "Hash": "QvcE9OFGUF4+VID5i0mKHp7vRVVUYRvs9fI+lst7H1o=",
   "Source": "Back-end-API",
   "BasePath": "_content/Back-end-API",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\recipeImg\\224833889pokebowl.png"
+    },
+    {
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\225801447Pastrami.png",
+      "SourceId": "Back-end-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
+      "BasePath": "_content/Back-end-API",
+      "RelativePath": "recipeImg/225801447Pastrami.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\recipeImg\\225801447Pastrami.png"
     }
   ]
 }

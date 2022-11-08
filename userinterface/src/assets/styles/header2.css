@@ -99,7 +99,7 @@ nav ul li a:hover{
 .section{
     background-color: var(--white);
     color: var(--black);
-    background-image: url("../Images/Foodbg.jpg");
+    background-image: url("../Images/Headerbg.jpg");
     background-size: cover;
     padding-top: 140px;
     padding-bottom: 140px;
