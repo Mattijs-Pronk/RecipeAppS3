@@ -45,7 +45,7 @@ namespace Back_end_API.Controllers
                 Email = request.Email,
                 passwordHash = passwordhash,
                 passwordSalt = passwordsalt,
-                isAdmin = request.isAdmin,
+                isAdmin = false,
                 //token toevoegen.
                 activateAccountToken = verify.CreateRandomToken(),
                 //user moet binnen 5 dagen zijn account activeren.

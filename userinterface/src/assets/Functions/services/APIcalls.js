@@ -28,12 +28,11 @@ export default{
         })
     },
 
-    async Register(username, password, email, isadmin){
+    async Register(username, password, email){
         return await API().post(`/Auth/register`, {
             userName: username,
             email: email,
             password: password,
-            isAdmin: isadmin
         })
     },
 

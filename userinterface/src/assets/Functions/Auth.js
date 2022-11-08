@@ -17,9 +17,8 @@ export const Login = async (email, password) => {
 
 //functie om te registreren.
 export const Register = async (username, email, password) => {
-  const isadmin = false;
   try{
-    await APIcalls.Register(username, password, email, isadmin)
+    await APIcalls.Register(username, password, email)
     return true;
   }
   catch(error){
@@ -68,8 +67,15 @@ export const VerifyAccount = async (email, activateaccounttoken) => {
 }
 
 //functie om uit te loggen.
-export const Logout = async () => {
-  localStorage.clear();
+export const Logout = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+  if(user !== null){
+    localStorage.removeItem('user');
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 //functie om te checken of een username al in gebruik is.
