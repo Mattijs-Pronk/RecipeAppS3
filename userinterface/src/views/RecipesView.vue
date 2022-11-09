@@ -40,10 +40,12 @@
     },
     //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
     mounted(){
-      this.GetAllRecipes()
+      this.FillMealList();
     },
     methods:{
-
+      async FillMealList(){
+        this.meallist = await GetAllRecipes();
+      }
     }
   }
 </script>

@@ -100,7 +100,7 @@ namespace Back_end_API.Controllers
                     //token weghalen.
                     Myuser.activateAccountToken = null;
                     Myuser.activateAccountTokenExpires = null;
-                    Myuser.activeSince = DateTime.Now;
+                    Myuser.activeSince = DateTime.Today;
 
                     await _context.SaveChangesAsync();
                     return Ok("user verified");

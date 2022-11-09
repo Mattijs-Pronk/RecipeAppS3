@@ -49,7 +49,7 @@
     methods:{
         async loadMyFavorites(){
           this.user = JSON.parse(localStorage.getItem("user"))
-          await this.GetAllFavoritesById(this.user)   
+          this.meallist = await this.GetAllFavoritesById(this.user)   
         }
     }
   }

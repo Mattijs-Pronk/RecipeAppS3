@@ -71,7 +71,7 @@ namespace Back_end_API.Controllers
                              r.imageName,
                              r.User.userName
                          })
-                         .ToListAsync();
+                         .ToArrayAsync();
 
             return Ok(myrecipe);
         }

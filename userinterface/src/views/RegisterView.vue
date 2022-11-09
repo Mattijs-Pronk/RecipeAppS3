@@ -99,6 +99,7 @@ export default{
 
     checkPassword() {
       this.passwordError = this.password.length < 6 ? 'Password is to short.' : ''
+      this.checkRePassword();
     },
 
     checkRePassword(){

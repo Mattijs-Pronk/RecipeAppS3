@@ -96,8 +96,8 @@ export default{
     },
     async SetUserInfo(){
         await this.GetUserById(this.userid);
-        await this.GetUserRecipesAmountById(this.userid)
-        await this.GetUserFavoritesAmountById(this.userid)
+        this.userrecipes = await GetUserRecipesAmountById(this.userid)
+        this.userfavorites = await GetUserFavoritesAmountById(this.userid)
 
         this.userusername = this.user[0].userName;
         this.useremail = this.user[0].email;

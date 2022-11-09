@@ -54,8 +54,8 @@
         }
     }, 
     methods:{
-      OpenRecipeById(id){
-        this.OpenModal(id)
+      async OpenRecipeById(id){
+        this.mealitem = await OpenModal(id)
         this.recipeid = id;
 
         var user = JSON.parse(localStorage.getItem("user"))  

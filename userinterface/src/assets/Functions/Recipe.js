@@ -1,10 +1,10 @@
 import APIcalls from "./services/APIcalls";
 
 //functie om alle recepten asynchroon in te laden.
-export const GetAllRecipes = async function(){
+export const GetAllRecipes = async () => {
         try{
-                await APIcalls.GetAllRecipes()
-                .then(response => {this.meallist = response.data;})
+                let result = await APIcalls.GetAllRecipes()
+                return result.data;
         }
         catch(error){
                 console.log(error)
@@ -13,11 +13,10 @@ export const GetAllRecipes = async function(){
 
 //functie om het modal te openen.
 export const OpenModal = async function(id){
-        try{
-                await APIcalls.GetRecipeById(id)
-                .then(response => {this.mealitem = response.data;})
-
+        try{         
+                let response = await APIcalls.GetRecipeById(id)
                 document.getElementById("hidden").style.display = "block";
+                return response.data;
         }
         catch(error){
                 console.log(error)

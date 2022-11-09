@@ -106,6 +106,6 @@ section{
 
 @media screen and (min-width: 1660px){
     .dishes .box-container{
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }

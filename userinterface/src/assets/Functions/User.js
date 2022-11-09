@@ -1,10 +1,10 @@
 import APIcalls from "./services/APIcalls";
 
 //functie recipes van de user in te laden.
-export const GetUserRecipesById = async function(id){
+export const GetUserRecipesById = async (id) => {
     try{
-        await APIcalls.GetUserRecipesById(id)
-        .then(response => {this.meallist = response.data;})
+        let response = await APIcalls.GetUserRecipesById(id)
+        return response.data;
     }
     catch(error){
         console.log(error)
@@ -43,15 +43,13 @@ export const AddToFavorites = async (userid, recipeid) => {
 }
 
 //functie om alle favorieten van een user op te halen.
-export const GetAllFavoritesById = async function(id){
+export const GetAllFavoritesById = async (id) => {
     try{
-        await APIcalls.GetAllFavoritesById(id)
-        .then(response => {this.meallist = response.data;})
-        return true
+        let response = await APIcalls.GetAllFavoritesById(id)
+        return response.data;
     }
     catch(error){
         console.log(error)
-        return false
     }
 }
 
@@ -92,10 +90,10 @@ export const GetUserById = async function(userid) {
 }
 
 //functie om het aantal gecreerde recepten van een user op te halen.
-export const GetUserRecipesAmountById = async function(userid) {
+export const GetUserRecipesAmountById = async (userid) => {
     try{
-        return await APIcalls.GetUserRecipesAmountById(userid)
-        .then(response => {this.userrecipes = response.data;})
+        let response = await APIcalls.GetUserRecipesAmountById(userid)
+        return response.data;
     }
     catch(error){
         console.log(error)
@@ -103,10 +101,10 @@ export const GetUserRecipesAmountById = async function(userid) {
 }
 
 //functie om het aantal favorieten recepten van een user op te halen.
-export const GetUserFavoritesAmountById = async function(userid) {
+export const GetUserFavoritesAmountById = async (userid) => {
     try{
-        return await APIcalls.GetUserFavoritesAmountById(userid)
-        .then(response => {this.userfavorites = response.data;})
+        let response = await APIcalls.GetUserFavoritesAmountById(userid)
+        return response.data;
     }
     catch(error){
         console.log(error)

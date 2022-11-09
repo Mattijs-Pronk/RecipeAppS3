@@ -50,8 +50,8 @@ namespace UnitTests
             //    activateAccountTokenExpires = null,
             //};
 
-            context.Favorites.AddAsync(favorite);
-            context.SaveChangesAsync();
+            context.Favorites.Add(favorite);
+            context.SaveChanges();
         }
 
         [Fact]

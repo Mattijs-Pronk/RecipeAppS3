@@ -85,8 +85,8 @@ namespace Back_end_API.BusinessLogic
             string login = "http://127.0.0.1:5173/login";
             string subject = "Cloud recipes (New Password)";
 
-            string body = "Dear " + username + ", <br /><br /><br />Your password has succesfully been chenged<br /><br />" +
-                "<h2>Your password has been changed at: "+DateTime.Now.ToString()+"<h2 /> <br/> ,br/>" +
+            string body = "Dear " + username + ", <br /><br /><br />Your password has succesfully been changed <br /><br />" +
+                "<h2>Your password has been changed at: "+DateTime.Now.ToString()+"<h2 /> <br/> <br/>" +
                 "Click on the link below and use your new password." +
                 "<br />" + login + "<br /><br />" +
                 "If you did not reset your password, you can ignore this email. " +
