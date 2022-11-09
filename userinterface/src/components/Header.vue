@@ -1,7 +1,6 @@
   <script setup>
     import { RouterLink } from 'vue-router'
     import {Logout} from '../assets/Functions/Auth'
-    import {GetUserRecipesById} from '../assets/Functions/User'
   </script>
   
   <template>

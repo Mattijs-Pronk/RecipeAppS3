@@ -79,10 +79,10 @@ export const ChangeProfile = async (userid, username, adress, phone) => {
 }
 
 //functie om een user op te halen.
-export const GetUserById = async function(userid) {
+export const GetUserById = async (userid) => {
     try{
-        return await APIcalls.GetUserById(userid)
-        .then(response => {this.user = response.data;})
+        let response = await APIcalls.GetUserById(userid)
+        return response.data;
     }
     catch(error){
         console.log(error)

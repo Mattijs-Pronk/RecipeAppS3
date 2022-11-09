@@ -31,8 +31,6 @@ namespace Back_end_API.Controllers
         /// <param name="id">user id van ingevulde front-end.</param>
         /// <returns>Ok wanneer user is verstuurd naar front-end.</returns>
         [HttpGet("getuser")]
-        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUserById(int id)
         {
             var myuser = await _context.Users

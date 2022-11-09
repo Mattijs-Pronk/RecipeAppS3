@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Back-end-API", "Back-end-API\Back-end-API.csproj", "{74436282-05FE-4D11-BF0C-BCCB7C61329A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{868DB826-129B-400C-B9FF-B7BCDB553921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Back-end-APITests", "UnitTests\Back-end-APITests.csproj", "{868DB826-129B-400C-B9FF-B7BCDB553921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
