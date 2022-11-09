@@ -16,14 +16,9 @@ namespace Back_end_API.Data
 
         public DbSet<FavoritesModel> Favorites { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //update klaar zetten Tools>Nuget Package manager>PackageManager console> type in console "add-migration 'wat je hebt verandert'"
-            //update batabase met Tools>Nuget Package manager>PackageManager console> type in console "Update-Database"
-            if (!optionsBuilder.IsConfigured)
-            optionsBuilder.UseSqlServer(@"Data Source=mssqlstud.fhict.local;Initial Catalog=dbi456410_recipeapp;User ID=dbi456410_recipeapp;Password=recipeApp;TrustServerCertificate=True;");
-        }
 
+        //update klaar zetten Tools>Nuget Package manager>PackageManager console> type in console "add-migration 'wat je hebt verandert'"
+        //update batabase met Tools>Nuget Package manager>PackageManager console> type in console "Update-Database"
         //Mapjes Data, Migration en Models is voor het beheren van de database
     }
 }

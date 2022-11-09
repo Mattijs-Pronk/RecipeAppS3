@@ -12,7 +12,7 @@ namespace UnitTests
 {
     public class UserControllerTests
     {
-        private void Seed(RecipeAppContext context)
+        private void SeedDb(RecipeAppContext context)
         {
             var favorite = new FavoritesModel
             {
@@ -57,7 +57,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_()
+        public void Test_GetUserById()
         {
             //arrange
             var options = new DbContextOptionsBuilder<RecipeAppContext>()
@@ -65,7 +65,7 @@ namespace UnitTests
                 .Options;
 
             var context = new RecipeAppContext(options);
-            Seed(context);
+            SeedDb(context);
 
             var userController = new UserController(context);
 

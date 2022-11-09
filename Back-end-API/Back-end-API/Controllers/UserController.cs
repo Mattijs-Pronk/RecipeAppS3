@@ -44,7 +44,7 @@ namespace Back_end_API.Controllers
                              u.phone,
                              u.activeSince
                          })
-                         .ToListAsync();
+                         .ToArrayAsync();
 
             return Ok(myuser);
         }
@@ -55,8 +55,6 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van userId, username, adress en phone.</param>
         /// <returns>Ok wanneer user is gevonden en gegvens zijn aangepast, badrequest wanneer user niet is gevonden.</returns>
         [HttpPut("changeprofile")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> ChangeProfile(ChangeUserProfileDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);
@@ -81,8 +79,6 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van userId, currentpassword en newpassword.</param>
         /// <returns>Ok wanneer user is gevonden, wachtwoord is aangepast en email is verzonden, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPut("changepassword")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> ChangePassword(ChangeUserPasswordDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);
@@ -124,8 +120,6 @@ namespace Back_end_API.Controllers
         /// <param name="id">user id van ingevulde front-end.</param>
         /// <returns>Ok wanneer het aantal is verstuurd naar de front-end.</returns>
         [HttpGet("recipesint")]
-        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<int>> GetUserRecipesAmountById(int id)
         {
             var createdrecipes = await _context.Recipes
@@ -143,8 +137,6 @@ namespace Back_end_API.Controllers
         /// <param name="id">user id van ingevulde front-end.</param>
         /// <returns>Ok wanneer het aantal is verstuurd naar de front-end.</returns>
         [HttpGet("favoritesint")]
-        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<int>> GetUserFavoritesAmountById(int id)
         {
             var favoriterecipes = await _context.Favorites
@@ -162,8 +154,6 @@ namespace Back_end_API.Controllers
         /// <param name="id">userId van de ingevulde front-end.</param>
         /// <returns>Ok wanneer recepten zijn opgestuurd.</returns>
         [HttpGet("getallmyrecipes")]
-        [ProducesResponseType(typeof(RecipeModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUserRecipesById(int id)
         {
             var myrecipe = await _context.Recipes
@@ -214,8 +204,6 @@ namespace Back_end_API.Controllers
         }
 
         [HttpPost("getfavorite")]
-        [ProducesResponseType(typeof(UserModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<bool>> GetFavoriteById(FavoriteDTO request)
         {
             bool myrecipe = await _context.Favorites.AnyAsync(f => f.recipeId == request.recipeId);
@@ -231,7 +219,6 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van userId en recipeId.</param>
         /// <returns>Ok wanneer recept is toegevoegt aan favorieten, badrequest wanneer user/recept niet is gevonden of wanneer recept al in favorieten staat.</returns>
         [HttpPost("addfavorite")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> AddToFavorites(AddFavoriteDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);

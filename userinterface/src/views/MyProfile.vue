@@ -96,20 +96,19 @@ export default{
     },
     async SetUserInfo(){
         this.user = await GetUserById(this.userid);
-        // this.userrecipes = await GetUserRecipesAmountById(this.userid)
-        // this.userfavorites = await GetUserFavoritesAmountById(this.userid)
+        this.userrecipes = await GetUserRecipesAmountById(this.userid)
+        this.userfavorites = await GetUserFavoritesAmountById(this.userid)
 
-        console.log(this.user);
-        // this.userusername = this.user[0].userName;
-        // this.useremail = this.user[0].email;
+        this.userusername = this.user[0].userName;
+        this.useremail = this.user[0].email;
 
-        // this.useradress = this.user[0].adress;
-        // this.userphone = this.user[0].phone;
+        this.useradress = this.user[0].adress;
+        this.userphone = this.user[0].phone;
 
-        // console.log(this.user)
+        console.log(this.user)
 
-        // this.useractive = this.user[0].activeSince;
-        // this.useraverige = 0;
+        this.useractive = this.user[0].activeSince;
+        this.useraverige = 0;
     },
 }
 }
