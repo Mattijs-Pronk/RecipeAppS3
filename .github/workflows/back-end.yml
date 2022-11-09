@@ -8,17 +8,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-  
-      runs-on: ubuntu-latest
-      
-      steps:
-      -uses: actions/checkout@v2
-      -name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-      dotnet-version: 6.0
-      -name: Build
-      run: dotnet build --configuration Release
-      -name: Run unitTests
-      run: dotnet test --configuration Release
+  unit_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: { dir: ['./Back-end-API'] }
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test .net projects
+        working-directory: ${{ matrix.dir }}
+        run: | 
+              dotnet build --configuration Release
+              dotnet test --configuration Release
