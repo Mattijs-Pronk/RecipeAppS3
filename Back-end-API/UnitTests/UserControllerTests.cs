@@ -15,16 +15,18 @@ namespace UnitTests
     public class UserControllerTests
     {
         UserController userController;
+        VerifyInfo verifyInfo = new VerifyInfo();
 
         public UserControllerTests()
         {
             SeedDb();
         }
 
+        [Fact]
         private void SeedDb()
         {
             var options = new DbContextOptionsBuilder<RecipeAppContext>()
-                .UseInMemoryDatabase(databaseName: "test")
+                .UseInMemoryDatabase(databaseName: "UserControllerTestDb")
                 .Options;
 
             var context = new RecipeAppContext(options);
@@ -33,41 +35,38 @@ namespace UnitTests
 
             context.Database.EnsureDeleted();
 
-            var favorite = new FavoritesModel
+
+            var recipes = new List<RecipeModel>()
             {
-                favoriteId = 1,
-                recipeId = 1,
-                userId = 1
+                new RecipeModel
+                {
+                    recipeId = 1,
+                    Title = "test",
+                    Ingredients = "test",
+                    Description = "test",
+                    imageName = "test.png",
+                    prepTime = 1,
+                    Portions = 1,
+                    Rating = 1,
+                    Status = "Accepted",
+                    userId = 1
+                },
+                new RecipeModel 
+                {
+                    recipeId = 2,
+                    Title = "test",
+                    Ingredients = "test",
+                    Description = "test",
+                    imageName = "test.png",
+                    prepTime = 1,
+                    Portions = 1,
+                    Rating = 1,
+                    Status = "Accepted",
+                    userId = 1
+                }
             };
 
-            var recipe = new RecipeModel
-            {
-                recipeId = 1,
-                Title = "test", 
-                Ingredients = "test",
-                Description = "test",
-                imageName = "test.png",
-                prepTime = 1,
-                Portions = 1,
-                Rating = 1,
-                Status = "Accepted",
-                userId = 1
-            };
-
-            var recipe1 = new RecipeModel
-            {
-                recipeId = 2,
-                Title = "test",
-                Ingredients = "test",
-                Description = "test",
-                imageName = "test.png",
-                prepTime = 1,
-                Portions = 1,
-                Rating = 1,
-                Status = "Accepted",
-                userId = 1
-            };
-
+            verifyInfo.CreatePasswordHash("test123", out byte[] passwordhash, out byte[] passwordsalt);
             var user = new UserModel
             {
                 userId = 1,
@@ -75,8 +74,8 @@ namespace UnitTests
                 Email = "peter@example.com",
                 adress = "test str.15",
                 phone = "329029034",
-                passwordHash = RandomNumberGenerator.GetBytes(2),
-                passwordSalt = RandomNumberGenerator.GetBytes(2),
+                passwordHash = passwordhash,
+                passwordSalt = passwordsalt,
                 isAdmin = false,
                 activeSince = DateTime.Now,
                 passwordResetToken = null,
@@ -85,22 +84,29 @@ namespace UnitTests
                 activateAccountTokenExpires = null
             };
 
+            var favorite = new FavoritesModel
+            {
+                favoriteId = 1,
+                recipeId = 1,
+                userId = 1
+            };
+
             context.Users.Add(user);
-            context.Recipes.Add(recipe);
-            context.Recipes.Add(recipe1);
+            context.Recipes.AddRange(recipes);
             context.Favorites.Add(favorite);
             context.SaveChanges();
         }
 
         [Fact]
-        public void Test_GetUserById_OKResult()
+        public async Task Test_GetUserById_OKResult()
         {
             //arrange
             int userid = 1;
 
+
             //act
-            var user = userController.GetUserById(userid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.GetUserById(userid);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -109,14 +115,15 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_GetUserById_BadRequestResult()
+        public async Task Test_GetUserById_BadRequestResult()
         {
             //arrange
             var userid = 0;
 
+
             //act
-            var user = userController.GetUserById(userid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.GetUserById(userid);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -125,7 +132,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_ChangeProfile_OKResult()
+        public async Task Test_ChangeProfile_OKResult()
         {
             //arrange
 
@@ -138,8 +145,8 @@ namespace UnitTests
             };
 
             //act
-            var user = userController.ChangeProfile(request);
-            var result = user.Result as ObjectResult;
+            var user = await userController.ChangeProfile(request);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -148,7 +155,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_ChangeProfile_BadRequestResult()
+        public async Task Test_ChangeProfile_BadRequestResult()
         {
             //arrange
 
@@ -160,9 +167,10 @@ namespace UnitTests
                 phone = "392034854"
             };
 
+
             //act
-            var user = userController.ChangeProfile(request);
-            var result = user.Result as ObjectResult;
+            var user = await userController.ChangeProfile(request);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -171,7 +179,51 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_DoubleUsernameChangeUsername_True()
+        public async Task Test_ChangePassword_OKResult()
+        {
+            //arrange
+            var request = new ChangeUserPasswordDTO
+            {
+                userId = 1,
+                currentPassword = "test123",
+                newPassword = "test1234"
+            };
+
+            //act
+            var user = await userController.ChangePassword(request);
+            var result = (ObjectResult)user;
+
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal(200, result.StatusCode);
+        }
+
+        [Fact]
+        public async Task Test_ChangePassword_BadRequestResult()
+        {
+            //arrange
+
+            var request = new ChangeUserPasswordDTO
+            {
+                userId = 0,
+                currentPassword = "test123",
+                newPassword = "test1234"
+            };
+
+
+            //act
+            var user = await userController.ChangePassword(request);
+            var result = (ObjectResult)user;
+
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal(400, result.StatusCode);
+        }
+
+        [Fact]
+        public async Task Test_DoubleUsernameChangeUsername_True()
         {
             //arrange
             var request = new ChangeUsernameDTO
@@ -182,16 +234,16 @@ namespace UnitTests
 
 
             //act
-            var result = userController.DoubleUsernameChangeUsername(request);
+            var result = await userController.DoubleUsernameChangeUsername(request);
 
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(true, result.Result.Value);
+            Assert.True(result.Value);
         }
 
         [Fact]
-        public void Test_DoubleUsernameChangeUsername_False()
+        public async Task Test_DoubleUsernameChangeUsername_False()
         {
             //arrange
             var request = new ChangeUsernameDTO
@@ -202,56 +254,56 @@ namespace UnitTests
 
 
             //act
-            var result = userController.DoubleUsernameChangeUsername(request);
+            var result = await userController.DoubleUsernameChangeUsername(request);
 
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(false, result.Result.Value);
+            Assert.False(result.Value);
         }
 
         [Fact]
-        public void Test_GetUserRecipesAmountById_Int()
+        public async Task Test_GetUserRecipesAmountById_Int()
         {
             //arrange
             int userid = 1;
 
 
             //act
-            var result = userController.GetUserRecipesAmountById(userid);
+            var result = await userController.GetUserRecipesAmountById(userid);
 
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(2, result.Result.Value);
+            Assert.Equal(2, result.Value);
         }
 
         [Fact]
-        public void Test_GetUserFavoritesAmountById_Int()
+        public async Task Test_GetUserFavoritesAmountById_Int()
         {
             //arrange
             int userid = 1;
 
 
             //act
-            var result = userController.GetUserFavoritesAmountById(userid);
+            var result = await userController.GetUserFavoritesAmountById(userid);
 
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(1, result.Result.Value);
+            Assert.Equal(1, result.Value);
         }
 
         [Fact]
-        public void Test_GetUserRecipesById_OKResult()
+        public async Task Test_GetUserRecipesById_OKResult()
         {
             //arrange
             int userid = 1;
 
 
             //act
-            var user = userController.GetUserRecipesById(userid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.GetUserRecipesById(userid);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -260,15 +312,15 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_GetUserRecipesById_BadRequestResult()
+        public async Task Test_GetUserRecipesById_BadRequestResult()
         {
             //arrange
             int userid = 0;
 
 
             //act
-            var user = userController.GetUserRecipesById(userid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.GetUserRecipesById(userid);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -277,15 +329,15 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_GetAllFavoritesById_OKResult()
+        public async Task Test_GetAllFavoritesById_OKResult()
         {
             //arrange
             int favoriteid = 1;
 
 
             //act
-            var user = userController.GetAllFavoritesById(favoriteid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.GetAllFavoritesById(favoriteid);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -294,15 +346,15 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_GetAllFavoritesById_BadRequestResult()
+        public async Task Test_GetAllFavoritesById_BadRequestResult()
         {
             //arrange
             int favoriteid = 0;
 
 
             //act
-            var user = userController.GetAllFavoritesById(favoriteid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.GetAllFavoritesById(favoriteid);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -311,7 +363,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_GetFavoriteById_True()
+        public async Task Test_GetFavoriteById_True()
         {
             //arrange
             var request = new AddFavoriteDTO
@@ -322,16 +374,16 @@ namespace UnitTests
 
 
             //act
-            var result = userController.GetFavoriteById(request);
+            var result = await userController.GetFavoriteById(request);
 
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(true, result.Result.Value);
+            Assert.True(result.Value);
         }
 
         [Fact]
-        public void Test_GetFavoriteById_False()
+        public async Task Test_GetFavoriteById_False()
         {
             //arrange
             var request = new AddFavoriteDTO
@@ -342,16 +394,16 @@ namespace UnitTests
 
 
             //act
-            var result = userController.GetFavoriteById(request);
+            var result = await userController.GetFavoriteById(request);
 
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(false, result.Result.Value);
+            Assert.False(result.Value);
         }
 
         [Fact]
-        public void Test_AddToFavorites_OkResult()
+        public async Task Test_AddToFavorites_OkResult()
         {
             //arrange
             var request = new AddFavoriteDTO
@@ -362,8 +414,8 @@ namespace UnitTests
 
 
             //act
-            var user = userController.AddToFavorites(request);
-            var result = user.Result as ObjectResult;
+            var user = await userController.AddToFavorites(request);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -372,7 +424,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_AddToFavorites_BadRequestResult()
+        public async Task Test_AddToFavorites_BadRequestResult()
         {
             //arrange
             var request = new AddFavoriteDTO
@@ -383,8 +435,8 @@ namespace UnitTests
 
 
             //act
-            var user = userController.AddToFavorites(request);
-            var result = user.Result as ObjectResult;
+            var user = await userController.AddToFavorites(request);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -393,15 +445,15 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Test_RemoveFavoriteById_OkResult()
+        public async Task Test_RemoveFavoriteById_OkResult()
         {
             //arrange
             int favoriteid = 1;
 
 
             //act
-            var user = userController.RemoveFavoriteById(favoriteid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.RemoveFavoriteById(favoriteid);
+            var result = (ObjectResult)user;
 
 
             //assert
@@ -410,15 +462,15 @@ namespace UnitTests
         }
         [Fact]
 
-        public void Test_RemoveFavoriteById_BadRequestResult()
+        public async Task Test_RemoveFavoriteById_BadRequestResult()
         {
             //arrange
             int favoriteid = 0;
 
 
             //act
-            var user = userController.RemoveFavoriteById(favoriteid);
-            var result = user.Result as ObjectResult;
+            var user = await userController.RemoveFavoriteById(favoriteid);
+            var result = (ObjectResult)user;
 
 
             //assert
