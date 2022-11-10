@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QvcE9OFGUF4+VID5i0mKHp7vRVVUYRvs9fI+lst7H1o=",
+  "Hash": "vbkRR2fEJyM6pQ1SSVepr7SZe2kyuT6SLWRK12KmTE8=",
   "Source": "Back-end-API",
   "BasePath": "_content/Back-end-API",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\recipeImg\\221719546amongus.png"
+    },
+    {
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\221921390Steak.png",
+      "SourceId": "Back-end-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
+      "BasePath": "_content/Back-end-API",
+      "RelativePath": "recipeImg/221921390Steak.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\recipeImg\\221921390Steak.png"
     },
     {
       "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\221957577amongus.png",
@@ -66,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\recipeImg\\222022669amongus.png"
+    },
+    {
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\222031440Pizza.png",
+      "SourceId": "Back-end-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
+      "BasePath": "_content/Back-end-API",
+      "RelativePath": "recipeImg/222031440Pizza.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\recipeImg\\222031440Pizza.png"
     },
     {
       "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\222140001amongus.png",

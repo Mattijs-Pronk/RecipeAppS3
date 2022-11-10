@@ -33,6 +33,9 @@ namespace Back_end_API.Controllers
         [HttpGet("getuser")]
         public async Task<ActionResult> GetUserById(int id)
         {
+            var myusercheck = await _context.Users.FindAsync(id);
+            if (myusercheck == null) { return BadRequest("user not found"); }
+
             var myuser = await _context.Users
             .Where(u => u.userId == id)
                          .Select(u => new
@@ -128,7 +131,7 @@ namespace Back_end_API.Controllers
 
             var recipes = createdrecipes.Count();
 
-            return Ok(recipes);
+            return recipes;
         }
 
         /// <summary>
@@ -145,7 +148,7 @@ namespace Back_end_API.Controllers
 
             var favorites = favoriterecipes.Count();
 
-            return Ok(favorites);
+            return favorites;
         }
 
         /// <summary>
@@ -156,6 +159,9 @@ namespace Back_end_API.Controllers
         [HttpGet("getallmyrecipes")]
         public async Task<ActionResult> GetUserRecipesById(int id)
         {
+            var myrecipecheck = await _context.Users.FindAsync(id);
+            if (myrecipecheck == null) { return BadRequest("user not found"); }
+
             var myrecipe = await _context.Recipes
                          .Where(r => r.userId == id)
                          .Select(r => new
@@ -171,7 +177,7 @@ namespace Back_end_API.Controllers
                              r.imageName,
                              r.User.userName
                          })
-            .ToListAsync();
+                        .ToListAsync();
 
             return Ok(myrecipe);
         }
@@ -184,6 +190,9 @@ namespace Back_end_API.Controllers
         [HttpGet("getallmyfavorites")]
         public async Task<ActionResult> GetAllFavoritesById(int id)
         {
+            var myfavoritecheck = await _context.Favorites.FindAsync(id);
+            if (myfavoritecheck == null) { return BadRequest("favorite not found"); }
+
             var myfavorite = await _context.Favorites
                          .Where(f => f.userId == id)
                          .Select(f => new
@@ -204,7 +213,7 @@ namespace Back_end_API.Controllers
         }
 
         [HttpPost("getfavorite")]
-        public async Task<ActionResult<bool>> GetFavoriteById(FavoriteDTO request)
+        public async Task<ActionResult<bool>> GetFavoriteById(AddFavoriteDTO request)
         {
             bool myrecipe = await _context.Favorites.AnyAsync(f => f.recipeId == request.recipeId);
             bool myuser = await _context.Favorites.AnyAsync(f => f.userId == request.userId);
@@ -224,10 +233,11 @@ namespace Back_end_API.Controllers
             var myuser = await _context.Users.FindAsync(request.userId);
             var myrecipe = await _context.Recipes.FindAsync(request.recipeId);
             var myfavorites = await _context.Favorites.FirstOrDefaultAsync(f => f.userId == request.userId && f.recipeId == request.recipeId);
+
             if (myuser == null || myrecipe == null || myfavorites != null)
             {
                 await RemoveFavoriteById(myfavorites.favoriteId);
-                return NotFound("favorite removed");
+                return BadRequest("favorite removed");
             }
 
             var newfavorite = new FavoritesModel
