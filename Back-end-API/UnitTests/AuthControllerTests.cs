@@ -34,9 +34,9 @@ namespace UnitTests
 
             var context = new RecipeAppContext(options);
 
-            authController = new AuthController(context);
-
             context.Database.EnsureDeleted();
+
+            authController = new AuthController(context);
 
             verifyInfo.CreatePasswordHash("test123", out byte[] passwordhash, out byte[] passwordsalt);
             passwordResetToken = verifyInfo.CreateRandomToken();
@@ -46,7 +46,7 @@ namespace UnitTests
                 new UserModel
                 {
                     userId = 1,
-                    userName = "Peter",
+                    userName = "Pannekoek",
                     Email = "peter@example.com",
                     adress = "test str.15",
                     phone = "329029034",
@@ -290,7 +290,7 @@ namespace UnitTests
         public async Task Test_DoubleUserNameChecker_True()
         {
             //arrange
-            string username = "Peter";
+            string username = "Pannekoek";
 
 
             //act

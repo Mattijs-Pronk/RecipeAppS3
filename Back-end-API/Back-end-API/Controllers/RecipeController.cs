@@ -29,7 +29,7 @@ namespace Back_end_API.Controllers
         /// </summary>
         /// <returns>Ok wanneer alle recepten zijn verstuurd.</returns>
         [HttpGet("getall")]
-        public async Task<ActionResult> GetAllRecipes()
+        public async Task<ActionResult> GetAllAcceptedRecipes()
         { 
             var myrecipe = await _context.Recipes
                          .Where(r => r.Status == RecipeModel.status.Accepted.ToString())
@@ -88,7 +88,7 @@ namespace Back_end_API.Controllers
         {
             var myuser = await _context.Users.FindAsync(request.userId);
             if (myuser == null)
-                return NotFound();
+                return BadRequest("user not found");
 
             var filename = UploadImage(request.imageFile);
 

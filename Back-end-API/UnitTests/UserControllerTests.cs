@@ -31,10 +31,9 @@ namespace UnitTests
 
             var context = new RecipeAppContext(options);
 
-            userController = new UserController(context);
-
             context.Database.EnsureDeleted();
 
+            userController = new UserController(context);
 
             var recipes = new List<RecipeModel>()
             {
