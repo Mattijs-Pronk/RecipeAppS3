@@ -63,12 +63,9 @@ namespace Back_end_API.Controllers
             var myuser = await _context.Users.FindAsync(request.userId);
             if (myuser != null)
             {
-                if (request.userName == "") { myuser.userName = myuser.userName; }
-                else { myuser.userName = request.userName; }
-                if (request.adress == "") { myuser.adress = myuser.adress; }
-                else { myuser.adress = request.adress; }
-                if (request.phone == "") { myuser.phone = myuser.phone; }
-                else { myuser.phone = request.phone; }
+                if (request.userName != "") { myuser.userName = request.userName; }
+                if (request.adress != "") { myuser.adress = request.adress; }
+                if (request.phone != "") { myuser.phone = request.phone; }
 
                 await _context.SaveChangesAsync();
                 return Ok("profile has changed");
