@@ -1,6 +1,6 @@
 <script setup>
 import {ChangeProfile} from '../assets/Functions/User';
-import {UsernameCheckerChangeUsername} from '../assets/Functions/User';
+import {DoubleUsernameExcludeCurrentUserName} from '../assets/Functions/User';
 </script>
 
 <template>
@@ -75,12 +75,13 @@ export default{
             }
             this.timer = setTimeout(async () => {
 
-            if(await UsernameCheckerChangeUsername(this.currentusername, this.username)){ 
+            if(await DoubleUsernameExcludeCurrentUserName(this.currentusername, this.username)){ 
                 this.usernameError = 'Username already taken'
             }
 
         }, 1200);
 
+        this.usernameError = this.username.length = 0 ? '' :
         this.usernameError = this.username.length >= 14 ? 'Username is to long' : ''
         }
     },

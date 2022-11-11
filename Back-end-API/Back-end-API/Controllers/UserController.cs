@@ -105,7 +105,7 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van currentUsername en newUsername.</param>
         /// <returns>true wanneer username dubbel is en niet overeen komt met huidige username, false als er geen dubbele username is.</returns>
         [HttpPost("doubleusername")]
-        public async Task<ActionResult<bool>> DoubleUsernameChangeUsername(ChangeUsernameDTO request)
+        public async Task<ActionResult<bool>> DoubleUsernameExcludeCurrentUserName(ChangeUsernameDTO request)
         {
             bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.newUsername);
 

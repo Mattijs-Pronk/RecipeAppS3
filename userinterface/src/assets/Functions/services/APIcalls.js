@@ -3,8 +3,8 @@ import API from "./API"
 
 export default{
     //Start van recipe Calls.
-    async GetAllRecipes(){
-        return await API().get('/Recipe/getall')
+    async GetAllAcceptedRecipes(){
+        return await API().get('/Recipe/getallaccepted')
     },
 
     async GetRecipeById(id){
@@ -37,13 +37,13 @@ export default{
     },
 
     async ForgotPassword(email){
-        return await API().post(`/Auth/forgot?email=${email}`) //,{
+        return await API().post(`/Auth/forgotpassword?email=${email}`) //,{
         // email: email
         // })
     },
 
     async ResetPassword(passwordresettoken, password){
-        return await API().post(`/Auth/reset` ,{
+        return await API().post(`/Auth/resetpassword` ,{
             passwordResetToken: passwordresettoken,
             password: password
         })
@@ -113,7 +113,7 @@ export default{
         //})
         },
 
-    async UsernameCheckerChangeUsername(currentusername, newusername){
+    async DoubleUsernameExcludeCurrentUserName(currentusername, newusername){
         return await API().post(`/User/doubleusername` , {
                 currentUsername: currentusername,
                 newUsername: newusername

@@ -233,7 +233,7 @@ namespace UnitTests
 
 
             //act
-            var result = await userController.DoubleUsernameChangeUsername(request);
+            var result = await userController.DoubleUsernameExcludeCurrentUserName(request);
 
 
             //assert
@@ -253,7 +253,7 @@ namespace UnitTests
 
 
             //act
-            var result = await userController.DoubleUsernameChangeUsername(request);
+            var result = await userController.DoubleUsernameExcludeCurrentUserName(request);
 
 
             //assert

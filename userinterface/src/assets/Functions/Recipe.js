@@ -1,9 +1,9 @@
 import APIcalls from "./services/APIcalls";
 
 //functie om alle recepten asynchroon in te laden.
-export const GetAllRecipes = async () => {
+export const GetAllAcceptedRecipes = async () => {
         try{
-                let result = await APIcalls.GetAllRecipes()
+                let result = await APIcalls.GetAllAcceptedRecipes()
                 return result.data;
         }
         catch(error){

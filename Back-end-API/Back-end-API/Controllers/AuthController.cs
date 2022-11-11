@@ -4,7 +4,6 @@ using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Back_end_API.Controllers
 {
@@ -113,7 +112,7 @@ namespace Back_end_API.Controllers
         /// </summary>
         /// <param name="email">email van ingevulde front-end.</param>
         /// <returns>Ok wanneer user is gevonden en email is verzonden, Badrequest wanneer user niet is gevonden.</returns>
-        [HttpPost("forgot")]
+        [HttpPost("forgotpassword")]
         public async Task<ActionResult> ForgotPassword(string email)
         {
             var Myuser = await _context.Users
@@ -140,7 +139,7 @@ namespace Back_end_API.Controllers
         /// </summary>
         /// <param name="request">verzameling van het verkregen resetToken en het nieuwe wachtwoord.</param>
         /// <returns>Ok wanneer user is gevonden, email is verstuurd en wachtwoord is aangepast, Badrequest wanneer user niet is gevonden.</returns>
-        [HttpPost("reset")]
+        [HttpPost("resetpassword")]
         public async Task<ActionResult> ResetPassword(UserDTO request)
         {
             var Myuser = await _context.Users

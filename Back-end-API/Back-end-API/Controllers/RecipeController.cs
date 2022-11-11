@@ -28,7 +28,7 @@ namespace Back_end_API.Controllers
         /// Methode om alle recepten op te halen.
         /// </summary>
         /// <returns>Ok wanneer alle recepten zijn verstuurd.</returns>
-        [HttpGet("getall")]
+        [HttpGet("getallaccepted")]
         public async Task<ActionResult> GetAllAcceptedRecipes()
         { 
             var myrecipe = await _context.Recipes

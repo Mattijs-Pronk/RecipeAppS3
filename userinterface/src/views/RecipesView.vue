@@ -1,5 +1,5 @@
 <script setup>
-  import { GetAllRecipes } from '../assets/Functions/Recipe';
+  import { GetAllAcceptedRecipes } from '../assets/Functions/Recipe';
   import Header from '../components/Header.vue'
   import Footer from '../components/Footer.vue';
   import searchbar from '../components/Searchbar.vue'
@@ -44,7 +44,7 @@
     },
     methods:{
       async FillMealList(){
-        this.meallist = await GetAllRecipes();
+        this.meallist = await GetAllAcceptedRecipes();
       }
     }
   }
