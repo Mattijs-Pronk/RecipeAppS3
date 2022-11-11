@@ -28,21 +28,20 @@ namespace Back_end_API.Controllers
         /// <param name="request">verzameling van username, email en wachtwoord.</param>
         /// <returns>Ok wanneer geen dubbele user is gevonden, wachtwoord is gehashed en account is aangemaakt, Badrequest wanneer dubbele user is gevonden.</returns>
         [HttpPost("register")]
-        public async Task<ActionResult<UserModel>> Register(CreateUserDTO request)
+        public async Task<ActionResult> Register(UserDTO request)
         {
-            bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == request.UserName);
-            bool doubleEmail = await _context.Users.AnyAsync(u => u.Email == request.Email);
-            if (doubleUsername || doubleEmail)
+            bool doubleEmail = await _context.Users.AnyAsync(u => u.Email == request.email);
+            if (doubleEmail)
             {
                 return BadRequest("username or email already taken");
             }
 
-            verify.CreatePasswordHash(request.Password, out byte[] passwordhash, out byte[] passwordsalt);
+            verify.CreatePasswordHash(request.password, out byte[] passwordhash, out byte[] passwordsalt);
 
             var newUser = new UserModel
             {
-                userName = request.UserName,
-                Email = request.Email,
+                userName = request.userName,
+                Email = request.email,
                 passwordHash = passwordhash,
                 passwordSalt = passwordsalt,
                 isAdmin = false,
@@ -53,7 +52,7 @@ namespace Back_end_API.Controllers
             };
 
             //stuur email met link van het verifieren/activeren van account.
-            emailCreator.SendEmailVerifyAccount(request.Email, newUser.activateAccountToken, request.UserName);
+            emailCreator.SendEmailVerifyAccount(request.email, newUser.activateAccountToken, request.userName);
 
             await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
@@ -67,14 +66,14 @@ namespace Back_end_API.Controllers
         /// <param name="request">verzameling van email en wachtwoord van ingevulde front-end.</param>
         /// <returns>Ok wanneer user is gevonden, email en wachtwoord overeen komen, badrequest wanneer user niet is gevonden of email en wachtwoord niet overeenkomen.</returns>
         [HttpPost("login")]
-        public async Task<ActionResult<CreateUserDTO>> Login(LoginUserDTO request)
+        public async Task<ActionResult> Login(UserDTO request)
         {
             var Myuser = await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == request.Email);
+                .FirstOrDefaultAsync(u => u.Email == request.email);
 
             if (Myuser != null)
             {
-                if (verify.VerifyPasswordHash(request.Password, Myuser.passwordHash, Myuser.passwordSalt) && Myuser.activateAccountTokenExpires == null)
+                if (verify.VerifyPasswordHash(request.password, Myuser.passwordHash, Myuser.passwordSalt) && Myuser.activateAccountTokenExpires == null)
                 {
                     return Ok(Myuser.userId);
                 }
@@ -88,10 +87,10 @@ namespace Back_end_API.Controllers
         /// <param name="request">verzameling van email en activatieToken van ingevulde front-end.</param>
         /// <returns>Ok wanneer user is gevonden en account is geactiveerd, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPost("verify")]
-        public async Task<ActionResult> VerifyAccount(ActivateUserAccountDTO request)
+        public async Task<ActionResult> VerifyAccount(UserDTO request)
         {
             var Myuser = await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == request.Email);
+                .FirstOrDefaultAsync(u => u.Email == request.email);
 
             if (Myuser != null)
             {
@@ -115,7 +114,7 @@ namespace Back_end_API.Controllers
         /// <param name="email">email van ingevulde front-end.</param>
         /// <returns>Ok wanneer user is gevonden en email is verzonden, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPost("forgot")]
-        public async Task<ActionResult> Forgot(string email)
+        public async Task<ActionResult> ForgotPassword(string email)
         {
             var Myuser = await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == email);
@@ -131,7 +130,7 @@ namespace Back_end_API.Controllers
                 //stuur email met link van het resetten van password.
                 emailCreator.SendEmailResetPassword(email, Myuser.passwordResetToken, Myuser.userName);
 
-                return Ok("reset password");
+                return Ok("forgot password");
             }
             return BadRequest("user not found");
         }
@@ -142,7 +141,7 @@ namespace Back_end_API.Controllers
         /// <param name="request">verzameling van het verkregen resetToken en het nieuwe wachtwoord.</param>
         /// <returns>Ok wanneer user is gevonden, email is verstuurd en wachtwoord is aangepast, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPost("reset")]
-        public async Task<ActionResult> Reset(ResetUserPasswordDTO request)
+        public async Task<ActionResult> ResetPassword(UserDTO request)
         {
             var Myuser = await _context.Users
                 .FirstOrDefaultAsync(u => u.passwordResetToken == request.passwordResetToken);
@@ -151,7 +150,7 @@ namespace Back_end_API.Controllers
             {
                 if(Myuser.passwordResetTokenExpires > DateTime.Now)
                 {
-                    verify.CreatePasswordHash(request.Password, out byte[] passwordhash, out byte[] passwordsalt);
+                    verify.CreatePasswordHash(request.password, out byte[] passwordhash, out byte[] passwordsalt);
                     Myuser.passwordHash = passwordhash;
                     Myuser.passwordSalt = passwordsalt;
                     //token weghalen.
@@ -175,7 +174,7 @@ namespace Back_end_API.Controllers
         /// <param name="username">gebruikersnaam van ingevulde front-end.</param>
         /// <returns>true wanneer username al in gebruik is, false wanneer username niet ingebruik is.</returns>
         [HttpPost("checkusername")]
-        public async Task<ActionResult<bool>> UserNameChecker(string username)
+        public async Task<ActionResult<bool>> DoubleUserNameChecker(string username)
         {
             bool doubleUsername = await _context.Users.AnyAsync(u => u.userName == username);
 

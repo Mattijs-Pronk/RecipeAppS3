@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vbkRR2fEJyM6pQ1SSVepr7SZe2kyuT6SLWRK12KmTE8=",
+  "Hash": "OEUx6+cdczuLKAwMridSgjtq/oje6JmL1Jr7huhiOYs=",
   "Source": "Back-end-API",
   "BasePath": "_content/Back-end-API",
   "Mode": "Default",
@@ -16,6 +16,40 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\220655159Jp vastgoed B.V..png",
+      "SourceId": "Back-end-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
+      "BasePath": "_content/Back-end-API",
+      "RelativePath": "recipeImg/220655159Jp vastgoed B.V..png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\recipeImg\\220655159Jp vastgoed B.V..png"
+    },
+    {
+      "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\220800625Jp vastgoed B.V..png",
+      "SourceId": "Back-end-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
+      "BasePath": "_content/Back-end-API",
+      "RelativePath": "recipeImg/220800625Jp vastgoed B.V..png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\recipeImg\\220800625Jp vastgoed B.V..png"
+    },
     {
       "Identity": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\recipeImg\\221719546amongus.png",
       "SourceId": "Back-end-API",

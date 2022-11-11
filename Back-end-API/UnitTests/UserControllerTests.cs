@@ -136,7 +136,7 @@ namespace UnitTests
         {
             //arrange
 
-            var request = new ChangeUserProfileDTO
+            var request = new UserDTO
             {
                 userId = 1,
                 userName = "Piet",
@@ -159,7 +159,7 @@ namespace UnitTests
         {
             //arrange
 
-            var request = new ChangeUserProfileDTO
+            var request = new UserDTO
             {
                 userId = 0,
                 userName = "Piet",
@@ -182,7 +182,7 @@ namespace UnitTests
         public async Task Test_ChangePassword_OKResult()
         {
             //arrange
-            var request = new ChangeUserPasswordDTO
+            var request = new ChangePasswordDTO
             {
                 userId = 1,
                 currentPassword = "test123",
@@ -204,7 +204,7 @@ namespace UnitTests
         {
             //arrange
 
-            var request = new ChangeUserPasswordDTO
+            var request = new ChangePasswordDTO
             {
                 userId = 0,
                 currentPassword = "test123",
@@ -366,7 +366,7 @@ namespace UnitTests
         public async Task Test_GetFavoriteById_True()
         {
             //arrange
-            var request = new AddFavoriteDTO
+            var request = new FavoriteDTO
             {
                 recipeId = 1,
                 userId = 1,
@@ -386,7 +386,7 @@ namespace UnitTests
         public async Task Test_GetFavoriteById_False()
         {
             //arrange
-            var request = new AddFavoriteDTO
+            var request = new FavoriteDTO
             {
                 recipeId = 0,
                 userId = 0,
@@ -406,7 +406,7 @@ namespace UnitTests
         public async Task Test_AddToFavorites_OkResult()
         {
             //arrange
-            var request = new AddFavoriteDTO
+            var request = new FavoriteDTO
             {
                 recipeId = 2,
                 userId = 1,
@@ -427,7 +427,7 @@ namespace UnitTests
         public async Task Test_AddToFavorites_BadRequestResult()
         {
             //arrange
-            var request = new AddFavoriteDTO
+            var request = new FavoriteDTO
             {
                 recipeId = 1,
                 userId = 1,

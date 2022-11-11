@@ -1,6 +1,6 @@
 ﻿namespace Back_end_API.BusinessLogic.UserDTO_s
 {
-    public class ChangeUserPasswordDTO
+    public class ChangePasswordDTO
     {
         public int userId { get; set; }
 

@@ -41,7 +41,7 @@ namespace Back_end_API.BusinessLogic
             string subject = "Cloud recipes (Verify Account)";
 
             string body = "Dear " + username + ", <br /><br /><br />Need to verify your account?<br /><br />" +
-                "<h2>Use your secret code!(Copy the code below)<h2 />" +
+                "<h2>Use your secret code!(Copy the code below) <h2 />" +
                 "" + Token + "<br /><br /><br />" +
                 "Click on the link below and enter the secret code above." +
                 "<br />" + verifyaccount + "<br /><br />" +

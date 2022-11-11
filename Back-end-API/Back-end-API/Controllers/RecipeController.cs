@@ -17,6 +17,7 @@ namespace Back_end_API.Controllers
     {
         public readonly RecipeAppContext _context;
         private readonly IWebHostEnvironment _env;
+
         public RecipeController(RecipeAppContext context, IWebHostEnvironment env)
         {
             _context = context;
@@ -83,13 +84,13 @@ namespace Back_end_API.Controllers
         /// <returns>Ok wanneer user is gevonden en recept is teogevoegd, Bad request wanneer user niet is gevonden.</returns>
         [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<RecipeModel>> CreateRecipe([FromForm]CreateRecipeDTO request)
+        public async Task<ActionResult> CreateRecipe([FromForm]RecipeDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);
             if (myuser == null)
                 return NotFound();
 
-            var filename = await UploadImage(request.imageFile);
+            var filename = UploadImage(request.imageFile);
 
             var newrecipe = new RecipeModel
             {
@@ -112,7 +113,7 @@ namespace Back_end_API.Controllers
 
         //nog over zetten naar andere functie (apparte class).
         [NonAction]
-        public async Task<string> UploadImage(IFormFile request)
+        public string UploadImage(IFormFile request)
         {
             if(request.Length > 0)
             {

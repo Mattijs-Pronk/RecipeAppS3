@@ -58,7 +58,7 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van userId, username, adress en phone.</param>
         /// <returns>Ok wanneer user is gevonden en gegvens zijn aangepast, badrequest wanneer user niet is gevonden.</returns>
         [HttpPut("changeprofile")]
-        public async Task<ActionResult> ChangeProfile(ChangeUserProfileDTO request)
+        public async Task<ActionResult> ChangeProfile(UserDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);
             if (myuser != null)
@@ -82,7 +82,7 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van userId, currentpassword en newpassword.</param>
         /// <returns>Ok wanneer user is gevonden, wachtwoord is aangepast en email is verzonden, Badrequest wanneer user niet is gevonden.</returns>
         [HttpPut("changepassword")]
-        public async Task<ActionResult> ChangePassword(ChangeUserPasswordDTO request)
+        public async Task<ActionResult> ChangePassword(ChangePasswordDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);
             if(myuser != null && verify.VerifyPasswordHash(request.currentPassword, myuser.passwordHash, myuser.passwordSalt))
@@ -213,7 +213,7 @@ namespace Back_end_API.Controllers
         }
 
         [HttpPost("getfavorite")]
-        public async Task<ActionResult<bool>> GetFavoriteById(AddFavoriteDTO request)
+        public async Task<ActionResult<bool>> GetFavoriteById(FavoriteDTO request)
         {
             bool myrecipe = await _context.Favorites.AnyAsync(f => f.recipeId == request.recipeId);
             bool myuser = await _context.Favorites.AnyAsync(f => f.userId == request.userId);
@@ -228,7 +228,7 @@ namespace Back_end_API.Controllers
         /// <param name="request">Verzameling van userId en recipeId.</param>
         /// <returns>Ok wanneer recept is toegevoegt aan favorieten, badrequest wanneer user/recept niet is gevonden of wanneer recept al in favorieten staat.</returns>
         [HttpPost("addfavorite")]
-        public async Task<ActionResult> AddToFavorites(AddFavoriteDTO request)
+        public async Task<ActionResult> AddToFavorites(FavoriteDTO request)
         {
             var myuser = await _context.Users.FindAsync(request.userId);
             var myrecipe = await _context.Recipes.FindAsync(request.recipeId);

@@ -114,34 +114,36 @@ export default{
             this.checkFile();
 
             if(this.titleError == '' && this.preptimeError == '' && this.portionsError == '' && this.ingredientsError == '' && this.descriptionError == '' && this.fileError == '')
-            var userid = JSON.parse(localStorage.getItem("user"))
+            {
+                var userid = JSON.parse(localStorage.getItem("user"))
 
-            const fd = new FormData()
-            fd.append('Title', this.title)
-            fd.append('Description', this.description)
-            fd.append('Ingredients', this.ingredients)
-            fd.append('imageFile', this.imagefile)
-            fd.append('prepTime', this.preptime)
-            fd.append('Portions', this.portions)
-            fd.append('userId', userid)
+                const fd = new FormData()
+                fd.append('Title', this.title)
+                fd.append('Description', this.description)
+                fd.append('Ingredients', this.ingredients)
+                fd.append('imageFile', this.imagefile)
+                fd.append('prepTime', this.preptime)
+                fd.append('Portions', this.portions)
+                fd.append('userId', userid)
 
-            if(await AddRecipe(fd)){
-                this.$toast.success('recipe has been send for approval' , {
-                position: 'top',
-                dismissible: true,
-                pauseOnHover: true,
-                duration: 3500
+                if(await AddRecipe(fd)){
+                    this.$toast.success('recipe has been send for approval' , {
+                    position: 'top',
+                    dismissible: true,
+                    pauseOnHover: true,
+                    duration: 3500
+                    });
+
+                    this.$router.push({name: 'myrecipes'})
+                }
+                else{
+                    this.$toast.error('recipe has not been send for approval, please fill in all forms' , {
+                    position: 'top',
+                    dismissible: true,
+                    pauseOnHover: true,
+                    duration: 4500
                 });
-
-                this.$router.push({name: 'myrecipes'})
-            }
-            else{
-                this.$toast.error('recipe has not been send for approval, please fill in all forms' , {
-                position: 'top',
-                dismissible: true,
-                pauseOnHover: true,
-                duration: 4500
-                });
+                }
             }
         }
     }

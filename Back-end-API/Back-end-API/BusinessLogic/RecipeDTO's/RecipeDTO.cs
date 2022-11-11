@@ -1,6 +1,6 @@
 ﻿namespace Back_end_API.BusinessLogic
 {
-    public class CreateRecipeDTO
+    public class RecipeDTO
     {
         public string Title { get; set; } = null!;
 
