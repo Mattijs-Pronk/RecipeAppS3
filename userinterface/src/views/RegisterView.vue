@@ -16,12 +16,12 @@ import Footer from '../components/Footer.vue';
                 <form action="#">
                     <br>
                     <div class="input-field">
-                        <input type="text" placeholder="Username" v-model="username" @blur="checkUsername" @keyup="checkUsername">
+                        <input type="text" id="username" placeholder="Username" v-model="username" @blur="checkUsername" @keyup="checkUsername">
                     </div>
                     <span v-if="usernameError" class="text-danger">{{usernameError}}</span>
 
                     <div class="input-field">
-                        <input type="text" placeholder="Email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
+                        <input type="text" id="email" placeholder="Email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
                     </div>
                     <span v-if="emailError" class="text-danger">{{emailError}}</span>
 
@@ -43,7 +43,7 @@ import Footer from '../components/Footer.vue';
                     </div>
 
                     <br>
-                    <a class="btn" v-on:click="submitForm()">Register</a>
+                    <a class="btn" id="submit" v-on:click="submitForm()">Register</a>
                 </form>
 
                 <div class="login-signup">

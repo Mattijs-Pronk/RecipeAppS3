@@ -14,7 +14,7 @@ import {Login} from '../assets/Functions/Auth'
                 <br><br>
                 <form action="#">
                     <div class="input-field">
-                        <input type="email" placeholder="Enter your email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
+                        <input type="email" id="email" placeholder="Enter your email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
                     </div>
                     <span v-if="emailError" class="text-danger">{{emailError}}</span>
                         
@@ -33,7 +33,7 @@ import {Login} from '../assets/Functions/Auth'
                     </div>
 
                     <br>
-                    <a class="btn" v-on:click="submitForm">Login</a>
+                    <a id="submit" class="btn" v-on:click="submitForm">Login</a>
                 </form>
 
                 <div class="login-signup">
