@@ -112,8 +112,8 @@ export const GetUserFavoritesAmountById = async (userid) => {
 }
 
 //functie om te checken of een username al in gebruik is.
-export const UsernameCheckerChangeUsername = async (currentusername, newusername) => {
-    let response = await APIcalls.UsernameCheckerChangeUsername(currentusername, newusername)
+export const DoubleUsernameExcludeCurrentUserName = async (currentusername, newusername) => {
+    let response = await APIcalls.DoubleUsernameExcludeCurrentUserName(currentusername, newusername)
     return response.data
 }
 
