@@ -23,12 +23,7 @@ jobs:
               npm install
               npm run build
               npm run test:unit
-              
-      - name: Cypress run
-        uses: cypress-io/github-action@v4
-        timeout-minutes: 10
-        with:
-          browser: edge
+              npm run test:e2e:ci
 
               
 
