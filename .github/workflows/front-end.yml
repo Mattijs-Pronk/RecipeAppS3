@@ -42,6 +42,6 @@ jobs:
           install: false
           command: pnpm --dir cypress/ cypress:ci
           start: pnpm --dir ${{ matrix.dir }}/ dev
-          wait-on: 'https://localhost:3000'
+          wait-on: 'http://127.0.0.1:5173/'
               
 
