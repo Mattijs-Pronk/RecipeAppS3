@@ -17,15 +17,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Test vuejs projects
+      - name: Vue unit tests
         working-directory: ${{ matrix.dir }}
         run: | 
               npm install
               npm run build
               npm run test:unit
-              npm cypress:run
-              env:
-              CI: true
-              API_URI: https://localhost:7108/
+        -name: Cypress e2e tests
+         uses: cypress-io/github-action@v2
+
               
 
