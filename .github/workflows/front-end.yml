@@ -23,20 +23,5 @@ jobs:
               npm install
               npm run build
               npm run test:unit
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6
-          run_install: |
-            - args: [--filter ${{ matrix.dir }}... --filter cypress-tests...]
-
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v2
-        with:
-          install: false
-          command: pnpm --${{ matrix.dir }}/ cypress:ci
-          start: pnpm --dir ${{ matrix.dir }}/ dev
-          wait-on: 'http://127.0.0.1:5173/'
               
 
