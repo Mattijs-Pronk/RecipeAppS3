@@ -29,12 +29,19 @@ jobs:
         with:
           version: 6
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6
+          run_install: |
+            - args: [--filter myclient... --filter cypress-tests...]
+
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
           install: false
           command: pnpm --dir cypress/ cypress:ci
-          start: pnpm --dir ${{ matrix.dir }}
-          wait-on: 'https://localhost:7108'
+          start: pnpm --dir myclient/ dev
+          wait-on: 'https://localhost:3000'
               
 
