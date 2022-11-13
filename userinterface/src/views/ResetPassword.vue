@@ -14,7 +14,7 @@ import Footer from '../components/Footer.vue';
                 <br><br><br>
                 <form action="#">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter received token" v-model="passwordresettoken">
+                        <input type="text" id="token" placeholder="Enter received token" v-model="passwordresettoken">
                     </div>             
 
                     <div class="input-field">
@@ -35,7 +35,7 @@ import Footer from '../components/Footer.vue';
                     </div>
 
                     <br>
-                    <a class="btn" v-on:click="submitForm()">Reset</a>
+                    <a class="btn" id="submit" v-on:click="submitForm()">Reset</a>
                 </form>
             </div>
         </div>

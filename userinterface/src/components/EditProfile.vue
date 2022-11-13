@@ -15,23 +15,22 @@ import {DoubleUsernameExcludeCurrentUserName} from '../assets/Functions/User';
             <div class="form login">
             <form>
                 <div class="input-field">
-                        <input type="text" placeholder="Username" v-model="username" @blur="checkUsername" @keyup="checkUsername">
-                        <i class="fa fa-clock-rotate-left info"></i>
+                        <input type="text" id="username" placeholder="Username" v-model="username" @blur="checkUsername" @keyup="checkUsername">
                     </div>
                     <span v-if="usernameError" class="text-danger">{{usernameError}}</span>
 
                     <div class="input-field">
-                        <input type="text" placeholder="Adress" v-model="adress">
+                        <input type="text" id="adress" placeholder="Adress" v-model="adress">
                     </div>
                     <span v-if="usernameError" class="text-danger">{{adressError}}</span>
 
                     <div class="input-field">
-                        <input type="text" placeholder="Phone" v-model="phone">
+                        <input type="text" id="phone" placeholder="Phone" v-model="phone">
                     </div>
                     <span v-if="phoneError" class="text-danger">{{phoneError}}</span>
                     <br/><br/><br/><br/>
                     <p1>Leave Username/Adress/Phone empty if its unchanged</p1>
-                    <a v-on:click="submitChangeProfile()" class="btn">Change profile</a>
+                    <a class="btn" id="submitProfile" v-on:click="submitChangeProfile()">Change profile</a>
                 </form>
             </div>
         </div>
@@ -93,18 +92,23 @@ export default{
         {
             if(await ChangeProfile(this.userid, this.username, this.adress, this.phone))
             {
-                location.reload();
                 this.$toast.success('Succesfully changed profile' , {
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,
                 duration: 3500
                 });
-
-                this.$router.push({name: 'myprofile'})
+                
+                if (this.timer) {
+                clearTimeout(this.timer);
+                this.timer = null;
+                }
+                this.timer = setTimeout( () => {
+                    this.$router.go()
+                }, 1200);
             }
             else{
-                this.$toast.error('please fill in username' , {
+                this.$toast.error('User not found' , {
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,
@@ -113,7 +117,7 @@ export default{
             }
         }
         else{
-            this.$toast.error('please fill in all forms' , {
+            this.$toast.error('Fill in at least one form' , {
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,

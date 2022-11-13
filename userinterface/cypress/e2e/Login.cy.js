@@ -1,26 +1,24 @@
-//cypress openen: npx cypress open
-
-describe('empty spec', () => {
+describe('login succesful', () => {
   it('passes', () => {
     cy.visit('/login')
 
-    cy.get('#email').type('cloudrecipes.info@gmail.com');
-    cy.get('#pass').type('admin123');
+    cy.get('#email').type('E2eTestacc@example.com');
+    cy.get('#pass').type('user123');
 
-    cy.get('#submit').click();
+    cy.get('#submit').click({force: true});
 
     cy.contains('div', 'Succesfully logged in').should('be.visible');
   })
 })
 
-describe('empty spec', () => {
-  it('passes', () => {
+describe('login failed', () => {
+  it('fails', () => {
     cy.visit('/login')
 
-    cy.get('#email').type('test@example.com');
+    cy.get('#email').type('asdasdasdasdasdasd@example.com');
     cy.get('#pass').type('testpass');
 
-    cy.get('#submit').click();
+    cy.get('#submit').click({force: true});
 
     cy.contains('div', 'password or email did not match or account is not activated').should('be.visible');
   })

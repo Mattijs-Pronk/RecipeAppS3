@@ -1,4 +1,4 @@
-// describe('empty spec', () => {
+// describe('register succesfull', () => {
 //   it('passes', () => {
 //     cy.visit('/register')
 
@@ -13,16 +13,16 @@
 //   })
 // })
 
-describe('empty spec', () => {
-  it('passes', () => {
+describe('register failed', () => {
+  it('fails', () => {
     cy.visit('/register')
 
-    cy.get('#username').type('CloudRecipes');
-    cy.get('#email').type('cloudrecipes.info@gmail.com');
+    cy.get('#username').type('pietza');
+    cy.get('#email').type('E2eTestacc@example.com');
     cy.get('#pass').type('user123');
     cy.get('#repass').type('user123');
 
-    cy.get('#submit').click();
+    cy.get('#submit').click({force: true});
 
     cy.contains('div', 'account not created, username or password already taken').should('be.visible');
   })

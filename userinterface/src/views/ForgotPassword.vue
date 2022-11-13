@@ -14,12 +14,12 @@ import {ForgotPassword} from '../assets/Functions/Auth'
                 <br><br><br>
                 <form action="#">
                     <div class="input-field">
-                        <input type="email" placeholder="Enter your email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
+                        <input type="email" id="email" placeholder="Enter your email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
                     </div>
                     <span v-if="emailError" class="text-danger">{{emailError}}</span>                
 
                     <br><br><br>
-                    <a class="btn" v-on:click="submitForm()">Send email</a>
+                    <a class="btn" id="submit" v-on:click="submitForm()">Send email</a>
                 </form>
 
                 <div class="login-signup">

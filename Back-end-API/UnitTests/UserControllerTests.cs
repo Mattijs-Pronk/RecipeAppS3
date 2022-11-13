@@ -135,7 +135,7 @@ namespace UnitTests
         {
             //arrange
 
-            var request = new UserDTO
+            var myuser = new UserDTO
             {
                 userId = 1,
                 userName = "Piet",
@@ -144,7 +144,7 @@ namespace UnitTests
             };
 
             //act
-            var user = await userController.ChangeProfile(request);
+            var user = await userController.ChangeProfile(myuser);
             var result = (ObjectResult)user;
 
 
@@ -158,7 +158,7 @@ namespace UnitTests
         {
             //arrange
 
-            var request = new UserDTO
+            var myuser = new UserDTO
             {
                 userId = 0,
                 userName = "Piet",
@@ -168,7 +168,7 @@ namespace UnitTests
 
 
             //act
-            var user = await userController.ChangeProfile(request);
+            var user = await userController.ChangeProfile(myuser);
             var result = (ObjectResult)user;
 
 
@@ -181,7 +181,7 @@ namespace UnitTests
         public async Task Test_ChangePassword_OKResult()
         {
             //arrange
-            var request = new ChangePasswordDTO
+            var myuser = new ChangePasswordDTO
             {
                 userId = 1,
                 currentPassword = "test123",
@@ -189,7 +189,7 @@ namespace UnitTests
             };
 
             //act
-            var user = await userController.ChangePassword(request);
+            var user = await userController.ChangePassword(myuser);
             var result = (ObjectResult)user;
 
 
@@ -203,7 +203,7 @@ namespace UnitTests
         {
             //arrange
 
-            var request = new ChangePasswordDTO
+            var myuser = new ChangePasswordDTO
             {
                 userId = 0,
                 currentPassword = "test123",
@@ -212,7 +212,7 @@ namespace UnitTests
 
 
             //act
-            var user = await userController.ChangePassword(request);
+            var user = await userController.ChangePassword(myuser);
             var result = (ObjectResult)user;
 
 
@@ -225,7 +225,7 @@ namespace UnitTests
         public async Task Test_DoubleUsernameChangeUsername_True()
         {
             //arrange
-            var request = new ChangeUsernameDTO
+            var myuser = new ChangeUsernameDTO
             {
                 currentUsername = "Piet",
                 newUsername = "Peter"
@@ -233,7 +233,7 @@ namespace UnitTests
 
 
             //act
-            var result = await userController.DoubleUsernameExcludeCurrentUserName(request);
+            var result = await userController.DoubleUsernameExcludeCurrentUserName(myuser);
 
 
             //assert
@@ -245,7 +245,7 @@ namespace UnitTests
         public async Task Test_DoubleUsernameChangeUsername_False()
         {
             //arrange
-            var request = new ChangeUsernameDTO
+            var myuser = new ChangeUsernameDTO
             {
                 currentUsername = "Peter",
                 newUsername = "Piet"
@@ -253,7 +253,7 @@ namespace UnitTests
 
 
             //act
-            var result = await userController.DoubleUsernameExcludeCurrentUserName(request);
+            var result = await userController.DoubleUsernameExcludeCurrentUserName(myuser);
 
 
             //assert
@@ -365,7 +365,7 @@ namespace UnitTests
         public async Task Test_GetFavoriteById_True()
         {
             //arrange
-            var request = new FavoriteDTO
+            var myfavorite = new FavoriteDTO
             {
                 recipeId = 1,
                 userId = 1,
@@ -373,7 +373,7 @@ namespace UnitTests
 
 
             //act
-            var result = await userController.GetFavoriteById(request);
+            var result = await userController.GetFavoriteById(myfavorite);
 
 
             //assert
@@ -385,7 +385,7 @@ namespace UnitTests
         public async Task Test_GetFavoriteById_False()
         {
             //arrange
-            var request = new FavoriteDTO
+            var myfavorite = new FavoriteDTO
             {
                 recipeId = 0,
                 userId = 0,
@@ -393,7 +393,7 @@ namespace UnitTests
 
 
             //act
-            var result = await userController.GetFavoriteById(request);
+            var result = await userController.GetFavoriteById(myfavorite);
 
 
             //assert
@@ -405,7 +405,7 @@ namespace UnitTests
         public async Task Test_AddToFavorites_OkResult()
         {
             //arrange
-            var request = new FavoriteDTO
+            var myfavorite = new FavoriteDTO
             {
                 recipeId = 2,
                 userId = 1,
@@ -413,7 +413,7 @@ namespace UnitTests
 
 
             //act
-            var user = await userController.AddToFavorites(request);
+            var user = await userController.AddToFavorites(myfavorite);
             var result = (ObjectResult)user;
 
 
@@ -426,7 +426,7 @@ namespace UnitTests
         public async Task Test_AddToFavorites_BadRequestResult()
         {
             //arrange
-            var request = new FavoriteDTO
+            var myfavorite = new FavoriteDTO
             {
                 recipeId = 1,
                 userId = 1,
@@ -434,7 +434,7 @@ namespace UnitTests
 
 
             //act
-            var user = await userController.AddToFavorites(request);
+            var user = await userController.AddToFavorites(myfavorite);
             var result = (ObjectResult)user;
 
 

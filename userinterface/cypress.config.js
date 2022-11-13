@@ -6,3 +6,5 @@ module.exports = defineConfig({
     baseUrl: 'http://127.0.0.1:5173'
   }
 })
+
+//cypress openen: npx cypress open

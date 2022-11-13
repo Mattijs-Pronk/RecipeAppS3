@@ -14,16 +14,16 @@ import Footer from '../components/Footer.vue';
                 <br><br><br>
                 <form action="#">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter received token" v-model="activateaccounttoken">
+                        <input type="text" id="token" placeholder="Enter received token" v-model="activateaccounttoken">
                     </div>       
 
                     <div class="input-field">
-                        <input type="text" placeholder="Email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
+                        <input type="text" id="email" placeholder="Email" v-model="email" @blur="checkEmail" @keyup="checkEmail">
                     </div>
                     <span v-if="emailError" class="text-danger">{{emailError}}</span>
 
                     <br>
-                    <a class="btn" v-on:click="submitForm()">Verify</a>
+                    <a class="btn" id="submit" v-on:click="submitForm()">Verify</a>
                 </form>
             </div>
         </div>

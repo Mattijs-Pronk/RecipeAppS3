@@ -33,7 +33,7 @@ import {ChangePassword} from '../assets/Functions/User';
                     </div>
                     
                     <br/>
-                    <a v-on:click="submitChangePassword()" class="btn">Change password</a>
+                    <a class="btn" id="submitPass" v-on:click="submitChangePassword()">Change password</a>
                 </form>
             </div>
         </div>

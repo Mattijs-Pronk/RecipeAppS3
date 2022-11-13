@@ -19,26 +19,26 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 			<div class="right">
 				<h2>Add recipe</h2>
                 <br/><br/>
-				<input type="text" class="field" placeholder="Title" v-model="title" @blur="checkTitle" @keyup="checkTitle">
+				<input type="text" id="title" class="field" placeholder="Title" v-model="title" @blur="checkTitle" @keyup="checkTitle">
                 <span v-if="titleError" class="text-danger">{{titleError}}</span>
 
-                <input type="text" class="field" placeholder="Preptime" v-model="preptime" @blur="checkPreptime" @keyup="checkPreptime">
+                <input type="text" id="preptime" class="field" placeholder="Preptime" v-model="preptime" @blur="checkPreptime" @keyup="checkPreptime">
                 <span v-if="preptimeError" class="text-danger">{{preptimeError}}</span>
 
-                <input type="text" class="field" placeholder="Portions" v-model="portions" @blur="checkPortions" @keyup="checkPortions">
+                <input type="text" id="portions" class="field" placeholder="Portions" v-model="portions" @blur="checkPortions" @keyup="checkPortions">
                 <span v-if="portionsError" class="text-danger">{{portionsError}}</span>
 
-				<textarea type="text" class="field-texterea" placeholder="Ingredients" v-model="ingredients" @blur="checkIngredients" @keyup="checkIngredients"></textarea>
+				<textarea type="text" id="ingredients" class="field-texterea" placeholder="Ingredients" v-model="ingredients" @blur="checkIngredients" @keyup="checkIngredients"></textarea>
                 <span v-if="ingredientsError" class="text-danger">{{ingredientsError}}</span>
 
-				<textarea type="text" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
+				<textarea type="text" id="description" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
                 <br/>
                 <input class="custom-file-input" type="file" accept="image/png" v-on:change="GetFile"> <br/>
                 <br/>
                 <span v-if="fileError" class="text-danger">{{fileError}}</span>
                 <br/>
-				<button class="btn" v-on:click="submitForm()">Add recipe</button>
+				<button class="btn" id="submit" v-on:click="submitForm()">Add recipe</button>
 			</div>
 		</div>
 	</div>
@@ -137,7 +137,7 @@ export default{
                     this.$router.push({name: 'myrecipes'})
                 }
                 else{
-                    this.$toast.error('recipe has not been send for approval, please fill in all forms' , {
+                    this.$toast.error('recipe has not been send for approval, something went wrong' , {
                     position: 'top',
                     dismissible: true,
                     pauseOnHover: true,
