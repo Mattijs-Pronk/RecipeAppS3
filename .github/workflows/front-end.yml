@@ -17,13 +17,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Vue unit tests
+      - name: Test vuejs projects
         working-directory: ${{ matrix.dir }}
         run: | 
               npm install
               npm run build
               npm run test:unit
-        -name: Cypress e2e tests
+        -name: Cypress run
          uses: cypress-io/github-action@v2
 
               
