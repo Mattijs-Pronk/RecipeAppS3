@@ -24,9 +24,4 @@ jobs:
               npm run build
               npm run test:unit
               
-      - name: Cypress.io
-        uses: cypress-io/github-action@v4
-        with:
-          start: npm run dev
-              
 
