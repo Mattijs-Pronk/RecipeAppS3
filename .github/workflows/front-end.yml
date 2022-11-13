@@ -24,11 +24,13 @@ jobs:
               npm run build
               npm run test:unit
               
-      - name: Cypress run
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          build: npm run build
-          start: npm start
+          install: false
+          command: pnpm --dir cypress/ cypress:ci
+          start: pnpm --dir myclient/ dev
+          wait-on: 'https://localhost:3000'
 
               
 
