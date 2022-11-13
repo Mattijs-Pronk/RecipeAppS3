@@ -34,14 +34,14 @@ jobs:
         with:
           version: 6
           run_install: |
-            - args: [--filter myclient... --filter cypress-tests...]
+            - args: [--filter ${{ matrix.dir }}... --filter cypress-tests...]
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
           install: false
           command: pnpm --dir cypress/ cypress:ci
-          start: pnpm --dir myclient/ dev
+          start: pnpm --dir ${{ matrix.dir }}/ dev
           wait-on: 'https://localhost:3000'
               
 
