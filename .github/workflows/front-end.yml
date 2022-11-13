@@ -23,11 +23,6 @@ jobs:
               npm install
               npm run build
               npm run test:unit
-              
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v2.0.1
