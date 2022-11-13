@@ -35,7 +35,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          command: pnpm --dir cypress/ cypress:ci
+          command: pnpm --${{ matrix.dir }}/ cypress:ci
           start: pnpm --dir ${{ matrix.dir }}/ dev
           wait-on: 'http://127.0.0.1:5173/'
               
