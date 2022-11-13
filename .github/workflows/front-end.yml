@@ -24,7 +24,5 @@ jobs:
               npm run build
               npm run test:unit
               npm run test:cypress
-              env:
-              CI: true
-              API_URI: https://localhost:7108/
+             
 
