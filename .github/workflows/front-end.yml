@@ -24,13 +24,17 @@ jobs:
               npm run build
               npm run test:unit
               
-  cypress-run:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.0.1
         with:
-          browser: edge
-          headed: true
+          version: 6
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          command: pnpm --dir cypress/ cypress:ci
+          start: pnpm --dir ${{ matrix.dir }}/ dev
+          wait-on: 'https://localhost:3000'
               
 
