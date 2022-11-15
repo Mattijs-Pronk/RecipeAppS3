@@ -6,7 +6,6 @@ C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Ba
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.runtimeconfig.json
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.pdb
-C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\BCrypt.Net-Next.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Humanizer.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\MailKit.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll

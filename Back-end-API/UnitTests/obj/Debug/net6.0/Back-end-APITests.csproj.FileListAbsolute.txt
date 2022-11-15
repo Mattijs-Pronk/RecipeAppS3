@@ -17,9 +17,7 @@ C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Back-
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Back-end-APITests.pdb
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Azure.Identity.dll
-C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\BCrypt.Net-Next.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Castle.Core.dll
-C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\FakeItEasy.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\FluentAssertions.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\MailKit.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll

@@ -6,9 +6,6 @@ using Back_end_API.Data;
 using Back_end_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NUnit.Framework;
-using System.Security.Cryptography;
-using Assert = Xunit.Assert;
 
 namespace UnitTests
 {
