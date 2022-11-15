@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import {RouteGaurd} from '../assets/Functions/Auth'
-import RecipesView from '../views/RecipesView.vue'
+//import RecipesView from '../views/RecipesView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from  '../views/RegisterView.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
@@ -24,7 +24,7 @@ const router = createRouter({
     {
       path: '/recipes',
       name: 'recipes',
-      component: RecipesView
+      component: () => import('../views/RecipesView.vue')
     },
     {
       path: '/landing',

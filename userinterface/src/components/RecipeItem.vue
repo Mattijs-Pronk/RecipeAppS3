@@ -48,7 +48,7 @@
     },
     methods:{
       CloseRecipe(){
-        this.CloseModal()
+        CloseModal()
       },
       async AddRecipeToFavorites(){
         if(await AddToFavorites(this.user, this.recipeId)){

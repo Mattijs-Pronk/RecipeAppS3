@@ -48,7 +48,10 @@ import Footer from '../components/Footer.vue';
 
                 <div class="login-signup">
                     <span class="text">Already have an account?
-                        <a class="text signup-link"><RouterLink :to="{name: 'login'}">Login now</RouterLink></a>
+                        <a class="text signup-link"><RouterLink to="/login">Login</RouterLink></a>
+                    </span><br><br>
+                    <span class="text">Verify your account?
+                        <a class="text signup-link"><RouterLink to="/verify">Verify</RouterLink></a>
                     </span>
                 </div>
             </div>

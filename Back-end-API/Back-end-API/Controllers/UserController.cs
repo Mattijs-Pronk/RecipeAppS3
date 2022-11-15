@@ -1,4 +1,5 @@
-﻿using Back_end_API.BusinessLogic;
+﻿using Azure.Core;
+using Back_end_API.BusinessLogic;
 using Back_end_API.BusinessLogic.FavoriteDTO_s;
 using Back_end_API.BusinessLogic.UserDTO_s;
 using Back_end_API.Data;
@@ -187,8 +188,8 @@ namespace Back_end_API.Controllers
         [HttpGet("getallmyfavorites")]
         public async Task<ActionResult> GetAllFavoritesById(int id)
         {
-            var myfavoritecheck = await _context.Favorites.FindAsync(id);
-            if (myfavoritecheck == null) { return BadRequest("favorite not found"); }
+            var myfavoritecheck = await _context.Favorites.AnyAsync(f => f.userId == id);
+            if (myfavoritecheck == false) { return BadRequest("favorite not found"); }
 
             var myfavorite = await _context.Favorites
                          .Where(f => f.userId == id)

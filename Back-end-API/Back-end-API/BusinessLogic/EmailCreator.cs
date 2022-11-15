@@ -1,6 +1,7 @@
 ﻿using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
 using MimeKit;
 using MimeKit.Text;
 
@@ -37,14 +38,14 @@ namespace Back_end_API.BusinessLogic
         /// <param name="username">ingevulde username.</param>
         public void SendEmailVerifyAccount(string email, string Token, string username)
         {
-            string verifyaccount = "http://127.0.0.1:5173/verify";
+            //string verifyaccount = "http://127.0.0.1:5173/verify";
             string subject = "Cloud recipes (Verify Account)";
 
             string body = "Dear " + username + ", <br /><br /><br />Need to verify your account?<br /><br />" +
                 "<h2>Use your secret code!(Copy the code below) <h2 />" +
                 "" + Token + "<br /><br /><br />" +
-                "Click on the link below and enter the secret code above." +
-                "<br />" + verifyaccount + "<br /><br />" +
+                "Navigate to the Register page and click on the link: Verify" +
+                "<br /><br />" +
                 "If you did not create an account, you can ignore this email." +
                 "<br /><br /><br /> Kind regards," +
                 "<br /><br /> Team Cloud Recipes.";
@@ -60,14 +61,14 @@ namespace Back_end_API.BusinessLogic
         /// <param name="username">ingevulde username.</param>
         public void SendEmailResetPassword(string email, string Token, string username)
         {
-            string resetpassword = "http://127.0.0.1:5173/reset";
+            //string resetpassword = "http://127.0.0.1:5173/reset";
             string subject = "Cloud recipes (Reset Password)";
 
             string body = "Dear " + username + ", <br /><br /><br />Need to reset your password?<br /><br />" +
                 "<h2>Use your secret code!(Copy the code below)<h2 />" +
                 "" + Token + "<br /><br /><br />" +
-                "Click on the link below and enter the secret code above." +
-                "<br />" + resetpassword + "<br /><br />" +
+                "Navigate to the Forgotpassword page and click on the link: Reset" +
+                "<br /><br />" +
                 "If you did not forget your password, you can ignore this email." +
                 "<br /><br /><br /> Kind regards," +
                 "<br /><br /> Team Cloud Recipes.";
@@ -82,13 +83,13 @@ namespace Back_end_API.BusinessLogic
         /// <param name="username">ingevulde username.</param>
         public void SendEmailResetPasswordSucces(string email, string username)
         {
-            string login = "http://127.0.0.1:5173/login";
+            //string login = "http://127.0.0.1:5173/login";
             string subject = "Cloud recipes (New Password)";
 
             string body = "Dear " + username + ", <br /><br /><br />Your password has succesfully been changed <br /><br />" +
                 "<h2>Your password has been changed at: "+DateTime.Now.ToString()+"<h2 /> <br/> <br/>" +
-                "Click on the link below and use your new password." +
-                "<br />" + login + "<br /><br />" +
+                "Navigate to the login page and start using your account!" +
+                "<br /><br />" +
                 "If you did not reset your password, you can ignore this email. " +
                 "<br /> Keep this email to yourself for safety reasons." +
                 "<br /><br /><br /> Kind regards," +

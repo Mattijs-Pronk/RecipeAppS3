@@ -6,19 +6,19 @@
   <template>
     <header>
       <nav>
-        <a class="logo" href="/landing">Cloud Recipes</a>
+        <RouterLink to="/landing" class="logo">Cloud Recipes</RouterLink>
         <ul>
-          <li><a href="/landing">Home</a></li>
-          <li><a href="/recipes">Recipes</a></li>
-          <li><a href="/contactus">Contact us</a></li>
+          <li><RouterLink to="/landing">Home</RouterLink></li>
+          <li><RouterLink to="/recipes">Recipes</RouterLink></li>
+          <li><RouterLink to="/contactus">Contact us</RouterLink></li>
 
             <div class="dropdown">
-              <li><a v-on:click="LogoutThis()" href="/login">{{login}}</a></li>
+              <li><RouterLink to="/addrecipe" v-on:click="LogoutThis()">{{login}}</RouterLink></li>
                 <div id="dropdown" class="dropdown-content">
-                  <a href="/addrecipe">Add recipe</a>
-                  <a href="/myrecipes">MyRecipes</a>
-                  <a href="/myfavorites">MyFavorites</a>
-                  <a href="/myprofile">MyProfile</a>
+                  <RouterLink to="/addrecipe">Add recipe</RouterLink>
+                  <RouterLink to="/myrecipes">My recipes</RouterLink>
+                  <RouterLink to="/myfavorites">My favorites</RouterLink>
+                  <RouterLink to="/myprofile">My profile</RouterLink>
                 </div>
             </div>
             

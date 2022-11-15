@@ -23,8 +23,11 @@ import {ForgotPassword} from '../assets/Functions/Auth'
                 </form>
 
                 <div class="login-signup">
+                  <span class="text">Reset password?
+                        <a class="text signup-link"><RouterLink to="/reset">Reset</RouterLink></a>
+                    </span><br><br>
                     <span class="text">Not a member?
-                        <a class="text signup-link"><RouterLink :to="{name: 'register'}">Signup now</RouterLink></a>
+                        <a class="text signup-link"><RouterLink to="/register">Register</RouterLink></a>
                     </span>
                 </div>
             </div>

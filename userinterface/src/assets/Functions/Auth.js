@@ -1,5 +1,4 @@
 import APIcalls from "./services/APIcalls";
-import { HashPassword } from "./PasswordHash";
 
 //functie om in te loggen.
 export const Login = async (email, password) => {

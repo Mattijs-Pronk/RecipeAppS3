@@ -6,7 +6,7 @@
             <img class="logo-img" src = "../assets/Images/CloudRecipeLogo.jpg" alt = "food">
             <a>Copyright © 2022-{{autodate}} Mattijs Pronk, Inc - All Rights Reserved</a>
             <br/>
-            <a href="/landing">Home</a> | <a href="/landing">Contact us</a> | <a href="/login">Login</a>
+            <RouterLink to="/landing">Home</RouterLink> | <RouterLink to="/contactus">Contact us</RouterLink> | <RouterLink to="/login">Login</RouterLink>
         </div>
     </footer>
 </template>

@@ -5,7 +5,7 @@
   <template>
     <header>
       <nav>
-        <a class="logo" href="/landing">Cloud Recipes</a>
+        <RouterLink to="/landing" class="logo">Cloud Recipes</RouterLink>
       </nav>
       <div class="section"></div>
     </header>

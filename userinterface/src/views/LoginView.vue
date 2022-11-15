@@ -29,7 +29,7 @@ import {Login} from '../assets/Functions/Auth'
                             <label for="logCheck" class="text">see password</label>
                         </div>
                         
-                        <a href="#" class="text"><RouterLink :to="{name: 'forgot'}">Forgot password?</RouterLink></a>
+                        <a class="text"><RouterLink to="/forgot">Forgot password?</RouterLink></a>
                     </div>
 
                     <br>
@@ -38,7 +38,7 @@ import {Login} from '../assets/Functions/Auth'
 
                 <div class="login-signup">
                     <span class="text">Not a member?
-                        <a class="text signup-link"><RouterLink :to="{name: 'register'}">Signup now</RouterLink></a>
+                        <a class="text signup-link"><RouterLink to="/register">Register</RouterLink></a>
                     </span>
                 </div>
             </div>

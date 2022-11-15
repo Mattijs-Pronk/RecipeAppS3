@@ -7,9 +7,6 @@
 </script>
 
 <template>
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-</head>
   <Header/>
             <!-- Start van searchbar -->
               <searchbar/>
@@ -49,7 +46,7 @@
     methods:{
         async loadMyFavorites(){
           this.user = JSON.parse(localStorage.getItem("user"))
-          this.meallist = await this.GetAllFavoritesById(this.user)   
+          this.meallist = await GetAllFavoritesById(this.user)   
         }
     }
   }

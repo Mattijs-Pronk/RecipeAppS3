@@ -47,7 +47,7 @@
     methods:{
         async loadMyRecipes(){
             this.user = JSON.parse(localStorage.getItem("user"))
-            this.meallist = await this.GetUserRecipesById(this.user)
+            this.meallist = await GetUserRecipesById(this.user)
         }
     }
   }
