@@ -117,7 +117,7 @@ namespace Back_end_API.Controllers
         {
             if(request.Length > 0)
             {
-                string path = _env.WebRootPath + "\\recipeImg\\";
+                string path = "C:\\Users\\matti\\Desktop\\RecipeAppS3\\FileServer\\FileServer\\wwwroot\\Images\\";
                 if(!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);

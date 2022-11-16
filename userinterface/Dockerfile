@@ -12,10 +12,10 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 
-# docker build -t naam .
+# docker build -t recipeapp.userinterface .
 
 #run front-end
-# docker run -it -p 8001:80 --rm --name naam naam
+# docker run -it -p 8001:80 --rm --name recipeapp.userinterface recipeapp.userinterface
 
 #run back-end
-# docker run -it -p 8000:80 --rm -e ASPNETCORE_ENVIRONMENT=Development --name naam naam
+# docker run -it -p 8000:80 --rm -e ASPNETCORE_ENVIRONMENT=Development --name recipeapp.api recipeapp.api
