@@ -172,10 +172,12 @@ namespace Back_end_API.Controllers
                              r.prepTime,
                              r.Portions,
                              r.Status,
-                             r.imageName,
+                             imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
                         .ToListAsync();
+
+            
 
             return Ok(myrecipe);
         }
@@ -202,7 +204,7 @@ namespace Back_end_API.Controllers
                              f.Recipe.Rating,
                              f.Recipe.prepTime,
                              f.Recipe.Portions,
-                             f.Recipe.imageName,
+                             imageBase64 = Convert.ToBase64String(f.Recipe.imageFile),
                              f.Recipe.User.userName
                          })
                          .ToListAsync();

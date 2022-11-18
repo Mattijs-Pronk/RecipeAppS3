@@ -33,12 +33,7 @@ namespace UnitTests
 
             context.Database.EnsureDeleted();
 
-            var mockEnvironment = new Mock<IWebHostEnvironment>();
-            mockEnvironment
-                .Setup(m => m.EnvironmentName)
-                .Returns("Hosting:UnitTestEnvironment");
-
-            recipeController = new RecipeController(context, mockEnvironment.Object);
+            recipeController = new RecipeController(context);
             
 
             verifyInfo.CreatePasswordHash("test123", out byte[] passwordhash, out byte[] passwordsalt);
@@ -68,7 +63,7 @@ namespace UnitTests
                 Rating = 5,
                 prepTime = 5,
                 Portions = 1,
-                imageName = "koekje.png",
+                imageFile = new byte[0],
                 Status = "Accepted",
                 userId = 1,
             };
@@ -213,25 +208,6 @@ namespace UnitTests
             //assert
             Assert.NotNull(result);
             Assert.Equal(400, result.StatusCode);
-        }
-
-        [Fact]
-        public void Test_UploadImage_BadRequestResult()
-        {
-            //arrange
-            var fileName = "test.pdf";
-            var stream = new MemoryStream();
-
-            IFormFile recipeImage = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
-
-
-            //act
-            var recipe = recipeController.UploadImage(recipeImage);
-
-
-            //assert
-            Assert.NotNull(recipe);
-            Assert.Equal("upload failed", recipe);
         }
     }
 }

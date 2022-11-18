@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import mockaxios from 'axios'
+import mockAxios from "axios";
+//import API from "./API"
 
 // Run all test: npm run test:unit
 
@@ -36,16 +37,16 @@ describe('RouteGaurd', () => {
 
 
 
-//Unit Test Login
-// import { Login } from '../../assets/Functions/Auth'
-// describe('Login', () => {
-//   test('User sign in', async () => {
-//     expect(await Login('cloudrecipes.info@gmail.com', 'admin123')).toBe(true)
-//   })
-// })
 
-// describe('Login', () => {
-//   test('User sign in faild', async () => {
-//     expect(await Login('fail@mail.com', 'admin')).toBe(false)
-//   })
-// })
+//Unit Test Login
+import { Login } from '../../assets/Functions/Auth'
+describe('Login', () => {
+  test('User sign in', async () => {
+    const user = [
+      { id: 1, email: "John@example.com", password: "john123" },
+    ];
+    mockAxios.get.mockResolvedValueOnce(user);
+
+    expect(await Login('John@example.com', 'john123')).toBe(true)
+  })
+})

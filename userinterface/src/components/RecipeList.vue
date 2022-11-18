@@ -2,7 +2,7 @@
   import { OpenModal } from '../assets/Functions/Recipe';
   import { GetFavorite } from '../assets/Functions/User';
   import RecipeItem from '../components/RecipeItem.vue';
-  import {recipeImageURL} from '../assets/Functions/services/ImageUrls';
+  import {imageConvertUrl} from '../assets/Functions/services/ImageUrls';
 </script>
 
 
@@ -16,7 +16,7 @@
     <div class="box" v-for="meal in listdata">
       <div class="status">{{meal.status}}</div>  
       
-        <img :src="recipeImageURL + meal.imageName" alt="food">
+      <img :src="imageConvertUrl + meal.imageBase64" alt="food">
 
         <h3>{{meal.title}}</h3>
 

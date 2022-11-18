@@ -1,7 +1,7 @@
 <script setup>
   import { CloseModal } from '../assets/Functions/Recipe';
   import { AddToFavorites } from '../assets/Functions/User';
-  import {recipeImageURL} from '../assets/Functions/services/ImageUrls';
+  import {imageConvertUrl} from '../assets/Functions/services/ImageUrls';
 </script>
 
 
@@ -12,9 +12,11 @@
         <br/>                  
             <div class="meal-details-content" v-for="meal in itemdata">                      
                 <h2 class="recipe-title">{{meal.title}}</h2>
+
                     <div class="recipe-meal-img">
-                      <img :src="recipeImageURL + meal.imageName" alt="food">
+                      <img :src="imageConvertUrl + meal.imageBase64" alt="food">
                     </div>
+
                         <p class="recipe-text-name">{{meal.userName}}</p>
                         <p class="recipe-text-rating">{{meal.rating}} out of 5 <span class="fa fa-star"></span></p><br/>
 
@@ -23,12 +25,12 @@
                         <p class="recipe-text">Preptime: {{meal.prepTime}} minute('s'), Portion('s'): {{meal.portions}}</p><br/>
 
                             <h3><p class="recipe-category">Ingredients</p></h3>
-                            <p class="recipe-text">{{meal.ingredients}}</p>
+                          <p class="recipe-text">{{meal.ingredients}}</p>
    
-                            <h3><p class="recipe-category">Preperation</p></h3>
-                            <p class="recipe-text">{{meal.description}}</p>
-                      </div>
-                    </div>
+                        <h3><p class="recipe-category">Preperation</p></h3>
+                      <p class="recipe-text">{{meal.description}}</p>
+            </div>
+      </div>
 </template>
 
 <script>

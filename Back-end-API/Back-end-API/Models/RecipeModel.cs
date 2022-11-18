@@ -22,7 +22,7 @@ namespace Back_end_API.Models
         public string Ingredients { get; set; } = null!;
 
         [Required]
-        public string imageName { get; set; } = null!;
+        public byte[] imageFile { get; set; } = null!;
 
         [Required]
         public int? prepTime { get; set; }
@@ -30,8 +30,10 @@ namespace Back_end_API.Models
         [Required]
         public int? Portions { get; set; }
 
+        [Required]
         public int Rating { get; set; }
 
+        [Required]
         public string Status { get; set; } = null!;
 
         //Foreign key aanmaken met onderstaande variables.

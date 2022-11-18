@@ -4,10 +4,6 @@ using Back_end_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Org.BouncyCastle.Asn1.Ocsp;
-using System.Collections;
-using System.Linq;
 
 namespace Back_end_API.Controllers
 {
@@ -16,12 +12,12 @@ namespace Back_end_API.Controllers
     public class RecipeController : ControllerBase
     {
         public readonly RecipeAppContext _context;
-        private readonly IWebHostEnvironment _env;
 
-        public RecipeController(RecipeAppContext context, IWebHostEnvironment env)
+        ImageConverter imgConverter = new ImageConverter();
+
+        public RecipeController(RecipeAppContext context)
         {
             _context = context;
-            _env = env;
         }
 
         /// <summary>
@@ -42,7 +38,7 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
-                             r.imageName,
+                             imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
                          .ToListAsync();
@@ -69,7 +65,7 @@ namespace Back_end_API.Controllers
                              r.Rating,
                              r.prepTime,
                              r.Portions,
-                             r.imageName,
+                             imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
                          .ToArrayAsync();
@@ -78,7 +74,7 @@ namespace Back_end_API.Controllers
         }
 
         /// <summary>
-        /// Methode om een recept an te maken.
+        /// Methode om een recept aan te maken.
         /// </summary>
         /// <param name="request">verzameling van title, ingredients, description, preptime, portions en userid van ingevulde front-end.</param>
         /// <returns>Ok wanneer user is gevonden en recept is teogevoegd, Bad request wanneer user niet is gevonden.</returns>
@@ -90,7 +86,7 @@ namespace Back_end_API.Controllers
             if (myuser == null)
                 return BadRequest("user not found");
 
-            var filename = UploadImage(request.imageFile);
+            var fileByte = imgConverter.UploadImage(request.imageFile);
 
             var newrecipe = new RecipeModel
             {
@@ -100,7 +96,7 @@ namespace Back_end_API.Controllers
                 prepTime = request.prepTime,
                 Portions = request.Portions,
                 Rating = 0,
-                imageName = filename,
+                imageFile = fileByte,
                 Status = RecipeModel.status.Onhold.ToString(),
                 User = myuser
             };
@@ -109,28 +105,6 @@ namespace Back_end_API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("recipe added");
-        }
-
-        //nog over zetten naar andere functie (apparte class).
-        [NonAction]
-        public string UploadImage(IFormFile request)
-        {
-            if(request.Length > 0)
-            {
-                string path = "C:\\Users\\matti\\Desktop\\RecipeAppS3\\FileServer\\FileServer\\wwwroot\\Images\\";
-                if(!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                var fileName = DateTime.Now.ToString("yymmssfff") + request.FileName;
-                using (FileStream fileStream = System.IO.File.Create(path + fileName))
-                {
-                    request.CopyTo(fileStream);
-                    fileStream.Flush();
-                    return fileName;
-                }
-            }
-            else { return "upload failed"; }
         }
     }
 }
