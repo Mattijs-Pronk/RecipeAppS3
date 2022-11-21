@@ -1,0 +1,111 @@
+:root{
+    --orange:#f18805;
+    --black: #002366;
+    --white: #fff;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.5);
+}
+
+section{
+    padding:0.5rem 9%;
+    background:#eee;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color:var(--white);
+    background: var(--black);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding:.8rem 3rem;
+}
+
+.btn:hover{
+    background: var(--orange);
+    letter-spacing: .1rem;
+}
+
+.dishes .box-container{
+    display: grid;
+    gap:1.5rem;
+}
+
+.dishes .box-container .box{
+    padding:2.5rem;
+    background:var(--white);
+    border-radius: .5rem;
+    border:.1rem solid var(--orange);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.dishes .box-container .box:hover{
+    transform: scale(1.01)
+}
+
+.dishes .box-container .box img{
+    height:18rem;
+    width: 100%;
+    margin:0rem 0;
+    border-radius: 0.5rem 0.5rem;
+}
+
+.dishes .box-container .box h3{
+    color:var(--black);
+    font-size: 2.5rem;
+}
+
+.dishes .box-container .box .stars{
+    padding:1rem 0;
+}
+
+.dishes .box-container .box .stars i{
+    font-size: 1.7rem;
+    color:var(--orange);
+}
+
+.dishes .box-container .box span{
+    color:var(--orange);
+    font-weight: bolder;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
+
+.status{
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 2rem;
+    width: 70%;
+    margin-left: 15%;
+    font-weight: bold;
+    font-size: 22px;
+    color: #fff;
+    background-color: var(--black);
+}
+
+@media screen and (min-width: 768px){
+    .dishes .box-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px){
+    .dishes .box-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1440px){
+    .dishes .box-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1660px){
+    .dishes .box-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

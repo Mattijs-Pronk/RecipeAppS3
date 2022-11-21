@@ -1,0 +1,118 @@
+:root{
+    --orange:#f18805;
+    --black: #002366;
+    --white: #fff;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.5);
+}
+
+.icon{
+  width: 1.3rem;
+  margin: 0 1rem;
+  fill: var(--black);
+  cursor: pointer;
+}
+
+.icon:hover{
+  scale: 1.4;
+}
+
+.btn{
+  margin: 2rem 1rem;
+  display: inline-block;
+  font-size: 1.7rem;
+  color:var(--white);
+  background: var(--black);
+  border-radius: .5rem;
+  cursor: pointer;
+  padding:.8rem 3rem;
+}
+
+.btn:hover{
+  background: var(--orange);
+  letter-spacing: .1rem;
+}
+
+table {
+    border: 1px solid var(--orange);
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: var(--white);
+    border: 1px solid var(--orange);
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }

@@ -46,9 +46,29 @@ namespace Back_end_API.Controllers
                              u.Email,
                              u.adress,
                              u.phone,
-                             u.activeSince
+                             u.activeSince,
+                             u.isAdmin
                          })
                          .ToArrayAsync();
+
+            return Ok(myuser);
+        }
+
+        [HttpGet("getallusers")]
+        public async Task<ActionResult> GetAllUsers()
+        {
+            var myuser = await _context.Users
+                         .Select(u => new
+                         {
+                             u.userId,
+                             u.userName,
+                             u.Email,
+                             u.adress,
+                             u.phone,
+                             u.activeSince,
+                             u.isAdmin
+                         })
+                         .ToListAsync();
 
             return Ok(myuser);
         }

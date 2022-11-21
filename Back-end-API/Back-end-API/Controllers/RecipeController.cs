@@ -21,7 +21,7 @@ namespace Back_end_API.Controllers
         }
 
         /// <summary>
-        /// Methode om alle recepten op te halen.
+        /// Methode om alle geaccepteerde recepten op te halen.
         /// </summary>
         /// <returns>Ok wanneer alle recepten zijn verstuurd.</returns>
         [HttpGet("getallaccepted")]
@@ -29,6 +29,58 @@ namespace Back_end_API.Controllers
         { 
             var myrecipe = await _context.Recipes
                          .Where(r => r.Status == RecipeModel.status.Accepted.ToString())
+                         .Select(r => new
+                         {
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             imageBase64 = Convert.ToBase64String(r.imageFile),
+                             r.User.userName
+                         })
+                         .ToListAsync();
+
+            return Ok(myrecipe);
+        }
+
+        /// <summary>
+        /// Methode om alle geaccepteerde recepten op te halen.
+        /// </summary>
+        /// <returns>Ok wanneer alle recepten zijn verstuurd.</returns>
+        [HttpGet("getallonhold")]
+        public async Task<ActionResult> GetAllOnHoldRecipes()
+        {
+            var myrecipe = await _context.Recipes
+                         .Where(r => r.Status == RecipeModel.status.Onhold.ToString())
+                         .Select(r => new
+                         {
+                             r.recipeId,
+                             r.Title,
+                             r.Description,
+                             r.Ingredients,
+                             r.Rating,
+                             r.prepTime,
+                             r.Portions,
+                             imageBase64 = Convert.ToBase64String(r.imageFile),
+                             r.User.userName
+                         })
+                         .ToListAsync();
+
+            return Ok(myrecipe);
+        }
+
+        /// <summary>
+        /// Methode om alle afgewezen recepten op te halen.
+        /// </summary>
+        /// <returns>Ok wanneer alle recepten zijn verstuurd.</returns>
+        [HttpGet("getalldeclined")]
+        public async Task<ActionResult> GetAllDeclinedRecipes()
+        {
+            var myrecipe = await _context.Recipes
+                         .Where(r => r.Status == RecipeModel.status.Declined.ToString())
                          .Select(r => new
                          {
                              r.recipeId,
