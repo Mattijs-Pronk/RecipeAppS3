@@ -1,4 +1,4 @@
-name: ci
+name: CD/userinterface
 
 on:
   push:
@@ -30,4 +30,4 @@ jobs:
         with:
           context: ./userinterface
           push: true
-          tags: mattijs99/userinterface:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/userinterface:latest
