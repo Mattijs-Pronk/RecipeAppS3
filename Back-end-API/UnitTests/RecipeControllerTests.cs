@@ -158,43 +158,43 @@ namespace UnitTests
             Assert.Equal(200, result.StatusCode);
         }
 
-        [Fact]
-        public async Task Test_CreateRecipe_OkResult()
-        {
-            //arrange
-            SeedDb();
-            var content = "Hello World from a Fake File";
-            var fileName = "test.pdf";
-            var stream = new MemoryStream();
-            var writer = new StreamWriter(stream);
-            writer.Write(content);
-            writer.Flush();
-            stream.Position = 0;
+        //[Fact]
+        //public async Task Test_CreateRecipe_OkResult()
+        //{
+        //    //arrange
+        //    SeedDb();
+        //    var content = "Hello World from a Fake File";
+        //    var fileName = "test.pdf";
+        //    var stream = new MemoryStream();
+        //    var writer = new StreamWriter(stream);
+        //    writer.Write(content);
+        //    writer.Flush();
+        //    stream.Position = 0;
 
-            IFormFile recipeImage = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
+        //    IFormFile recipeImage = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
 
-            var myrecipe = new RecipeDTO
-            {
-                recipeId = 1002,
-                Title = "keigaaf",
-                Ingredients = "nog cooler man",
-                Description = "unbeliefabol",
-                Portions = 2,
-                prepTime = 15,
-                imageFile = recipeImage,
-                userId = 3
-            };
-            var recipeController = new RecipeController(_context);
+        //    var myrecipe = new RecipeDTO
+        //    {
+        //        recipeId = 1002,
+        //        Title = "keigaaf",
+        //        Ingredients = "nog cooler man",
+        //        Description = "unbeliefabol",
+        //        Portions = 2,
+        //        prepTime = 15,
+        //        imageFile = recipeImage,
+        //        userId = 3
+        //    };
+        //    var recipeController = new RecipeController(_context);
 
-            //act
-            var recipe = await recipeController.CreateRecipe(myrecipe);
-            var result = (ObjectResult)recipe;
-            await _context.Database.EnsureDeletedAsync();
+        //    //act
+        //    var recipe = await recipeController.CreateRecipe(myrecipe);
+        //    var result = (ObjectResult)recipe;
+        //    await _context.Database.EnsureDeletedAsync();
 
-            //assert
-            Assert.NotNull(result);
-            Assert.Equal(200, result.StatusCode);
-        }
+        //    //assert
+        //    Assert.NotNull(result);
+        //    Assert.Equal(200, result.StatusCode);
+        //}
 
         [Fact]
         public async Task Test_CreateRecipe_BadRequestResult()
