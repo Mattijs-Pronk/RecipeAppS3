@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env: 
-      working-directory: "./userfrontend"
+      working-directory: "./userinterface"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
