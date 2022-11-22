@@ -1,4 +1,4 @@
-name: CD/userfrontend
+name: CD/userinterface
 on:
   push:
     branches: [ "main" ]
@@ -18,7 +18,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     env: 
-      working-directory: "./userfrontend"
+      working-directory: "./userinterface"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
