@@ -34,5 +34,6 @@ jobs:
         with:
           context: ${{ env.working-directory }}
           file: ${{ env.working-directory }}/Dockerfile
+          registery: docker.io
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/userinterface:latest
