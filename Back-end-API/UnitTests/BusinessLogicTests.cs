@@ -1,4 +1,5 @@
 ﻿using Back_end_API.BusinessLogic;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace UnitTests
     public class BusinessLogicTests
     {
         VerifyInfo verifyInfo = new VerifyInfo();
+        ImageConverter converter = new ImageConverter();
 
         [Fact]
         public void Test_CreatePasswordHash_VerifyPasswordHash()
@@ -39,6 +41,27 @@ namespace UnitTests
 
             //assert
             Assert.NotNull(token);
+        }
+
+        [Fact]
+        public void Test_UploadImage()
+        {
+            //arrange
+            var content = "Hello World from a Fake File";
+            var fileName = "test.pdf";
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(content);
+            writer.Flush();
+            stream.Position = 0;
+
+            IFormFile recipeImage = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
+
+            //act
+            byte[] imgbyte = converter.UploadImage(recipeImage);
+
+            //assert
+            Assert.NotNull(imgbyte);
         }
     }
 }

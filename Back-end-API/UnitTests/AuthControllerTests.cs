@@ -10,16 +10,12 @@ namespace UnitTests
 {
     public class AuthControllerTests
     {
-        AuthController authController;
+        public static RecipeAppContext _context = null!;
+
         VerifyInfo verifyInfo = new VerifyInfo();
         private string verifyAccountToken = null!;
         private string passwordResetToken = null!;
-
-        public AuthControllerTests()
-        {
-            SeedDb();
-        }
-
+        
         [Fact]
         private void SeedDb()
         {
@@ -27,11 +23,9 @@ namespace UnitTests
                 .UseInMemoryDatabase(databaseName: "AuthControllerTestDb")
                 .Options;
 
-            var context = new RecipeAppContext(options);
+            _context = new RecipeAppContext(options);
 
-            context.Database.EnsureDeleted();
-
-            authController = new AuthController(context);
+            _context.Database.EnsureDeleted();
 
             verifyInfo.CreatePasswordHash("test123", out byte[] passwordhash, out byte[] passwordsalt);
             passwordResetToken = verifyInfo.CreateRandomToken();
@@ -73,48 +67,28 @@ namespace UnitTests
                 },
             };
 
-            context.Users.AddRange(users);
-            context.SaveChanges();
+            _context.Users.AddRange(users);
+            _context.SaveChanges();
         }
-
-        //[Fact]
-        //public async Task Test_Register_OKResult()
-        //{
-        //    //arrange
-        //    var newuser = new CreateUserDTO
-        //    {
-        //        UserName = "Piet",
-        //        Email = "piet@example.com",
-        //        Password = "piet123"
-        //    };
-
-
-        //    //act
-        //    var user = await authController.Register(newuser);
-        //    var result = (ObjectResult)user;
-
-
-        //    //assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(200, result.StatusCode);
-        //}
 
         [Fact]
         public async Task Test_Register_BadRequestResult()
         {
             //arrange
+            SeedDb();
             var myuser = new UserDTO
             {
                 userName = "Piet",
                 email = "peter@example.com",
                 password = "piet123"
             };
+            var authController = new AuthController(_context);
 
 
             //act
             var user = await authController.Register(myuser);
             var result = (ObjectResult)user;
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -125,17 +99,18 @@ namespace UnitTests
         public async Task Test_Login_OkResult()
         {
             //arrange
+            SeedDb();
             var myuser = new UserDTO
             {
                 email = "pietjeh@example.com",
                 password = "test123"
             };
-
+            var authController = new AuthController(_context);
 
             //act
             var user = await authController.Login(myuser);
             var result = (ObjectResult)user;
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -146,135 +121,80 @@ namespace UnitTests
         public async Task Test_Login_BadRequestResult()
         {
             //arrange
+            SeedDb();
             var myuser = new UserDTO
             {
                 email = "peter@example.com",
                 password = "test"
             };
-
+            var authController = new AuthController(_context);
 
             //act
             var user = await authController.Login(myuser);
             var result = (ObjectResult)user;
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
             Assert.Equal(400, result.StatusCode);
         }
-
-        //[Fact]
-        //public async Task Test_VerifyAccount_OkResult()
-        //{
-        //    //arrange
-        //    var myuser = new ActivateUserAccountDTO
-        //    {
-        //        Email = "peter@example.com",
-        //        activateAccountToken = activateAccountToken
-        //    };
-
-
-        //    //act
-        //    var user = await authController.VerifyAccount(myuser);
-        //    var result = (ObjectResult)user;
-
-
-        //    //assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(200, result.StatusCode);
-        //}
 
         [Fact]
         public async Task Test_VerifyAccount_BadRequestResult()
         {
             //arrange
+            SeedDb();
             var myuser = new UserDTO
             {
                 email = "peter@example.com",
                 activateAccountToken = "asdawdasd"
             };
-
+            var authController = new AuthController(_context);
 
             //act
             var user = await authController.VerifyAccount(myuser);
             var result = (ObjectResult)user;
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
             Assert.Equal(400, result.StatusCode);
         }
-
-        //[Fact]
-        //public async Task Test_ForgotPassword_OkResult()
-        //{
-        //    //arrange
-        //    string email = "pietjeh@example.com";
-
-
-        //    //act
-        //    var user = await authController.ForgotPassword(email);
-        //    var result = (ObjectResult)user;
-
-
-        //    //assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(200, result.StatusCode);
-        //}
 
         [Fact]
         public async Task Test_ForgotPassword_BadRequestResult()
         {
             //arrange
+            SeedDb();
             string email = "asdwadsda@example.com";
-
+            var authController = new AuthController(_context);
 
             //act
             var user = await authController.ForgotPassword(email);
             var result = (ObjectResult)user;
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
             Assert.Equal(400, result.StatusCode);
         }
 
-        //[Fact]
-        //public async Task Test_ResetPassword_OkResult()
-        //{
-        //    //arrange
-        //    var myuser = new ResetUserPasswordDTO
-        //    {
-        //        Password = "test1234",
-        //        passwordResetToken = passwordResetToken
-        //    };
-
-
-        //    //act
-        //    var user = await authController.ResetPassword(myuser);
-        //    var result = (ObjectResult)user;
-
-
-        //    //assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(200, result.StatusCode);
-        //}
-
         [Fact]
         public async Task Test_ResetPassword_BadRequestResult()
         {
             //arrange
+            SeedDb();
             var myuser = new UserDTO
             {
                 password = "test1234",
                 passwordResetToken = "asdasdasdasd"
             };
-
+            var authController = new AuthController(_context);
 
             //act
             var user = await authController.ResetPassword(myuser);
             var result = (ObjectResult)user;
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -285,12 +205,13 @@ namespace UnitTests
         public async Task Test_DoubleUserNameChecker_True()
         {
             //arrange
+            SeedDb();
             string username = "Pannekoek";
-
+            var authController = new AuthController(_context);
 
             //act
             var result = await authController.DoubleUserNameChecker(username);
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -301,11 +222,13 @@ namespace UnitTests
         public async Task Test_DoubleUserNameChecker_False()
         {
             //arrange
+            SeedDb();
             string username = "asdijasda";
-
+            var authController = new AuthController(_context);
 
             //act
             var result = await authController.DoubleUserNameChecker(username);
+            await _context.Database.EnsureDeletedAsync();
 
 
             //assert

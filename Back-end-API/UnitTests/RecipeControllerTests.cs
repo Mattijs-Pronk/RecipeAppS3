@@ -14,13 +14,8 @@ namespace UnitTests
 {
     public class RecipeControllerTests
     {
-        RecipeController recipeController;
+        RecipeAppContext _context = null!;
         VerifyInfo verifyInfo = new VerifyInfo();
-
-        public RecipeControllerTests()
-        {
-            SeedDb();
-        }
 
         [Fact]
         private void SeedDb()
@@ -29,11 +24,9 @@ namespace UnitTests
                 .UseInMemoryDatabase(databaseName: "AuthControllerTestDb")
                 .Options;
 
-            var context = new RecipeAppContext(options);
+            _context = new RecipeAppContext(options);
 
-            context.Database.EnsureDeleted();
-
-            recipeController = new RecipeController(context);
+            _context.Database.EnsureDeleted();
             
 
             verifyInfo.CreatePasswordHash("test123", out byte[] passwordhash, out byte[] passwordsalt);
@@ -68,21 +61,40 @@ namespace UnitTests
                 userId = 1,
             };
 
-            context.Add(user);
-            context.Add(recipe);
+            _context.Add(user);
+            _context.Add(recipe);
 
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         [Fact]
-        public async Task Test_GetAllRecipes_OkResult()
+        public async Task Test_GetAllAcceptedRecipes_OkResult()
         {
             //arrange
-
+            SeedDb();
+            var recipeController = new RecipeController(_context);
 
             //act
             var recipe = await recipeController.GetAllAcceptedRecipes();
             var result = (ObjectResult)recipe;
+            await _context.Database.EnsureDeletedAsync();
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal(200, result.StatusCode);
+        }
+
+        [Fact]
+        public async Task Test_GetAllOnHoldRecipes_OkResult()
+        {
+            //arrange
+            SeedDb();
+            var recipeController = new RecipeController(_context);
+
+            //act
+            var recipe = await recipeController.GetAllOnHoldRecipes();
+            var result = (ObjectResult)recipe;
+            await _context.Database.EnsureDeletedAsync();
 
 
             //assert
@@ -90,31 +102,36 @@ namespace UnitTests
             Assert.Equal(200, result.StatusCode);
         }
 
-        //[Fact]
-        //public async Task Test_Register_BadRequestResult()
-        //{
-        //    //arrange
+        [Fact]
+        public async Task Test_GetAllDeclinedRecipes_OkResult()
+        {
+            //arrange
+            SeedDb();
+            var recipeController = new RecipeController(_context);
+
+            //act
+            var recipe = await recipeController.GetAllDeclinedRecipes();
+            var result = (ObjectResult)recipe;
+            await _context.Database.EnsureDeletedAsync();
 
 
-        //    //act
-        //    var recipe = await recipeController.GetAllRecipes();
-        //    var result = (ObjectResult)recipe;
-
-
-        //    //assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(400, result.StatusCode);
-        //}
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal(200, result.StatusCode);
+        }
 
         [Fact]
         public async Task Test_GetRecipeById_OkResult()
         {
             //arrange
+            SeedDb();
             int recipeid = 3;
+            var recipeController = new RecipeController(_context);
 
             //act
             var recipe = await recipeController.GetRecipeById(recipeid);
             var result = (ObjectResult)recipe;
+            await _context.Database.EnsureDeletedAsync();
 
 
             //assert
@@ -126,11 +143,14 @@ namespace UnitTests
         public async Task Test_GetRecipeById_BadRequestResult()
         {
             //arrange
+            SeedDb();
             int recipeid = 0;
+            var recipeController = new RecipeController(_context);
 
             //act
             var recipe = await recipeController.GetRecipeById(recipeid);
             var result = (ObjectResult)recipe;
+            await _context.Database.EnsureDeletedAsync();
 
 
             //assert
@@ -142,7 +162,7 @@ namespace UnitTests
         public async Task Test_CreateRecipe_OkResult()
         {
             //arrange
-
+            SeedDb();
             var content = "Hello World from a Fake File";
             var fileName = "test.pdf";
             var stream = new MemoryStream();
@@ -155,6 +175,7 @@ namespace UnitTests
 
             var myrecipe = new RecipeDTO
             {
+                recipeId = 1002,
                 Title = "keigaaf",
                 Ingredients = "nog cooler man",
                 Description = "unbeliefabol",
@@ -163,11 +184,12 @@ namespace UnitTests
                 imageFile = recipeImage,
                 userId = 3
             };
+            var recipeController = new RecipeController(_context);
 
             //act
             var recipe = await recipeController.CreateRecipe(myrecipe);
             var result = (ObjectResult)recipe;
-
+            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -178,6 +200,7 @@ namespace UnitTests
         public async Task Test_CreateRecipe_BadRequestResult()
         {
             //arrange
+            SeedDb();
             var content = "Hello World from a Fake File";
             var fileName = "test.pdf";
             var stream = new MemoryStream();
@@ -198,11 +221,13 @@ namespace UnitTests
                 imageFile = recipeImage,
                 userId = 0
             };
+            var recipeController = new RecipeController(_context);
 
 
             //act
             var recipe = await recipeController.CreateRecipe(myrecipe);
             var result = (ObjectResult)recipe;
+            await _context.Database.EnsureDeletedAsync();
 
 
             //assert

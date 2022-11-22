@@ -22,6 +22,11 @@ namespace Back_end_API.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Methode om recept te accepteren.
+        /// </summary>
+        /// <param name="id">id van recept.</param>
+        /// <returns>Ok wanneer recept is gevonden en aangepast.</returns>
         [HttpPut("acceptrecipe")]
         public async Task<ActionResult> AcceptRecipeRequest(int id)
         {
@@ -37,6 +42,11 @@ namespace Back_end_API.Controllers
             return BadRequest("recipe not found");
         }
 
+        /// <summary>
+        /// Methode om een recept aan te passen.
+        /// </summary>
+        /// <param name="request">Verzameling van recipeid, title, ingredients, description, preptime, potions</param>
+        /// <returns>Ok wanneer recept is gevonden en aangepast.</returns>
         [HttpPut("editrecipe")]
         public async Task<ActionResult> EditRecipeRequest(EditRecipeDTO request)
         {
@@ -57,6 +67,11 @@ namespace Back_end_API.Controllers
             return BadRequest("recipe not found");
         }
 
+        /// <summary>
+        /// Methode om een recept te declinen.
+        /// </summary>
+        /// <param name="id">recipeid</param>
+        /// <returns>Ok wanneer recept is gevonden en aangepast.</returns>
         [HttpPut("declinerecipe")]
         public async Task<ActionResult> DeclineRecipeRequest(int id)
         {
@@ -72,6 +87,11 @@ namespace Back_end_API.Controllers
             return BadRequest("recipe not found");
         }
 
+        /// <summary>
+        /// Methode om een user te verwijderen.
+        /// </summary>
+        /// <param name="id">userid.</param>
+        /// <returns>Ok wanneer user is gevonden en user is geen admin en user is verwijderd.</returns>
         [HttpPost("deleteuser")]
         public async Task<ActionResult> DeleteUserById(int id)
         {
@@ -89,6 +109,11 @@ namespace Back_end_API.Controllers
             return BadRequest("user not found or user is admin");
         }
 
+        /// <summary>
+        /// Methode om een user aan te passen.
+        /// </summary>
+        /// <param name="request">Verzameling van userid, username, email, adress, phone, password, isadmin</param>
+        /// <returns>Ok wanneer user is gevonden en geen admin is en is aangepast.</returns>
         [HttpPut("edituser")]
         public async Task<ActionResult> EditUser(UserDTO request)
         {

@@ -54,6 +54,10 @@ namespace Back_end_API.Controllers
             return Ok(myuser);
         }
 
+        /// <summary>
+        /// Methode om alle users op te halen
+        /// </summary>
+        /// <returns>Ok wanneer alle users verstuurd zijn naar front-end.</returns>
         [HttpGet("getallusers")]
         public async Task<ActionResult> GetAllUsers()
         {
@@ -135,12 +139,17 @@ namespace Back_end_API.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Methode om te checken of email al bestaat en eigen email uit het filter halen.
+        /// </summary>
+        /// <param name="request">Verzameling van currentEmail en newEmail.</param>
+        /// <returns>true wanneer email dubbel is en niet overeen komt met huidige email, false als er geen dubbele email is.</returns>
         [HttpPost("doubleemail")]
         public async Task<ActionResult<bool>> DoubleEmailExcludeCurrentEmail(ChangeEmailDTO request)
         {
-            bool doubleUsername = await _context.Users.AnyAsync(u => u.Email == request.newEmail);
+            bool doubleEmail = await _context.Users.AnyAsync(u => u.Email == request.newEmail);
 
-            if (doubleUsername && request.currentEmail.ToLower() != request.newEmail.ToLower()) { return true; }
+            if (doubleEmail && request.currentEmail.ToLower() != request.newEmail.ToLower()) { return true; }
 
             return false;
         }
@@ -242,6 +251,11 @@ namespace Back_end_API.Controllers
             return Ok(myfavorite);
         }
 
+        /// <summary>
+        /// Methode die check of het een favoriet is of niet.
+        /// </summary>
+        /// <param name="request">Verzaemling van userid en recipeid.</param>
+        /// <returns>true wanneer favoriet is, false als het geen favoriet is.</returns>
         [HttpPost("getfavorite")]
         public async Task<ActionResult<bool>> GetFavoriteById(FavoriteDTO request)
         {
