@@ -31,4 +31,4 @@ jobs:
           context: ./userinterface
           file: userinterface/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/userinterface:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/recipeapps3:userfrontend
