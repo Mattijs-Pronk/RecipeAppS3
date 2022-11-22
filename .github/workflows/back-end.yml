@@ -39,4 +39,4 @@ jobs:
           context: .
           file: ./Back-end-API/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/Back-end-API:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/recipeapp-api:latest
