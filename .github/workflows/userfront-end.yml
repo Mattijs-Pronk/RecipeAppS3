@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./Back-end-API/Back-end-API/Dockerfile
+          file: ./userinterface/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/recipeapp-userfrontend:latest
               
