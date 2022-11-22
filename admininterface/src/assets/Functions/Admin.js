@@ -57,3 +57,14 @@ export const DeleteUserById = async (userid) => {
         return false
     }
 }
+
+export const EditUser = async (userid, username, email, adress, phone, password, isadmin) => {
+    try{
+        await APIcalls.EditUser(userid, username, email, adress, phone, password, isadmin)
+        return true
+    }
+    catch(error){
+        console.log(error)
+        return false
+    }
+}

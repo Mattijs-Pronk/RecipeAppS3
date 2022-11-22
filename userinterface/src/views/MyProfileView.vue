@@ -105,8 +105,6 @@ export default{
         this.useradress = this.user[0].adress;
         this.userphone = this.user[0].phone;
 
-        console.log(this.user)
-
         this.useractive = this.user[0].activeSince;
         this.useraverige = 0;
     },

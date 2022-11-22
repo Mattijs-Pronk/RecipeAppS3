@@ -1,7 +1,9 @@
 ﻿using Back_end_API.BusinessLogic;
 using Back_end_API.BusinessLogic.RecipeDTO_s;
+using Back_end_API.BusinessLogic.UserDTO_s;
 using Back_end_API.Data;
 using Back_end_API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +15,7 @@ namespace Back_end_API.Controllers
     {
         public readonly RecipeAppContext _context;
 
-        ImageConverter imgConverter = new ImageConverter();
+        VerifyInfo verify = new VerifyInfo();
 
         public AdminController(RecipeAppContext context)
         {
@@ -83,6 +85,31 @@ namespace Back_end_API.Controllers
                 _context.Favorites.RemoveRange(myfavorites);
                 await _context.SaveChangesAsync();
                 return Ok("user deleted");
+            }
+            return BadRequest("user not found or user is admin");
+        }
+
+        [HttpPut("edituser")]
+        public async Task<ActionResult> EditUser(UserDTO request)
+        {
+            var myuser = await _context.Users.FindAsync(request.userId);
+            if (myuser != null && myuser.isAdmin == false)
+            {
+                if(request.password != "") 
+                { 
+                    verify.CreatePasswordHash(request.password, out byte[] passwordhash, out byte[] passwordsalt);
+                    myuser.passwordHash = passwordhash;
+                    myuser.passwordSalt = passwordsalt;
+                }
+
+                myuser.userName = request.userName;
+                myuser.Email = request.email;
+                myuser.adress = request.adress;
+                myuser.phone = request.phone; 
+                myuser.isAdmin = request.isAdmin;
+
+                await _context.SaveChangesAsync();
+                return Ok("user edited");
             }
             return BadRequest("user not found or user is admin");
         }

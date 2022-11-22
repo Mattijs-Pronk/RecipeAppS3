@@ -135,6 +135,16 @@ namespace Back_end_API.Controllers
             return false;
         }
 
+        [HttpPost("doubleemail")]
+        public async Task<ActionResult<bool>> DoubleEmailExcludeCurrentEmail(ChangeEmailDTO request)
+        {
+            bool doubleUsername = await _context.Users.AnyAsync(u => u.Email == request.newEmail);
+
+            if (doubleUsername && request.currentEmail.ToLower() != request.newEmail.ToLower()) { return true; }
+
+            return false;
+        }
+
         /// <summary>
         /// Methode die het aantal gecreerde recepeten van een user ophaalt.
         /// </summary>

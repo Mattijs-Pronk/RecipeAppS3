@@ -64,6 +64,18 @@ export default{
     async DeleteUserById(id){
         return await API().post(`/Admin/deleteuser?id=${id}`)
     },
+
+    async EditUser(userid, username, email, adress, phone, password, isadmin){
+        return await API().put(`/Admin/edituser`, {
+            userid: userid,
+            username: username,
+            email: email,
+            adress: adress,
+            phone: phone,
+            password: password,
+            isadmin: isadmin
+        })
+    },
    //Eind van Admin calls.
 
 
@@ -93,13 +105,11 @@ export default{
         })
     },
 
-    async ChangeProfile(userid, username, adress, phone){
-    return await API().put(`/User/changeprofile` , {
-            userId: userid,
-            userName: username,
-            adress: adress,
-            phone: phone
+    async DoubleEmailExcludeCurrentEmail(currentemail, newemail){
+        return await API().post(`/User/doubleemail` , {
+            currentEmail: currentemail,
+            newEmail: newemail
         })
-    },        
+    },   
     //Eind van user calls.
 }

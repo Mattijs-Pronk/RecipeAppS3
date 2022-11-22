@@ -52,3 +52,9 @@ export const DoubleUsernameExcludeCurrentUserName = async (currentusername, newu
     let response = await APIcalls.DoubleUsernameExcludeCurrentUserName(currentusername, newusername)
     return response.data
 }
+
+//functie om te checken of een email al in gebruik is.
+export const DoubleEmailExcludeCurrentEmail = async (currentemail, newemail) => {
+    let response = await APIcalls.DoubleEmailExcludeCurrentEmail(currentemail, newemail)
+    return response.data
+}
