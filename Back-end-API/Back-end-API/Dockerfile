@@ -33,8 +33,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Back-end-API/Back-end-API.csproj", "Back-end-API/"]
-RUN dotnet restore "Back-end-API/Back-end-API.csproj"
+COPY ["Back-end-Api/Back-end-API/Back-end-API.csproj", "Back-end-API/Back-end-API/"]
+RUN dotnet restore "Back-end/API/Back-end-API/Back-end-API.csproj"
 COPY . .
 WORKDIR "/src/Back-end-API"
 RUN dotnet build "Back-end-API.csproj" -c Release -o /app/build
