@@ -1,0 +1,25 @@
+name: CI/admininterface
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  unit_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: { dir: ['./admininterface'] }
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test vuejs projects
+        working-directory: ${{ matrix.dir }}
+        run: | 
+              npm install
+              npm run build
+              npm run test:unit
