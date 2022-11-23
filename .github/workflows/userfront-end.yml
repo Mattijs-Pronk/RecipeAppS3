@@ -1,4 +1,4 @@
-name: VUE/CI
+name: CI/userinterface
 
 on:
   push:
