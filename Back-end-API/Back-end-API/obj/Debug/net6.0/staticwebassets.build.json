@@ -1,19 +1,11 @@
 {
   "Version": 1,
-  "Hash": "GJPUBxWpOr3ro2wPM2Y+LkE6Yv62DPJZxmV9c1zwhyU=",
+  "Hash": "JgZs5H5lVfXH+iZlNP8wKEI3Vf7/19uvurBL8k2RSKY=",
   "Source": "Back-end-API",
   "BasePath": "_content/Back-end-API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "Back-end-API\\wwwroot",
-      "Source": "Back-end-API",
-      "ContentRoot": "C:\\Users\\matti\\Desktop\\RecipeAppS3\\Back-end-API\\Back-end-API\\wwwroot\\",
-      "BasePath": "_content/Back-end-API",
-      "Pattern": "**"
-    }
-  ],
+  "DiscoveryPatterns": [],
   "Assets": []
 }

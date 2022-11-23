@@ -201,22 +201,22 @@ namespace UnitTests
             Assert.Equal(400, result.StatusCode);
         }
 
-        [Fact]
-        public async Task Test_DoubleUserNameChecker_True()
-        {
-            //arrange
-            SeedDb();
-            string username = "Pannekoek";
-            var authController = new AuthController(_context);
+        //[Fact]
+        //public async Task Test_DoubleUserNameChecker_True()
+        //{
+        //    //arrange
+        //    SeedDb();
+        //    string username = "Pannekoek";
+        //    var authController = new AuthController(_context);
 
-            //act
-            var result = await authController.DoubleUserNameChecker(username);
-            await _context.Database.EnsureDeletedAsync();
+        //    //act
+        //    var result = await authController.DoubleUserNameChecker(username);
+        //    await _context.Database.EnsureDeletedAsync();
 
-            //assert
-            Assert.NotNull(result);
-            Assert.True(result.Value);
-        }
+        //    //assert
+        //    Assert.NotNull(result);
+        //    Assert.True(result.Value);
+        //}
 
         [Fact]
         public async Task Test_DoubleUserNameChecker_False()
