@@ -1,4 +1,4 @@
-name: ASP/CI
+name: CI/back-end
 
 on:
   push:

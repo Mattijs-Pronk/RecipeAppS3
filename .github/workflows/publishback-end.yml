@@ -28,7 +28,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./Back-end-API/Back-end-API
-          file: Back-end-API/Back-end-API/Dockerfile
+          context: ./Back-end-API
+          file: Back-end-API/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/recipeapps3:back-end-api
