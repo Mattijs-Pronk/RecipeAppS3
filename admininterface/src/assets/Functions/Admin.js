@@ -24,6 +24,7 @@ export const DeclineRecipeRequest = async (recipeid) => {
     }
 }
 
+//functie om een recept op te halen.
 export const GetRecipeById = async (id) => {
     try{
         let response = await APIcalls.GetRecipeById(id)
@@ -58,6 +59,7 @@ export const DeleteUserById = async (userid) => {
     }
 }
 
+//functie om een user aan te passen.
 export const EditUser = async (userid, username, email, adress, phone, password, isadmin) => {
     try{
         await APIcalls.EditUser(userid, username, email, adress, phone, password, isadmin)

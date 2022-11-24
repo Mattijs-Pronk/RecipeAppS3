@@ -74,15 +74,15 @@ const router = createRouter({
     {
       path: '/manageusers',
       name: 'manageusers',
-      beforeEnter: async (to, from, next) => {
-        if(await RouteGaurdAdmin() == false){
-          next({name: 'login'});
-          return false
-        }
-        else{
-          next();
-        }
-      },
+      // beforeEnter: async (to, from, next) => {
+      //   if(await RouteGaurdAdmin() == false){
+      //     next({name: 'login'});
+      //     return false
+      //   }
+      //   else{
+      //     next();
+      //   }
+      // },
       component: () => import('../views/ManageUsersView.vue')
     },
   ]
