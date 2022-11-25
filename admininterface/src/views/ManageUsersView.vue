@@ -11,7 +11,7 @@ import {EditUser} from '../assets/Functions/Admin';
 
 <template>
     <Header/>
-
+    
     <div class="heading-collection">
         <h3 class="sub-heading"> Admin panel </h3>
         <h1 class="heading"> Manage users </h1>
@@ -43,7 +43,7 @@ import {EditUser} from '../assets/Functions/Admin';
   </tbody>
 </table>
 
-    <div id="confirmmodal" class="modal">
+<div id="confirmmodal" class="modal">
         <div class="modal-content">
             <span v-on:click="CloseConfirmModal" class="close">&times;</span>
             <p>Are you sure you want to delete this user?</p>
@@ -51,6 +51,8 @@ import {EditUser} from '../assets/Functions/Admin';
             <a v-on:click="CloseConfirmModal" class="btn">No</a>
         </div>
     </div>
+
+
 
     <div id="editmodal" class="modal">
         <div class="modal-content">
@@ -103,7 +105,7 @@ import {EditUser} from '../assets/Functions/Admin';
                     </label>
                         
                     <br><br>
-                    <a id="submit" class="btn" v-on:click="submitFo">Edit</a>
+                    <a id="submit" class="btn" v-on:click="submitForm">Edit</a>
                 </form>
         </div>
     </div>

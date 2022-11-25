@@ -3,7 +3,6 @@ C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Back-
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Back-end-API.runtimeconfig.json
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\appsettings.json
-C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Back-end-API.staticwebassets.runtime.json
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\Back-end-API.exe
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\testhost.exe
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\UnitTests\bin\Debug\net6.0\testhost.dll

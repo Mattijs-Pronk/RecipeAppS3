@@ -1,6 +1,5 @@
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\appsettings.json
-C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.staticwebassets.runtime.json
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.exe
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.deps.json
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.runtimeconfig.json
@@ -90,3 +89,4 @@ C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Sy
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\matti\Desktop\RecipeAppS3\Back-end-API\Back-end-API\bin\Debug\net6.0\Back-end-API.staticwebassets.runtime.json

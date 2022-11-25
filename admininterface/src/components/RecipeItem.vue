@@ -55,7 +55,7 @@
                       <a v-on:click="CloseAcceptConfirmModal" class="btn">No</a>
                     </div>
                   </div>
-
+                  
             </div>
       </div>
 </template>
@@ -77,12 +77,14 @@
     },
     methods:{
       OpenDeclineConfirmModal(){
+        document.getElementById('hidden').scroll({top:0})
         document.getElementById("declineconfirmmodal").style.display = "block";
       },
       CloseDeclineConfirmModal(){
         document.getElementById("declineconfirmmodal").style.display = "none";
       },
       OpenAcceptConfirmModal(){
+        document.getElementById('hidden').scroll({top:0})
         document.getElementById("acceptconfirmmodal").style.display = "block";
       },
       CloseAcceptConfirmModal(){

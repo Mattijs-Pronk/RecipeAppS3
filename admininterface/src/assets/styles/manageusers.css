@@ -24,10 +24,10 @@
 }
 
 .input-field{
+  margin : 0 auto;
   height: 50px;
   width: 50%;
   margin-top: 1rem;
-  margin-left: 30rem;
 }
 
 .input-field input{
@@ -47,10 +47,10 @@
 }
 
 .input-field2{
+  margin : 0 auto;
   height: 50px;
   width: 30%;
   margin-top: 1rem;
-  margin-left: 36rem;
 }
 
 .input-field2 input{
@@ -71,11 +71,9 @@
 
 .checkbox-text{
   margin-top: 2rem;
-  margin-left: 42rem;
 }
 
 .checkbox-text .checkbox-content{
-  display: flex;
   align-items: center;
 }
 
