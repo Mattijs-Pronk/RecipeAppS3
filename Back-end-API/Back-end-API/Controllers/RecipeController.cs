@@ -1,8 +1,10 @@
 ﻿using Back_end_API.BusinessLogic;
 using Back_end_API.Data;
 using Back_end_API.Models;
+using Back_end_API.SignalRHubs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Back_end_API.Controllers
@@ -12,12 +14,14 @@ namespace Back_end_API.Controllers
     public class RecipeController : ControllerBase
     {
         public readonly RecipeAppContext _context;
+        public readonly IHubContext<AdminHub> _hub;
 
         ImageConverter imgConverter = new ImageConverter();
 
-        public RecipeController(RecipeAppContext context)
+        public RecipeController(RecipeAppContext context, IHubContext<AdminHub> hub)
         {
             _context = context;
+            _hub = hub;
         }
 
         /// <summary>
@@ -155,6 +159,11 @@ namespace Back_end_API.Controllers
 
             await _context.Recipes.AddAsync(newrecipe);
             await _context.SaveChangesAsync();
+
+            //recipe ophalen want anders is er geen image beschikibaar.
+            var newrecipeasync = await GetRecipeById(newrecipe.recipeId);
+            await _hub.Clients.All.SendAsync("ReceiveRecipe", newrecipeasync);
+            await _hub.Clients.All.SendAsync("ReceiveMessage", myuser.userName + " has added a new recipe to On-Hold recipes");
 
             return Ok("recipe added");
         }
