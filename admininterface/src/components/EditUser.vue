@@ -1,7 +1,6 @@
 <script setup>
 import {DoubleUsernameExcludeCurrentUserName} from '../assets/Functions/User';
 import {DoubleEmailExcludeCurrentEmail} from '../assets/Functions/User';
-import { GetUserById } from '../assets/Functions/User';
 import {EditUser} from '../assets/Functions/Admin';
 </script>
 
@@ -68,7 +67,6 @@ export default{
     name: 'edituser',
     data(){
         return{
-            user: [],
             currentusername: '',
             username: '',
             usernameError: '',
@@ -86,17 +84,17 @@ export default{
     }, 
     methods:{
     async GetUser(id){
-      this.user = await GetUserById(id);
+      var user = await GetUserById(id);
 
-      this.currentusername = this.user[0].userName;
-      this.username = this.user[0].userName;
-      this.currentemail = this.user[0].email;
-      this.email = this.user[0].email;
-      this.adress = this.user[0].adress;
-      this.phone = this.user[0].phone;
-      this.isadmin = this.user[0].isAdmin;
-      this.switchisAdminType(this.isadmin);
-      vm.$forceUpdate();
+      console.log(user)
+      this.currentusername = user[0].userName;
+      this.username = user[0].userName;
+      this.currentemail = user[0].email;
+      this.email = user[0].email;
+      this.adress = user[0].adress;
+      this.phone = user[0].phone;
+      this.isadmin = user[0].isAdmin;
+      this.switchisAdminType(this.isadmin);0
     },
     CloseEditModal(){
         document.getElementById("editmodal").style.display = "none";

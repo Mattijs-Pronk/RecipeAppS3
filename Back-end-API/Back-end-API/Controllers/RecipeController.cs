@@ -163,7 +163,7 @@ namespace Back_end_API.Controllers
             //recipe ophalen want anders is er geen image beschikibaar.
             var newrecipeasync = await GetRecipeById(newrecipe.recipeId);
             await _hub.Clients.All.SendAsync("ReceiveRecipe", newrecipeasync);
-            await _hub.Clients.All.SendAsync("ReceiveMessage", myuser.userName + " has added a new recipe to On-Hold recipes");
+            await _hub.Clients.All.SendAsync("ReceiveMessage", myuser.userName + " has added a new recipe, Title: " + newrecipe.Title);
 
             return Ok("recipe added");
         }

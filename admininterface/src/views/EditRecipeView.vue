@@ -153,6 +153,6 @@ export default{
 
 
 <style scoped>
-    @import '../assets/styles/addrecipe.css';
+    @import '../assets/styles/editrecipe.css';
     @import '../assets/styles/extratext.css';
 </style>

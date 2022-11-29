@@ -1,6 +1,6 @@
 <script setup>
   import { CloseModal } from '../assets/Functions/Recipe';
-  import {imageConvertUrl} from '../assets/Functions/services/ImageUrls';
+  import {imageConvertUrl} from '../assets/Functions/services/BaseUrls';
   import {AcceptRecipeRequest} from '../assets/Functions/Admin';
   import {DeclineRecipeRequest} from '../assets/Functions/Admin';
 </script>

@@ -1,7 +1,7 @@
 <script setup>
   import { OpenModal } from '../assets/Functions/Recipe';
   import RecipeItem from '../components/RecipeItem.vue';
-  import {imageConvertUrl} from '../assets/Functions/services/ImageUrls';
+  import {imageConvertUrl} from '../assets/Functions/services/BaseUrls';
 </script>
 
 

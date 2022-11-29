@@ -1,11 +1,11 @@
 <script setup>
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
+import { GetUserById } from '../assets/Functions/User';
 import {GetAllUsers} from '../assets/Functions/User';
 import {DeleteUserById} from '../assets/Functions/Admin';
 import {DoubleUsernameExcludeCurrentUserName} from '../assets/Functions/User';
 import {DoubleEmailExcludeCurrentEmail} from '../assets/Functions/User';
-import {GetUserById} from '../assets/Functions/User';
 import {EditUser} from '../assets/Functions/Admin';
 </script>
 
@@ -51,8 +51,6 @@ import {EditUser} from '../assets/Functions/Admin';
             <a v-on:click="CloseConfirmModal" class="btn">No</a>
         </div>
     </div>
-
-
 
     <div id="editmodal" class="modal">
         <div class="modal-content">
@@ -105,7 +103,7 @@ import {EditUser} from '../assets/Functions/Admin';
                     </label>
                         
                     <br><br>
-                    <a id="submit" class="btn" v-on:click="submitForm">Edit</a>
+                    <a id="submit" class="btn" v-on:click="submitForm">Submit</a>
                 </form>
         </div>
     </div>
@@ -124,7 +122,6 @@ export default{
         return{
             userid: '',
             userlist: [],
-            user: '',
             currentusername: '',
             username: '',
             usernameError: '',
@@ -147,18 +144,6 @@ export default{
     async FillUserList(){
         this.userlist = await GetAllUsers();
     },
-    async FillUser(){
-      this.user = await GetUserById(this.userid);
-
-      this.currentusername = this.user[0].userName;
-      this.username = this.user[0].userName;
-      this.currentemail = this.user[0].email;
-      this.email = this.user[0].email;
-      this.adress = this.user[0].adress;
-      this.phone = this.user[0].phone;
-      this.isadmin = this.user[0].isAdmin;
-      this.switchisAdminType(this.isadmin)
-    },
     OpenConfirmModal(id){
         this.userid = id;
         document.getElementById("confirmmodal").style.display = "block";
@@ -170,7 +155,19 @@ export default{
         this.userid = id;
         document.getElementById("editmodal").style.display = "block";
 
-        this.FillUser();
+        this.GetUser(id);
+    },
+    async GetUser(id){
+      var user = await GetUserById(id);
+
+      this.currentusername = user[0].userName;
+      this.username = user[0].userName;
+      this.currentemail = user[0].email;
+      this.email = user[0].email;
+      this.adress = user[0].adress;
+      this.phone = user[0].phone;
+      this.isadmin = user[0].isAdmin;
+      this.switchisAdminType(this.isadmin);
     },
     CloseEditModal(){
         document.getElementById("editmodal").style.display = "none";
@@ -246,9 +243,7 @@ export default{
       this.checkPassword()
       this.checkRePassword();
 
-      console.log(this.username, this.email, this.adress, this.phone, this.password, this.isadmin)
       if(this.usernameError == '' && this.emailError == '' && this.passwordError == '' && this.RepasswordError == ''){
-        
         if(await EditUser(this.userid, this.username, this.email, this.adress, this.phone, this.password, this.isadmin)){
           this.$toast.success(`user has been edited` , {
           position: 'top',
@@ -289,7 +284,7 @@ export default{
         });  
         }
     },
-}
+  }
 }
 </script>
 
