@@ -42,7 +42,7 @@ namespace Back_end_API.Controllers
                              r.Ingredients,
                              r.prepTime,
                              r.Portions,
-                             createDate = r.createDate.ToString("yyyy-MM-dd"),
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -68,7 +68,7 @@ namespace Back_end_API.Controllers
                              r.Ingredients,
                              r.prepTime,
                              r.Portions,
-                             createDate = r.createDate.ToString("yyyy-MM-dd"),
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -94,7 +94,7 @@ namespace Back_end_API.Controllers
                              r.Ingredients,
                              r.prepTime,
                              r.Portions,
-                             createDate = r.createDate.ToString("yyyy-MM-dd"),
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -121,7 +121,7 @@ namespace Back_end_API.Controllers
                              r.Ingredients,
                              r.prepTime,
                              r.Portions,
-                             createDate = r.createDate.ToString("yyyy-MM-dd"),
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })

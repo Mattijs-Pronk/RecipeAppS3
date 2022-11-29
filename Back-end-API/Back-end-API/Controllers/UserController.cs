@@ -210,7 +210,7 @@ namespace Back_end_API.Controllers
                              r.prepTime,
                              r.Portions,
                              r.Status,
-                             createDate = r.createDate.ToString("yyyy-MM-dd"),
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
