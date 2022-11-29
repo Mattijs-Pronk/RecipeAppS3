@@ -63,9 +63,6 @@ namespace BackendAPI.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -73,6 +70,9 @@ namespace BackendAPI.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("createDate")
+                        .HasColumnType("date");
 
                     b.Property<byte[]>("imageFile")
                         .IsRequired()

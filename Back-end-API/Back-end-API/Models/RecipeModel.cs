@@ -31,7 +31,8 @@ namespace Back_end_API.Models
         public int? Portions { get; set; }
 
         [Required]
-        public int Rating { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime createDate { get; set; }
 
         [Required]
         public string Status { get; set; } = null!;

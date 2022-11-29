@@ -34,7 +34,7 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 				<textarea type="text" id="description" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
                 <br/>
-                <input class="custom-file-input" type="file" accept="image/png" v-on:change="GetFile"> <br/>
+                <input class="custom-file-input" type="file" accept="image/" v-on:change="GetFile"> <br/>
                 <br/>
                 <span v-if="fileError" class="text-danger">{{fileError}}</span>
                 <br/>

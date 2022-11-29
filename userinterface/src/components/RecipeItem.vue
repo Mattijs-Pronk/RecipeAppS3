@@ -1,7 +1,7 @@
 <script setup>
   import { CloseModal } from '../assets/Functions/Recipe';
   import { AddToFavorites } from '../assets/Functions/User';
-  import {imageConvertUrl} from '../assets/Functions/services/ImageUrls';
+  import {imageConvertUrl} from '../assets/Functions/services/BaseUrls';
 </script>
 
 
@@ -18,7 +18,6 @@
                     </div>
 
                         <p class="recipe-text-name">{{meal.userName}}</p>
-                        <p class="recipe-text-rating">{{meal.rating}} out of 5 <span class="fa fa-star"></span></p><br/>
 
                         <p class="recipe-category">Result</p>
 

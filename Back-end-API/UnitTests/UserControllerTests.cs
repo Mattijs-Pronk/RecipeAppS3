@@ -37,7 +37,6 @@ namespace UnitTests
                     imageFile = new byte[0],
                     prepTime = 1,
                     Portions = 1,
-                    Rating = 1,
                     Status = "Accepted",
                     userId = 1
                 },
@@ -50,7 +49,6 @@ namespace UnitTests
                     imageFile = new byte[0],
                     prepTime = 1,
                     Portions = 1,
-                    Rating = 1,
                     Status = "Accepted",
                     userId = 1
                 }

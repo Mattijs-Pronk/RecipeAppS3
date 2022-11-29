@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Back_end_API.Controllers
 {
@@ -39,9 +40,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("yyyy-MM-dd"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -65,9 +66,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("yyyy-MM-dd"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -91,9 +92,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("yyyy-MM-dd"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -118,9 +119,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("yyyy-MM-dd"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -151,8 +152,8 @@ namespace Back_end_API.Controllers
                 Ingredients = request.Ingredients,
                 prepTime = request.prepTime,
                 Portions = request.Portions,
-                Rating = 0,
                 imageFile = fileByte,
+                createDate = DateTime.Now,
                 Status = RecipeModel.status.Onhold.ToString(),
                 User = myuser
             };

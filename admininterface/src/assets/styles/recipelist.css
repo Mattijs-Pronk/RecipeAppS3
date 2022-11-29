@@ -10,6 +10,21 @@ section{
     background:#eee;
 }
 
+.icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--orange);
+}
+
+.header-items{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--black);
+}
+
 .btn{
     margin-top: 1rem;
     display: inline-block;
@@ -55,7 +70,7 @@ section{
 
 .dishes .box-container .box h3{
     color:var(--black);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
 }
 
 .dishes .box-container .box .stars{
@@ -68,9 +83,9 @@ section{
 }
 
 .dishes .box-container .box span{
-    color:var(--orange);
+    color: var(--black);
     font-weight: bolder;
-    margin-right: 1rem;
+    margin-left: 0.5rem;
     font-size: 1.5rem;
 }
 

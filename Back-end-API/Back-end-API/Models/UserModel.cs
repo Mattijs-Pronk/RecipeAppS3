@@ -30,6 +30,7 @@ namespace Back_end_API.Models
         public string? phone { get; set; }
 
 
+        [Column(TypeName = "date")]
         public DateTime? activeSince { get; set; }
 
         //Foreign key aanmaken met onderstaande variables.

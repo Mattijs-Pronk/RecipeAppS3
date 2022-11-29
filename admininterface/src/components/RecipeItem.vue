@@ -18,7 +18,6 @@
                     </div>
 
                         <p class="recipe-text-name">{{meal.userName}}</p>
-                        <p class="recipe-text-rating">{{meal.rating}} out of 5 <span class="fa fa-star"></span></p><br/>
 
                         <p class="recipe-category">Result</p>
 
@@ -96,7 +95,7 @@
       },
       async AcceptThisRecipeRequest(id){
         if(await AcceptRecipeRequest(id)){
-          this.$toast.success('recipe moved to Declined section' , {
+          this.$toast.success('recipe moved to Accepted section' , {
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
@@ -116,7 +115,7 @@
       },
       async DeclineThisRecipeRequest(id){
         if(await DeclineRecipeRequest(id)){
-        this.$toast.success('recipe moved to Accepted section' , {
+        this.$toast.success('recipe moved to Decline section' , {
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
