@@ -3,10 +3,12 @@ using Back_end_API.BusinessLogic.UserDTO_s;
 using Back_end_API.Controllers;
 using Back_end_API.Data;
 using Back_end_API.Models;
+using Back_end_API.SignalRHubs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
@@ -15,6 +17,8 @@ namespace UnitTests
     public class RecipeControllerTests
     {
         RecipeAppContext _context = null!;
+        public readonly IHubContext<AdminHub> _hub = null!;
+
         VerifyInfo verifyInfo = new VerifyInfo();
 
         [Fact]
@@ -53,7 +57,6 @@ namespace UnitTests
                 Title = "lekkah",
                 Ingredients = "pleuris zooi",
                 Description = "je gwn derin pleuren",
-                Rating = 5,
                 prepTime = 5,
                 Portions = 1,
                 imageFile = new byte[0],
@@ -72,7 +75,7 @@ namespace UnitTests
         {
             //arrange
             SeedDb();
-            var recipeController = new RecipeController(_context);
+            var recipeController = new RecipeController(_context, _hub);
 
             //act
             var recipe = await recipeController.GetAllAcceptedRecipes();
@@ -89,7 +92,7 @@ namespace UnitTests
         {
             //arrange
             SeedDb();
-            var recipeController = new RecipeController(_context);
+            var recipeController = new RecipeController(_context, _hub);
 
             //act
             var recipe = await recipeController.GetAllOnHoldRecipes();
@@ -107,7 +110,7 @@ namespace UnitTests
         {
             //arrange
             SeedDb();
-            var recipeController = new RecipeController(_context);
+            var recipeController = new RecipeController(_context, _hub);
 
             //act
             var recipe = await recipeController.GetAllDeclinedRecipes();
@@ -126,7 +129,7 @@ namespace UnitTests
             //arrange
             SeedDb();
             int recipeid = 3;
-            var recipeController = new RecipeController(_context);
+            var recipeController = new RecipeController(_context, _hub);
 
             //act
             var recipe = await recipeController.GetRecipeById(recipeid);
@@ -145,7 +148,7 @@ namespace UnitTests
             //arrange
             SeedDb();
             int recipeid = 0;
-            var recipeController = new RecipeController(_context);
+            var recipeController = new RecipeController(_context, _hub);
 
             //act
             var recipe = await recipeController.GetRecipeById(recipeid);
@@ -221,7 +224,7 @@ namespace UnitTests
                 imageFile = recipeImage,
                 userId = 0
             };
-            var recipeController = new RecipeController(_context);
+            var recipeController = new RecipeController(_context, _hub);
 
 
             //act

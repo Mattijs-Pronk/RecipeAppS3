@@ -34,7 +34,7 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 				<textarea type="text" id="description" class="field-texterea" placeholder="Description" v-model="description" @blur="checkDescription" @keyup="checkDescription"></textarea>
                 <span v-if="descriptionError" class="text-danger">{{descriptionError}}</span>
                 <br/>
-                <input class="custom-file-input" type="file" accept="image/png" v-on:change="GetFile"> <br/>
+                <input class="custom-file-input" type="file" accept="image/" v-on:change="GetFile"> <br/>
                 <br/>
                 <span v-if="fileError" class="text-danger">{{fileError}}</span>
                 <br/>
@@ -48,7 +48,6 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 
 <script>
 export default{
-    name: 'addrecipe',
     components: {
       Header,
       Footer
@@ -131,7 +130,7 @@ export default{
                     position: 'top',
                     dismissible: true,
                     pauseOnHover: true,
-                    duration: 3500
+                    duration: 5000
                     });
 
                     this.$router.push({name: 'myrecipes'})
@@ -141,7 +140,7 @@ export default{
                     position: 'top',
                     dismissible: true,
                     pauseOnHover: true,
-                    duration: 4500
+                    duration: 5000
                 });
                 }
             }

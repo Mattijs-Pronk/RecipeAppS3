@@ -26,7 +26,6 @@
 
 <script>
   export default {
-    name: "recipes",
     components: {
       searchbar,
       Header,
@@ -41,6 +40,11 @@
     //mounted zorgt ervoor dat de functie wordt ingeladen bij het laden van de pagina.
     mounted(){
       this.FillMealList();
+
+      window.addEventListener('NewRecipe',()=>{  
+        var recipe = JSON.parse(sessionStorage.getItem("NewRecipe"));
+        this.meallist.push(recipe)
+      })
     },
     methods:{
       async FillMealList(){

@@ -46,7 +46,6 @@ import Footer from '../components/Footer.vue';
 
 <script>
 export default{
-    name: 'register',
     components: {
         SimpleHeader,
       Footer
@@ -91,7 +90,7 @@ export default{
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,
-                duration: 3500
+                duration: 5000
                 });
 
                 this.$router.push({name: 'login'})
@@ -101,7 +100,7 @@ export default{
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,
-                duration: 4500
+                duration: 5000
                 });
             }       
         }

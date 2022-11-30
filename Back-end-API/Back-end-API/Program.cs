@@ -1,4 +1,5 @@
 using Back_end_API.Data;
+using Back_end_API.SignalRHubs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
@@ -6,6 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
+
+builder.Services.AddSignalR(options =>
+{
+    options.EnableDetailedErrors = true;
+});
 
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
     builder =>
@@ -42,5 +48,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<AdminHub>("/signalr");
 
 app.Run();

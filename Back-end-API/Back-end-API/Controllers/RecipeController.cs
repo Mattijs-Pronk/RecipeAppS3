@@ -1,9 +1,12 @@
 ﻿using Back_end_API.BusinessLogic;
 using Back_end_API.Data;
 using Back_end_API.Models;
+using Back_end_API.SignalRHubs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Back_end_API.Controllers
 {
@@ -12,12 +15,14 @@ namespace Back_end_API.Controllers
     public class RecipeController : ControllerBase
     {
         public readonly RecipeAppContext _context;
+        public readonly IHubContext<AdminHub> _hub;
 
         ImageConverter imgConverter = new ImageConverter();
 
-        public RecipeController(RecipeAppContext context)
+        public RecipeController(RecipeAppContext context, IHubContext<AdminHub> hub)
         {
             _context = context;
+            _hub = hub;
         }
 
         /// <summary>
@@ -35,9 +40,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -61,9 +66,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -87,9 +92,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -114,9 +119,9 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -147,14 +152,19 @@ namespace Back_end_API.Controllers
                 Ingredients = request.Ingredients,
                 prepTime = request.prepTime,
                 Portions = request.Portions,
-                Rating = 0,
                 imageFile = fileByte,
+                createDate = DateTime.Now,
                 Status = RecipeModel.status.Onhold.ToString(),
                 User = myuser
             };
 
             await _context.Recipes.AddAsync(newrecipe);
             await _context.SaveChangesAsync();
+
+            //recipe ophalen want anders is er geen image beschikibaar.
+            var newrecipeasync = await GetRecipeById(newrecipe.recipeId);
+            await _hub.Clients.All.SendAsync("ReceiveRecipe", newrecipeasync);
+            await _hub.Clients.All.SendAsync("ReceiveMessage", myuser.userName + " has added a new recipe, Title: " + newrecipe.Title);
 
             return Ok("recipe added");
         }

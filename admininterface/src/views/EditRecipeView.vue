@@ -49,7 +49,6 @@ import { AcceptRecipeRequest } from '../assets/Functions/Admin';
 
 <script>
 export default{
-    name: 'addrecipe',
     components: {
       Header,
       Footer
@@ -131,7 +130,7 @@ export default{
                     position: 'top',
                     dismissible: true,
                     pauseOnHover: true,
-                    duration: 3500
+                    duration: 5000
                     });
 
                     await AcceptRecipeRequest(this.recipeid)
@@ -142,7 +141,7 @@ export default{
                     position: 'top',
                     dismissible: true,
                     pauseOnHover: true,
-                    duration: 4500
+                    duration: 5000
                 });
                 }
             }
@@ -153,6 +152,6 @@ export default{
 
 
 <style scoped>
-    @import '../assets/styles/addrecipe.css';
+    @import '../assets/styles/editrecipe.css';
     @import '../assets/styles/extratext.css';
 </style>

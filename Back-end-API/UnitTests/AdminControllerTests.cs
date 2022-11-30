@@ -74,7 +74,6 @@ namespace UnitTests
                 Title = "lekkah",
                 Ingredients = "pleuris zooi",
                 Description = "je gwn derin pleuren",
-                Rating = 5,
                 prepTime = 5,
                 Portions = 1,
                 imageFile = new byte[0],

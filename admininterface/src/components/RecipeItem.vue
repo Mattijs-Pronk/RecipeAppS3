@@ -1,6 +1,6 @@
 <script setup>
   import { CloseModal } from '../assets/Functions/Recipe';
-  import {imageConvertUrl} from '../assets/Functions/services/ImageUrls';
+  import {imageConvertUrl} from '../assets/Functions/services/BaseUrls';
   import {AcceptRecipeRequest} from '../assets/Functions/Admin';
   import {DeclineRecipeRequest} from '../assets/Functions/Admin';
 </script>
@@ -18,7 +18,6 @@
                     </div>
 
                         <p class="recipe-text-name">{{meal.userName}}</p>
-                        <p class="recipe-text-rating">{{meal.rating}} out of 5 <span class="fa fa-star"></span></p><br/>
 
                         <p class="recipe-category">Result</p>
 
@@ -62,7 +61,6 @@
 
 <script>
   export default {
-    name: "recipeitem",
     data(){
       return{
         user: ''
@@ -96,11 +94,11 @@
       },
       async AcceptThisRecipeRequest(id){
         if(await AcceptRecipeRequest(id)){
-          this.$toast.success('recipe moved to Declined section' , {
+          this.$toast.success('recipe moved to Accepted section' , {
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
           this.CloseAcceptConfirmModal();
         }
@@ -109,18 +107,18 @@
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
         } 
         }
       },
       async DeclineThisRecipeRequest(id){
         if(await DeclineRecipeRequest(id)){
-        this.$toast.success('recipe moved to Accepted section' , {
+        this.$toast.success('recipe moved to Decline section' , {
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
           this.CloseAcceptConfirmModal();
         }
@@ -129,7 +127,7 @@
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
         } 
       },

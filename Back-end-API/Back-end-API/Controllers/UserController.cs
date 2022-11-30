@@ -207,10 +207,10 @@ namespace Back_end_API.Controllers
                              r.Title,
                              r.Description,
                              r.Ingredients,
-                             r.Rating,
                              r.prepTime,
                              r.Portions,
                              r.Status,
+                             createDate = r.createDate.ToString("dd-MM-yyyy"),
                              imageBase64 = Convert.ToBase64String(r.imageFile),
                              r.User.userName
                          })
@@ -240,7 +240,6 @@ namespace Back_end_API.Controllers
                              f.Recipe.Title,
                              f.Recipe.Description,
                              f.Recipe.Ingredients,
-                             f.Recipe.Rating,
                              f.Recipe.prepTime,
                              f.Recipe.Portions,
                              imageBase64 = Convert.ToBase64String(f.Recipe.imageFile),
