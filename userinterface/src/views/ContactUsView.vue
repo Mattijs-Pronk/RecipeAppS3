@@ -98,7 +98,7 @@ export default{
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,
-                duration: 3500
+                duration: 5000
                 });
             }
             else{
@@ -106,7 +106,7 @@ export default{
                 position: 'top',
                 dismissible: true,
                 pauseOnHover: true,
-                duration: 3500
+                duration: 5000
                 });
             }
         }

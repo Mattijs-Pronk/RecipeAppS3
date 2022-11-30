@@ -99,7 +99,7 @@
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
           this.CloseAcceptConfirmModal();
         }
@@ -108,7 +108,7 @@
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
         } 
         }
@@ -119,7 +119,7 @@
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
           this.CloseAcceptConfirmModal();
         }
@@ -128,7 +128,7 @@
           position: 'top',
           dismissible: true,
           pauseOnHover: true,
-          duration: 4500
+          duration: 5000
           });
         } 
       },
