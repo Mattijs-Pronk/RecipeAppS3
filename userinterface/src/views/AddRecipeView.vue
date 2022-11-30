@@ -48,7 +48,6 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 
 <script>
 export default{
-    name: 'addrecipe',
     components: {
       Header,
       Footer

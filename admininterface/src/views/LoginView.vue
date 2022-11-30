@@ -43,7 +43,6 @@ import {RouteGaurdAdmin} from '../assets/Functions/Auth';
 
 <script>
 export default{
-    name: 'login',
     components: {
       SimpleHeader,
       Footer,

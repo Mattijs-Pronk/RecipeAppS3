@@ -21,7 +21,7 @@ export default{
     position: 'bottom-right',
     dismissible: true,
     pauseOnHover: true,
-    duration: 4500
+    duration: 5000
   });
   })
   }

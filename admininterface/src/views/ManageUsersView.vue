@@ -113,7 +113,6 @@ import {EditUser} from '../assets/Functions/Admin';
 
 <script>
 export default{
-    name: 'manageusers',
     components: {
       Header,
       Footer

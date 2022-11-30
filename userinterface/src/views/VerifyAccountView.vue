@@ -34,7 +34,6 @@ import Footer from '../components/Footer.vue';
 
 <script>
 export default{
-    name: 'verify',
     components: {
         SimpleHeader,
       Footer

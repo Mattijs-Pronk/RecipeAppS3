@@ -64,7 +64,6 @@ import {EditUser} from '../assets/Functions/Admin';
 
 <script>
 export default{
-    name: 'edituser',
     data(){
         return{
             currentusername: '',

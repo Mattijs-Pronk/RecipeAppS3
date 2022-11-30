@@ -63,7 +63,6 @@ import Footer from '../components/Footer.vue';
 
 <script>
 export default{
-    name: 'register',
     components: {
         SimpleHeader,
         Footer

@@ -41,7 +41,6 @@ import {DoubleUsernameExcludeCurrentUserName} from '../assets/Functions/User';
 
 <script>
 export default{
-    name: 'editprofile',
     props: [
         'userid',
         'currentusername'
