@@ -15,7 +15,7 @@ CMD ["nginx", "-g", "daemon off;"]
 # docker build -t recipeapp.userinterface .
 
 #run front-end
-# docker run -it -p 8001:80 --rm --name recipeapp.userinterface recipeapp.userinterface
+# docker run -it -p 8002:80 --rm --name recipeapps3-userfrontend mattijs99/recipeapps3:userfrontend
 
 #run back-end
-# docker run -it -p 8000:80 --rm -e ASPNETCORE_ENVIRONMENT=Development --name recipeapp.api recipeapp.api
+# docker run -it -p 8000:80 --rm -e ASPNETCORE_ENVIRONMENT=Development --name recipeapps3-backend mattijs99/recipeapps3:back-end-api
