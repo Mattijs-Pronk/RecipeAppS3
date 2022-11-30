@@ -6,4 +6,6 @@
 
   #### Add all node_modeles in RecipeApp/admininterface & RecipeApp/userinterface
   npm install
+  
+  #### Static code analysis: https://www.codefactor.io/
 
