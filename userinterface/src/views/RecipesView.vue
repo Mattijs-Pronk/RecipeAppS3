@@ -26,12 +26,6 @@
 
 <script>
   export default {
-    components: {
-      searchbar,
-      Header,
-      Footer,
-      RecipeList,
-    },
     data(){
       return{
         meallist: [],

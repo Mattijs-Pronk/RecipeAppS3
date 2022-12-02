@@ -39,14 +39,10 @@ import {ForgotPassword} from '../assets/Functions/Auth'
 
 <script>
 export default{
-    components: {
-      SimpleHeader,
-      Footer
-    },
     data(){
-    return{
-      email: '',
-      emailError: '',
+      return{
+        email: '',
+        emailError: '',
     }
   },
   methods: {

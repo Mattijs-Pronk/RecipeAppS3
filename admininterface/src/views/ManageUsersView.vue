@@ -113,10 +113,6 @@ import {EditUser} from '../assets/Functions/Admin';
 
 <script>
 export default{
-    components: {
-      Header,
-      Footer
-    },
     data(){
         return{
             userid: '',

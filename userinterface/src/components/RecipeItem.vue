@@ -10,7 +10,7 @@
         <button v-on:click="CloseRecipe()" class="recipe-close-btn"><i class="fas fa-times"></i></button> 
         <button v-on:click="AddRecipeToFavorites()" id="favorite" class="recipe-favorite-btn"><i class="fas fa-heart"></i></button> 
         <br/>                  
-            <div class="meal-details-content" v-for="meal in itemdata">                      
+            <div class="meal-details-content" v-for="meal in itemdata" :key="meal.recipeId">                      
                 <h2 class="recipe-title">{{meal.title}}</h2>
 
                     <div class="recipe-meal-img">

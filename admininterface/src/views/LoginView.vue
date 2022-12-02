@@ -43,10 +43,6 @@ import {RouteGaurdAdmin} from '../assets/Functions/Auth';
 
 <script>
 export default{
-    components: {
-      SimpleHeader,
-      Footer,
-    },
     data(){
     return{
       email: '',

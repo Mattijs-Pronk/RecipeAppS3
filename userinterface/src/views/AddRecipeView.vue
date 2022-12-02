@@ -48,10 +48,6 @@ import {AddRecipe} from '../assets/Functions/Recipe';
 
 <script>
 export default{
-    components: {
-      Header,
-      Footer
-    },
     data(){
         return{
             title: '',

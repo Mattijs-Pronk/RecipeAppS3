@@ -49,10 +49,6 @@ import { AcceptRecipeRequest } from '../assets/Functions/Admin';
 
 <script>
 export default{
-    components: {
-      Header,
-      Footer
-    },
     data(){
         return{
             title: '',

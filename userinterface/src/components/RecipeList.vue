@@ -13,7 +13,7 @@
 
 <div class="box-container">
 
-    <div class="box" v-for="meal in listdata">
+    <div class="box" v-for="meal in listdata" :key="meal.recipeId">
       <div class="status">{{meal.status}}</div>  
       
       <img :src="imageConvertUrl + meal.imageBase64" alt="food">
@@ -42,9 +42,6 @@
 
 <script>
   export default {
-    components: {
-      RecipeItem
-    },
     props: [
         'listdata'
     ],

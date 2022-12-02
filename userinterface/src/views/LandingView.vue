@@ -1,7 +1,6 @@
 <script setup>
   import Header from '../components/Header.vue'
   import Footer from '../components/Footer.vue';
-  import RecipeList from '../components/RecipeList.vue';
 </script>
 
 <template>
@@ -23,21 +22,7 @@
 </template>
 
 <script>
-  export default {
-    components: {
-      Header,
-      Footer,
-      RecipeList,
-    },
-    data(){
-      return{
-        meallist: [],
-      }
-    },
-    methods:{
 
-    }
-  }
 </script>
 
 

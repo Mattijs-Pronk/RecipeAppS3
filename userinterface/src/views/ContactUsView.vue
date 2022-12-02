@@ -48,10 +48,6 @@
 
 <script>
 export default{
-    components: {
-      Header,
-      Footer,
-    },
     data(){
         return{
             name: '',

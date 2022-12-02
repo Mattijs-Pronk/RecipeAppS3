@@ -46,10 +46,6 @@ import Footer from '../components/Footer.vue';
 
 <script>
 export default{
-    components: {
-        SimpleHeader,
-      Footer
-    },
     data(){
         return{
             passwordresettoken: '',
