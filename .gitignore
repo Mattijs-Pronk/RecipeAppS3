@@ -23,6 +23,7 @@ coverage
 .idea
 *.suo
 *.ntvs*
+*.sln
 *.njsproj
 *.sw?
 

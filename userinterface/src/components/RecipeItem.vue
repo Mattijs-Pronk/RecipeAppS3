@@ -51,22 +51,7 @@
         CloseModal()
       },
       async AddRecipeToFavorites(){
-        if(await AddToFavorites(this.user, this.recipeId)){
-          this.$toast.success('recipe added to favorites' , {
-          position: 'top',
-          dismissible: true,
-          pauseOnHover: true,
-          duration: 4500
-          });
-        }
-        else{
-          this.$toast.error('recipe removed from favorites' , {
-          position: 'top',
-          dismissible: true,
-          pauseOnHover: true,
-          duration: 4500
-          });
-        } 
+        await AddToFavorites(this.user, this.recipeId)
       }
   }
 }
