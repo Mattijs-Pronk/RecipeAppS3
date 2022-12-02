@@ -38,7 +38,6 @@ namespace Back_end_API.Controllers
                 await _context.SaveChangesAsync();
                 return Ok("request accepted");
             }
-
             return BadRequest("recipe not found");
         }
 
@@ -63,7 +62,6 @@ namespace Back_end_API.Controllers
                 await _context.SaveChangesAsync();
                 return Ok("recipe edited");
             }
-
             return BadRequest("recipe not found");
         }
 
@@ -83,7 +81,6 @@ namespace Back_end_API.Controllers
                 await _context.SaveChangesAsync();
                 return Ok("request declined");
             }
-
             return BadRequest("recipe not found");
         }
 
