@@ -24,8 +24,15 @@ export class SignalRHub {
             window.dispatchEvent(NewRecipe)
         });
 
+        //recept weghalen uit list in gekozen pagina.
+        this.connection.on("RemoveRecipe", function (recipe) {
+            sessionStorage.setItem("RemoveRecipe", recipe);
+            window.dispatchEvent(RemoveRecipe)
+        });
+
         const NewMessage = new Event('NewMessage')
         const NewRecipe = new Event('NewRecipe')
+        const RemoveRecipe = new Event('RemoveRecipe')
     }
 
     async connect(){

@@ -15,5 +15,10 @@ namespace Back_end_API.SignalRHubs
         {
             await Clients.All.SendAsync("ReceiveRecipe", recipe);
         }
+
+        public async Task RemoveRecipe(int id)
+        {
+            await Clients.All.SendAsync("RemoveRecipe", id);
+        }
     }
 }

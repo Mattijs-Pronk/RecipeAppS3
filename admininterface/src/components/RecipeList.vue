@@ -1,5 +1,6 @@
 <script setup>
   import { OpenModal } from '../assets/Functions/Recipe';
+  import { CloseModal } from '../assets/Functions/Recipe';
   import RecipeItem from '../components/RecipeItem.vue';
   import {imageConvertUrl} from '../assets/Functions/services/BaseUrls';
 </script>
@@ -50,7 +51,18 @@
             recipeid: ''
         }
     }, 
+    mounted(){
+      window.addEventListener('RemoveRecipe',()=>{  
+        var recipe = JSON.parse(sessionStorage.getItem("RemoveRecipe"));
+        this.DeleteRecipe(recipe)
+      })
+    },
     methods:{
+      DeleteRecipe(id){
+        let i = this.listdata.map(item => item.id).indexOf(id)
+        this.listdata.splice(i, 1)
+        CloseModal();
+      },
       async OpenRecipeById(id){
         this.mealitem = await OpenModal(id)
         this.recipeid = id;

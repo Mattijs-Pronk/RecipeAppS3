@@ -3,8 +3,10 @@ using Back_end_API.BusinessLogic.RecipeDTO_s;
 using Back_end_API.BusinessLogic.UserDTO_s;
 using Back_end_API.Data;
 using Back_end_API.Models;
+using Back_end_API.SignalRHubs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Back_end_API.Controllers
@@ -14,12 +16,14 @@ namespace Back_end_API.Controllers
     public class AdminController : Controller
     {
         public readonly RecipeAppContext _context;
+        public readonly IHubContext<AdminHub> _hub;
 
         VerifyInfo verify = new VerifyInfo();
 
-        public AdminController(RecipeAppContext context)
+        public AdminController(RecipeAppContext context, IHubContext<AdminHub> hub)
         {
             _context = context;
+            _hub = hub;
         }
 
         /// <summary>
@@ -36,8 +40,11 @@ namespace Back_end_API.Controllers
                 myrecipe.Status = RecipeModel.status.Accepted.ToString();
 
                 await _context.SaveChangesAsync();
+
+                await _hub.Clients.All.SendAsync("RemoveRecipe", id);
                 return Ok("request accepted");
             }
+
             return BadRequest("recipe not found");
         }
 
