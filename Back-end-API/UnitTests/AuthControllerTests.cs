@@ -12,6 +12,13 @@ namespace UnitTests
     {
         public static RecipeAppContext _context = null!;
 
+        public AuthController authController = null!;
+
+        public AuthControllerTests()
+        {
+            SeedDb();
+        }
+
         VerifyInfo verifyInfo = new VerifyInfo();
         private string verifyAccountToken = null!;
         private string passwordResetToken = null!;
@@ -24,8 +31,8 @@ namespace UnitTests
                 .Options;
 
             _context = new RecipeAppContext(options);
-
             _context.Database.EnsureDeleted();
+            authController = new AuthController(_context);
 
             verifyInfo.CreatePasswordHash("test123", out byte[] passwordhash, out byte[] passwordsalt);
             passwordResetToken = verifyInfo.CreateRandomToken();
@@ -75,20 +82,16 @@ namespace UnitTests
         public async Task Test_Register_BadRequestResult()
         {
             //arrange
-            SeedDb();
             var myuser = new UserDTO
             {
                 userName = "Piet",
                 email = "peter@example.com",
                 password = "piet123"
             };
-            var authController = new AuthController(_context);
-
 
             //act
             var user = await authController.Register(myuser);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -99,18 +102,15 @@ namespace UnitTests
         public async Task Test_Login_OkResult()
         {
             //arrange
-            SeedDb();
             var myuser = new UserDTO
             {
                 email = "pietjeh@example.com",
                 password = "test123"
             };
-            var authController = new AuthController(_context);
 
             //act
             var user = await authController.Login(myuser);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -121,18 +121,15 @@ namespace UnitTests
         public async Task Test_Login_BadRequestResult()
         {
             //arrange
-            SeedDb();
             var myuser = new UserDTO
             {
                 email = "peter@example.com",
                 password = "test"
             };
-            var authController = new AuthController(_context);
 
             //act
             var user = await authController.Login(myuser);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -143,18 +140,15 @@ namespace UnitTests
         public async Task Test_VerifyAccount_BadRequestResult()
         {
             //arrange
-            SeedDb();
             var myuser = new UserDTO
             {
                 email = "peter@example.com",
                 activateAccountToken = "asdawdasd"
             };
-            var authController = new AuthController(_context);
 
             //act
             var user = await authController.VerifyAccount(myuser);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -165,14 +159,12 @@ namespace UnitTests
         public async Task Test_ForgotPassword_BadRequestResult()
         {
             //arrange
-            SeedDb();
             string email = "asdwadsda@example.com";
             var authController = new AuthController(_context);
 
             //act
             var user = await authController.ForgotPassword(email);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -183,7 +175,6 @@ namespace UnitTests
         public async Task Test_ResetPassword_BadRequestResult()
         {
             //arrange
-            SeedDb();
             var myuser = new UserDTO
             {
                 password = "test1234",
@@ -194,7 +185,6 @@ namespace UnitTests
             //act
             var user = await authController.ResetPassword(myuser);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -222,14 +212,11 @@ namespace UnitTests
         public async Task Test_DoubleUserNameChecker_False()
         {
             //arrange
-            SeedDb();
             string username = "asdijasda";
             var authController = new AuthController(_context);
 
             //act
             var result = await authController.DoubleUserNameChecker(username);
-            await _context.Database.EnsureDeletedAsync();
-
 
             //assert
             Assert.NotNull(result);

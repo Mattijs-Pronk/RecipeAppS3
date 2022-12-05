@@ -11,10 +11,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace UnitTests
 {
-    public class AdminControllerTestss
+    public class AdminControllerTests
     {
+        public AdminController adminController = null!;
+
         public static RecipeAppContext _context = null!;
         public readonly IHubContext<AdminHub> _hub = null!;
+
+        public AdminControllerTests()
+        {
+            SeedDb();
+        }
 
         VerifyInfo verifyInfo = new VerifyInfo();
         private string verifyAccountToken = null!;
@@ -28,8 +35,9 @@ namespace UnitTests
                 .Options;
 
             _context = new RecipeAppContext(options);
-
             _context.Database.EnsureDeleted();
+            adminController = new AdminController(_context, _hub);
+            
 
             verifyInfo.CreatePasswordHash("test123", out byte[] passwordhash, out byte[] passwordsalt);
             passwordResetToken = verifyInfo.CreateRandomToken();
@@ -112,15 +120,11 @@ namespace UnitTests
         public async Task Test_AcceptRecipeRequest_BadRequestResult()
         {
             //arrange
-            SeedDb();
             int id = 0;
-            var adminController = new AdminController(_context, _hub);
-
 
             //act
             var user = await adminController.AcceptRecipeRequest(id);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -131,7 +135,6 @@ namespace UnitTests
         public async Task Test_EditRecipeRequest_OkResult()
         {
             //arrange
-            SeedDb();
             var myrecipe = new EditRecipeDTO
             {
                 recipeId = 130,
@@ -142,13 +145,9 @@ namespace UnitTests
                 Portions = 1,
             };
 
-            var adminController = new AdminController(_context, _hub);
-
-
             //act
             var user = await adminController.EditRecipeRequest(myrecipe);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -159,7 +158,6 @@ namespace UnitTests
         public async Task Test_EditRecipeRequest_BadRequestResult()
         {
             //arrange
-            SeedDb();
             var myrecipe = new EditRecipeDTO
             {
                 recipeId = 0,
@@ -170,13 +168,9 @@ namespace UnitTests
                 Portions = 1,
             };
 
-            var adminController = new AdminController(_context, _hub);
-
-
             //act
             var user = await adminController.EditRecipeRequest(myrecipe);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -206,15 +200,11 @@ namespace UnitTests
         public async Task Test_DeclineRecipeRequest_BadRequestResult()
         {
             //arrange
-            SeedDb();
             int id = 0;
-            var adminController = new AdminController(_context, _hub);
-
 
             //act
             var user = await adminController.DeclineRecipeRequest(id);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -225,15 +215,11 @@ namespace UnitTests
         public async Task Test_DeleteUser_OkResult()
         {
             //arrange
-            SeedDb();
             int id = 210;
-            var adminController = new AdminController(_context, _hub);
-
 
             //act
             var user = await adminController.DeleteUserById(id);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -244,15 +230,11 @@ namespace UnitTests
         public async Task Test_DeleteUser_BadRequestResult()
         {
             //arrange
-            SeedDb();
             int id = 0;
-            var adminController = new AdminController(_context, _hub);
-
 
             //act
             var user = await adminController.DeleteUserById(id);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -263,7 +245,6 @@ namespace UnitTests
         public async Task Test_EditUser_OkResult()
         {
             //arrange
-            SeedDb();
             var myuser = new UserDTO
             {
                 userId = 210,
@@ -275,13 +256,9 @@ namespace UnitTests
                 isAdmin = false,
             };
 
-            var adminController = new AdminController(_context, _hub);
-
-
             //act
             var user = await adminController.EditUser(myuser);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);
@@ -292,7 +269,6 @@ namespace UnitTests
         public async Task Test_EditUser_BadRequestResult()
         {
             //arrange
-            SeedDb();
             var myuser = new UserDTO
             {
                 userId = 0,
@@ -304,13 +280,9 @@ namespace UnitTests
                 isAdmin = false,
             };
 
-            var adminController = new AdminController(_context, _hub);
-
-
             //act
             var user = await adminController.EditUser(myuser);
             var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
 
             //assert
             Assert.NotNull(result);

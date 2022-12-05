@@ -24,13 +24,10 @@
   .home .image{
     padding-top: 10rem;
     flex:1 1 40rem;
-  }
-  
-  .home .image img{
     width:100%;
-    padding:1rem;
-    padding-right: 5rem;
-    animation:float 3s linear infinite;
+    height: auto;
+    background-image: url("../Images/Landingbg.png");
+    background-size: cover;
   }
   
   .home .content h3{
