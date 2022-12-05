@@ -86,6 +86,8 @@ namespace Back_end_API.Controllers
                 myrecipe.Status = RecipeModel.status.Declined.ToString();
 
                 await _context.SaveChangesAsync();
+
+                await _hub.Clients.All.SendAsync("RemoveRecipe", id);
                 return Ok("request declined");
             }
             return BadRequest("recipe not found");

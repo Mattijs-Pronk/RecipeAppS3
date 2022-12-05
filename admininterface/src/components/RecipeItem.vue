@@ -110,7 +110,6 @@
           duration: 5000
           });
         } 
-        }
       },
       async DeclineThisRecipeRequest(id){
         if(await DeclineRecipeRequest(id)){
@@ -120,7 +119,7 @@
           pauseOnHover: true,
           duration: 5000
           });
-          this.CloseAcceptConfirmModal();
+          this.CloseDeclineConfirmModal();
         }
         else{
           this.$toast.error('recipe was not found' , {
@@ -131,6 +130,7 @@
           });
         } 
       },
+    }
   }
 </script>
 

@@ -183,24 +183,24 @@ namespace UnitTests
             Assert.Equal(400, result.StatusCode);
         }
 
-        [Fact]
-        public async Task Test_DeclineRecipeRequest_OkResult()
-        {
-            //arrange
-            SeedDb();
-            int id = 130;
-            var adminController = new AdminController(_context, _hub);
+        //[Fact]
+        //public async Task Test_DeclineRecipeRequest_OkResult()
+        //{
+        //    arrange
+        //    SeedDb();
+        //    int id = 130;
+        //    var adminController = new AdminController(_context, _hub);
 
 
-            //act
-            var user = await adminController.DeclineRecipeRequest(id);
-            var result = (ObjectResult)user;
-            await _context.Database.EnsureDeletedAsync();
+        //    act
+        //    var user = await adminController.DeclineRecipeRequest(id);
+        //    var result = (ObjectResult)user;
+        //    await _context.Database.EnsureDeletedAsync();
 
-            //assert
-            Assert.NotNull(result);
-            Assert.Equal(200, result.StatusCode);
-        }
+        //    assert
+        //    Assert.NotNull(result);
+        //    Assert.Equal(200, result.StatusCode);
+        //}
 
         [Fact]
         public async Task Test_DeclineRecipeRequest_BadRequestResult()

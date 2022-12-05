@@ -59,9 +59,8 @@
     },
     methods:{
       DeleteRecipe(id){
-        let i = this.listdata.map(item => item.id).indexOf(id)
+        let i = this.listdata.map(r => r.recipeId).indexOf(id)
         this.listdata.splice(i, 1)
-        CloseModal();
       },
       async OpenRecipeById(id){
         this.mealitem = await OpenModal(id)
