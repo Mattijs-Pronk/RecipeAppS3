@@ -16,11 +16,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      - name: Run local k6 test
-        uses: grafana/k6-action@v0.2.0
-        with:
-          filename:  ${{ matrix.dir }}/UnitTests/load_test.js
 
       - name: Test .net projects
         working-directory: ${{ matrix.dir }}
