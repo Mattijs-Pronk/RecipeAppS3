@@ -1,6 +1,4 @@
 import { describe, expect, test } from 'vitest'
-import mockAxios from "axios";
-//import API from "./API"
 
 // Run all test: npm run test:unit
 

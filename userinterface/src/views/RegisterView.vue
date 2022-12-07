@@ -91,7 +91,7 @@ export default{
     },
 
     validateEmail(email) {
-      const re = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      const re = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/;
       return re.test(email);
     },
 

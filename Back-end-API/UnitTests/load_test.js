@@ -20,8 +20,6 @@ const API_BASE_URL = 'https://localhost:8000/api/';
 
 export default () => {
     http.get(API_BASE_URL + 'Recipe/getallaccepted');
-    http.get(API_BASE_URL + 'Recipe/getallonhold');
-    http.get(API_BASE_URL + 'Recipe/getalldeclined');
     //sleep om een request per seconden te krijgen.
     sleep(1);
 };

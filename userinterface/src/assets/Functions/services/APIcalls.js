@@ -1,4 +1,3 @@
-import { GetUserRecipesById } from "../User"
 import API from "./API"
 
 export default{

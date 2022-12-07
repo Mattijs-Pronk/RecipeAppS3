@@ -71,7 +71,7 @@ export default{
       : (this.validateEmail(this.email) ? '' : this.email + ' is not an email.')
     },
     validateEmail(email) {
-      const re = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      const re = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/;
       return re.test(email);
     },
     checkPassword() {
