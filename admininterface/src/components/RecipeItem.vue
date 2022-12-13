@@ -101,6 +101,7 @@
           duration: 5000
           });
           this.CloseAcceptConfirmModal();
+          CloseModal();
         }
         else{
           this.$toast.error('recipe was not found' , {
@@ -120,6 +121,7 @@
           duration: 5000
           });
           this.CloseDeclineConfirmModal();
+          CloseModal();
         }
         else{
           this.$toast.error('recipe was not found' , {
