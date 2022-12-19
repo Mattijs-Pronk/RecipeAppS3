@@ -2,10 +2,8 @@
     <footer>
         <div class="footer-border">
             <RouterLink to="/landing" class="logo">Cloud Recipes</RouterLink>
-            <br/>
             <img class="logo-img" src = "../assets/Images/CloudRecipeLogo.jpg" alt = "food">
             <p>Copyright © 2022-{{autodate}} Mattijs Pronk, Inc - All Rights Reserved</p>
-            <br/>
             <RouterLink to="/landing">Home</RouterLink> | <RouterLink to="/contactus">Contact us</RouterLink> | <RouterLink to="/login">Login</RouterLink>
         </div>
     </footer>
