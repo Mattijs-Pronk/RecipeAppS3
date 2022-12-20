@@ -4,6 +4,7 @@ using Back_end_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendAPI.Migrations
 {
     [DbContext(typeof(RecipeAppContext))]
-    partial class RecipeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221220173616_m2mAdded")]
+    partial class m2mAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,10 +64,10 @@ namespace BackendAPI.Migrations
 
                     b.HasKey("featuredId");
 
-                    b.ToTable("Featured");
+                    b.ToTable("FeaturedModel");
                 });
 
-            modelBuilder.Entity("Back_end_API.Models.FeaturedRecipes", b =>
+            modelBuilder.Entity("Back_end_API.Models.FeaturedRecipesModel", b =>
                 {
                     b.Property<int>("recipeId")
                         .HasColumnType("int");
@@ -76,7 +79,7 @@ namespace BackendAPI.Migrations
 
                     b.HasIndex("featuredId");
 
-                    b.ToTable("FeaturedRecipes");
+                    b.ToTable("FeaturedRecipesModel");
                 });
 
             modelBuilder.Entity("Back_end_API.Models.RecipeModel", b =>
@@ -192,7 +195,7 @@ namespace BackendAPI.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("Back_end_API.Models.FeaturedRecipes", b =>
+            modelBuilder.Entity("Back_end_API.Models.FeaturedRecipesModel", b =>
                 {
                     b.HasOne("Back_end_API.Models.FeaturedModel", "Featured")
                         .WithMany("FeaturedRecipes")

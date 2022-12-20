@@ -10,6 +10,13 @@ namespace Back_end_API.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FeaturedRecipes>().HasKey(fr => new { fr.recipeId, fr.featuredId });
+        }
+
+        public DbSet<FeaturedModel> Featured { get; set; } = null!;
+
         public DbSet<UserModel> Users { get; set; } = null!;
 
         public DbSet<RecipeModel> Recipes { get; set; } = null!;

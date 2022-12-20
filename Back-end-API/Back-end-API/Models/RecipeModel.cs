@@ -43,6 +43,8 @@ namespace Back_end_API.Models
 
         public UserModel User { get; set; } = null!;
 
+        public IList<FeaturedRecipes> FeaturedRecipes { get; set; } = null!;
+
         public enum status
         {
             Accepted,
