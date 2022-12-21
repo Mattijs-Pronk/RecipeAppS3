@@ -5,7 +5,7 @@ import { describe, expect, test } from 'vitest'
 //Unit test for signing off
 import { Logout } from '../../assets/Functions/Auth'
 describe('Logout', () => {
-  test('Deletes the localStorage item properly.', () => {
+  test('Deletes the localStorage item properly', () => {
     localStorage.setItem('user', JSON.stringify("Unit-Test"))
     expect(Logout()).toBe(true)
   })
