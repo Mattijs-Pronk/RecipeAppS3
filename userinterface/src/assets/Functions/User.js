@@ -15,29 +15,36 @@ export const GetUserRecipesById = async (id) => {
 export const AddToFavorites = async (userid, recipeid) => {
     var favoriteHeart = document.getElementById("favorite");
 
-    try{
-        await APIcalls.AddToFavorites(userid, recipeid)
-
-        //kleur van heart veranderen.
-        if(favoriteHeart.style.color == "red"){
-            favoriteHeart.style.color = "#002366"
+    const user = JSON.parse(localStorage.getItem('user'))
+    if(user !== null)
+    {
+        try{
+            await APIcalls.AddToFavorites(userid, recipeid)
+    
+            //kleur van heart veranderen.
+            if(favoriteHeart.style.color == "red"){
+                favoriteHeart.style.color = "#002366"
+            }
+            else{
+                favoriteHeart.style.color = "red"
+            }
+            return true
         }
-        else{
-            favoriteHeart.style.color = "red"
+        catch(error){
+            console.log(error)
+    
+            //kleur van heart veranderen.
+            if(favoriteHeart.style.color == "red"){
+                favoriteHeart.style.color = "#002366"
+            }
+            else{
+                favoriteHeart.style.color = "red"
+            }
+    
+            return false
         }
-        return true
     }
-    catch(error){
-        console.log(error)
-
-        //kleur van heart veranderen.
-        if(favoriteHeart.style.color == "red"){
-            favoriteHeart.style.color = "#002366"
-        }
-        else{
-            favoriteHeart.style.color = "red"
-        }
-
+    else{
         return false
     }
 }
