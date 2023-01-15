@@ -23,7 +23,6 @@ coverage
 .idea
 *.suo
 *.ntvs*
-*.sln
 *.njsproj
 *.sw?
 
@@ -481,4 +480,3 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-##Niew
